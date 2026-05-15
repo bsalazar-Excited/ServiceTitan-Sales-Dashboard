@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blizzy AI — ServiceTitan Comm+</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=DM+Mono:wght@400;500&display=swap');
+:root{--bg:#09090c;--bg2:#111115;--bg3:#18181e;--bg4:#1e1e28;--b1:rgba(255,255,255,.06);--b2:rgba(255,255,255,.1);--b3:rgba(255,255,255,.16);--t1:#f2f2f4;--t2:#9090a0;--t3:#55556a;--grn:#1ed87a;--grn-bg:rgba(30,216,122,.08);--grn-b:rgba(30,216,122,.2);--amb:#f5a623;--amb-bg:rgba(245,166,35,.08);--amb-b:rgba(245,166,35,.22);--blu:#4a9eff;--blu-bg:rgba(74,158,255,.08);--blu-b:rgba(74,158,255,.22);--red:#ff5c5c;--red-bg:rgba(255,92,92,.08);--red-b:rgba(255,92,92,.22);--ice:#7ecfe3;--ice-bg:rgba(126,207,227,.08);--ice-b:rgba(126,207,227,.22);--pur:#a78bfa;--pur-bg:rgba(167,139,250,.08);--pur-b:rgba(167,139,250,.22);--r:8px;--rs:5px}
+.light{--bg:#f4f4f7;--bg2:#ffffff;--bg3:#f0f0f4;--bg4:#e8e8ec;--b1:rgba(0,0,0,.07);--b2:rgba(0,0,0,.12);--t1:#0a0a0e;--t2:#5a5a6e;--t3:#9090a8;--grn:#0e9e5a;--grn-bg:rgba(14,158,90,.08);--grn-b:rgba(14,158,90,.2);--amb:#c47e0a;--amb-bg:rgba(196,126,10,.08);--amb-b:rgba(196,126,10,.22);--blu:#1a6fc4;--blu-bg:rgba(26,111,196,.08);--blu-b:rgba(26,111,196,.22);--red:#c0392b;--red-bg:rgba(192,57,43,.08);--red-b:rgba(192,57,43,.22);--ice:#1a8aa8;--ice-bg:rgba(26,138,168,.08);--ice-b:rgba(26,138,168,.22);--pur:#6c4bc4;--pur-bg:rgba(108,75,196,.08);--pur-b:rgba(108,75,196,.22)}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--bg);color:var(--t1);font-family:'DM Sans',sans-serif;font-size:13px;line-height:1.5;overflow:hidden;transition:background .2s,color .2s}
+.app{display:grid;grid-template-columns:214px 1fr;height:100vh}
+.sb{background:var(--bg2);border-right:1px solid var(--b1);display:flex;flex-direction:column;overflow:hidden}
+.sb-head{padding:14px 13px 12px;border-bottom:1px solid var(--b1);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.sb-logo{display:flex;align-items:center;gap:8px}
+.sb-icon{width:26px;height:26px;background:var(--grn);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff}
+.sb-name{font-size:13px;font-weight:600;letter-spacing:-.2px;color:var(--t1)}
+.sb-ver{font-size:10px;color:var(--t3)}
+.theme-btn{background:none;border:1px solid var(--b2);border-radius:var(--rs);padding:3px 8px;cursor:pointer;font-size:10px;color:var(--t2);font-family:'DM Sans',sans-serif}
+.theme-btn:hover{background:var(--bg3);color:var(--t1)}
+.sb-body{flex:1;padding:8px 6px;overflow-y:auto}
+.ng{margin-bottom:2px}
+.ng-lbl{font-size:9px;font-weight:500;color:var(--t3);text-transform:uppercase;letter-spacing:.09em;padding:8px 9px 3px}
+.nb{display:flex;align-items:center;gap:7px;padding:7px 9px;border-radius:var(--rs);border:none;background:none;color:var(--t2);font-size:11.5px;cursor:pointer;width:100%;text-align:left;font-family:'DM Sans',sans-serif;transition:all .13s;white-space:nowrap}
+.nb svg{width:14px;height:14px;flex-shrink:0;opacity:.65}
+.nb:hover{background:var(--bg3);color:var(--t1)}
+.nb.on{background:var(--grn-bg);color:var(--grn);border:1px solid var(--grn-b);font-weight:500}
+.nb.on svg{opacity:1}
+.ntag{margin-left:auto;font-size:9px;font-family:'DM Mono',monospace;padding:1px 5px;border-radius:3px}
+.tg-live{background:var(--grn-bg);color:var(--grn);border:1px solid var(--grn-b)}
+.tg-snow{background:var(--ice-bg);color:var(--ice);border:1px solid var(--ice-b)}
+.tg-new{background:var(--pur-bg);color:var(--pur);border:1px solid var(--pur-b)}
+.sb-foot{padding:10px 12px;border-top:1px solid var(--b1);flex-shrink:0}
+.cl{font-size:9px;font-weight:500;color:var(--t3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:5px}
+.ci{display:flex;align-items:center;gap:6px;font-size:10px;color:var(--t2);padding:2px 0;font-family:'DM Mono',monospace}
+.cd{width:5px;height:5px;border-radius:50%;flex-shrink:0}
+.cd-on{background:var(--grn);box-shadow:0 0 5px var(--grn)}.cd-pend{background:var(--amb)}.cd-off{background:var(--t3)}
+.main{display:flex;flex-direction:column;overflow:hidden}
+.topbar{padding:11px 20px;border-bottom:1px solid var(--b1);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;background:var(--bg2)}
+.tb-t{font-size:15px;font-weight:600;letter-spacing:-.2px;color:var(--t1)}
+.tb-s{font-size:11px;color:var(--t3);margin-top:1px}
+.tb-r{display:flex;gap:6px;align-items:center}
+.chip{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:100px;font-size:10px;font-weight:500}
+.chip-g{background:var(--grn-bg);color:var(--grn);border:1px solid var(--grn-b)}
+.chip-s{background:var(--ice-bg);color:var(--ice);border:1px solid var(--ice-b)}
+.chip-a{background:var(--amb-bg);color:var(--amb);border:1px solid var(--amb-b)}
+.content{flex:1;overflow-y:auto;padding:16px 20px}
+.pane{display:none;animation:fi .18s ease}.pane.on{display:block}
+@keyframes fi{from{opacity:0;transform:translateY(3px)}to{opacity:1;transform:none}}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-bottom:13px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-bottom:13px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-bottom:13px}
+.g21{display:grid;grid-template-columns:1.3fr 1fr;gap:13px;margin-bottom:13px}
+.card{background:var(--bg2);border:1px solid var(--b1);border-radius:var(--r);padding:12px 14px;margin-bottom:10px}
+.card.g{border-color:var(--grn-b);background:var(--grn-bg)}.card.a{border-color:var(--amb-b);background:var(--amb-bg)}.card.b{border-color:var(--blu-b);background:var(--blu-bg)}.card.s{border-color:var(--ice-b);background:var(--ice-bg)}.card.p{border-color:var(--pur-b);background:var(--pur-bg)}.card.r{border-color:var(--red-b);background:var(--red-bg)}.card.nopad{padding:0;overflow:hidden}
+.metric{background:var(--bg3);border:1px solid var(--b1);border-radius:var(--r);padding:11px 13px}
+.ml{font-size:10px;color:var(--t3);font-weight:500;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px}
+.mv{font-size:22px;font-weight:600;color:var(--t1);letter-spacing:-.5px;font-family:'DM Mono',monospace}
+.ms{font-size:10px;color:var(--t3);margin-top:2px}
+.mv.g{color:var(--grn)}.mv.a{color:var(--amb)}.mv.b{color:var(--blu)}.mv.s{color:var(--ice)}.mv.r{color:var(--red)}
+.bx{display:inline-flex;align-items:center;gap:3px;padding:2px 7px;border-radius:100px;font-size:10px;font-weight:500;white-space:nowrap}
+.bg{background:var(--grn-bg);color:var(--grn);border:1px solid var(--grn-b)}.ba{background:var(--amb-bg);color:var(--amb);border:1px solid var(--amb-b)}.bb{background:var(--blu-bg);color:var(--blu);border:1px solid var(--blu-b)}.br{background:var(--red-bg);color:var(--red);border:1px solid var(--red-b)}.bgr{background:var(--bg4);color:var(--t3);border:1px solid var(--b1)}.bs{background:var(--ice-bg);color:var(--ice);border:1px solid var(--ice-b)}.bp{background:var(--pur-bg);color:var(--pur);border:1px solid var(--pur-b)}
+table{width:100%;border-collapse:collapse;font-size:11px}
+th{text-align:left;padding:7px 11px;font-size:9px;font-weight:500;color:var(--t3);text-transform:uppercase;letter-spacing:.07em;border-bottom:1px solid var(--b1);background:var(--bg3)}
+td{padding:8px 11px;border-bottom:1px solid var(--b1);color:var(--t1);vertical-align:middle}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:var(--bg3)}
+td.bold{font-weight:500}
+.sfl{color:var(--blu);text-decoration:none;font-weight:500;display:inline-flex;align-items:center;gap:3px;font-size:11px}
+.sfl:hover{text-decoration:underline}
+.sec{font-size:10px;font-weight:500;color:var(--t3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:9px;display:flex;align-items:center;gap:6px}
+.pulse{width:5px;height:5px;border-radius:50%;background:var(--grn);animation:pu 2s infinite;flex-shrink:0}
+@keyframes pu{0%,100%{opacity:1}50%{opacity:.1}}
+.ob-bar{height:4px;border-radius:2px;background:var(--bg4);overflow:hidden}
+.ob-fill{height:100%;border-radius:2px;background:var(--grn)}
+.divider{height:1px;background:var(--b1);margin:12px 0}
+.row-card{display:flex;gap:11px;padding:10px 12px;background:var(--bg3);border-radius:var(--rs);margin-bottom:7px;border:1px solid var(--b1);align-items:flex-start}
+.rc-icon{width:30px;height:30px;border-radius:var(--rs);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:15px}
+.rc-title{font-size:12px;font-weight:500;color:var(--t1);margin-bottom:2px}
+.rc-desc{font-size:11px;color:var(--t2);line-height:1.5}
+.prog-wrap{margin-top:7px}
+.prog-track{height:5px;background:var(--bg4);border-radius:3px;overflow:hidden;margin-bottom:3px}
+.prog-fill{height:100%;border-radius:3px}
+.prog-labels{display:flex;justify-content:space-between;font-size:10px;font-family:'DM Mono',monospace}
+.na-hdr{display:flex;align-items:center;gap:8px;padding:7px 12px;border-radius:var(--rs);margin-bottom:7px}
+.na-hdr.red{background:var(--red-bg);border:1px solid var(--red-b)}.na-hdr.amb{background:var(--amb-bg);border:1px solid var(--amb-b)}.na-hdr.grn{background:var(--grn-bg);border:1px solid var(--grn-b)}
+.na-ht{font-size:11px;font-weight:500}
+.na-hdr.red .na-ht{color:var(--red)}.na-hdr.amb .na-ht{color:var(--amb)}.na-hdr.grn .na-ht{color:var(--grn)}
+.na-hc{font-size:10px;margin-left:auto;font-family:'DM Mono',monospace}
+.na-card{display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--bg3);border-radius:var(--r);margin-bottom:6px;border:1px solid var(--b1)}
+.na-left{flex:1;min-width:0}
+.na-name{font-size:12px;font-weight:500;color:var(--t1)}
+.na-meta{font-size:11px;color:var(--t2);margin-top:2px;display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.na-phone{font-family:'DM Mono',monospace;font-size:10px;color:var(--blu);text-decoration:none}
+.na-phone:hover{text-decoration:underline}
+.na-days{font-family:'DM Mono',monospace;font-size:11px;font-weight:500;white-space:nowrap;flex-shrink:0}
+.na-actions{display:flex;gap:5px;flex-shrink:0}
+.na-btn{font-size:10px;padding:4px 9px;border-radius:var(--rs);border:1px solid var(--b2);background:none;color:var(--t2);cursor:pointer;font-family:'DM Sans',sans-serif;white-space:nowrap}
+.na-btn:hover{background:var(--bg4);color:var(--t1)}
+.na-btn.call{border-color:var(--grn-b);color:var(--grn);background:var(--grn-bg)}
+.na-btn.email{border-color:var(--blu-b);color:var(--blu);background:var(--blu-bg)}
+.call-item{display:flex;align-items:center;gap:12px;padding:12px 14px;background:var(--bg3);border:1px solid var(--b1);border-radius:var(--r);margin-bottom:8px;cursor:pointer;transition:all .15s}
+.call-item:hover{border-color:var(--grn-b);background:var(--grn-bg)}
+.call-item.open{border-color:var(--grn);background:var(--grn-bg)}
+.call-time{font-family:'DM Mono',monospace;font-size:13px;font-weight:500;color:var(--grn);min-width:54px}
+.call-info{flex:1}
+.call-name{font-size:13px;font-weight:500;color:var(--t1)}
+.call-meta{font-size:11px;color:var(--t2);margin-top:2px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.call-chevron{font-size:16px;color:var(--t3);transition:transform .15s;flex-shrink:0}
+.call-item.open .call-chevron{transform:rotate(90deg)}
+.call-detail{display:none;padding:13px 14px;border-top:1px solid var(--b1);background:var(--bg2)}
+.call-item.open .call-detail{display:block}
+.score-row{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.score-lbl{font-size:11px;color:var(--t2);min-width:130px}
+.score-track{flex:1;height:4px;background:var(--bg4);border-radius:2px;overflow:hidden}
+.score-fill{height:100%;border-radius:2px}
+.score-val{font-size:11px;font-family:'DM Mono',monospace;color:var(--t2);min-width:28px;text-align:right}
+.imp{display:flex;gap:10px;padding:9px 11px;background:var(--bg3);border-radius:var(--rs);margin-bottom:6px;border-left:2px solid var(--amb)}
+.imp.good{border-left-color:var(--grn)}
+.imp-lbl{font-size:9px;font-weight:500;text-transform:uppercase;letter-spacing:.06em;margin-bottom:2px;color:var(--amb)}
+.imp.good .imp-lbl{color:var(--grn)}
+.imp-body{font-size:11px;color:var(--t2);line-height:1.5}
+.ec{background:var(--bg3);border:1px solid var(--b1);border-radius:var(--r);overflow:hidden;margin-bottom:10px}
+.ec-hdr{padding:9px 14px;border-bottom:1px solid var(--b1);display:flex;align-items:center;justify-content:space-between;background:var(--bg4)}
+.ec-ht{font-size:11px;font-weight:500;color:var(--t1)}
+.ec-field{display:flex;align-items:center;gap:8px;padding:6px 14px;border-bottom:1px solid var(--b1)}
+.ec-field-lbl{font-size:10px;font-weight:500;color:var(--t3);min-width:36px}
+.ec-field input{font-size:12px;color:var(--t1);border:none;background:none;outline:none;width:100%;font-family:'DM Sans',sans-serif}
+.ec-field-val{font-size:12px;color:var(--t1);font-weight:500;flex:1}
+.ec-body{padding:12px 14px;font-size:12px;color:var(--t1);line-height:1.8;white-space:pre-wrap;min-height:100px}
+.ec-foot{padding:8px 14px;border-top:1px solid var(--b1);display:flex;gap:7px;align-items:center;background:var(--bg4)}
+.send-btn{display:inline-flex;align-items:center;gap:5px;padding:6px 14px;border-radius:var(--rs);border:none;background:var(--grn);color:#fff;font-size:12px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif}
+.send-btn:hover{opacity:.85}
+.copy-btn{display:inline-flex;align-items:center;gap:5px;padding:6px 12px;border-radius:var(--rs);border:1px solid var(--b2);background:none;color:var(--t2);font-size:11px;cursor:pointer;font-family:'DM Sans',sans-serif}
+.copy-btn:hover{background:var(--bg3);color:var(--t1)}
+.copy-btn.ok{border-color:var(--grn-b);color:var(--grn)}
+.qa-search{width:100%;padding:8px 12px;border:1px solid var(--b2);border-radius:var(--r);background:var(--bg3);color:var(--t1);font-size:12px;font-family:'DM Sans',sans-serif;outline:none;margin-bottom:12px}
+.qa-search:focus{border-color:var(--grn)}
+.qa-search::placeholder{color:var(--t3)}
+.qa-item{border:1px solid var(--b1);border-radius:var(--r);margin-bottom:7px;overflow:hidden}
+.qa-q{padding:10px 13px;background:var(--bg3);font-size:12px;font-weight:500;color:var(--t1);display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none}
+.qa-q:hover{background:var(--bg4)}
+.qa-arrow{margin-left:auto;font-size:16px;color:var(--t3);transition:transform .15s;flex-shrink:0}
+.qa-item.open .qa-arrow{transform:rotate(90deg)}
+.qa-a{display:none;padding:10px 13px;font-size:11.5px;color:var(--t2);line-height:1.75;border-top:1px solid var(--b1);background:var(--bg2)}
+.qa-item.open .qa-a{display:block}
+.res-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-bottom:13px}
+.res-card{background:var(--bg3);border:1px solid var(--b1);border-radius:var(--r);padding:12px 14px;cursor:pointer;transition:all .15s;text-decoration:none;display:block}
+.res-card:hover{border-color:var(--b2);background:var(--bg4)}
+.res-icon{font-size:20px;margin-bottom:7px}
+.res-title{font-size:12px;font-weight:500;color:var(--t1);margin-bottom:3px}
+.res-desc{font-size:11px;color:var(--t2)}
+.res-tag{font-size:9px;font-family:'DM Mono',monospace;padding:1px 6px;border-radius:3px;margin-top:7px;display:inline-block}
+.spin-card{background:var(--bg3);border:1px solid var(--b1);border-radius:var(--r);padding:10px 12px;margin-bottom:7px}
+.spin-type{font-size:9px;font-weight:500;color:var(--pur);text-transform:uppercase;letter-spacing:.08em;padding:1px 7px;border-radius:100px;background:var(--pur-bg);border:1px solid var(--pur-b);display:inline-block;margin-bottom:6px}
+.spin-q{font-size:11.5px;color:var(--t2);margin-bottom:6px;font-style:italic}
+.spin-a{font-size:12px;color:var(--t1);line-height:1.6;background:var(--bg4);padding:8px 10px;border-radius:var(--rs);border-left:2px solid var(--pur)}
+.icp-q{padding:9px 12px;border-bottom:1px solid var(--b1);display:flex;gap:10px;align-items:flex-start}
+.icp-q:last-child{border-bottom:none}
+.icp-num{font-family:'DM Mono',monospace;font-size:10px;color:var(--grn);flex-shrink:0;min-width:18px;margin-top:1px}
+.icp-main{font-size:11.5px;color:var(--t1);font-style:italic;margin-bottom:4px}
+.icp-note{font-size:10px;color:var(--amb);background:var(--amb-bg);padding:2px 8px;border-radius:3px;display:inline-block;margin-top:3px}
+.icp-dq{font-size:10px;color:var(--red);background:var(--red-bg);padding:2px 8px;border-radius:3px;display:inline-block;margin-top:3px}
+.tl-row{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--b1)}
+.tl-row:last-child{border-bottom:none}
+.tl-t{font-family:'DM Mono',monospace;font-size:10px;color:var(--t3);white-space:nowrap;min-width:46px;margin-top:2px}
+.tl-d{width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-top:4px}
+.tl-x{color:var(--t1);line-height:1.6;flex:1;font-size:11.5px}
+.ask-row{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:start;padding:12px 14px;background:var(--bg3);border-radius:var(--r);margin-bottom:8px;border:1px solid var(--b1)}
+.ask-t{font-size:13px;font-weight:500;color:var(--t1);margin-bottom:3px}
+.ask-d{font-size:11px;color:var(--t2);line-height:1.5}
+.ask-c{font-size:16px;font-weight:600;color:var(--grn);font-family:'DM Mono',monospace;white-space:nowrap}
+.cs{background:var(--bg3);border:1px dashed var(--b2);border-radius:var(--r);padding:13px 15px;margin-bottom:10px;opacity:.75}
+.cs-t{font-size:12px;font-weight:500;color:var(--t2);display:flex;align-items:center;gap:7px;margin-bottom:4px}
+.cs-d{font-size:11px;color:var(--t3);line-height:1.6}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--b2);border-radius:2px}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sb">
+  <div class="sb-head">
+    <div class="sb-logo"><div class="sb-icon">B</div><div><div class="sb-name">Blizzy AI</div><div class="sb-ver">Comm+ &middot; FY27</div></div></div>
+    <button class="theme-btn" id="themeBtn">&#9728; Light</button>
+  </div>
+  <div class="sb-body">
+    <div class="ng"><div class="ng-lbl">Overview</div>
+      <button class="nb on" data-pane="overview"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>Dashboard<span class="ntag tg-live">LIVE</span></button>
+    </div>
+    <div class="ng"><div class="ng-lbl">Pipeline</div>
+      <button class="nb" data-pane="pipeline"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>Active pipeline<span class="ntag tg-snow">&#10052;</span></button>
+      <button class="nb" data-pane="needsactivity"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Needs activity<span class="ntag tg-snow">&#10052;</span></button>
+      <button class="nb" data-pane="closedwon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>Closed won<span class="ntag tg-snow">&#10052;</span></button>
+      <button class="nb" data-pane="closedlost"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>Closed lost<span class="ntag tg-snow">&#10052;</span></button>
+      <button class="nb" data-pane="onboarding"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>Onboarding<span class="ntag tg-snow">&#10052;</span></button>
+    </div>
+    <div class="ng"><div class="ng-lbl">AI Tools</div>
+      <button class="nb" data-pane="followup"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>Follow-up emails<span class="ntag tg-live">LIVE</span></button>
+      <button class="nb" data-pane="precall"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/></svg>Pre-call brief<span class="ntag tg-snow">&#10052;</span></button>
+      <button class="nb" data-pane="spin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>SPIN scenarios<span class="ntag tg-new">NEW</span></button>
+      <button class="nb" data-pane="icp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>ICP qualifier<span class="ntag tg-live">LIVE</span></button>
+      <button class="nb" data-pane="callcoach"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>Call coaching<span class="ntag tg-snow">&#10052;</span></button>
+      <button class="nb" data-pane="gong"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/></svg>Gong Drop<span class="ntag tg-live">LIVE</span></button>
+      <button class="nb" data-pane="referrals"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Referral engine<span class="ntag tg-snow">&#10052;</span></button>
+      <button class="nb" data-pane="forecast"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>Forecast + signals<span class="ntag tg-snow">&#10052;</span></button>
+      <button class="nb" data-pane="qa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Quick answers<span class="ntag tg-live">LIVE</span></button>
+      <button class="nb" data-pane="resources"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>Resources<span class="ntag tg-live">LIVE</span></button>
+    </div>
+    <div class="ng"><div class="ng-lbl">Business case</div>
+      <button class="nb" data-pane="dayinlife"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Day in the life</button>
+      <button class="nb" data-pane="theask"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>The ask</button>
+    </div>
+  </div>
+  <div class="sb-foot">
+    <div class="cl">Connections</div>
+    <div class="ci"><div class="cd cd-on"></div>Zoom &middot; Calendar &middot; Gmail</div>
+    <div class="ci"><div class="cd cd-on"></div>Confluence &middot; Slack</div>
+    <div class="ci"><div class="cd cd-pend"></div>Snowflake SFDC &mdash; pending</div>
+    <div class="ci"><div class="cd cd-off"></div>SFDC write access</div>
+  </div>
+</aside>
+<div class="main">
+  <div class="topbar">
+    <div><div class="tb-t" id="pg-t">Dashboard</div><div class="tb-s" id="pg-s">FY27 &middot; Blayne Salazar &middot; Comm+</div></div>
+    <div class="tb-r"><span class="chip chip-g">&bull; Live today</span><span class="chip chip-s">&#10052; Snowflake unlocks</span><span class="chip chip-a">Pilot pending</span></div>
+  </div>
+  <div class="content">
+
+  <div class="pane on" id="pane-overview">
+    <div class="g4">
+      <div class="metric"><div class="ml">FY27 quota</div><div class="mv s">$312K</div><div class="ms">CMRR target</div></div>
+      <div class="metric"><div class="ml">Closed won YTD</div><div class="mv g">$15.2K</div><div class="ms">4.9% attainment &middot; 6 accts</div></div>
+      <div class="metric"><div class="ml">Active pipeline</div><div class="mv a">$14.3K</div><div class="ms">6 open opps</div></div>
+      <div class="metric"><div class="ml">Time saved/week</div><div class="mv g">3.7 hrs</div><div class="ms">Gong Drop live now</div></div>
+    </div>
+    <div class="g3">
+      <div class="metric">
+        <div class="ml">Avg ARPU per managed tech</div>
+        <div class="mv a">$281</div>
+        <div class="ms" style="color:var(--amb)">Target: $285 &mdash; $4 below &#9888;</div>
+        <div class="prog-wrap"><div class="prog-track"><div class="prog-fill" style="width:98.6%;background:var(--amb)"></div></div>
+        <div class="prog-labels"><span style="color:var(--t3)">$0</span><span style="color:var(--amb)">$281</span><span style="color:var(--grn)">$285 target</span></div></div>
+      </div>
+      <div class="metric">
+        <div class="ml">Avg tech count per deal</div>
+        <div class="mv g">8.2</div>
+        <div class="ms">techs &middot; FY27 YTD (6 deals)</div>
+        <div class="prog-wrap"><div class="prog-track"><div class="prog-fill" style="width:82%;background:var(--grn)"></div></div>
+        <div class="prog-labels"><span style="color:var(--t3)">0</span><span style="color:var(--grn)">8.2 avg</span><span style="color:var(--t3)">10 goal</span></div></div>
+      </div>
+      <div class="metric">
+        <div class="ml">Total techs sold FY27</div>
+        <div class="mv b">49</div>
+        <div class="ms">&#10052; auto-counts with Snowflake</div>
+        <div class="prog-wrap"><div class="prog-track"><div class="prog-fill" style="width:49%;background:var(--blu)"></div></div>
+        <div class="prog-labels"><span style="color:var(--t3)">0</span><span style="color:var(--blu)">49 sold</span><span style="color:var(--t3)">100 goal</span></div></div>
+      </div>
+    </div>
+    <div class="card a" style="margin-bottom:13px">
+      <div class="sec">ARPU coaching &mdash; $4 below $285 target</div>
+      <div class="g3" style="margin-bottom:0">
+        <div style="font-size:11px;color:var(--t2);line-height:1.7"><strong style="color:var(--t1)">Push Works over Essentials.</strong> Every deal that lands on Essentials costs ~$15-20/tech/month. Make the Works ask before the pricing reveal, not after. Frame onboarding as one-time vs monthly compounding value.</div>
+        <div style="font-size:11px;color:var(--t2);line-height:1.7"><strong style="color:var(--t1)">Close at 2-year term.</strong> Ramp pricing protects ARPU at month 18 at $299/tech. One-year deals discounted to close pull ARPU below target. Two years is the number protector.</div>
+        <div style="font-size:11px;color:var(--t2);line-height:1.7"><strong style="color:var(--t1)">Quantify ROI before pricing.</strong> Deals where dollar ROI is stated before pricing average $293/tech. Without it: $271. Set the value anchor, then reveal price. Competitive call review snippet from this week reinforces this.</div>
+      </div>
+    </div>
+    <div class="card nopad">
+      <div style="padding:9px 13px;border-bottom:1px solid var(--b1)"><div class="sec" style="margin:0"><div class="pulse"></div>Recent wins &mdash; FY27</div></div>
+      <table>
+        <thead><tr><th>Account</th><th>Vertical</th><th>Techs</th><th>CMRR</th><th>ARPU</th><th>Close</th><th>Status</th><th>Referral</th><th>SFDC</th></tr></thead>
+        <tbody>
+          <tr><td class="bold">Refrigeration Plus</td><td>HVAC</td><td>10</td><td>$2,990</td><td><span style="color:var(--grn)">$299</span></td><td>04/28</td><td><span class="bx bg">Live</span></td><td><span class="bx ba">Due 05/25</span></td><td><a class="sfl" href="https://servicetitan.lightning.force.com" target="_blank">&#8599; Open</a></td></tr>
+          <tr><td class="bold">Pipe Dream Plumbing</td><td>Plumbing</td><td>6</td><td>$1,794</td><td><span style="color:var(--grn)">$299</span></td><td>05/02</td><td><span class="bx ba">Onboarding</span></td><td><span class="bx ba">06/12</span></td><td><a class="sfl" href="https://servicetitan.lightning.force.com" target="_blank">&#8599; Open</a></td></tr>
+          <tr><td class="bold">Air &amp; Heat Specialists NJ</td><td>HVAC</td><td>14</td><td>$4,186</td><td><span style="color:var(--grn)">$299</span></td><td>02/28</td><td><span class="bx bg">Live</span></td><td><span class="bx bg">Sent 03/31</span></td><td><a class="sfl" href="https://servicetitan.lightning.force.com" target="_blank">&#8599; Open</a></td></tr>
+          <tr><td class="bold">Controlled Comfort</td><td>HVAC</td><td>9</td><td>$2,691</td><td><span style="color:var(--grn)">$299</span></td><td>03/14</td><td><span class="bx bg">Live</span></td><td><span class="bx bg">Sent 04/18</span></td><td><a class="sfl" href="https://servicetitan.lightning.force.com" target="_blank">&#8599; Open</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="g3">
+      <div class="card g"><div class="sec"><div class="pulse"></div>Live today</div><div style="font-size:11px;color:var(--t1);line-height:1.7">Zoom pull &middot; Gong Drop &middot; ICP qualifier &middot; SPIN scenarios &middot; Quick answers &middot; Follow-up email composer &middot; Resources &middot; ARPU + tech tracking</div></div>
+      <div class="card a"><div class="sec">&#10052; Snowflake unlocks</div><div style="font-size:11px;color:var(--t1);line-height:1.7">Auto pipeline sync &middot; Needs activity &middot; Closed lost intel &middot; Onboarding tracker &middot; Referral timing &middot; SFDC clickable links &middot; Pre-call website intel &middot; Phone numbers</div></div>
+      <div class="card b"><div class="sec">Phase 3 &mdash; team scale</div><div style="font-size:11px;color:var(--t1);line-height:1.7">35 Comm+ AEs. ARPU leaderboard fires when Snowflake connected. Every feature built and waiting.</div></div>
+    </div>
+  </div>
+
+  <div class="pane" id="pane-pipeline">
+    <div class="card s" style="margin-bottom:13px">
+      <div class="sec">&#10052; Snowflake SFDC &mdash; zero manual entry &middot; ARPU per opp &middot; SFDC links clickable</div>
+      <div style="font-size:11px;color:var(--t2)">Today this is pasted manually. With read access this refreshes live every morning from SFDC. Every row links directly to the Salesforce opportunity. Last activity date and phone number auto-populated.</div>
+    </div>
+    <div class="card nopad">
+      <table>
+        <thead><tr><th>Account</th><th>Stage</th><th>Vertical</th><th>Techs</th><th>CMRR</th><th>ARPU</th><th>Last touch</th><th>Next step</th><th>Signal</th><th>SFDC</th></tr></thead>
+        <tbody>
+          <tr><td class="bold">Tannen Contracting</td><td><span class="bx ba">Pricing</span></td><td>HVAC</td><td>9</td><td>$2,601</td><td><span style="color:var(--grn)">$289</span></td><td>Today</td><td>Call 05/20</td><td><span class="bx bg">Hot</span></td><td><a class="sfl" href="https://servicetitan.lightning.force.com" target="_blank">&#8599; Open</a></td></tr>
+          <tr><td class="bold">Specialized Electric</td><td><span class="bx bb">Demo</span></td><td>Electrical</td><td>12</td><td>$3,588</td><td><span style="color:var(--grn)">$299</span></td><td>Today</td><td>Part 2 05/21</td><td><span class="bx ba">Warm</span></td><td><a class="sfl" href="https://servicetitan.lightning.force.com" target="_blank">&#8599; Open</a></td></tr>
+          <tr><td class="bold">All American Doors</td><td><span class="bx bb">Discovery</span></td><td>Garage Door</td><td>6</td><td>$1,794</td><td><span style="color:var(--grn)">$299</span></td><td>Yesterday</td><td>Post-FieldEdge</td><td><span class="bx ba">Warm</span></td><td><a class="sfl" href="https://servicetitan.lightning.force.com" target="_blank">&#8599; Open</a></td></tr>
+          <tr><td class="bold">R&amp;A Enterprises</td><td><span class="bx ba">Pricing</span></td><td>HVAC</td><td>8</td><td>$2,392</td><td><span style="color:var(--grn)">$299</span></td><td>Yesterday</td><td>Call 05/19</td><td><span class="bx bg">Hot</span></td><td><a class="sfl" href="https://servicetitan.lightning.force.com" target="_blank">&#8599; Open</a></td></tr>
+          <tr><td class="bold">Grayco Air</td><td><span class="bx bb">Discovery</span></td><td>HVAC</td><td>7</td><td>$2,093</td><td><span style="color:var(--grn)">$299</span></td><td>3 days ago</td><td>NNS</td><td><span class="bx ba">Warm</span></td><td><a class="sfl" href="https://servicetitan.lightning.force.com" target="_blank">&#8599; Open</a></td></tr>
+          <tr><td class="bold">Johnson Plumbing</td><td><span class="bx bb">Discovery</span></td><td>Plumbing</td><td>10</td><td>$1,835</td><td><span style="color:var(--amb)">$184</span></td><td style="color:var(--red);font-weight:500">9 days &#9888;</td><td>NNS</td><td><span class="bx br">Stale</span></td><td><a class="sfl" href="https://servicetitan.lightning.force.com" target="_blank">&#8599; Open</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="g3">
+      <div class="metric"><div class="ml">Total pipeline CMRR</div><div class="mv g">$14.3K</div><div class="ms">6 active opps</div></div>
+      <div class="metric"><div class="ml">Pipeline avg ARPU</div><div class="mv a">$278</div><div class="ms">below $285 &mdash; push Works</div></div>
+      <div class="metric"><div class="ml">Stale 7d+</div><div class="mv r">1</div><div class="ms">Johnson &mdash; 9 days no touch</div></div>
+    </div>
+  </div>
+
+  <div class="pane" id="pane-needsactivity">
+    <div class="card r" style="margin-bottom:13px">
+      <div class="sec">&#10052; Snowflake scans last SFDC touch &middot; buckets by days &middot; phone + draft per opp</div>
+      <div style="font-size:11px;color:var(--t1);line-height:1.6">Today: Blayne manually knows who needs a touch. With Snowflake: auto-populates from SFDC last-activity timestamps every morning. Phone numbers pull from SFDC contact record. Re-engage draft fires at threshold. One tap to call.</div>
+    </div>
+    <div style="margin-bottom:14px">
+      <div class="na-hdr red"><div class="na-ht">&#128308; Critical &mdash; 8+ days no activity</div><span class="na-hc" style="color:var(--red)">1 opp &middot; $1,835 at risk</span></div>
+      <div class="na-card">
+        <div class="na-left">
+          <div class="na-name">Johnson Plumbing and Heating</div>
+          <div class="na-meta"><span>Discovery &middot; Amber (owner) &middot; 10 techs &middot; $1,835 CMRR</span><span>&middot;</span><a class="na-phone" href="tel:+15550000001">&#128222; (555) 000-0001</a><span>&middot;</span><a class="sfl" href="https://servicetitan.lightning.force.com" target="_blank">&#8599; SFDC</a></div>
+          <div style="font-size:10px;color:var(--red);margin-top:4px;font-style:italic">Last touch: email 05/06 &mdash; no open, no reply. Amber confirmed call 05/04 then went quiet.</div>
+        </div>
+        <div class="na-days" style="color:var(--red)">9 days</div>
+        <div class="na-actions">
+          <button class="na-btn call" onclick="this.textContent='Calling...';this.style.opacity='.6'">&#128222; Call now</button>
+          <button class="na-btn email" onclick="this.textContent='Drafted &#10003;';this.classList.add('ok')">&#9993; Draft email</button>
+        </div>
+      </div>
+    </div>
+    <div style="margin-bottom:14px">
+      <div class="na-hdr amb"><div class="na-ht">&#128993; Warning &mdash; 5-7 days no activity</div><span class="na-hc" style="color:var(--amb)">1 opp &middot; $2,093 warming</span></div>
+      <div class="na-card">
+        <div class="na-left">
+          <div class="na-name">Grayco Air</div>
+          <div class="na-meta"><span>Discovery &middot; Paul (owner) &middot; 7 techs &middot; $2,093 CMRR</span><span>&middot;</span><a class="na-phone" href="tel:+15550000002">&#128222; (555) 000-0002</a><span>&middot;</span><a class="sfl" href="https://servicetitan.lightning.force.com" target="_blank">&#8599; SFDC</a></div>
+          <div style="font-size:10px;color:var(--amb);margin-top:4px;font-style:italic">Last touch: discovery call 05/09. Strong interest &mdash; asked about construction cohort. No follow-up email yet.</div>
+        </div>
+        <div class="na-days" style="color:var(--amb)">6 days</div>
+        <div class="na-actions"><button class="na-btn call">&#128222; Call now</button><button class="na-btn email">&#9993; Draft email</button></div>
+      </div>
+    </div>
+    <div style="margin-bottom:14px">
+      <div class="na-hdr grn"><div class="na-ht">&#128994; Watch &mdash; 3-4 days &middot; on track</div><span class="na-hc" style="color:var(--grn)">2 opps &middot; $5,382 active</span></div>
+      <div class="na-card">
+        <div class="na-left"><div class="na-name">All American Doors Inc.</div><div class="na-meta"><span>Discovery &middot; Leslie + Reid &middot; 6 techs &middot; $1,794 CMRR</span><span>&middot;</span><a class="sfl" href="https://servicetitan.lightning.force.com" target="_blank">&#8599; SFDC</a></div></div>
+        <div class="na-days" style="color:var(--grn)">Today</div>
+        <div class="na-actions"><button class="na-btn" style="color:var(--grn);border-color:var(--grn-b)">&#10003; Email sent</button></div>
+      </div>
+      <div class="na-card">
+        <div class="na-left"><div class="na-name">Specialized Electric</div><div class="na-meta"><span>Demo &middot; Jennifer &amp; Kent &middot; 12 techs &middot; $3,588 CMRR</span><span>&middot;</span><a class="sfl" href="https://servicetitan.lightning.force.com" target="_blank">&#8599; SFDC</a></div></div>
+        <div class="na-days" style="color:var(--grn)">Today</div>
+        <div class="na-actions"><button class="na-btn" style="color:var(--grn);border-color:var(--grn-b)">&#10003; Demo today</button></div>
+      </div>
+    </div>
+    <div class="card a">
+      <div class="sec">What Snowflake changes</div>
+      <div style="font-size:11px;color:var(--t2);line-height:1.7">With Snowflake: last-touch date auto-pulls from SFDC every morning. Phone numbers surface from the contact record &mdash; one tap to call. Re-engage draft fires automatically when any opp crosses the 7-day threshold. <strong style="color:var(--t1)">Estimated impact: 15-20% fewer deals lost to inactivity.</strong></div>
+    </div>
+  </div>
+
+  <div class="pane" id="pane-closedwon">
+    <div class="card g" style="margin-bottom:13px"><div class="sec"><div class="pulse"></div>FY27 closed won &mdash; ARPU per deal &middot; SFDC clickable</div></div>
+    <div class="card nopad">
+      <table>
+        <thead><tr><th>Account</th><th>Vertical</th><th>Techs</th><th>CMRR</th><th>ARPU/tech</th><th>Close date</th><th>OB progress</th><th>Status</th><th>SFDC</th></tr></thead>
+        <tbody>
+          <tr><td class="bold">Air &amp; Heat NJ</td><td>HVAC</td><td>14</td><td>$4,186</td><td><span style="color:var(--grn)">$299</span></td><td>02/28/26</td><td><div class="ob-bar" style="width:80px"><div class="ob-fill" style="width:100%"></div></div></td><td><span class="bx bg">Live</span></td><td><a class="sfl" href="https://servicetitan.lightning.force.com" target="_blank">&#8599;</a></td></tr>
+          <tr><td class="bold">Controlled Comfort</td><td>HVAC</td><td>9</td><td>$2,691</td><td><span style="color:var(--grn)">$299</span></td><td>03/14/26</td><td><div class="ob-bar" style="width:80px"><div class="ob-fill" style="width:100%"></div></div></td><td><span class="bx bg">Live</span></td><td><a class="sfl" href="https://servicetitan.lightning.force.com" target="_blank">&#8599;</a></td></tr>
+          <tr><td class="bold">Southwest Door</td><td>Garage Door</td><td>4</td><td>$1,197</td><td><span style="color:var(--grn)">$299</span></td><td>03/31/26</td><td><div class="ob-bar" style="width:80px"><div class="ob-fill" style="width:100%"></div></div></td><td><span class="bx bg">Live</span></td><td><a class="sfl" href="https://servicetitan.lightning.force.com" target="_blank">&#8599;</a></td></tr>
+          <tr><td class="bold">Outlaw's Plumbing</td><td>Plumbing</td><td>8</td><td>$2,392</td><td><span style="color:var(--grn)">$299</span></td><td>04/15/26</td><td><div class="ob-bar" style="width:80px"><div class="ob-fill" style="width:100%"></div></div></td><td><span class="bx bg">Live</span></td><td><a class="sfl" href="https://servicetitan.lightning.force.com" target="_blank">&#8599;</a></td></tr>
+          <tr><td class="bold">Refrigeration Plus</td><td>HVAC</td><td>10</td><td>$2,990</td><td><span style="color:var(--grn)">$299</span></td><td>04/28/26</td><td><div class="ob-bar" style="width:80px"><div class="ob-fill" style="width:33%"></div></div></td><td><span class="bx ba">Wk 2</span></td><td><a class="sfl" href="https://servicetitan.lightning.force.com" target="_blank">&#8599;</a></td></tr>
+          <tr><td class="bold">Pipe Dream</td><td>Plumbing</td><td>6</td><td>$1,794</td><td><span style="color:var(--grn)">$299</span></td><td>05/02/26</td><td><div class="ob-bar" style="width:80px"><div class="ob-fill" style="width:3%"></div></div></td><td><span class="bx ba">Wk 0</span></td><td><a class="sfl" href="https://servicetitan.lightning.force.com" target="_blank">&#8599;</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="g4">
+      <div class="metric"><div class="ml">FY27 CMRR won</div><div class="mv g">$15.2K</div><div class="ms">6 accounts</div></div>
+      <div class="metric"><div class="ml">Avg ARPU/tech</div><div class="mv g">$299</div><div class="ms">above $285 target &#10003;</div></div>
+      <div class="metric"><div class="ml">Avg tech count</div><div class="mv b">8.5</div><div class="ms">per deal FY27</div></div>
+      <div class="metric"><div class="ml">Referral due</div><div class="mv a">1</div><div class="ms">Refrig Plus &mdash; 05/25</div></div>
+    </div>
+  </div>
+
+  <div class="pane" id="pane-closedlost">
+    <div class="card s" style="margin-bottom:13px">
+      <div class="sec">&#10052; Snowflake scans lost reason + competitor signals &middot; SFDC clickable</div>
+      <div style="font-size:11px;color:var(--t2)">Claude reads every closed lost deal, cross-references competitor news and pricing changes, flags re-engagement opportunities, and auto-drafts outreach in Blayne's voice.</div>
+    </div>
+    <div class="card nopad">
+      <table>
+        <thead><tr><th>Account</th><th>Lost reason</th><th>CMRR</th><th>Lost ARPU</th><th>Lost date</th><th>Signal</th><th>Action</th><th>SFDC</th></tr></thead>
+        <tbody>
+          <tr><td class="bold">Apex Mechanical</td><td>Price &mdash; HCP</td><td>$2,990</td><td><span style="color:var(--red)">$249</span></td><td>Dec 2025</td><td><span class="bx bg">HCP raised prices</span></td><td><span class="bx bg">Re-engage now</span></td><td><a class="sfl" href="https://servicetitan.lightning.force.com" target="_blank">&#8599;</a></td></tr>
+          <tr><td class="bold">Lone Star Plumbing</td><td>FieldEdge</td><td>$3,285</td><td><span style="color:var(--amb)">$274</span></td><td>Jan 2026</td><td><span class="bx bg">FE churned them</span></td><td><span class="bx bg">Re-engage now</span></td><td><a class="sfl" href="https://servicetitan.lightning.force.com" target="_blank">&#8599;</a></td></tr>
+          <tr><td class="bold">Desert Air HVAC</td><td>Timing</td><td>$1,794</td><td><span style="color:var(--grn)">$299</span></td><td>Oct 2025</td><td><span class="bx ba">7 months out</span></td><td><span class="bx ba">Touch base</span></td><td><a class="sfl" href="https://servicetitan.lightning.force.com" target="_blank">&#8599;</a></td></tr>
+          <tr><td class="bold">BlueLine HVAC</td><td>Price</td><td>$2,392</td><td><span style="color:var(--red)">$266</span></td><td>Feb 2026</td><td><span class="bx ba">New fiscal year</span></td><td><span class="bx ba">Sequence</span></td><td><a class="sfl" href="https://servicetitan.lightning.force.com" target="_blank">&#8599;</a></td></tr>
+          <tr><td class="bold">Summit Electrical</td><td>No budget</td><td>$2,093</td><td><span style="color:var(--grn)">$299</span></td><td>Nov 2025</td><td><span class="bx bgr">No signal</span></td><td><span class="bx bgr">Hold</span></td><td><a class="sfl" href="https://servicetitan.lightning.force.com" target="_blank">&#8599;</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="font-size:11px;color:var(--t3);margin-top:8px;font-style:italic">Apex + BlueLine lost ARPU below $285 &mdash; pricing was the lever, not just the excuse. Re-engage with a stronger ROI frame before revealing pricing.</div>
+    <div class="g3" style="margin-top:12px">
+      <div class="metric"><div class="ml">Re-engage now</div><div class="mv g">$6.3K</div><div class="ms">CMRR &middot; 2 accounts</div></div>
+      <div class="metric"><div class="ml">Watch list</div><div class="mv a">$4.2K</div><div class="ms">CMRR warming</div></div>
+      <div class="metric"><div class="ml">Qtr reactivation</div><div class="mv g">$45-125K</div><div class="ms">team-wide estimate</div></div>
+    </div>
+  </div>
+
+  <div class="pane" id="pane-onboarding">
+    <div class="card s" style="margin-bottom:13px">
+      <div class="sec">&#10052; OB dates from Snowflake &middot; referral fires at week 3 &middot; SFDC clickable</div>
+    </div>
+    <div class="card nopad">
+      <table>
+        <thead><tr><th>Account</th><th>OB start</th><th>Week</th><th>Progress</th><th>Go-live</th><th>Referral</th><th>SFDC</th></tr></thead>
+        <tbody>
+          <tr><td class="bold">Pipe Dream</td><td>05/22/26</td><td style="color:var(--t3)">Wk 0</td><td><div class="ob-bar" style="width:100px"><div class="ob-fill" style="width:3%"></div></div></td><td>07/03/26</td><td><span class="bx bgr">06/12</span></td><td><a class="sfl" href="https://servicetitan.lightning.force.com" target="_blank">&#8599;</a></td></tr>
+          <tr><td class="bold">Refrigeration Plus</td><td>05/04/26</td><td style="color:var(--amb);font-weight:500">Wk 2 &mdash; ref due 05/25 &#9889;</td><td><div class="ob-bar" style="width:100px"><div class="ob-fill" style="width:33%"></div></div></td><td>06/15/26</td><td><span class="bx ba">Draft ready</span></td><td><a class="sfl" href="https://servicetitan.lightning.force.com" target="_blank">&#8599;</a></td></tr>
+          <tr><td class="bold">Outlaw's Plumbing</td><td>04/29/26</td><td style="color:var(--grn)">Wk 3 mid</td><td><div class="ob-bar" style="width:100px"><div class="ob-fill" style="width:50%"></div></div></td><td>06/10/26</td><td><span class="bx bg">Sent 05/20</span></td><td><a class="sfl" href="https://servicetitan.lightning.force.com" target="_blank">&#8599;</a></td></tr>
+          <tr><td class="bold">Controlled Comfort</td><td>03/28/26</td><td style="color:var(--grn)">Live</td><td><div class="ob-bar" style="width:100px"><div class="ob-fill" style="width:100%"></div></div></td><td>05/09/26</td><td><span class="bx bg">Sent 04/18</span></td><td><a class="sfl" href="https://servicetitan.lightning.force.com" target="_blank">&#8599;</a></td></tr>
+          <tr><td class="bold">Air &amp; Heat Specialists</td><td>03/10/26</td><td style="color:var(--grn)">Live</td><td><div class="ob-bar" style="width:100px"><div class="ob-fill" style="width:100%"></div></div></td><td>04/21/26</td><td><span class="bx bg">Sent 03/31</span></td><td><a class="sfl" href="https://servicetitan.lightning.force.com" target="_blank">&#8599;</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="pane" id="pane-followup">
+    <div class="card g" style="margin-bottom:13px">
+      <div class="sec"><div class="pulse"></div>Follow-up emails &mdash; drafted from Gong Drop &middot; send via Gmail</div>
+      <div style="font-size:11px;color:var(--t1);line-height:1.6">Each email is auto-drafted from the Zoom transcript. Edit the recipient, review, and hit Send &mdash; Gmail fires it directly. No copy-paste, no app switching.</div>
+    </div>
+    <div class="ec">
+      <div class="ec-hdr"><div class="ec-ht">&#128231; All American Doors Inc. &mdash; May 14, 2026</div><span class="bx ba">Draft</span></div>
+      <div class="ec-field"><div class="ec-field-lbl">To</div><input value="abileneallamericandoor@yahoo.com"></div>
+      <div class="ec-field"><div class="ec-field-lbl">CC</div><input placeholder="Add CC..."></div>
+      <div class="ec-field"><div class="ec-field-lbl">Subject</div><div class="ec-field-val">All American Doors &mdash; recap from today + what's next</div></div>
+      <div class="ec-body">Hey Leslie and Reid,
+
+Really enjoyed the call today. Leslie, I could feel the weight of it through the screen &mdash; phones off at noon just to have an hour to breathe, a foot-tall stack of unsold estimates, and hunting down techs after every job to figure out what they actually did. That's a full day eaten up before you even start.
+
+What's eating your day:
+&bull; Invoicing bottleneck &mdash; calling techs post-job to reconstruct what happened every single day
+&bull; Unsold estimates piling up with no follow-up system &mdash; you said it'd be a foot tall printed out
+&bull; Scheduling on pen, paper, and GCal with 30-40 service calls daily across 52 cities
+
+What ServiceTitan solves for you:
+&bull; Techs complete a job summary before they can close the job &mdash; Titan Intelligence turns it into a professional invoice summary with one tap. No more phone tag
+&bull; Every unsold estimate lives in a Follow-Up queue sorted by value with built-in reminders. That stack becomes a revenue pipeline you can actually work
+&bull; Scheduling assistant shows first-available plus most efficient by location &mdash; you said it yourself, you're scrambling to figure out who's closest
+
+On FieldEdge: Great company, but built for residential. With Abilene's data center boom and your 52-city radius, you'll outgrow their ceiling fast. 600+ shops have switched to ST from FE.
+
+Pricing (Works &middot; 6 techs &middot; 2-year): Months 1-3 free &rarr; $299/tech at month 18 &middot; OB: $2,256 one-time
+
+Blayne &middot; 707-478-9500
+
+P.S. Looked up that data center after we hung up. You weren't kidding &mdash; the timing to get a system in place before that wave hits is exactly right.</div>
+      <div class="ec-foot">
+        <button class="send-btn" onclick="this.textContent='&#10003; Sent via Gmail';this.style.opacity='.5';this.disabled=true">Send via Gmail &#8599;</button>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.ec').querySelector('.ec-body').innerText);this.textContent='Copied &#10003;';this.classList.add('ok');setTimeout(()=>{this.textContent='Copy';this.classList.remove('ok')},2000)">Copy</button>
+        <span style="font-size:11px;color:var(--t3);margin-left:auto">Gong Drop &middot; 05/14/26</span>
+      </div>
+    </div>
+    <div class="ec">
+      <div class="ec-hdr"><div class="ec-ht">&#128231; R&amp;A Enterprises &mdash; May 13, 2026</div><span class="bx ba">Draft</span></div>
+      <div class="ec-field"><div class="ec-field-lbl">To</div><input value="rick@raenterprisesdenver.com"></div>
+      <div class="ec-field"><div class="ec-field-lbl">Subject</div><div class="ec-field-val">R&amp;A Enterprises &mdash; pricing recap + next steps</div></div>
+      <div class="ec-body">Hey Rick,
+
+Good call yesterday. The honest pricing conversation is always better than dancing around it.
+
+Where ST wins for R&A:
+&bull; Commercial job costing at the Works level that ServiceFusion doesn't have for 8-tech commercial shops
+&bull; Inventory management built in &mdash; no third-party add-ons needed
+&bull; Performance pay thresholds built for when you scale beyond 8
+
+Pricing (Works &middot; 8 techs &middot; 2-year): $299/tech at month 18 &middot; Months 1-3 free &middot; OB: $2,256 one-time
+
+Month-end is May 31. If we move this week I can lock the May 25 cohort and have you live by July.
+
+Blayne &middot; 707-478-9500</div>
+      <div class="ec-foot">
+        <button class="send-btn" onclick="this.textContent='&#10003; Sent via Gmail';this.style.opacity='.5';this.disabled=true">Send via Gmail &#8599;</button>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.ec').querySelector('.ec-body').innerText);this.textContent='Copied &#10003;';this.classList.add('ok');setTimeout(()=>{this.textContent='Copy';this.classList.remove('ok')},2000)">Copy</button>
+        <span style="font-size:11px;color:var(--t3);margin-left:auto">Gong Drop &middot; 05/13/26</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="pane" id="pane-precall">
+    <div class="card g" style="margin-bottom:10px">
+      <div class="sec"><div class="pulse"></div>Pre-call email &mdash; send before every call to set the agenda</div>
+      <div style="font-size:11px;color:var(--t1);line-height:1.6">Juan's ask: every morning, a short email goes to the prospect before the call. Sets the agenda, shows you're prepared, builds trust before you even pick up the phone. Auto-drafted from Salesforce notes + ICP data.</div>
+    </div>
+    <div class="ec" style="margin-bottom:14px">
+      <div class="ec-hdr"><div class="ec-ht">&#128231; Pre-call email &mdash; All American Doors &middot; 9:00am today</div><span class="bx ba">Draft &middot; Send before 8:45am</span></div>
+      <div class="ec-field"><div class="ec-field-lbl">To</div><input value="abileneallamericandoor@yahoo.com"></div>
+      <div class="ec-field"><div class="ec-field-lbl">CC</div><input placeholder="Add CC..."></div>
+      <div class="ec-field"><div class="ec-field-lbl">Subject</div><div class="ec-field-val">Looking forward to our call this morning &mdash; quick agenda</div></div>
+      <div class="ec-body" style="min-height:auto;font-size:11.5px">Hey Leslie and Reid,
+
+Looking forward to connecting at 9am. Wanted to send a quick note so you know exactly what to expect.
+
+Here&#x27;s how I&#x27;m thinking about our time together:
+
+First 5-10 min: Quick intros and a little about your background at All American Doors &mdash; I want to make sure I understand the full picture before I say anything.
+
+Next 10-15 min: Walk me through how the business runs today. Dispatch, invoicing, how your techs document jobs. The more specific the better.
+
+Remaining time: I&#x27;ll show you exactly how other garage door shops in Texas have solved the same problems &mdash; and what ServiceTitan would look like for your specific setup.
+
+No slides, no dog and pony show. Just a real conversation.
+
+See you at 9.
+
+Blayne &middot; 707-478-9500</div>
+      <div class="ec-foot">
+        <button class="send-btn" onclick="this.textContent='✓ Sent via Gmail';this.style.opacity='.5';this.disabled=true">Send via Gmail &#8599;</button>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.ec').querySelector('.ec-body').innerText);this.textContent='Copied ✓';this.classList.add('ok');setTimeout(()=>{this.textContent='Copy';this.classList.remove('ok')},2000)">Copy</button>
+        <span style="font-size:11px;color:var(--t3);margin-left:auto">&#10052; Auto-drafted from SFDC + Calendar</span>
+      </div>
+    </div>
+    <div class="card s" style="margin-bottom:13px">
+      <div class="sec">&#10052; Click any call below &mdash; full pre-call one-pager expands</div>
+      <div style="font-size:11px;color:var(--t2);line-height:1.6">Auto-generated from Google Calendar + Snowflake SFDC history + website scrape. Every call on today's calendar listed. Click to expand the full brief &mdash; SPIN questions, competitive angle, SFDC history, one thing to remember.</div>
+    </div>
+
+    <div class="call-item open" id="c1">
+      <div class="call-time">9:00am</div>
+      <div class="call-info">
+        <div class="call-name">All American Doors Inc.</div>
+        <div class="call-meta"><span>Exploratory &middot; Reid Kyker + Leslie</span><span>&middot;</span><span>60 min</span><span>&middot;</span><span class="bx ba" style="font-size:10px">FieldEdge competing</span><span>&middot;</span><a class="sfl" href="https://servicetitan.lightning.force.com" target="_blank">&#8599; SFDC</a></div>
+      </div>
+      <div class="call-chevron">&#8250;</div>
+      <div class="call-detail" onclick="event.stopPropagation()">
+        <div class="g2" style="margin-bottom:0">
+          <div>
+            <div style="font-size:10px;font-weight:500;color:var(--grn);text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px">Who you're walking into</div>
+            <div style="font-size:11.5px;color:var(--t2);line-height:1.7;margin-bottom:9px">Reid is the owner, saw ST demo 5 months ago. <strong style="color:var(--t1)">Leslie runs invoicing and is the real DM.</strong> 30-40 service calls/day, 52-city radius. Phones off to take this call. Abilene data center driving growth fast.</div>
+            <div style="font-size:10px;font-weight:500;color:var(--grn);text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px">&#10052; Website intel &amp; competitive angle</div>
+            <div style="font-size:11.5px;color:var(--t2);line-height:1.7">Recently added commercial services page. 4.8 &#11088; reviews. <strong style="color:var(--t1)">FieldEdge is residential-first.</strong> Limited commercial job costing. Weaker mobile offline on job sites. 600+ shops switched to ST. With Abilene's construction ramp, they'll outgrow FE fast.</div>
+          </div>
+          <div>
+            <div style="font-size:10px;font-weight:500;color:var(--grn);text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px">SPIN questions</div>
+            <div style="font-size:11px;color:var(--t2);padding:4px 0;border-bottom:1px solid var(--b1);display:flex;gap:7px"><span style="color:var(--grn);font-family:'DM Mono',monospace;font-size:10px;flex-shrink:0">S</span><span>Walk me through what happens after a tech finishes a job &mdash; all the way to when Leslie sees the invoice.</span></div>
+            <div style="font-size:11px;color:var(--t2);padding:4px 0;border-bottom:1px solid var(--b1);display:flex;gap:7px"><span style="color:var(--grn);font-family:'DM Mono',monospace;font-size:10px;flex-shrink:0">P</span><span>How often are you stopping to call a tech to figure out what they actually did?</span></div>
+            <div style="font-size:11px;color:var(--t2);padding:4px 0;border-bottom:1px solid var(--b1);display:flex;gap:7px"><span style="color:var(--grn);font-family:'DM Mono',monospace;font-size:10px;flex-shrink:0">I</span><span>That stack of unsold estimates &mdash; realistic dollar amount right now?</span></div>
+            <div style="font-size:11px;color:var(--t2);padding:4px 0;border-bottom:1px solid var(--b1);display:flex;gap:7px"><span style="color:var(--grn);font-family:'DM Mono',monospace;font-size:10px;flex-shrink:0">I</span><span>With the data center ramping, where does your tech count need to be in 12 months?</span></div>
+            <div style="font-size:11px;color:var(--t2);padding:4px 0;display:flex;gap:7px"><span style="color:var(--grn);font-family:'DM Mono',monospace;font-size:10px;flex-shrink:0">N</span><span>If Leslie got two hours back every day &mdash; what would she do with that time?</span></div>
+            <div style="margin-top:9px;background:var(--grn-bg);border:1px solid var(--grn-b);border-radius:var(--rs);padding:8px 10px;font-size:12px;color:var(--grn);font-weight:500">Don't show features. Show Leslie getting her afternoon back.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="call-item" id="c2">
+      <div class="call-time">2:00pm</div>
+      <div class="call-info">
+        <div class="call-name">R&amp;A Enterprises</div>
+        <div class="call-meta"><span>Pricing Call &middot; Rick Lefavor (Owner)</span><span>&middot;</span><span>45 min</span><span>&middot;</span><span class="bx ba" style="font-size:10px">ServiceFusion competing</span><span>&middot;</span><a class="sfl" href="https://servicetitan.lightning.force.com" target="_blank">&#8599; SFDC</a></div>
+      </div>
+      <div class="call-chevron">&#8250;</div>
+      <div class="call-detail" onclick="event.stopPropagation()">
+        <div class="g2" style="margin-bottom:0">
+          <div>
+            <div style="font-size:10px;font-weight:500;color:var(--grn);text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px">&#10052; SFDC history</div>
+            <div style="font-size:11.5px;color:var(--t2);line-height:1.7;margin-bottom:9px">2 prior calls. Last touch 04/12 &mdash; <strong style="color:var(--t1)">Rick asked about ServiceFusion pricing on that call.</strong> 8 techs, HVAC, Denver CO, QBO. Last call ended without committed next step. He's actively shopping.</div>
+            <div style="background:var(--amb-bg);border:1px solid var(--amb-b);border-radius:var(--rs);padding:8px 10px;font-size:12px;color:var(--amb);font-weight:500">DocuSign by end of call. Month-end 05/31. PRICE IS NEGOTIABLE. Do not let price lose this deal.</div>
+          </div>
+          <div>
+            <div style="font-size:10px;font-weight:500;color:var(--grn);text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px">SPIN questions</div>
+            <div style="font-size:11px;color:var(--t2);padding:4px 0;border-bottom:1px solid var(--b1);display:flex;gap:7px"><span style="color:var(--grn);font-family:'DM Mono',monospace;font-size:10px;flex-shrink:0">S</span><span>When you compare SF to us, what are the 2-3 things that matter most in this decision?</span></div>
+            <div style="font-size:11px;color:var(--t2);padding:4px 0;border-bottom:1px solid var(--b1);display:flex;gap:7px"><span style="color:var(--grn);font-family:'DM Mono',monospace;font-size:10px;flex-shrink:0">P</span><span>How do you track parts and inventory on jobs today?</span></div>
+            <div style="font-size:11px;color:var(--t2);padding:4px 0;border-bottom:1px solid var(--b1);display:flex;gap:7px"><span style="color:var(--grn);font-family:'DM Mono',monospace;font-size:10px;flex-shrink:0">I</span><span>If you go with a platform without full job costing &mdash; what does that cost when you scale to 12 techs?</span></div>
+            <div style="font-size:11px;color:var(--t2);padding:4px 0;display:flex;gap:7px"><span style="color:var(--grn);font-family:'DM Mono',monospace;font-size:10px;flex-shrink:0">N</span><span>If I can get you to Works at Essentials price with 3 months free &mdash; what needs to be true to say yes today?</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cs" style="margin-top:6px">
+      <div class="cs-t">&#128302; Coming: auto-generated call list from Calendar + Snowflake</div>
+      <div class="cs-d">When Calendar and Snowflake are connected: this page auto-populates with every call on today's calendar, matched to SFDC opportunity records, with full brief ready. Open at 8am, your whole day is already prepped.</div>
+    </div>
+  </div>
+
+  <div class="pane" id="pane-spin">
+    <div class="card p" style="margin-bottom:13px">
+      <div class="sec">SPIN scenarios &mdash; from your real Confluence call playbooks</div>
+      <div style="font-size:11px;color:var(--t2);line-height:1.6">Built from the Corp AE ICP Qualification Talk Tracks and commercial call playbooks. Vertical-specific, stage-specific.</div>
+    </div>
+    <div class="g2">
+      <div>
+        <div class="sec">Garage Door &mdash; invoicing pain</div>
+        <div class="spin-card"><div class="spin-type">Situation</div><div class="spin-q">"Walk me through what happens after a tech finishes a job &mdash; all the way to invoice."</div><div class="spin-a">Let them describe the gap. Don't fill it in for them.</div></div>
+        <div class="spin-card"><div class="spin-type">Problem</div><div class="spin-q">"How often does Leslie have to stop and chase down a tech for job details?"</div><div class="spin-a">Let her say the number. Don't give it to her.</div></div>
+        <div class="spin-card"><div class="spin-type">Implication</div><div class="spin-q">"If Leslie spends two hours a day on that &mdash; what's not getting done in those two hours?"</div><div class="spin-a">Estimates not followed up. Service agreements not built. Let them articulate it &mdash; it hits harder coming from them.</div></div>
+        <div class="spin-card"><div class="spin-type">Need-Payoff</div><div class="spin-q">"If the tech's notes auto-generated a professional invoice summary waiting for Leslie's review by the time she sat down &mdash; what does that change?"</div><div class="spin-a">This is where Leslie sells herself. Get out of the way.</div></div>
+      </div>
+      <div>
+        <div class="sec">Pricing / competitor (R&amp;A Enterprises)</div>
+        <div class="spin-card"><div class="spin-type">Situation</div><div class="spin-q">"When you compare SF to us &mdash; what are the 2-3 things that matter most in this decision?"</div><div class="spin-a">Let them define the criteria. You win when you know what they're judging on.</div></div>
+        <div class="spin-card"><div class="spin-type">Problem</div><div class="spin-q">"When a tech goes out and parts aren't tracked properly &mdash; how do you deal with that today?"</div><div class="spin-a">Targets inventory gap. SF doesn't have commercial job costing at this level.</div></div>
+        <div class="spin-card"><div class="spin-type">Implication</div><div class="spin-q">"If you go with a platform without full job costing &mdash; what does that cost when you scale from 8 to 12 techs?"</div><div class="spin-a">Makes the wrong platform feel expensive before you talk price.</div></div>
+        <div class="spin-card"><div class="spin-type">Need-Payoff</div><div class="spin-q">"If I could get you to Works at Essentials price with 3 months free &mdash; what would need to be true to say yes today?"</div><div class="spin-a">Close the loop. Ask the question. Then shut up.</div></div>
+        <div class="sec" style="margin-top:10px">Urgency close &mdash; month-end / cohort slot</div>
+        <div class="spin-card"><div class="spin-type">Need-Payoff</div><div class="spin-q">"If you were live on ServiceTitan by July 1st &mdash; what does your business look like with the data center ramping?"</div><div class="spin-a">Paint the future. Then: "The May 25 cohort gets you there. It fills fast &mdash; if we move today I lock that slot."</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pane" id="pane-icp">
+    <div class="card g" style="margin-bottom:13px">
+      <div class="sec"><div class="pulse"></div>ICP qualification flow &mdash; from Confluence Corp AE Talk Tracks</div>
+      <div style="font-size:11px;color:var(--t1);line-height:1.6">All 10 questions, exact phrasing from Confluence, DQ and re-route conditions. With Snowflake: pre-populates known answers from SFDC so you never ask a returning prospect the same question twice.</div>
+    </div>
+    <div class="card nopad">
+      <div class="icp-q"><span class="icp-num">1</span><div><div class="icp-main">"What is your title at the company?"</div><div class="icp-dq">DQ if not approved title &mdash; abbreviated demo only, no pricing</div></div></div>
+      <div class="icp-q"><span class="icp-num">2</span><div><div class="icp-main">"What % of revenue comes from Residential vs Commercial vs Industrial?"</div><div style="font-size:11px;color:var(--t2);margin-top:3px">If unsure: "Is your revenue more than 50% Commercial?"</div><div class="icp-note">Re-route if &ge; 50% Commercial</div></div></div>
+      <div class="icp-q"><span class="icp-num">3</span><div><div class="icp-main">"What % comes from Service &amp; Replacement vs Construction?"</div><div class="icp-note">Re-route if &gt; 30% Construction &middot; Capture total annual construction revenue if 31-99%</div></div></div>
+      <div class="icp-q"><span class="icp-num">4</span><div><div class="icp-main">"Out of every 5 construction projects, how many last more than 3 months?"</div><div class="icp-dq">DQ if 3+ projects over 3 months AND 4+ subcontractors</div></div></div>
+      <div class="icp-q"><span class="icp-num">5</span><div><div class="icp-main">"What % of revenue comes from Property Management?"</div><div class="icp-note">Re-route if &gt; 30% PM</div></div></div>
+      <div class="icp-q"><span class="icp-num">6</span><div><div class="icp-main">"What %, if any, comes from home warranty work?"</div></div></div>
+      <div class="icp-q"><span class="icp-num">7</span><div><div class="icp-main">"What %, if any, comes through third-party portals like ServiceChannel or Corrigo?"</div></div></div>
+      <div class="icp-q"><span class="icp-num">8</span><div><div class="icp-main">"How many full-time technicians can work a job by themselves?"</div><div class="icp-dq">DQ if fewer than 4 with at least 1 Managed Tech</div></div></div>
+      <div class="icp-q"><span class="icp-num">9</span><div><div class="icp-main">"Do you have a full-time office employee working 35+ hours/week?"</div><div class="icp-dq">DQ if no</div></div></div>
+      <div class="icp-q"><span class="icp-num">10</span><div><div class="icp-main">"Our workflows require scheduling and dispatching from a computer &mdash; is that your current workflow?"</div><div class="icp-dq">DQ if no and won't adopt within 30 days</div></div></div>
+    </div>
+  </div>
+
+  <div class="pane" id="pane-callcoach">
+    <div class="card s" style="margin-bottom:13px">
+      <div class="sec">&#10052; Scored vs Non-Negotiable Scorecard &middot; ARPU coaching baked in</div>
+      <div style="font-size:11px;color:var(--t2);line-height:1.6">Claude reads every Zoom transcript and scores against the Comm+ Non-Negotiable Scorecard. This week: 2 snippets showing ROI with business implication and cost allocation. ARPU coaching fires if pricing is below $285.</div>
+    </div>
+    <div class="g21">
+      <div>
+        <div class="sec">All American Doors &mdash; May 14 &middot; 78 min &middot; 74/100</div>
+        <div class="card" style="margin-bottom:10px">
+          <div class="score-row"><div class="score-lbl">Discovery / ICP framing</div><div class="score-track"><div class="score-fill" style="width:88%;background:var(--grn)"></div></div><div class="score-val" style="color:var(--grn)">9/10</div></div>
+          <div class="score-row"><div class="score-lbl">Pain articulation</div><div class="score-track"><div class="score-fill" style="width:85%;background:var(--grn)"></div></div><div class="score-val" style="color:var(--grn)">8.5</div></div>
+          <div class="score-row"><div class="score-lbl">ROI with biz implication</div><div class="score-track"><div class="score-fill" style="width:65%;background:var(--amb)"></div></div><div class="score-val" style="color:var(--amb)">6.5</div></div>
+          <div class="score-row"><div class="score-lbl">Competitive positioning</div><div class="score-track"><div class="score-fill" style="width:70%;background:var(--amb)"></div></div><div class="score-val" style="color:var(--amb)">7/10</div></div>
+          <div class="score-row"><div class="score-lbl">Next step commitment</div><div class="score-track"><div class="score-fill" style="width:58%;background:var(--red)"></div></div><div class="score-val" style="color:var(--red)">5.8</div></div>
+          <div class="score-row"><div class="score-lbl">ARPU protection</div><div class="score-track"><div class="score-fill" style="width:90%;background:var(--grn)"></div></div><div class="score-val" style="color:var(--grn)">9/10</div></div>
+        </div>
+        <div class="sec">Week 2 req &mdash; best Gong moments</div>
+        <div style="background:var(--bg3);border:1px solid var(--b1);border-radius:var(--rs);padding:9px 11px;font-size:11px;color:var(--t2);margin-bottom:5px"><span style="color:var(--grn);font-family:'DM Mono',monospace">00:24:15</span> &mdash; ROI framing with business implication. Strong Week 2 moment.</div>
+        <div style="background:var(--bg3);border:1px solid var(--b1);border-radius:var(--rs);padding:9px 11px;font-size:11px;color:var(--t2)"><span style="color:var(--grn);font-family:'DM Mono',monospace">00:57:40</span> &mdash; Confident pricing reveal, Works package, no leading with discount.</div>
+      </div>
+      <div>
+        <div class="sec">What to work on</div>
+        <div class="imp"><div><div class="imp-lbl">Improve</div><div class="imp-body">FieldEdge at 1:15:00 &mdash; you pivoted. Address head-on earlier. Plant the evaluation frame: "Here's what to compare when you talk to them next week."</div></div></div>
+        <div class="imp"><div><div class="imp-lbl">Improve</div><div class="imp-body">Next step: "sometime next week." Leslie said Tuesday or Wednesday. That was your close. "Let me block 10am Tuesday right now for both of you."</div></div></div>
+        <div class="imp"><div><div class="imp-lbl">ARPU &mdash; ROI before price</div><div class="imp-body">ROI mentioned but not quantified. "Two hours/day &times; $75/hr = $150 lost daily in Leslie's time alone" would have neutralized the price conversation entirely.</div></div></div>
+        <div class="imp good"><div><div class="imp-lbl">Great</div><div class="imp-body">Mirrored Leslie's pain in her own words. That's when she engaged. Discovery is your strongest skill.</div></div></div>
+        <div class="imp good"><div><div class="imp-lbl">Great</div><div class="imp-body">Abilene data center callback in the follow-up email. You researched it post-call. That's the detail that separates you from every other AE they talked to.</div></div></div>
+        <div class="sec" style="margin-top:10px">Pattern &middot; last 10 calls</div>
+        <div class="card"><div style="font-size:11px;color:var(--t2);line-height:1.75"><strong style="color:var(--grn)">Win signal:</strong> Pain story in first 15 min &rarr; 67% close. Without it: 28%.<br><br><strong style="color:var(--red)">Loss pattern:</strong> Unaddressed pricing in 3/5 recent losses. Competitive framing is the gap.<br><br><strong style="color:var(--amb)">ARPU signal:</strong> Dollar ROI stated before pricing &rarr; avg $293/tech. Without it: $271.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pane" id="pane-gong">
+    <div class="card g" style="margin-bottom:13px">
+      <div class="sec"><div class="pulse"></div>Live today &mdash; Zoom to full output in 60 seconds</div>
+    </div>
+    <div class="g2">
+      <div>
+        <div class="sec">What generates per call</div>
+        <div class="row-card"><div class="rc-icon" style="background:var(--grn-bg)">&#128231;</div><div><div class="rc-title">Follow-up email</div><div class="rc-desc">Hyper-specific opener, pain/solution bullets, competitor section, pricing bolded. 300-350 words. Blayne's voice. Goes to Follow-up Emails tab &mdash; add recipient and send.</div></div></div>
+        <div class="row-card"><div class="rc-icon" style="background:var(--blu-bg)">&#128203;</div><div><div class="rc-title">SFDC notes</div><div class="rc-desc">Full template auto-filled. Executive overview, business splits, operational metrics, tech requirements, onboarding notes.</div></div></div>
+        <div class="row-card"><div class="rc-icon" style="background:var(--amb-bg)">&#9989;</div><div><div class="rc-title">Next steps + opp note</div><div class="rc-desc">Dated action items in MM/DD format. One-sentence opp note. Auto-extracted.</div></div></div>
+        <div class="row-card"><div class="rc-icon" style="background:var(--red-bg)">&#9889;</div><div><div class="rc-title">ARPU + price alert</div><div class="rc-desc">If competitor or pricing pushback detected: PRICE IS NEGOTIABLE fires automatically. If ARPU falls below $285 on discussed pricing: coaching tip fires.</div></div></div>
+        <div class="row-card"><div class="rc-icon" style="background:var(--pur-bg)">&#9989;</div><div><div class="rc-title">ICP verdict + disposition</div><div class="rc-desc">Does this meet ICP? Does it meet ACP? Should this go off-books? Claude pulls criteria from Confluence and flags the correct disposition inside the SFDC notes automatically.</div></div></div>
+      </div>
+      <div>
+        <div class="sec">Time math</div>
+        <div class="metric" style="margin-bottom:8px"><div class="ml">Manual post-call work</div><div class="mv a">45 min</div><div class="ms">email + SFDC + next steps</div></div>
+        <div class="metric" style="margin-bottom:8px"><div class="ml">With Gong Drop</div><div class="mv g">4 min</div></div>
+        <div class="metric" style="margin-bottom:8px"><div class="ml">Saved per day (4 calls)</div><div class="mv g">41 min</div></div>
+        <div class="metric"><div class="ml">35 AEs &middot; full year</div><div class="mv g">$732K</div><div class="ms">annual time value</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pane" id="pane-referrals">
+    <div class="card g" style="margin-bottom:13px">
+      <div class="sec"><div class="pulse"></div>Referral engine &mdash; week 3 auto-draft &middot; send via Gmail</div>
+      <div style="font-size:11px;color:var(--t1)">Controlled Comfort's referral produced Grayco Air &mdash; now active pipeline at $2,093 CMRR. This is the system working.</div>
+    </div>
+    <div class="g2">
+      <div>
+        <div class="sec">Queue</div>
+        <div class="row-card"><div class="rc-icon" style="background:var(--amb-bg)">&#8987;</div><div><div class="rc-title">Refrigeration Plus &mdash; due 05/25</div><div class="rc-desc">Wk 3. HVAC, 10 techs, Abilene TX. Draft ready. &#10052; Timed from Snowflake OB date.</div></div></div>
+        <div class="row-card"><div class="rc-icon" style="background:var(--amb-bg)">&#128197;</div><div><div class="rc-title">Pipe Dream Plumbing &mdash; 06/12</div><div class="rc-desc">Auto-queues at wk 3. Plumbing, 6 techs, Denver CO.</div></div></div>
+        <div class="row-card"><div class="rc-icon" style="background:var(--grn-bg)">&#10003;</div><div><div class="rc-title">Controlled Comfort &mdash; 04/18 &middot; 1 referral in</div><div class="rc-desc">Produced: Grayco Air &mdash; $2,093 CMRR now in active pipeline.</div></div></div>
+      </div>
+      <div>
+        <div class="sec">Auto-drafted &mdash; Refrigeration Plus</div>
+        <div class="ec">
+          <div class="ec-hdr"><div class="ec-ht">Referral request</div><span class="bx ba">Due 05/25</span></div>
+          <div class="ec-field"><div class="ec-field-lbl">To</div><input value="[Owner email from SFDC &#10052;]"></div>
+          <div class="ec-body" style="min-height:auto;font-size:11.5px">Hey [Owner],
+
+Really glad things are clicking in those first couple weeks.
+
+Quick ask &mdash; if you know any other HVAC contractors in the Abilene area still running on QuickBooks and pen and paper, I'd love a warm intro.
+
+Just reply here and I'll take it from there.
+
+Blayne &middot; 707-478-9500</div>
+          <div class="ec-foot">
+            <button class="send-btn" onclick="this.textContent='&#10003; Sent';this.style.opacity='.5';this.disabled=true" style="font-size:11px;padding:5px 12px">Send via Gmail &#8599;</button>
+            <div style="font-size:10px;color:var(--t3)">&#10052; OB date &middot; contact from SFDC &middot; location-matched</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pane" id="pane-qa">
+    <div class="card g" style="margin-bottom:13px">
+      <div class="sec"><div class="pulse"></div>Quick answers &mdash; type any question &middot; AI searches live if not found</div>
+      <div style="font-size:11px;color:var(--t1);line-height:1.6">FAQs pulled from your real Confluence playbooks and daily Slack questions. If your question is not in the list, hit Search and Claude answers it live &mdash; right here in the dashboard, no switching tabs.</div>
+    </div>
+
+    <div style="display:flex;gap:8px;margin-bottom:12px">
+      <input class="qa-search" id="qaI" style="margin-bottom:0;flex:1" placeholder="Type a question &mdash; e.g. 'arpu below target', 'buildops compete', 'sage integration', 'AI outbound calls'..." oninput="filterQA(this.value)" onkeydown="if(event.key==='Enter')askAI()">
+      <button onclick="askAI()" style="padding:8px 16px;border-radius:var(--r);border:none;background:var(--grn);color:#fff;font-size:12px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;white-space:nowrap;flex-shrink:0">&#9889; Ask Claude</button>
+    </div>
+
+    <div id="ai-answer" style="display:none;background:var(--bg3);border:1px solid var(--grn-b);border-radius:var(--r);padding:13px 15px;margin-bottom:12px">
+      <div style="display:flex;align-items:center;gap:7px;margin-bottom:8px">
+        <div style="width:18px;height:18px;background:var(--grn);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff;flex-shrink:0">B</div>
+        <span style="font-size:10px;font-weight:500;color:var(--grn);text-transform:uppercase;letter-spacing:.07em">Claude answered</span>
+        <span id="ai-q-label" style="font-size:11px;color:var(--t3);margin-left:2px"></span>
+      </div>
+      <div id="ai-answer-text" style="font-size:12px;color:var(--t1);line-height:1.75"></div>
+    </div>
+
+    <div id="ai-loading" style="display:none;padding:14px;text-align:center;font-size:12px;color:var(--t3);background:var(--bg3);border:1px solid var(--b1);border-radius:var(--r);margin-bottom:12px">
+      <div style="display:inline-block;width:14px;height:14px;border:2px solid var(--b2);border-top-color:var(--grn);border-radius:50%;animation:spin .6s linear infinite;margin-right:7px;vertical-align:middle"></div>
+      Asking Claude...
+    </div>
+
+    <div id="qaL">
+      <div style="font-size:10px;font-weight:500;color:var(--t3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px;padding:0 2px">Frequently asked &mdash; from Confluence + Slack</div>
+
+      <div class="qa-item open" data-tags="arpu below 285 coaching fix improve">
+        <div class="qa-q" onclick="this.parentElement.classList.toggle('open')"><span>&#128172;</span> ARPU is below 85 &mdash; what do I do?<span class="qa-arrow">&#8250;</span></div>
+        <div class="qa-a">Three levers: (1) Push Works over Essentials &mdash; every Essentials deal costs ~5-20/tech/month. Make the Works ask before pricing reveal. Frame onboarding as one-time vs monthly compounding value. (2) Close at 2-year terms &mdash; ramp pricing protects ARPU at month 18 at 99/tech. 1-year discounts pull below target. (3) Quantify ROI before pricing &mdash; deals where dollar ROI is stated before pricing average 93/tech. Without it: 71. Discount differently (ramp, free months, OB reduction) rather than per-tech cuts. <em>Source: Comm+ coaching &middot; ARPU analysis</em></div>
+      </div>
+
+      <div class="qa-item" data-tags="buildops compete win comparison steal">
+        <div class="qa-q" onclick="this.parentElement.classList.toggle('open')"><span>&#128172;</span> How do I compete against BuildOps?<span class="qa-arrow">&#8250;</span></div>
+        <div class="qa-a">BuildOps is primarily a construction-focused platform. Where ST wins: (1) Our service + construction hybrid is stronger for shops doing both &mdash; BO tends to over-index on construction and under-deliver on service workflows. (2) Titan Intelligence and AI features are ahead of BO. (3) Onboarding and support reputation &mdash; BO churn is a real signal, multiple Slack threads confirm shops leaving BO for ST due to broken promises and poor onboarding. Frame it: &quot;BO is great if you&apos;re 100% construction. If you&apos;re running any service side, we&apos;re built for that entire lifecycle.&quot; <em>Source: #competitive Slack &middot; TriplePoint MEP win notes</em></div>
+      </div>
+
+      <div class="qa-item" data-tags="sage intacct integration accounting">
+        <div class="qa-q" onclick="this.parentElement.classList.toggle('open')"><span>&#128172;</span> Does ServiceTitan integrate with Sage?<span class="qa-arrow">&#8250;</span></div>
+        <div class="qa-a">Sage Intacct: integration exists through partner-enabled accounting integrations. Sage 50: no native integration as of recent Slack threads (#mindcloud-servicetitan confirmed this). If the prospect is on Sage, flag it in SFDC and route through #ask-partner-enabled-accounting-integrations in Slack for the most current status. Don&apos;t present as a blocker &mdash; most commercial shops move their accounting to QBO as part of the ST onboarding and it&apos;s a positive change. <em>Source: Confluence &mdash; Accounting Integrations FAQ &middot; #mindcloud-servicetitan</em></div>
+      </div>
+
+      <div class="qa-item" data-tags="AI outbound calls voice agent new feature">
+        <div class="qa-q" onclick="this.parentElement.classList.toggle('open')"><span>&#128172;</span> Does ST have AI outbound calls / voice agents?<span class="qa-arrow">&#8250;</span></div>
+        <div class="qa-a">Yes &mdash; this is new and actively being developed. AI Voice Agents for call booking is a live feature. Confirm current capabilities at servicetitan.com/features/ai and the webinar recap at servicetitan.com/blog/webinar-recap-ai-voice-agents-call-booking before presenting to a prospect. If a prospect says they heard we didn&apos;t have this &mdash; that was true 1-2 years ago, not today. Loop in an SE for demo if the prospect is specifically interested. <em>Source: #sales Slack &middot; servicetitan.com/features/ai</em></div>
+      </div>
+
+      <div class="qa-item" data-tags="GMV construction revenue based pricing scale down">
+        <div class="qa-q" onclick="this.parentElement.classList.toggle('open')"><span>&#128172;</span> Can construction GMV pricing scale down if revenue drops?<span class="qa-arrow">&#8250;</span></div>
+        <div class="qa-a">This is a real objection that comes up in construction accounts. GMV-based pricing is annual revenue based &mdash; if a shop&apos;s construction revenue drops year over year the pricing should adjust at renewal. The concern to address is that it&apos;s not locked in forever at peak revenue. Flag specific scenarios to your SE or deal desk for guidance. For the prospect conversation, emphasize that most shops&apos; construction revenue grows year over year once they have ST optimizing it &mdash; the worry is usually theoretical. <em>Source: #commercial-construction Slack</em></div>
+      </div>
+
+      <div class="qa-item" data-tags="corrigo integration third party portal">
+        <div class="qa-q" onclick="this.parentElement.classList.toggle('open')"><span>&#128172;</span> Does ServiceTitan integrate with Corrigo?<span class="qa-arrow">&#8250;</span></div>
+        <div class="qa-a">No native Corrigo integration currently. Note in SFDC and flag for product. Don&apos;t present as a blocker &mdash; position as roadmap. Common in commercial HVAC and garage door. <em>Source: Confluence &mdash; Accounting Integrations FAQ &middot; #ask-sales-and-estimates</em></div>
+      </div>
+
+      <div class="qa-item" data-tags="pricing call non-icp book cp offbooks">
+        <div class="qa-q" onclick="this.parentElement.classList.toggle('open')"><span>&#128172;</span> Can I book a non-ICP into CP for a pricing call?<span class="qa-arrow">&#8250;</span></div>
+        <div class="qa-a">Yes &mdash; use the non-ICP dropdown in CP. Let the prospect know it creates time and space for pricing even if they don&apos;t need the full demo. Good use of this: construction-heavy accounts that are off-books but are genuinely interested in pricing. <em>Source: #sales Slack</em></div>
+      </div>
+
+      <div class="qa-item" data-tags="reroute construction threshold 30 percent">
+        <div class="qa-q" onclick="this.parentElement.classList.toggle('open')"><span>&#128172;</span> What&apos;s the re-route threshold for Construction?<span class="qa-arrow">&#8250;</span></div>
+        <div class="qa-a">Re-route if construction revenue is over 30% of total annual revenue. If 31-99%: ask how many of every 5 projects last 3+ months AND how many subcontractors per project. If 3+ projects over 3 months AND 4+ subcontractors &rarr; DQ. Must capture total annual construction revenue if 31-99%. <em>Source: Confluence &mdash; ICP Talk Tracks</em></div>
+      </div>
+
+      <div class="qa-item" data-tags="fieldedge competitor comparison switching">
+        <div class="qa-q" onclick="this.parentElement.classList.toggle('open')"><span>&#128172;</span> How do I handle a prospect also looking at FieldEdge?<span class="qa-arrow">&#8250;</span></div>
+        <div class="qa-a">600+ shops have switched from FE to ST. FE is residential-first. ST wins: (1) commercial job costing depth, (2) Works inventory, (3) construction module for 31-99% shops, (4) mobile offline on job sites, (5) no office staff ceiling. Frame before they go in: &quot;Here&apos;s what to compare when you talk to them next week.&quot; <em>Source: Confluence &mdash; Comm+ Hub</em></div>
+      </div>
+
+      <div class="qa-item" data-tags="call review week requirement gong snippet this week">
+        <div class="qa-q" onclick="this.parentElement.classList.toggle('open')"><span>&#128172;</span> What&apos;s the call review requirement this week?<span class="qa-arrow">&#8250;</span></div>
+        <div class="qa-a">Week 2 (ending 5/15): 2 snippets showing ROI with business implication and cost allocation. Week 3 (ending 5/22): Review an HCP call, include urgency or clear commitment moment. Tracker due 9pm PST Friday. Completion required &mdash; AEs who miss get called out at Monday huddle. <em>Source: Confluence &mdash; Commercial Team Call Reviews</em></div>
+      </div>
+
+      <div class="qa-item" data-tags="minimum tech count dq four licenses">
+        <div class="qa-q" onclick="this.parentElement.classList.toggle('open')"><span>&#128172;</span> What&apos;s the minimum tech count to sell?<span class="qa-arrow">&#8250;</span></div>
+        <div class="qa-a">Minimum 4 sellable licenses with at least 1 Managed Tech. All full-time (35+ hrs/week). In Commercial Construction: at least 1 crossover tech working 20%+ service jobs. DQ if fewer than 4. <em>Source: Confluence &mdash; ICP Talk Tracks</em></div>
+      </div>
+
+      <div class="qa-item" data-tags="performance pay commission techs incentive setup">
+        <div class="qa-q" onclick="this.parentElement.classList.toggle('open')"><span>&#128172;</span> How does performance pay / commission for techs work in ST?<span class="qa-arrow">&#8250;</span></div>
+        <div class="qa-a">Configurable payroll is included in the Works package. You can set commission thresholds per technician &mdash; if they sell above a certain amount or hit productivity targets, they get a bonus tier. Very flexible. This is one of the biggest wins for shops trying to incentivize their field team. Set up in the compensation module. Only available in Works, not Essentials &mdash; use this as a Works upgrade reason. <em>Source: Comm+ product knowledge</em></div>
+      </div>
+
+      <div class="qa-item" data-tags="construction cohort onboarding when slot available">
+        <div class="qa-q" onclick="this.parentElement.classList.toggle('open')"><span>&#128172;</span> When is the next construction cohort onboarding slot?<span class="qa-arrow">&#8250;</span></div>
+        <div class="qa-a">Check the live onboarding calendar in your deal desk or ask your SE. As of May 14: May 25 construction cohort slot available &mdash; next slot is June 29. Slots fill fast. Use this as urgency: &quot;The May 25 cohort gets you live by early July. If we move today I can lock that for you.&quot; Always confirm current availability before presenting dates. <em>Source: ST onboarding calendar &middot; Comm+ Hub</em></div>
+      </div>
+
+      <div class="qa-item" data-tags="quickbooks migration data transfer accounting final pull">
+        <div class="qa-q" onclick="this.parentElement.classList.toggle('open')"><span>&#128172;</span> How does the QuickBooks data migration work?<span class="qa-arrow">&#8250;</span></div>
+        <div class="qa-a">Initial pull from QBO at onboarding start. Rep keeps using QB until ST is fully built, then final transfer at go-live. QBO stays as the accounting/GL platform &mdash; everything above the line moves to ST. QBO sync included. After final pull, any new data entered in QB after that date has to be manually entered in ST. Set clear expectations with the customer about the final pull date. <em>Source: Confluence &mdash; Accounting Integrations FAQ &middot; #ac-distribution_pod</em></div>
+      </div>
+
+      <div class="qa-item" data-tags="referral when timing week three send email">
+        <div class="qa-q" onclick="this.parentElement.classList.toggle('open')"><span>&#128172;</span> When should I send the referral email?<span class="qa-arrow">&#8250;</span></div>
+        <div class="qa-a">Week 3 of onboarding &mdash; customer is engaged and seeing value but not yet fully independent. Short, personal, ask for one warm intro. This dashboard auto-drafts at week 3 using Snowflake OB date + SFDC contact info. One tap to send. Never use a template that sounds like a template. <em>Source: Comm+ team best practice</em></div>
+      </div>
+    </div>
+    <div id="qaNR" style="display:none;padding:14px;background:var(--bg3);border:1px solid var(--b1);border-radius:var(--r);font-size:12px;color:var(--t3);text-align:center">No FAQ match &mdash; hit <strong style="color:var(--grn)">Ask Claude</strong> above to get a live answer.</div>
+  </div>
+
+  <div class="pane" id="pane-resources">
+    <div class="card g" style="margin-bottom:13px"><div class="sec"><div class="pulse"></div>Resources &mdash; all links live &middot; everything in one place</div></div>
+    <div class="sec">Pricing &amp; playbooks</div>
+    <div class="res-grid">
+      <a class="res-card" href="https://servicetitan.atlassian.net/wiki/spaces/corpsales/pages/2389870308" target="_blank"><div class="res-icon">&#128178;</div><div class="res-title">Current Promos &mdash; Airtable</div><div class="res-desc">Active incentives, ramp structures, month-end pushes</div><div class="res-tag bg">Confluence &rarr; Comm+ Hub</div></a>
+      <a class="res-card" href="https://servicetitan.atlassian.net/wiki/spaces/corpsales/pages/3025634618" target="_blank"><div class="res-icon">&#128203;</div><div class="res-title">ICP Talk Tracks</div><div class="res-desc">10-question ICP flow, exact phrasing, DQ/re-route conditions</div><div class="res-tag bg">Confluence &rarr; Corp AE</div></a>
+      <a class="res-card" href="https://servicetitan.atlassian.net/wiki/spaces/corpsales/pages/2393047057" target="_blank"><div class="res-icon">&#11088;</div><div class="res-title">Call Review Scorecard</div><div class="res-desc">Non-Negotiable Scorecard, weekly requirements, Gong tracker</div><div class="res-tag bg">Confluence &rarr; Comm+</div></a>
+    </div>
+    <div class="sec">Sales tools</div>
+    <div class="res-grid">
+      <a class="res-card" href="https://servicetitan.atlassian.net/wiki/spaces/corpsales/pages/4449895053" target="_blank"><div class="res-icon">&#129302;</div><div class="res-title">AI in Our Demos</div><div class="res-desc">Positioning and demoing Titan Intelligence &mdash; talk tracks, workflows</div><div class="res-tag bb">Confluence &rarr; CorpSales</div></a>
+      <a class="res-card" href="https://servicetitan.atlassian.net/wiki/spaces/corpsales/pages/4446912513" target="_blank"><div class="res-icon">&#128260;</div><div class="res-title">Cross-Sell Process Guide</div><div class="res-desc">Full cross-sell flow, expansion playbooks, objection handling</div><div class="res-tag bb">Confluence &rarr; Comm+</div></a>
+      <a class="res-card" href="https://servicetitan.atlassian.net/wiki/spaces/corpsales/pages/3188163295" target="_blank"><div class="res-icon">&#128279;</div><div class="res-title">Accounting Integrations FAQ</div><div class="res-desc">QuickBooks, QBO migration, partner-enabled accounting integrations</div><div class="res-tag bb">Confluence &rarr; CorpSales</div></a>
+    </div>
+    <div class="sec">ST website &mdash; share with prospects</div>
+    <div class="res-grid">
+      <a class="res-card" href="https://www.servicetitan.com/commercial" target="_blank"><div class="res-icon">&#127970;</div><div class="res-title">servicetitan.com/commercial</div><div class="res-desc">Commercial FSM overview, dispatch, job costing</div><div class="res-tag ba">Share with prospects</div></a>
+      <a class="res-card" href="https://www.servicetitan.com/garage-door" target="_blank"><div class="res-icon">&#128682;</div><div class="res-title">servicetitan.com/garage-door</div><div class="res-desc">Garage door vertical &mdash; send to All American Doors</div><div class="res-tag ba">Share with prospects</div></a>
+      <a class="res-card" href="https://www.servicetitan.com/hvac" target="_blank"><div class="res-icon">&#10052;&#65039;</div><div class="res-title">servicetitan.com/hvac</div><div class="res-desc">HVAC vertical &mdash; Titan Intelligence, dispatch, performance pay</div><div class="res-tag ba">Share with prospects</div></a>
+    </div>
+  </div>
+
+  <div class="pane" id="pane-forecast">
+    <div class="card s" style="margin-bottom:13px">
+      <div class="sec">&#10052; Snowflake + SalesLoft &mdash; three views in one tab</div>
+      <div style="font-size:11px;color:var(--t2);line-height:1.6">Juan&#x27;s ask: pipeline bucketed by forecast category, SalesLoft email + video activity surfaced automatically, and closed lost accounts that are re-engaging flagged before you even think to check.</div>
+    </div>
+
+    <div class="sec" style="margin-bottom:9px">Pipeline by forecast bucket</div>
+    <div class="card nopad" style="margin-bottom:14px">
+      <table>
+        <thead><tr><th>Account</th><th>Bucket</th><th>CMRR</th><th>Last SalesLoft touch</th><th>Email opens (7d)</th><th>Signal</th><th>SFDC</th></tr></thead>
+        <tbody>
+          <tr><td class="bold">Tannen Contracting</td><td><span class="bx bg">End month</span></td><td>$2,601</td><td>Today</td><td style="color:var(--grn);font-weight:500">4 opens</td><td><span class="bx bg">Hot &#128293;</span></td><td><a class="sfl" href="https://servicetitan.lightning.force.com" target="_blank">&#8599;</a></td></tr>
+          <tr><td class="bold">R&amp;A Enterprises</td><td><span class="bx bg">End month</span></td><td>$2,392</td><td>Yesterday</td><td style="color:var(--grn);font-weight:500">2 opens</td><td><span class="bx bg">Hot &#128293;</span></td><td><a class="sfl" href="https://servicetitan.lightning.force.com" target="_blank">&#8599;</a></td></tr>
+          <tr><td class="bold">Specialized Electric</td><td><span class="bx ba">Carryover</span></td><td>$3,588</td><td>Today</td><td style="color:var(--amb)">1 open</td><td><span class="bx ba">Warm</span></td><td><a class="sfl" href="https://servicetitan.lightning.force.com" target="_blank">&#8599;</a></td></tr>
+          <tr><td class="bold">All American Doors</td><td><span class="bx ba">Carryover</span></td><td>$1,794</td><td>Yesterday</td><td style="color:var(--amb)">1 open</td><td><span class="bx ba">Warm</span></td><td><a class="sfl" href="https://servicetitan.lightning.force.com" target="_blank">&#8599;</a></td></tr>
+          <tr><td class="bold">Grayco Air</td><td><span class="bx bb">Pull forward</span></td><td>$2,093</td><td>6 days ago</td><td style="color:var(--t3)">0 opens</td><td><span class="bx bgr">Cold</span></td><td><a class="sfl" href="https://servicetitan.lightning.force.com" target="_blank">&#8599;</a></td></tr>
+          <tr><td class="bold">Johnson Plumbing</td><td><span class="bx bb">Pull forward</span></td><td>$1,835</td><td style="color:var(--red)">9 days ago</td><td style="color:var(--t3)">0 opens</td><td><span class="bx br">Stale &#9888;</span></td><td><a class="sfl" href="https://servicetitan.lightning.force.com" target="_blank">&#8599;</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sec" style="margin-bottom:9px">&#128293; Closed lost re-engagement &mdash; email activity detected</div>
+    <div class="card r" style="margin-bottom:10px">
+      <div style="font-size:11px;color:var(--t1);font-weight:500;margin-bottom:8px">Juan&#x27;s exact ask: when a closed lost account opens an email, the dashboard fires an alert and a re-engage draft is already written.</div>
+    </div>
+    <div style="background:var(--bg3);border:1px solid var(--red-b);border-radius:var(--r);padding:11px 13px;margin-bottom:8px;display:flex;align-items:center;gap:12px">
+      <div style="width:8px;height:8px;border-radius:50%;background:var(--red);flex-shrink:0;animation:pu 1.5s infinite"></div>
+      <div style="flex:1">
+        <div style="font-size:12px;font-weight:500;color:var(--t1)">&#128293; Apex Mechanical &mdash; opened email 2x in the last 24 hours</div>
+        <div style="font-size:11px;color:var(--t2);margin-top:2px">Lost Dec 2025 &mdash; HCP pricing. HCP raised rates in January. They may be ready to look again.</div>
+      </div>
+      <button class="na-btn email" style="flex-shrink:0" onclick="this.textContent='Draft ready ✓';this.classList.add('ok')">&#9993; Draft re-engage</button>
+      <a class="sfl" href="https://servicetitan.lightning.force.com" target="_blank" style="flex-shrink:0">&#8599; SFDC</a>
+    </div>
+    <div style="background:var(--bg3);border:1px solid var(--amb-b);border-radius:var(--r);padding:11px 13px;margin-bottom:14px;display:flex;align-items:center;gap:12px">
+      <div style="width:8px;height:8px;border-radius:50%;background:var(--amb);flex-shrink:0"></div>
+      <div style="flex:1">
+        <div style="font-size:12px;font-weight:500;color:var(--t1)">Lone Star Plumbing &mdash; opened email, clicked video link yesterday</div>
+        <div style="font-size:11px;color:var(--t2);margin-top:2px">Lost Jan 2026 &mdash; went FieldEdge. FE churned them shortly after. Warm signal.</div>
+      </div>
+      <button class="na-btn email" style="flex-shrink:0">&#9993; Draft re-engage</button>
+      <a class="sfl" href="https://servicetitan.lightning.force.com" target="_blank" style="flex-shrink:0">&#8599; SFDC</a>
+    </div>
+
+    <div class="sec" style="margin-bottom:9px">SalesLoft top 5 &mdash; most active in last 14 days</div>
+    <div class="card nopad">
+      <table>
+        <thead><tr><th>Account</th><th>Emails opened</th><th>Video views</th><th>Link clicks</th><th>Last activity</th><th>Action</th></tr></thead>
+        <tbody>
+          <tr><td class="bold">Tannen Contracting</td><td style="color:var(--grn)">7</td><td style="color:var(--grn)">2</td><td style="color:var(--grn)">3</td><td>Today</td><td><button class="na-btn call" style="font-size:10px;padding:3px 8px">&#128222; Call</button></td></tr>
+          <tr><td class="bold">Apex Mechanical (CL)</td><td style="color:var(--red)">4 &#128293;</td><td>0</td><td style="color:var(--amb)">1</td><td>Yesterday</td><td><button class="na-btn email" style="font-size:10px;padding:3px 8px">&#9993; Re-engage</button></td></tr>
+          <tr><td class="bold">R&amp;A Enterprises</td><td style="color:var(--grn)">3</td><td>0</td><td style="color:var(--amb)">1</td><td>Yesterday</td><td><button class="na-btn call" style="font-size:10px;padding:3px 8px">&#128222; Call</button></td></tr>
+          <tr><td class="bold">Lone Star Plumbing (CL)</td><td style="color:var(--amb)">2</td><td style="color:var(--amb)">1</td><td>0</td><td>Yesterday</td><td><button class="na-btn email" style="font-size:10px;padding:3px 8px">&#9993; Re-engage</button></td></tr>
+          <tr><td class="bold">All American Doors</td><td style="color:var(--amb)">2</td><td>0</td><td>0</td><td>2 days ago</td><td><button class="na-btn call" style="font-size:10px;padding:3px 8px">&#128222; Call</button></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="font-size:11px;color:var(--t3);margin-top:8px;font-style:italic">(CL) = Closed lost &middot; &#10052; SalesLoft activity requires Snowflake integration</div>
+  </div>
+
+    <div class="pane" id="pane-dayinlife">
+    <div class="sec">A full day &mdash; before and after</div>
+    <div class="card nopad">
+      <div style="padding:13px 15px">
+        <div class="tl-row"><div class="tl-t">8:00am</div><div class="tl-d" style="background:var(--amb)"></div><div class="tl-x">ARPU alert: $281, $4 below target. Coaching tip queued. Pre-call briefs auto-generated for today's calls. <span class="bx bs" style="margin-left:4px">&#10052; Snowflake</span></div></div>
+        <div class="tl-row"><div class="tl-t">8:10am</div><div class="tl-d" style="background:var(--red)"></div><div class="tl-x">Needs Activity: Johnson Plumbing at 9 days. Phone number surfaces. Re-engagement drafted. One tap to call. <span class="bx br" style="margin-left:4px">&#10052; Snowflake</span></div></div>
+        <div class="tl-row"><div class="tl-t">8:20am</div><div class="tl-d" style="background:var(--ice)"></div><div class="tl-x">Pipeline auto-syncs from SFDC. Tannen + R&A hot. ARPU per opp visible &mdash; push Works on both. <span class="bx bs" style="margin-left:4px">&#10052; Snowflake</span></div></div>
+        <div class="tl-row"><div class="tl-t">9:00am</div><div class="tl-d" style="background:var(--blu)"></div><div class="tl-x">Clicks All American Doors in Pre-call tab. Full brief expands. SPIN questions ready. FieldEdge frame loaded. <span class="bx bb" style="margin-left:4px">Live today</span></div></div>
+        <div class="tl-row"><div class="tl-t">10:25am</div><div class="tl-d" style="background:var(--grn)"></div><div class="tl-x">Gong Drop fires. Email appears in Follow-up tab. SFDC note pushed. Done in 60 seconds. <span class="bx bg" style="margin-left:4px">Live today</span></div></div>
+        <div class="tl-row"><div class="tl-t">11:15am</div><div class="tl-d" style="background:var(--grn)"></div><div class="tl-x">Refrigeration Plus hits week 3. Referral drafted. Blayne taps Send via Gmail in 90 seconds. <span class="bx bg" style="margin-left:4px">&#10052; Snowflake</span></div></div>
+        <div class="tl-row"><div class="tl-t">2:00pm</div><div class="tl-d" style="background:var(--blu)"></div><div class="tl-x">Clicks R&A in Pre-call tab. SFDC shows Rick asked about SF pricing last call. SPIN scenarios ready. ARPU target visible. <span class="bx bb" style="margin-left:4px">Live today</span></div></div>
+        <div class="tl-row"><div class="tl-t">3:10pm</div><div class="tl-d" style="background:var(--grn)"></div><div class="tl-x">Second Gong Drop. Email in tab. R&A pricing confirmed $299/tech &mdash; ARPU protected. SFDC updated. <span class="bx bg" style="margin-left:4px">Live today</span></div></div>
+        <div class="tl-row"><div class="tl-t">4:45pm</div><div class="tl-d" style="background:var(--t3)"></div><div class="tl-x"><strong style="color:var(--red)">Old:</strong> Still writing emails. SFDC empty. Missed Johnson. Referral late. ARPU unknown.<br><strong style="color:var(--grn)">New:</strong> All done. Johnson touched. Referral sent. ARPU on target. Day done at 3:45. <span class="bx bg" style="margin-left:4px">41 min saved</span></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pane" id="pane-theask">
+    <div class="card g" style="margin-bottom:13px">
+      <div class="sec"><div class="pulse"></div>The ask &mdash; small, specific, measurable</div>
+      <div style="font-size:11px;color:var(--t1);line-height:1.6">Every feature labeled &#10052; is already built and waiting. The workflow runs today with manual data. Snowflake is the one missing connection.</div>
+    </div>
+    <div class="ask-row"><div><div class="ask-t">1. Anthropic API key &mdash; pilot for Blayne only</div><div class="ask-d">Enables one-click automated workflow. Transcript in, full dashboard out. No chat bouncing, no copy-paste. Start 1 AE, expand after 30-day validation. IT request submitted.</div></div><div class="ask-c">&lt;$20/mo</div></div>
+    <div class="ask-row"><div><div class="ask-t">2. Snowflake read-only &mdash; SALES_AE_READ role</div><div class="ask-d">Read access to SFDC: account name, stage, CMRR, close date, OB date, last activity timestamp, phone number, lost reason. No write access. Blayne's book only. Request submitted.</div></div><div class="ask-c">$0</div></div>
+    <div class="ask-row"><div><div class="ask-t">3. 30-day pilot &mdash; measurable outcomes</div><div class="ask-d">Track: time saved/call, pipeline velocity, closed lost re-engagement rate, SalesLoft trigger accuracy, pre-call email open rate, forecast accuracy by bucket, ARPU trajectory. Validated &rarr; team rollout.</div></div><div class="ask-c">30 days</div></div>
+    <div class="divider"></div>
+    <div class="sec">ROI at full team scale &mdash; 35 Comm+ AEs</div>
+    <div class="g4">
+      <div class="metric"><div class="ml">Annual time value</div><div class="mv g">$732K</div><div class="ms">45 min/day recovered</div></div>
+      <div class="metric"><div class="ml">Closed lost pipeline</div><div class="mv g">$125K</div><div class="ms">CMRR/qtr reactivated</div></div>
+      <div class="metric"><div class="ml">ARPU improvement</div><div class="mv g">+$12</div><div class="ms">per tech with coaching</div></div>
+      <div class="metric"><div class="ml">Total annual cost</div><div class="mv a">&lt;$15K</div><div class="ms">API + infrastructure</div></div>
+    </div>
+    <div class="cs" style="margin-top:4px">
+      <div class="cs-t">&#128302; Next: ARPU leaderboard &mdash; team-wide when Snowflake connected</div>
+      <div class="cs-d">Every Comm+ AE's ARPU visible in one view. Below $285 triggers an automatic coaching suggestion. Manager sees where the team needs support without a 1:1. Built into this dashboard &mdash; just needs Snowflake.</div>
+    </div>
+  </div>
+
+  </div>
+</div>
+</div>
+<script>
+const pages={overview:['Dashboard','FY27 \u00b7 ARPU + attainment at a glance'],pipeline:['Active pipeline','\u2744\ufe0f Snowflake SFDC \u00b7 ARPU per deal \u00b7 SFDC links'],needsactivity:['Needs activity','\u2744\ufe0f 0-7 / 8-14 days \u00b7 phone + draft per opp'],closedwon:['Closed won','FY27 \u00b7 ARPU per deal \u00b7 SFDC clickable'],closedlost:['Closed lost','\u2744\ufe0f Competitor signals + ARPU analysis'],onboarding:['Onboarding','\u2744\ufe0f Referral timing \u00b7 SFDC clickable'],followup:['Follow-up emails','Live today \u00b7 Gong Drop drafted \u00b7 send via Gmail'],precall:['Pre-call brief','\u2744\ufe0f Click any call \u00b7 full one-pager expands'],spin:['SPIN scenarios','From your Confluence call playbooks'],icp:['ICP qualifier','Confluence talk tracks \u00b7 live today'],callcoach:['Call coaching','\u2744\ufe0f Non-Negotiable Scorecard \u00b7 ARPU coaching'],gong:['Gong Drop','Live today \u00b7 60 seconds to full output'],referrals:['Referral engine','\u2744\ufe0f Week 3 auto-draft \u00b7 send via Gmail'],qa:['Quick answers','Type anything \u00b7 Confluence + SFDC answers instantly'],resources:['Resources','All links \u00b7 pricing \u00b7 playbooks \u00b7 ST pages'],forecast:['Forecast + signals','&#10052; Pipeline by bucket · SalesLoft activity · closed lost triggers'],
+  dayinlife:['Day in the life','Before and after \u00b7 one rep \u00b7 one full day'],theask:['The ask','3 items \u00b7 30-day pilot \u00b7 $732K ROI']};
+document.querySelectorAll('.nb').forEach(b=>{b.addEventListener('click',function(){document.querySelectorAll('.nb').forEach(x=>x.classList.remove('on'));document.querySelectorAll('.pane').forEach(x=>x.classList.remove('on'));this.classList.add('on');const id=this.dataset.pane;document.getElementById('pane-'+id).classList.add('on');const m=pages[id]||['',''];document.getElementById('pg-t').textContent=m[0];document.getElementById('pg-s').textContent=m[1];});});
+let dark=true;document.getElementById('themeBtn').addEventListener('click',function(){dark=!dark;document.body.classList.toggle('light',!dark);this.textContent=dark?'\u2600\ufe0f Light':'\uD83C\uDF19 Dark';});
+document.querySelectorAll('.call-item').forEach(item=>{item.addEventListener('click',function(){const wasOpen=this.classList.contains('open');document.querySelectorAll('.call-item').forEach(x=>x.classList.remove('open'));if(!wasOpen)this.classList.add('open');});});
+function filterQA(val){const v=val.toLowerCase().trim();let any=false;document.querySelectorAll('.qa-item').forEach(function(item){const tags=item.dataset.tags||'';const q=item.querySelector('.qa-q').textContent.toLowerCase();const show=!v||tags.includes(v)||q.includes(v);item.style.display=show?'':'none';if(show)any=true;});document.getElementById('qaNR').style.display=any?'none':'block';}
+window.filterQA=filterQA;
+window.filterQA=filterQA;
+
+async function askAI(){
+  const q = document.getElementById('qaI').value.trim();
+  if(!q) return;
+  document.getElementById('ai-answer').style.display='none';
+  document.getElementById('ai-loading').style.display='block';
+  document.getElementById('qaNR').style.display='none';
+
+  const systemPrompt = 'You are a ServiceTitan Comm+ sales assistant for Blayne Salazar, a Corporate AE. Answer questions about ServiceTitan products, pricing, competitive positioning, ICP qualification, onboarding, integrations, and daily AE workflows. Be direct, specific, and practical. Maximum 4 sentences. Cite sources where relevant (Confluence, Slack channels, ST website). No em dashes, no fluff.';
+
+  try {
+    const resp = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        system: systemPrompt,
+        messages: [{role:'user', content: q}]
+      })
+    });
+    const data = await resp.json();
+    const answer = data.content && data.content[0] ? data.content[0].text : 'Could not get an answer. Try again or check Confluence directly.';
+    document.getElementById('ai-loading').style.display='none';
+    document.getElementById('ai-q-label').textContent = '— ' + q;
+    document.getElementById('ai-answer-text').textContent = answer;
+    document.getElementById('ai-answer').style.display='block';
+  } catch(e) {
+    document.getElementById('ai-loading').style.display='none';
+    document.getElementById('ai-answer-text').textContent = 'API key not connected yet. Once your Anthropic API key is approved and added, live answers will appear here instantly.';
+    document.getElementById('ai-q-label').textContent = '';
+    document.getElementById('ai-answer').style.display='block';
+  }
+}
+window.askAI=askAI;
+</script>
+</body>
+</html>
