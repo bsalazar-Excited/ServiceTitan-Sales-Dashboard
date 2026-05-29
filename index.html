@@ -3,14 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Blizzy AI — ServiceTitan Comm+</title>
+<title>Blizzy AI v8 — ServiceTitan Comm+</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=DM+Mono:wght@400;500&display=swap');
-:root{--bg:#09090c;--bg2:#111115;--bg3:#18181e;--bg4:#1e1e28;--b1:rgba(255,255,255,.06);--b2:rgba(255,255,255,.1);--b3:rgba(255,255,255,.16);--t1:#f2f2f4;--t2:#9090a0;--t3:#55556a;--grn:#1ed87a;--grn-bg:rgba(30,216,122,.08);--grn-b:rgba(30,216,122,.2);--amb:#f5a623;--amb-bg:rgba(245,166,35,.08);--amb-b:rgba(245,166,35,.22);--blu:#4a9eff;--blu-bg:rgba(74,158,255,.08);--blu-b:rgba(74,158,255,.22);--red:#ff5c5c;--red-bg:rgba(255,92,92,.08);--red-b:rgba(255,92,92,.22);--ice:#7ecfe3;--ice-bg:rgba(126,207,227,.08);--ice-b:rgba(126,207,227,.22);--pur:#a78bfa;--pur-bg:rgba(167,139,250,.08);--pur-b:rgba(167,139,250,.22);--r:8px;--rs:5px}
-.light{--bg:#f4f4f7;--bg2:#ffffff;--bg3:#f0f0f4;--bg4:#e8e8ec;--b1:rgba(0,0,0,.07);--b2:rgba(0,0,0,.12);--t1:#0a0a0e;--t2:#5a5a6e;--t3:#9090a8;--grn:#0e9e5a;--grn-bg:rgba(14,158,90,.08);--grn-b:rgba(14,158,90,.2);--amb:#c47e0a;--amb-bg:rgba(196,126,10,.08);--amb-b:rgba(196,126,10,.22);--blu:#1a6fc4;--blu-bg:rgba(26,111,196,.08);--blu-b:rgba(26,111,196,.22);--red:#c0392b;--red-bg:rgba(192,57,43,.08);--red-b:rgba(192,57,43,.22);--ice:#1a8aa8;--ice-bg:rgba(26,138,168,.08);--ice-b:rgba(26,138,168,.22);--pur:#6c4bc4;--pur-bg:rgba(108,75,196,.08);--pur-b:rgba(108,75,196,.22)}
+:root{--bg:#09090c;--bg2:#111115;--bg3:#18181e;--bg4:#1e1e28;--b1:rgba(255,255,255,.06);--b2:rgba(255,255,255,.1);--b3:rgba(255,255,255,.16);--t1:#f2f2f4;--t2:#9090a0;--t3:#55556a;--grn:#1ed87a;--grn-bg:rgba(30,216,122,.08);--grn-b:rgba(30,216,122,.2);--amb:#f5a623;--amb-bg:rgba(245,166,35,.08);--amb-b:rgba(245,166,35,.22);--blu:#4a9eff;--blu-bg:rgba(74,158,255,.08);--blu-b:rgba(74,158,255,.22);--red:#ff5c5c;--red-bg:rgba(255,92,92,.08);--red-b:rgba(255,92,92,.22);--ice:#7ecfe3;--ice-bg:rgba(126,207,227,.08);--ice-b:rgba(126,207,227,.22);--pur:#a78bfa;--pur-bg:rgba(167,139,250,.08);--pur-b:rgba(167,139,250,.22);--st:#F05A28;--st-bg:rgba(240,90,40,.09);--st-b:rgba(240,90,40,.28);--r:8px;--rs:5px}
+.light{--bg:#f4f4f7;--bg2:#ffffff;--bg3:#f0f0f4;--bg4:#e8e8ec;--b1:rgba(0,0,0,.07);--b2:rgba(0,0,0,.12);--t1:#0a0a0e;--t2:#5a5a6e;--t3:#9090a8;--grn:#0e9e5a;--grn-bg:rgba(14,158,90,.08);--grn-b:rgba(14,158,90,.2);--amb:#c47e0a;--amb-bg:rgba(196,126,10,.08);--amb-b:rgba(196,126,10,.22);--blu:#1a6fc4;--blu-bg:rgba(26,111,196,.08);--blu-b:rgba(26,111,196,.22);--red:#c0392b;--red-bg:rgba(192,57,43,.08);--red-b:rgba(192,57,43,.22);--ice:#1a8aa8;--ice-bg:rgba(26,138,168,.08);--ice-b:rgba(26,138,168,.22);--pur:#6c4bc4;--pur-bg:rgba(108,75,196,.08);--pur-b:rgba(108,75,196,.22);--st:#D94E1F;--st-bg:rgba(217,78,31,.08);--st-b:rgba(217,78,31,.28)}
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%;background:var(--bg);color:var(--t1);font-family:'DM Sans',sans-serif;font-size:13px;line-height:1.5;overflow:hidden;transition:background .2s,color .2s}
-.app{display:grid;grid-template-columns:214px 1fr;height:100vh}
+.app{display:grid;grid-template-columns:214px 1fr;height:100vh;transition:grid-template-columns .2s}
+.app.sb-hidden{grid-template-columns:0px 1fr}
+.app.sb-hidden .sb{transform:translateX(-100%);pointer-events:none;opacity:0}
+.sb{transition:transform .2s,opacity .15s}
 .sb{background:var(--bg2);border-right:1px solid var(--b1);display:flex;flex-direction:column;overflow:hidden}
 .sb-head{padding:14px 13px 12px;border-bottom:1px solid var(--b1);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
 .sb-logo{display:flex;align-items:center;gap:8px}
@@ -21,7 +24,11 @@ html,body{height:100%;background:var(--bg);color:var(--t1);font-family:'DM Sans'
 .theme-btn:hover{background:var(--bg3);color:var(--t1)}
 .sb-body{flex:1;padding:8px 6px;overflow-y:auto}
 .ng{margin-bottom:2px}
-.ng-lbl{font-size:9px;font-weight:500;color:var(--t3);text-transform:uppercase;letter-spacing:.09em;padding:8px 9px 3px}
+.ng-lbl{font-size:9px;font-weight:500;color:var(--t3);text-transform:uppercase;letter-spacing:.09em;padding:8px 9px 3px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;user-select:none;border-radius:4px}
+.ng-lbl:hover{color:var(--t2)}
+.ng-chev{font-size:9px;transition:transform .18s;opacity:.6;flex-shrink:0}
+.ng.collapsed .ng-chev{transform:rotate(-90deg)}
+.ng.collapsed .nb{display:none}
 .nb{display:flex;align-items:center;gap:7px;padding:7px 9px;border-radius:var(--rs);border:none;background:none;color:var(--t2);font-size:11.5px;cursor:pointer;width:100%;text-align:left;font-family:'DM Sans',sans-serif;transition:all .13s;white-space:nowrap}
 .nb svg{width:14px;height:14px;flex-shrink:0;opacity:.65}
 .nb:hover{background:var(--bg3);color:var(--t1)}
@@ -181,21 +188,21 @@ td.bold{font-weight:500}
 <div class="app">
 <aside class="sb">
   <div class="sb-head">
-    <div class="sb-logo"><div class="sb-icon">B</div><div><div class="sb-name">Blizzy AI</div><div class="sb-ver">Comm+ &middot; FY27</div></div></div>
+    <div class="sb-logo"><div class="sb-icon">B</div><div><div class="sb-name">Blizzy AI</div><div class="sb-ver">Comm+ &middot; FY27 &middot; v8</div></div></div>
     <button class="theme-btn" id="themeBtn">&#9728; Light</button>
   </div>
   <div class="sb-body">
-    <div class="ng"><div class="ng-lbl">Overview</div>
+    <div class="ng"><div class="ng-lbl">Overview<span class="ng-chev">▾</span></div>
       <button class="nb on" data-pane="overview"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>Dashboard<span class="ntag tg-live">LIVE</span></button>
     </div>
-    <div class="ng"><div class="ng-lbl">Pipeline</div>
+    <div class="ng"><div class="ng-lbl">Pipeline<span class="ng-chev">▾</span></div>
       <button class="nb" data-pane="pipeline"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>Active pipeline<span class="ntag tg-snow">&#10052;</span></button>
       <button class="nb" data-pane="needsactivity"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Needs activity<span class="ntag tg-snow">&#10052;</span></button>
       <button class="nb" data-pane="closedwon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>Closed won<span class="ntag tg-snow">&#10052;</span></button>
       <button class="nb" data-pane="closedlost"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>Closed lost<span class="ntag tg-snow">&#10052;</span></button>
       <button class="nb" data-pane="onboarding"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>Onboarding<span class="ntag tg-snow">&#10052;</span></button>
     </div>
-    <div class="ng"><div class="ng-lbl">AI Tools</div>
+    <div class="ng"><div class="ng-lbl">AI Tools<span class="ng-chev">▾</span></div>
       <button class="nb" data-pane="followup"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>Follow-up emails<span class="ntag tg-live">LIVE</span></button>
       <button class="nb" data-pane="precall"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/></svg>Pre-call brief<span class="ntag tg-snow">&#10052;</span></button>
       <button class="nb" data-pane="spin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>SPIN scenarios<span class="ntag tg-new">NEW</span></button>
@@ -208,7 +215,7 @@ td.bold{font-weight:500}
       <button class="nb" data-pane="qa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Quick answers<span class="ntag tg-live">LIVE</span></button>
       <button class="nb" data-pane="resources"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>Resources<span class="ntag tg-live">LIVE</span></button>
     </div>
-    <div class="ng"><div class="ng-lbl">Business case</div>
+    <div class="ng"><div class="ng-lbl">Business case<span class="ng-chev">▾</span></div>
       <button class="nb" data-pane="dayinlife"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Day in the life</button>
       <button class="nb" data-pane="theask"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>The ask</button>
     </div>
@@ -223,8 +230,20 @@ td.bold{font-weight:500}
 </aside>
 <div class="main">
   <div class="topbar">
-    <div><div class="tb-t" id="pg-t">Dashboard</div><div class="tb-s" id="pg-s">FY27 &middot; Blayne Salazar &middot; Comm+</div></div>
-    <div class="tb-r"><span class="chip chip-g">&bull; Live today</span><span class="chip chip-s">&#10052; Snowflake unlocks</span><span class="chip chip-a">Pilot pending</span></div>
+    <div style="display:flex;align-items:center;gap:10px">
+      <button id="sb-toggle-btn" onclick="toggleSidebar()" style="background:none;border:1px solid var(--b2);border-radius:var(--rs);padding:4px 9px;cursor:pointer;font-size:11px;color:var(--t2);font-family:'DM Sans',sans-serif;display:flex;align-items:center;gap:5px;flex-shrink:0" title="Hide/show sidebar">
+        <svg id="sb-toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/></svg>
+      </button>
+      <div><div class="tb-t" id="pg-t">Dashboard</div><div class="tb-s" id="pg-s">FY27 &middot; Blayne Salazar &middot; Comm+</div></div>
+    </div>
+    <div class="tb-r">
+      <span class="chip chip-g">&bull; Live today</span>
+      <span class="chip chip-s">&#10052; Snowflake unlocks</span>
+      <span class="chip chip-a">Pilot pending</span>
+      <button onclick="presentMode()" style="display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border-radius:var(--rs);border:1px solid var(--pur-b);background:var(--pur-bg);color:var(--pur);font-size:11px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif" title="Full-screen pricing for screen share">
+        &#128250; Present
+      </button>
+    </div>
   </div>
   <div class="content">
 
@@ -292,14 +311,14 @@ td.bold{font-weight:500}
     </div>
     <div class="card nopad">
       <table>
-        <thead><tr><th>Account</th><th>Stage</th><th>Vertical</th><th>Techs</th><th>CMRR</th><th>ARPU</th><th>Last touch</th><th>Next step</th><th>Signal</th><th>SFDC</th></tr></thead>
+        <thead><tr><th>Account</th><th>Stage</th><th>Vertical</th><th>Techs</th><th>CMRR</th><th>ARPU</th><th>Last touch</th><th>Next step</th><th>Buying signals &#10052;</th><th>SFDC</th></tr></thead>
         <tbody>
-          <tr><td class="bold">Tannen Contracting</td><td><span class="bx ba">Pricing</span></td><td>HVAC</td><td>9</td><td>$2,601</td><td><span style="color:var(--grn)">$289</span></td><td>Today</td><td>Call 05/20</td><td><span class="bx bg">Hot</span></td><td><a class="sfl" href="https://servicetitan.lightning.force.com" target="_blank">&#8599; Open</a></td></tr>
-          <tr><td class="bold">Specialized Electric</td><td><span class="bx bb">Demo</span></td><td>Electrical</td><td>12</td><td>$3,588</td><td><span style="color:var(--grn)">$299</span></td><td>Today</td><td>Part 2 05/21</td><td><span class="bx ba">Warm</span></td><td><a class="sfl" href="https://servicetitan.lightning.force.com" target="_blank">&#8599; Open</a></td></tr>
-          <tr><td class="bold">All American Doors</td><td><span class="bx bb">Discovery</span></td><td>Garage Door</td><td>6</td><td>$1,794</td><td><span style="color:var(--grn)">$299</span></td><td>Yesterday</td><td>Post-FieldEdge</td><td><span class="bx ba">Warm</span></td><td><a class="sfl" href="https://servicetitan.lightning.force.com" target="_blank">&#8599; Open</a></td></tr>
-          <tr><td class="bold">R&amp;A Enterprises</td><td><span class="bx ba">Pricing</span></td><td>HVAC</td><td>8</td><td>$2,392</td><td><span style="color:var(--grn)">$299</span></td><td>Yesterday</td><td>Call 05/19</td><td><span class="bx bg">Hot</span></td><td><a class="sfl" href="https://servicetitan.lightning.force.com" target="_blank">&#8599; Open</a></td></tr>
-          <tr><td class="bold">Grayco Air</td><td><span class="bx bb">Discovery</span></td><td>HVAC</td><td>7</td><td>$2,093</td><td><span style="color:var(--grn)">$299</span></td><td>3 days ago</td><td>NNS</td><td><span class="bx ba">Warm</span></td><td><a class="sfl" href="https://servicetitan.lightning.force.com" target="_blank">&#8599; Open</a></td></tr>
-          <tr><td class="bold">Johnson Plumbing</td><td><span class="bx bb">Discovery</span></td><td>Plumbing</td><td>10</td><td>$1,835</td><td><span style="color:var(--amb)">$184</span></td><td style="color:var(--red);font-weight:500">9 days &#9888;</td><td>NNS</td><td><span class="bx br">Stale</span></td><td><a class="sfl" href="https://servicetitan.lightning.force.com" target="_blank">&#8599; Open</a></td></tr>
+          <tr><td class="bold">Tannen Contracting</td><td><span class="bx ba">Pricing</span></td><td>HVAC</td><td>9</td><td>$2,601</td><td><span style="color:var(--grn)">$289</span></td><td>Today</td><td>Call 05/20</td><td><span class="bx bg">&#9889; Email 3x opens</span><div style="font-size:9px;color:var(--t3);margin-top:2px;font-family:'DM Mono',monospace">Pricing pg visit &middot; &#10052; Sixth Sense</div></td><td><a class="sfl" href="https://servicetitan.lightning.force.com" target="_blank">&#8599; Open</a></td></tr>
+          <tr><td class="bold">Specialized Electric</td><td><span class="bx bb">Demo</span></td><td>Electrical</td><td>12</td><td>$3,588</td><td><span style="color:var(--grn)">$299</span></td><td>Today</td><td>Part 2 05/21</td><td><span class="bx ba">&#128065; Site visit</span><div style="font-size:9px;color:var(--t3);margin-top:2px;font-family:'DM Mono',monospace">Pricing + Integrations &middot; &#10052; Sixth Sense</div></td><td><a class="sfl" href="https://servicetitan.lightning.force.com" target="_blank">&#8599; Open</a></td></tr>
+          <tr><td class="bold">All American Doors</td><td><span class="bx bb">Discovery</span></td><td>Garage Door</td><td>6</td><td>$1,794</td><td><span style="color:var(--grn)">$299</span></td><td>Yesterday</td><td>Post-FieldEdge</td><td><span class="bx ba">&#128231; Opened 1x</span><div style="font-size:9px;color:var(--t3);margin-top:2px;font-family:'DM Mono',monospace">No reply yet &middot; &#10052; Sixth Sense</div></td><td><a class="sfl" href="https://servicetitan.lightning.force.com" target="_blank">&#8599; Open</a></td></tr>
+          <tr><td class="bold">R&amp;A Enterprises</td><td><span class="bx ba">Pricing</span></td><td>HVAC</td><td>8</td><td>$2,392</td><td><span style="color:var(--grn)">$299</span></td><td>Yesterday</td><td>Call 05/19</td><td><span class="bx bg">&#9889; Email 5x opens</span><div style="font-size:9px;color:var(--t3);margin-top:2px;font-family:'DM Mono',monospace">Pricing pg &middot; reply pending &middot; &#10052;</div></td><td><a class="sfl" href="https://servicetitan.lightning.force.com" target="_blank">&#8599; Open</a></td></tr>
+          <tr><td class="bold">Grayco Air</td><td><span class="bx bb">Discovery</span></td><td>HVAC</td><td>7</td><td>$2,093</td><td><span style="color:var(--grn)">$299</span></td><td>3 days ago</td><td>NNS</td><td><span class="bx ba">&#128231; Opened, no reply</span><div style="font-size:9px;color:var(--t3);margin-top:2px;font-family:'DM Mono',monospace">&#10052; Sixth Sense pending</div></td><td><a class="sfl" href="https://servicetitan.lightning.force.com" target="_blank">&#8599; Open</a></td></tr>
+          <tr><td class="bold">Johnson Plumbing</td><td><span class="bx bb">Discovery</span></td><td>Plumbing</td><td>10</td><td>$1,835</td><td><span style="color:var(--amb)">$184</span></td><td style="color:var(--red);font-weight:500">9 days &#9888;</td><td>NNS</td><td><span class="bx br">&#128308; No opens &middot; 9d ghost</span><div style="font-size:9px;color:var(--t3);margin-top:2px;font-family:'DM Mono',monospace">&#10052; re-engage trigger ready</div></td><td><a class="sfl" href="https://servicetitan.lightning.force.com" target="_blank">&#8599; Open</a></td></tr>
         </tbody>
       </table>
     </div>
@@ -540,6 +559,11 @@ Blayne &middot; 707-478-9500</div>
           <div>
             <div style="font-size:10px;font-weight:500;color:var(--grn);text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px">Who you're walking into</div>
             <div style="font-size:11.5px;color:var(--t2);line-height:1.7;margin-bottom:9px">Reid is the owner, saw ST demo 5 months ago. <strong style="color:var(--t1)">Leslie runs invoicing and is the real DM.</strong> 30-40 service calls/day, 52-city radius. Phones off to take this call. Abilene data center driving growth fast.</div>
+            <div style="display:flex;gap:6px;margin-bottom:9px;flex-wrap:wrap">
+              <a href="https://mycpa.cpa.state.tx.us/coa/Search.do" target="_blank" style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:var(--rs);background:var(--blu-bg);border:1px solid var(--blu-b);color:var(--blu);font-size:10px;font-weight:500;text-decoration:none;font-family:'DM Sans',sans-serif">&#127968; TX SoS lookup &#8599;</a>
+              <a href="https://www.linkedin.com/search/results/companies/?keywords=All+American+Doors+Abilene" target="_blank" style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:var(--rs);background:var(--pur-bg);border:1px solid var(--pur-b);color:var(--pur);font-size:10px;font-weight:500;text-decoration:none;font-family:'DM Sans',sans-serif">&#128100; LinkedIn &#8599;</a>
+              <a href="https://allamericandoor.com" target="_blank" style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:var(--rs);background:var(--bg4);border:1px solid var(--b2);color:var(--t2);font-size:10px;font-weight:500;text-decoration:none;font-family:'DM Sans',sans-serif">&#127758; Website &#8599;</a>
+            </div>
             <div style="font-size:10px;font-weight:500;color:var(--grn);text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px">&#10052; Website intel &amp; competitive angle</div>
             <div style="font-size:11.5px;color:var(--t2);line-height:1.7">Recently added commercial services page. 4.8 &#11088; reviews. <strong style="color:var(--t1)">FieldEdge is residential-first.</strong> Limited commercial job costing. Weaker mobile offline on job sites. 600+ shops switched to ST. With Abilene's construction ramp, they'll outgrow FE fast.</div>
           </div>
@@ -568,6 +592,10 @@ Blayne &middot; 707-478-9500</div>
           <div>
             <div style="font-size:10px;font-weight:500;color:var(--grn);text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px">&#10052; SFDC history</div>
             <div style="font-size:11.5px;color:var(--t2);line-height:1.7;margin-bottom:9px">2 prior calls. Last touch 04/12 &mdash; <strong style="color:var(--t1)">Rick asked about ServiceFusion pricing on that call.</strong> 8 techs, HVAC, Denver CO, QBO. Last call ended without committed next step. He's actively shopping.</div>
+            <div style="display:flex;gap:6px;margin-bottom:9px;flex-wrap:wrap">
+              <a href="https://www.sos.state.co.us/biz/BusinessEntityCriteriaExt.do" target="_blank" style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:var(--rs);background:var(--blu-bg);border:1px solid var(--blu-b);color:var(--blu);font-size:10px;font-weight:500;text-decoration:none;font-family:'DM Sans',sans-serif">&#127968; CO SoS lookup &#8599;</a>
+              <a href="https://www.linkedin.com/search/results/companies/?keywords=R+A+Enterprises+Denver+HVAC" target="_blank" style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:var(--rs);background:var(--pur-bg);border:1px solid var(--pur-b);color:var(--pur);font-size:10px;font-weight:500;text-decoration:none;font-family:'DM Sans',sans-serif">&#128100; LinkedIn &#8599;</a>
+            </div>
             <div style="background:var(--amb-bg);border:1px solid var(--amb-b);border-radius:var(--rs);padding:8px 10px;font-size:12px;color:var(--amb);font-weight:500">DocuSign by end of call. Month-end 05/31. PRICE IS NEGOTIABLE. Do not let price lose this deal.</div>
           </div>
           <div>
@@ -723,9 +751,42 @@ Blayne &middot; 707-478-9500</div>
   </div>
 
   <div class="pane" id="pane-pricing">
-    <div class="card g" style="margin-bottom:12px">
-      <div class="sec"><div class="pulse"></div>Pricing builder &mdash; 24-month agreements &middot; 2/3/4 tiers &middot; per-tier growth &middot; real guardrails</div>
+    <div id="pb-internal-hdr" class="card g" style="margin-bottom:12px">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
+        <div class="sec" style="margin-bottom:0"><div class="pulse"></div>Pricing builder &mdash; 24-month agreements &middot; 2/3/4 tiers &middot; per-tier growth &middot; real guardrails</div>
+        <div style="display:flex;gap:6px;align-items:center">
+          <span style="font-size:10px;color:var(--t3)">View:</span>
+          <button id="pb-view-ae" onclick="setPricingView('ae')" style="padding:3px 10px;border-radius:var(--rs);border:1px solid var(--grn-b);background:var(--grn-bg);color:var(--grn);font-size:10px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif">Internal</button>
+          <button id="pb-view-cust" onclick="setPricingView('customer')" style="padding:3px 10px;border-radius:var(--rs);border:1px solid var(--b2);background:none;color:var(--t2);font-size:10px;cursor:pointer;font-family:'DM Sans',sans-serif">Customer view</button>
+        </div>
+      </div>
       <div style="font-size:11px;color:var(--t1)">$189 floor. 40% step-up guardrail enforced. Due at signing = OB + first paid month. Based on your actual DocuSigns.</div>
+    </div>
+    <!-- CUSTOMER VIEW (hidden by default) -->
+    <div id="pb-customer-view" style="display:none">
+      <!-- ST branded header -->
+      <div style="background:var(--bg2);border:1px solid var(--st-b);border-radius:var(--r);padding:14px 18px;margin-bottom:12px;display:flex;align-items:center;justify-content:space-between">
+        <div style="display:flex;align-items:center;gap:12px">
+          <!-- ServiceTitan logo SVG -->
+          <svg viewBox="0 0 36 36" width="36" height="36" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="18" cy="18" r="18" fill="#F05A28"/>
+            <path d="M11 13h14v2.5H11zM11 20.5h14V23H11zM14.5 13v10h2.5V13zM19 13v10h2.5V13z" fill="white" opacity="0.95"/>
+          </svg>
+          <div>
+            <div style="font-size:15px;font-weight:700;color:var(--t1);letter-spacing:-.3px">ServiceTitan</div>
+            <div style="font-size:10px;color:var(--t3);margin-top:1px">Partnership Proposal &middot; 24-month agreement</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:7px;align-items:center">
+          <button onclick="buildCustomerOptions()" id="cust-refresh-btn" style="display:inline-flex;align-items:center;gap:4px;padding:5px 11px;border-radius:var(--rs);border:1px solid var(--b2);background:none;color:var(--t2);font-size:10px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif">&#8635; Update</button>
+          <button onclick="setPricingView('ae')" style="display:inline-flex;align-items:center;gap:4px;padding:5px 11px;border-radius:var(--rs);border:1px solid var(--b2);background:none;color:var(--t2);font-size:10px;cursor:pointer;font-family:'DM Sans',sans-serif">&#8592; Internal</button>
+          <button onclick="copyAllOptions()" id="cust-copy-btn" style="display:inline-flex;align-items:center;gap:5px;padding:5px 13px;border-radius:var(--rs);border:1px solid var(--st-b);background:var(--st-bg);color:var(--st);font-size:10px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif">&#128203; Copy options</button>
+        </div>
+      </div>
+      <div id="cust-options-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:12px">
+        <!-- populated by JS -->
+      </div>
+      <div style="font-size:10px;color:var(--t3);text-align:center;padding:8px 0">All options include 24-month agreement &middot; Onboarding fee due at signing</div>
     </div>
     <div style="display:grid;grid-template-columns:310px 1fr;gap:14px">
 
@@ -1108,24 +1169,95 @@ Blayne &middot; 707-478-9500</div>
   </div>
 
   <div class="pane" id="pane-theask">
-    <div class="card g" style="margin-bottom:13px">
-      <div class="sec"><div class="pulse"></div>The ask &mdash; small, specific, measurable</div>
-      <div style="font-size:11px;color:var(--t1);line-height:1.6">Every feature labeled &#10052; is already built and waiting. The workflow runs today with manual data. Snowflake is the one missing connection.</div>
+
+    <!-- Hero ROI banner -->
+    <div style="background:linear-gradient(135deg,rgba(30,216,122,.12),rgba(74,158,255,.08));border:1px solid var(--grn-b);border-radius:var(--r);padding:18px 20px;margin-bottom:14px;display:grid;grid-template-columns:1fr auto;align-items:center;gap:16px">
+      <div>
+        <div style="font-size:10px;font-weight:500;color:var(--grn);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px">&#9889; The case in one line</div>
+        <div style="font-size:17px;font-weight:600;color:var(--t1);letter-spacing:-.3px;line-height:1.4">This tool is already built and running live.<br>We just need the data pipe.</div>
+        <div style="font-size:11px;color:var(--t2);margin-top:7px;line-height:1.6">3 things to unlock full automation. Two are free. One costs less than a lunch.</div>
+      </div>
+      <div style="text-align:right">
+        <div style="font-size:10px;color:var(--t3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:4px">Full-team annual ROI</div>
+        <div style="font-size:34px;font-weight:700;color:var(--grn);font-family:'DM Mono',monospace;letter-spacing:-1px">$732K</div>
+        <div style="font-size:10px;color:var(--t3)">time value &middot; 35 AEs</div>
+      </div>
     </div>
-    <div class="ask-row"><div><div class="ask-t">1. Anthropic API key &mdash; pilot for Blayne only</div><div class="ask-d">Enables one-click automated workflow. Transcript in, full dashboard out. No chat bouncing, no copy-paste. Start 1 AE, expand after 30-day validation. IT request submitted.</div></div><div class="ask-c">&lt;$20/mo</div></div>
-    <div class="ask-row"><div><div class="ask-t">2. Snowflake read-only &mdash; SALES_AE_READ role</div><div class="ask-d">Read access to SFDC: account name, stage, CMRR, close date, OB date, last activity timestamp, phone number, lost reason. No write access. Blayne's book only. Request submitted.</div></div><div class="ask-c">$0</div></div>
-    <div class="ask-row"><div><div class="ask-t">3. 30-day pilot &mdash; measurable outcomes</div><div class="ask-d">Track: time saved/call, pipeline velocity, closed lost re-engagement rate, SalesLoft trigger accuracy, pre-call email open rate, forecast accuracy by bucket, ARPU trajectory. Validated &rarr; team rollout.</div></div><div class="ask-c">30 days</div></div>
-    <div class="divider"></div>
-    <div class="sec">ROI at full team scale &mdash; 35 Comm+ AEs</div>
-    <div class="g4">
-      <div class="metric"><div class="ml">Annual time value</div><div class="mv g">$732K</div><div class="ms">45 min/day recovered</div></div>
-      <div class="metric"><div class="ml">Closed lost pipeline</div><div class="mv g">$125K</div><div class="ms">CMRR/qtr reactivated</div></div>
-      <div class="metric"><div class="ml">ARPU improvement</div><div class="mv g">+$12</div><div class="ms">per tech with coaching</div></div>
-      <div class="metric"><div class="ml">Total annual cost</div><div class="mv a">&lt;$15K</div><div class="ms">API + infrastructure</div></div>
+
+    <!-- 3 asks as cards -->
+    <div class="sec">What I'm asking for</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px">
+      <div style="background:var(--bg3);border:1px solid var(--grn-b);border-radius:var(--r);padding:14px 15px">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+          <div style="font-size:10px;font-weight:500;color:var(--grn);text-transform:uppercase;letter-spacing:.07em">Ask 1</div>
+          <span class="bx bg" style="font-size:11px;font-family:'DM Mono',monospace;font-weight:600">&lt;$20/mo</span>
+        </div>
+        <div style="font-size:13px;font-weight:600;color:var(--t1);margin-bottom:5px">Anthropic API key</div>
+        <div style="font-size:11px;color:var(--t2);line-height:1.6">Pilot for Blayne only. Enables one-click post-call automation. Transcript in, full dashboard output in 60 seconds. Start 1 AE, validate 30 days, then scale. IT request submitted.</div>
+        <div style="margin-top:9px;font-size:10px;color:var(--grn);font-family:'DM Mono',monospace">Status: IT request submitted</div>
+      </div>
+      <div style="background:var(--bg3);border:1px solid var(--b1);border-radius:var(--r);padding:14px 15px">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+          <div style="font-size:10px;font-weight:500;color:var(--ice);text-transform:uppercase;letter-spacing:.07em">Ask 2</div>
+          <span class="bx bs" style="font-size:11px;font-family:'DM Mono',monospace;font-weight:600">$0</span>
+        </div>
+        <div style="font-size:13px;font-weight:600;color:var(--t1);margin-bottom:5px">Snowflake read-only</div>
+        <div style="font-size:11px;color:var(--t2);line-height:1.6">SALES_AE_READ role. Account name, stage, CMRR, close date, OB date, last activity, phone number, lost reason. No write access. Blayne's book only. Ops team already working on this.</div>
+        <div style="margin-top:9px;font-size:10px;color:var(--ice);font-family:'DM Mono',monospace">Status: Sales solutions team active</div>
+      </div>
+      <div style="background:var(--bg3);border:1px solid var(--b1);border-radius:var(--r);padding:14px 15px">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+          <div style="font-size:10px;font-weight:500;color:var(--pur);text-transform:uppercase;letter-spacing:.07em">Ask 3</div>
+          <span class="bx bp" style="font-size:11px;font-family:'DM Mono',monospace;font-weight:600">30 days</span>
+        </div>
+        <div style="font-size:13px;font-weight:600;color:var(--t1);margin-bottom:5px">30-day pilot blessing</div>
+        <div style="font-size:11px;color:var(--t2);line-height:1.6">Permission to run the pilot formally. Track: time saved per call, pipeline velocity, ARPU trajectory, closed lost reactivation rate, forecast accuracy. Validated outcomes before team rollout.</div>
+        <div style="margin-top:9px;font-size:10px;color:var(--pur);font-family:'DM Mono',monospace">Status: Pending your go-ahead</div>
+      </div>
     </div>
-    <div class="cs" style="margin-top:4px">
-      <div class="cs-t">&#128302; Next: ARPU leaderboard &mdash; team-wide when Snowflake connected</div>
-      <div class="cs-d">Every Comm+ AE's ARPU visible in one view. Below $285 triggers an automatic coaching suggestion. Manager sees where the team needs support without a 1:1. Built into this dashboard &mdash; just needs Snowflake.</div>
+
+    <!-- ROI grid -->
+    <div class="sec">What we get back &mdash; full team at 35 AEs</div>
+    <div class="g4" style="margin-bottom:14px">
+      <div class="metric"><div class="ml">Annual time value</div><div class="mv g">$732K</div><div class="ms">45 min/call &times; 4 calls &times; 35 AEs</div></div>
+      <div class="metric"><div class="ml">Closed lost reactivated</div><div class="mv g">$125K</div><div class="ms">CMRR per quarter</div></div>
+      <div class="metric"><div class="ml">ARPU improvement</div><div class="mv g">+$12</div><div class="ms">per tech with coaching live</div></div>
+      <div class="metric"><div class="ml">Total annual cost</div><div class="mv a">&lt;$15K</div><div class="ms">API + infrastructure combined</div></div>
+    </div>
+
+    <!-- What's live today vs what Snowflake unlocks -->
+    <div class="g2" style="margin-bottom:14px">
+      <div class="card g">
+        <div class="sec"><div class="pulse"></div>Live right now &mdash; zero engineering</div>
+        <div style="font-size:11px;color:var(--t1);line-height:1.85">
+          &#10003;&nbsp; Gong Drop: transcript &rarr; email + SFDC notes in 60 sec<br>
+          &#10003;&nbsp; ICP qualifier with full Confluence talk tracks<br>
+          &#10003;&nbsp; SPIN scenarios by vertical and stage<br>
+          &#10003;&nbsp; Pricing builder with real guardrails + customer view<br>
+          &#10003;&nbsp; Pre-call brief with SoS lookup + competitive angle<br>
+          &#10003;&nbsp; Quick answers with live Claude AI<br>
+          &#10003;&nbsp; Referral engine with auto-drafted emails<br>
+          &#10003;&nbsp; Follow-up email composer + Gmail send
+        </div>
+      </div>
+      <div class="card s">
+        <div class="sec">&#10052; Snowflake unlocks &mdash; one data pipe</div>
+        <div style="font-size:11px;color:var(--t1);line-height:1.85">
+          &#128303;&nbsp; Pipeline auto-syncs every morning from SFDC<br>
+          &#128303;&nbsp; Needs activity auto-buckets by last-touch date<br>
+          &#128303;&nbsp; Buying signals via Sixth Sense email + site data<br>
+          &#128303;&nbsp; Onboarding tracker with clawback prevention<br>
+          &#128303;&nbsp; Referral timing fires automatically at week 3<br>
+          &#128303;&nbsp; Closed lost re-engage triggers on competitor news<br>
+          &#128303;&nbsp; ARPU leaderboard for all 35 Comm+ AEs<br>
+          &#128303;&nbsp; Pre-call brief pre-populates from SFDC history
+        </div>
+      </div>
+    </div>
+
+    <div class="cs">
+      <div class="cs-t">&#128302; Next step: 30-day pilot &rarr; AE team rollout &rarr; Comm+ standard tooling</div>
+      <div class="cs-d">Every feature is built. Blayne runs the pilot, tracks outcomes against the metrics above, and brings results back in 30 days. If the numbers hold, this becomes the standard workflow for every Comm+ AE with no additional build required.</div>
     </div>
   </div>
 
@@ -1136,7 +1268,8 @@ Blayne &middot; 707-478-9500</div>
 const pages={overview:['Dashboard','FY27 \u00b7 ARPU + attainment at a glance'],pipeline:['Active pipeline','\u2744\ufe0f Snowflake SFDC \u00b7 ARPU per deal \u00b7 SFDC links'],needsactivity:['Needs activity','\u2744\ufe0f 0-7 / 8-14 days \u00b7 phone + draft per opp'],closedwon:['Closed won','FY27 \u00b7 ARPU per deal \u00b7 SFDC clickable'],closedlost:['Closed lost','\u2744\ufe0f Competitor signals + ARPU analysis'],onboarding:['Onboarding','\u2744\ufe0f Referral timing \u00b7 SFDC clickable'],followup:['Follow-up emails','Live today \u00b7 Gong Drop drafted \u00b7 send via Gmail'],precall:['Pre-call brief','\u2744\ufe0f Click any call \u00b7 full one-pager expands'],spin:['SPIN scenarios','From your Confluence call playbooks'],icp:['ICP qualifier','Confluence talk tracks \u00b7 live today'],callcoach:['Call coaching','\u2744\ufe0f Non-Negotiable Scorecard \u00b7 ARPU coaching'],gong:['Gong Drop','Live today \u00b7 60 seconds to full output'],pricing:['Pricing builder','Real rate card · live negotiation tool · Kaleb\'s ask'],
   referrals:['Referral engine','\u2744\ufe0f Week 3 auto-draft \u00b7 send via Gmail'],qa:['Quick answers','Type anything \u00b7 Confluence + SFDC answers instantly'],resources:['Resources','All links \u00b7 pricing \u00b7 playbooks \u00b7 ST pages'],forecast:['Forecast + signals','&#10052; Pipeline by bucket · SalesLoft activity · closed lost triggers'],
   dayinlife:['Day in the life','Before and after \u00b7 one rep \u00b7 one full day'],theask:['The ask','3 items \u00b7 30-day pilot \u00b7 $732K ROI']};
-document.querySelectorAll('.nb').forEach(b=>{b.addEventListener('click',function(){document.querySelectorAll('.nb').forEach(x=>x.classList.remove('on'));document.querySelectorAll('.pane').forEach(x=>x.classList.remove('on'));this.classList.add('on');const id=this.dataset.pane;document.getElementById('pane-'+id).classList.add('on');const m=pages[id]||['',''];document.getElementById('pg-t').textContent=m[0];document.getElementById('pg-s').textContent=m[1];});});
+document.querySelectorAll('.nb').forEach(b=>{b.addEventListener('click',function(){document.querySelectorAll('.nb').forEach(x=>x.classList.remove('on'));document.querySelectorAll('.pane').forEach(x=>x.classList.remove('on'));this.classList.add('on');const id=this.dataset.pane;document.getElementById('pane-'+id).classList.add('on');const m=pages[id]||['',''];document.getElementById('pg-t').textContent=m[0];document.getElementById('pg-s').textContent=m[1];// expand parent group if collapsed
+const ng=this.closest('.ng');if(ng)ng.classList.remove('collapsed');});});
 let dark=true;document.getElementById('themeBtn').addEventListener('click',function(){dark=!dark;document.body.classList.toggle('light',!dark);this.textContent=dark?'\u2600\ufe0f Light':'\uD83C\uDF19 Dark';});
 document.querySelectorAll('.call-item').forEach(item=>{item.addEventListener('click',function(){const wasOpen=this.classList.contains('open');document.querySelectorAll('.call-item').forEach(x=>x.classList.remove('open'));if(!wasOpen)this.classList.add('open');});});
 function filterQA(val){const v=val.toLowerCase().trim();let any=false;document.querySelectorAll('.qa-item').forEach(function(item){const tags=item.dataset.tags||'';const q=item.querySelector('.qa-q').textContent.toLowerCase();const show=!v||tags.includes(v)||q.includes(v);item.style.display=show?'':'none';if(show)any=true;});document.getElementById('qaNR').style.display=any?'none':'block';}
@@ -1364,6 +1497,10 @@ var pb = (function(){
     var stepUp=ramp>0?Math.round((exit-ramp)/ramp*100):0;
     gn('pb-o-guardrail').innerHTML='<strong style="color:var(--t1)">Guardrail:</strong> $'+ramp+' \u2192 $'+exit+' = '+stepUp+'% step-up '+(stepUp<=40?'<span style="color:var(--grn)">\u2713 within 40%</span>':'<span style="color:var(--red)">\u26a0 exceeds 40%</span>')+' &middot; floor $'+floor;
 
+    // Auto-refresh customer view if it's open
+    var cv=gn('pb-customer-view');
+    if(cv&&cv.style.display!=='none'&&typeof buildCustomerOptions==='function') buildCustomerOptions();
+
     if(s.pkg==='essentials'){
       var udiff=PKG_RATES.works.max-exit; if(udiff<0) udiff=0;
       gn('pb-u-diff').textContent=udiff;
@@ -1468,6 +1605,176 @@ var pb = (function(){
     calc();
   }
 
+function setPricingView(mode){
+  var aeBtn=document.getElementById('pb-view-ae');
+  var custBtn=document.getElementById('pb-view-cust');
+  var custView=document.getElementById('pb-customer-view');
+  var internalGrid=document.querySelector('#pane-pricing > div[style*="310px"]');
+  var internalHdr=document.getElementById('pb-internal-hdr');
+  if(mode==='customer'){
+    if(aeBtn){aeBtn.style.background='none';aeBtn.style.color='var(--t2)';aeBtn.style.borderColor='var(--b2)';aeBtn.style.fontWeight='normal';}
+    if(custBtn){custBtn.style.background='var(--st-bg)';custBtn.style.color='var(--st)';custBtn.style.borderColor='var(--st-b)';custBtn.style.fontWeight='500';}
+    if(custView) custView.style.display='block';
+    if(internalGrid) internalGrid.style.display='none';
+    if(internalHdr) internalHdr.style.display='none';
+    setTimeout(function(){buildCustomerOptions();},30);
+  } else {
+    if(aeBtn){aeBtn.style.background='var(--grn-bg)';aeBtn.style.color='var(--grn)';aeBtn.style.borderColor='var(--grn-b)';aeBtn.style.fontWeight='500';}
+    if(custBtn){custBtn.style.background='none';custBtn.style.color='var(--t2)';custBtn.style.borderColor='var(--b2)';custBtn.style.fontWeight='normal';}
+    if(custView) custView.style.display='none';
+    if(internalGrid) internalGrid.style.display='grid';
+    if(internalHdr) internalHdr.style.display='block';
+  }
+}
+window.setPricingView=setPricingView;
+
+function calcScenario(cfg){
+  var fmt2=function(n){return '$'+Math.round(n).toLocaleString();};
+  var rows=[];
+  if(cfg.freeMo>0) rows.push({mo:cfg.freeMo,rate:0,techs:cfg.techs});
+  var growthTechs=cfg.growthTechs||cfg.techs;
+  if(cfg.tiers<=2){
+    var paid=24-cfg.freeMo;
+    if(paid>0) rows.push({mo:paid,rate:cfg.exit,techs:growthTechs});
+  } else {
+    var t2m=12-cfg.freeMo;
+    if(t2m>0) rows.push({mo:t2m,rate:cfg.ramp,techs:cfg.techs});
+    rows.push({mo:12,rate:cfg.exit,techs:growthTechs});
+  }
+  var totalSub=0;
+  rows.forEach(function(r){totalSub+=r.mo*r.rate*r.techs;});
+  var avgMonth=totalSub/24;
+  var cmrr=cfg.exit*growthTechs;
+  var avgPerTech=cfg.techs>0?totalSub/(24*cfg.techs):0;
+  var firstPaidRate=cfg.tiers>=3?cfg.ramp:cfg.exit;
+  var firstPaid=firstPaidRate*cfg.techs;
+  var due=cfg.ob+firstPaid;
+  return {cmrr:cmrr,avgMonth:avgMonth,avgPerTech:avgPerTech,due:due};
+}
+
+function buildCustomerOptions(){
+  try{
+    var gn2=function(id){return document.getElementById(id);};
+    var tcEl=gn2('pb-tc'),exEl=gn2('pb-ex'),fmEl=gn2('pb-fm'),irEl=gn2('pb-ir');
+    var techs=tcEl?parseInt(tcEl.value)||5:5;
+    var exit=exEl?parseInt(exEl.value)||281:281;
+    var freeMo=fmEl?parseInt(fmEl.value)||3:3;
+    var ramp=irEl?parseInt(irEl.value)||215:215;
+    var ob=500,tiers=3;
+    if(typeof pb!=='undefined'&&pb.getOB) ob=pb.getOB();
+    if(typeof pb!=='undefined'&&pb.getTiers) tiers=pb.getTiers();
+    var floor=Math.max(189,Math.round(exit/1.40));
+    if(ramp<floor) ramp=floor;
+    var fmt=function(n){return '$'+Math.round(n).toLocaleString();};
+    var goodExit=Math.max(189,Math.min(249,exit-30));
+    var goodRamp=Math.max(189,Math.round(goodExit/1.35));
+    var goodFree=Math.max(0,freeMo-1);
+    var opt1=calcScenario({techs:techs,freeMo:goodFree,ramp:goodRamp,exit:goodExit,ob:500,tiers:goodFree>0?3:2,growthTechs:techs});
+    var opt2=calcScenario({techs:techs,freeMo:freeMo,ramp:ramp,exit:exit,ob:ob,tiers:tiers,growthTechs:techs});
+    var growthTechs2=Math.min(39,techs+3);
+    var bestFree=Math.min(6,freeMo+1);
+    var opt3=calcScenario({techs:techs,freeMo:bestFree,ramp:ramp,exit:exit,ob:ob,tiers:tiers,growthTechs:growthTechs2});
+    var options=[
+      {label:'Option A',name:'Foundation',badge:'',tagBg:'',nameColor:'var(--t1)',borderColor:'var(--b2)',bg:'var(--bg3)',
+       lines:['Essentials package',techs+' technicians',goodFree>0?goodFree+' months free to start':'Paid from month 1','$'+goodExit+'/tech after ramp','$500 onboarding fee'],res:opt1,fmt:fmt},
+      {label:'Option B',name:'Professional',badge:'Most popular',tagBg:'#F05A28',nameColor:'#F05A28',borderColor:'var(--st-b)',bg:'var(--st-bg)',
+       lines:['The Works package',techs+' technicians',freeMo+' months free to start','$'+exit+'/tech after ramp',fmt(ob)+' onboarding fee'],res:opt2,fmt:fmt},
+      {label:'Option C',name:'Growth Partner',badge:'Built to scale',tagBg:'var(--blu)',nameColor:'var(--blu)',borderColor:'var(--blu-b)',bg:'var(--blu-bg)',
+       lines:['The Works package',techs+' \u2192 '+growthTechs2+' techs as you grow',bestFree+' months free to start','$'+exit+'/tech after ramp',fmt(ob)+' onboarding fee'],res:opt3,fmt:fmt}
+    ];
+    var grid=document.getElementById('cust-options-grid');
+    if(!grid) return;
+    grid.innerHTML=options.map(function(o){
+      return '<div style="background:'+o.bg+';border:2px solid '+o.borderColor+';border-radius:var(--r);padding:16px;position:relative">'
+        +(o.badge?'<div style="position:absolute;top:0;left:50%;transform:translateX(-50%) translateY(-50%);background:'+o.tagBg+';color:#fff;font-size:9px;font-weight:700;letter-spacing:.08em;padding:3px 12px;border-radius:100px;white-space:nowrap;text-transform:uppercase">'+o.badge+'</div>':'')
+        +'<div style="margin-top:'+(o.badge?'12px':'0')+'">'
+        +'<div style="font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:.09em;margin-bottom:4px">'+o.label+'</div>'
+        +'<div style="font-size:18px;font-weight:700;color:'+o.nameColor+';margin-bottom:12px;letter-spacing:-.3px">'+o.name+'</div>'
+        +'<div style="font-size:11.5px;color:var(--t2);line-height:2;margin-bottom:12px">'+o.lines.map(function(l){return '&#10003;&ensp;'+l;}).join('<br>')+'</div>'
+        +'<div style="height:1px;background:var(--b1);margin-bottom:12px"></div>'
+        +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:10px">'
+        +'<div style="background:var(--bg2);border-radius:var(--rs);padding:8px 10px"><div style="font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px">Avg / month</div><div style="font-size:15px;font-weight:700;color:'+o.nameColor+';font-family:\'DM Mono\',monospace">'+o.fmt(o.res.avgMonth)+'</div></div>'
+        +'<div style="background:var(--bg2);border-radius:var(--rs);padding:8px 10px"><div style="font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px">Per tech / mo</div><div style="font-size:15px;font-weight:700;color:var(--t1);font-family:\'DM Mono\',monospace">'+o.fmt(o.res.avgPerTech)+'</div></div>'
+        +'</div>'
+        +'<div style="background:rgba(240,90,40,.09);border:1px solid rgba(240,90,40,.25);border-radius:var(--rs);padding:9px 12px">'
+        +'<div style="font-size:9px;color:#F05A28;text-transform:uppercase;letter-spacing:.07em;font-weight:600;margin-bottom:3px">Due at signing</div>'
+        +'<div style="font-size:17px;font-weight:700;color:#F05A28;font-family:\'DM Mono\',monospace">'+o.fmt(o.res.due)+'</div>'
+        +'</div>'
+        +'</div>'
+        +'</div>';
+    }).join('');
+    window._custOptions=options;
+    var rb=document.getElementById('cust-refresh-btn');
+    if(rb){rb.textContent='\u2713 Updated';rb.style.color='var(--grn)';setTimeout(function(){rb.innerHTML='&#8635; Update';rb.style.color='var(--t2)';},1400);}
+  }catch(e){
+    console.error('buildCustomerOptions error:',e);
+    var grid=document.getElementById('cust-options-grid');
+    if(grid) grid.innerHTML='<div style="color:var(--red);padding:12px;grid-column:1/-1;font-size:11px">Could not load options. Check console. Error: '+e.message+'</div>';
+  }
+}
+window.buildCustomerOptions=buildCustomerOptions;
+window.updateCustomerView=buildCustomerOptions;
+
+function copyAllOptions(){
+  var opts=window._custOptions;
+  if(!opts){buildCustomerOptions();opts=window._custOptions;}
+  if(!opts) return;
+  var fmt=function(n){return '$'+Math.round(n).toLocaleString();};
+  var text='ServiceTitan Partnership Proposal\n'+'='.repeat(34)+'\n\n';
+  opts.forEach(function(o){
+    text+=o.label+' \u2014 '+o.name+(o.badge?' ('+o.badge+')':'')+'\n';
+    o.lines.forEach(function(l){text+='\u2022 '+l+'\n';});
+    text+='Avg/mo: '+fmt(o.res.avgMonth)+' \u00b7 Per tech/mo: '+fmt(o.res.avgPerTech)+' \u00b7 Due at signing: '+fmt(o.res.due)+'\n\n';
+  });
+  navigator.clipboard.writeText(text).then(function(){
+    var btn=document.getElementById('cust-copy-btn');
+    if(btn){btn.textContent='\u2713 Copied';setTimeout(function(){btn.innerHTML='\uD83D\uDCCB Copy options';},2000);}
+  });
+}
+window.copyAllOptions=copyAllOptions;
+
+// SIDEBAR TOGGLE
+function toggleSidebar(){
+  var app=document.querySelector('.app');
+  var hidden=app.classList.toggle('sb-hidden');
+  var btn=document.getElementById('sb-toggle-btn');
+  if(!btn) return;
+  if(hidden){
+    btn.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:12px;height:12px"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>&nbsp;Exit';
+    btn.style.borderColor='var(--red-b)';btn.style.color='var(--red)';btn.style.background='var(--red-bg)';
+  } else {
+    btn.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/></svg>';
+    btn.style.borderColor='var(--b2)';btn.style.color='var(--t2)';btn.style.background='none';
+  }
+}
+window.toggleSidebar=toggleSidebar;
+
+// PRESENT MODE
+function presentMode(){
+  var app=document.querySelector('.app');
+  app.classList.add('sb-hidden');
+  var btn=document.getElementById('sb-toggle-btn');
+  if(btn){
+    btn.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:12px;height:12px"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>&nbsp;Exit';
+    btn.style.borderColor='var(--red-b)';btn.style.color='var(--red)';btn.style.background='var(--red-bg)';
+  }
+  var pricingBtn=document.querySelector('[data-pane="pricing"]');
+  if(pricingBtn) pricingBtn.click();
+  setTimeout(function(){setPricingView('customer');},60);
+}
+window.presentMode=presentMode;
+
+// ─── SIDEBAR COLLAPSE (group headers) ───
+document.querySelectorAll('.ng-lbl').forEach(function(lbl){
+  lbl.addEventListener('click',function(){
+    var ng=this.parentElement;
+    ng.classList.toggle('collapsed');
+    // If the active .nb is inside, keep group open
+    var active=ng.querySelector('.nb.on');
+    if(active) ng.classList.remove('collapsed');
+  });
+});
+
   setTimeout(function(){
     var ex=gn('pb-ex'); if(!ex) return;
     ex.min=179; ex.max=299; ex.value=281;
@@ -1488,7 +1795,8 @@ var pb = (function(){
 
   return {setPkg:setPkg,setTiers:setTiers,updateGuardrail:updateGuardrail,
           updateBpsGuardrail:updateBpsGuardrail,calc:calc,setOB:setOB,
-          setGMV:setGMV,updateGMVInput:updateGMVInput,toggleConst:toggleConst,loadDeal:loadDeal};
+          setGMV:setGMV,updateGMVInput:updateGMVInput,toggleConst:toggleConst,loadDeal:loadDeal,
+          getOB:function(){return s.ob;},getPkg:function(){return s.pkg;},getTiers:function(){return s.tiers;}};
 })();
 
 </script>
