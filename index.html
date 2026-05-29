@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Blizzy AI v8 — ServiceTitan Comm+</title>
+<title>Blizzy AI v9 — ServiceTitan Comm+</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=DM+Mono:wght@400;500&display=swap');
-:root{--bg:#09090c;--bg2:#111115;--bg3:#18181e;--bg4:#1e1e28;--b1:rgba(255,255,255,.06);--b2:rgba(255,255,255,.1);--b3:rgba(255,255,255,.16);--t1:#f2f2f4;--t2:#9090a0;--t3:#55556a;--grn:#1ed87a;--grn-bg:rgba(30,216,122,.08);--grn-b:rgba(30,216,122,.2);--amb:#f5a623;--amb-bg:rgba(245,166,35,.08);--amb-b:rgba(245,166,35,.22);--blu:#4a9eff;--blu-bg:rgba(74,158,255,.08);--blu-b:rgba(74,158,255,.22);--red:#ff5c5c;--red-bg:rgba(255,92,92,.08);--red-b:rgba(255,92,92,.22);--ice:#7ecfe3;--ice-bg:rgba(126,207,227,.08);--ice-b:rgba(126,207,227,.22);--pur:#a78bfa;--pur-bg:rgba(167,139,250,.08);--pur-b:rgba(167,139,250,.22);--st:#F05A28;--st-bg:rgba(240,90,40,.09);--st-b:rgba(240,90,40,.28);--r:8px;--rs:5px}
-.light{--bg:#f4f4f7;--bg2:#ffffff;--bg3:#f0f0f4;--bg4:#e8e8ec;--b1:rgba(0,0,0,.07);--b2:rgba(0,0,0,.12);--t1:#0a0a0e;--t2:#5a5a6e;--t3:#9090a8;--grn:#0e9e5a;--grn-bg:rgba(14,158,90,.08);--grn-b:rgba(14,158,90,.2);--amb:#c47e0a;--amb-bg:rgba(196,126,10,.08);--amb-b:rgba(196,126,10,.22);--blu:#1a6fc4;--blu-bg:rgba(26,111,196,.08);--blu-b:rgba(26,111,196,.22);--red:#c0392b;--red-bg:rgba(192,57,43,.08);--red-b:rgba(192,57,43,.22);--ice:#1a8aa8;--ice-bg:rgba(26,138,168,.08);--ice-b:rgba(26,138,168,.22);--pur:#6c4bc4;--pur-bg:rgba(108,75,196,.08);--pur-b:rgba(108,75,196,.22);--st:#D94E1F;--st-bg:rgba(217,78,31,.08);--st-b:rgba(217,78,31,.28)}
+:root{--bg:#09090c;--bg2:#111115;--bg3:#18181e;--bg4:#1e1e28;--b1:rgba(255,255,255,.06);--b2:rgba(255,255,255,.1);--b3:rgba(255,255,255,.16);--t1:#f2f2f4;--t2:#9090a0;--t3:#55556a;--grn:#1ed87a;--grn-bg:rgba(30,216,122,.08);--grn-b:rgba(30,216,122,.2);--amb:#f5a623;--amb-bg:rgba(245,166,35,.08);--amb-b:rgba(245,166,35,.22);--blu:#4a9eff;--blu-bg:rgba(74,158,255,.08);--blu-b:rgba(74,158,255,.22);--red:#ff5c5c;--red-bg:rgba(255,92,92,.08);--red-b:rgba(255,92,92,.22);--ice:#7ecfe3;--ice-bg:rgba(126,207,227,.08);--ice-b:rgba(126,207,227,.22);--pur:#a78bfa;--pur-bg:rgba(167,139,250,.08);--pur-b:rgba(167,139,250,.22);--ind:#818cf8;--ind-bg:rgba(129,140,248,.09);--ind-b:rgba(129,140,248,.3);--st:#F05A28;--st-bg:rgba(240,90,40,.09);--st-b:rgba(240,90,40,.28);--st-logo-filter:brightness(0) invert(1);--r:8px;--rs:5px}
+.light{--bg:#f4f4f7;--bg2:#ffffff;--bg3:#f0f0f4;--bg4:#e8e8ec;--b1:rgba(0,0,0,.07);--b2:rgba(0,0,0,.12);--t1:#0a0a0e;--t2:#5a5a6e;--t3:#9090a8;--grn:#0e9e5a;--grn-bg:rgba(14,158,90,.08);--grn-b:rgba(14,158,90,.2);--amb:#c47e0a;--amb-bg:rgba(196,126,10,.08);--amb-b:rgba(196,126,10,.22);--blu:#1a6fc4;--blu-bg:rgba(26,111,196,.08);--blu-b:rgba(26,111,196,.22);--red:#c0392b;--red-bg:rgba(192,57,43,.08);--red-b:rgba(192,57,43,.22);--ice:#1a8aa8;--ice-bg:rgba(26,138,168,.08);--ice-b:rgba(26,138,168,.22);--pur:#6c4bc4;--pur-bg:rgba(108,75,196,.08);--pur-b:rgba(108,75,196,.22);--ind:#4338ca;--ind-bg:rgba(67,56,202,.08);--ind-b:rgba(67,56,202,.28);--st:#D94E1F;--st-bg:rgba(217,78,31,.08);--st-b:rgba(217,78,31,.28);--st-logo-filter:none}
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%;background:var(--bg);color:var(--t1);font-family:'DM Sans',sans-serif;font-size:13px;line-height:1.5;overflow:hidden;transition:background .2s,color .2s}
 .app{display:grid;grid-template-columns:214px 1fr;height:100vh;transition:grid-template-columns .2s}
@@ -188,7 +188,7 @@ td.bold{font-weight:500}
 <div class="app">
 <aside class="sb">
   <div class="sb-head">
-    <div class="sb-logo"><div class="sb-icon">B</div><div><div class="sb-name">Blizzy AI</div><div class="sb-ver">Comm+ &middot; FY27 &middot; v8</div></div></div>
+    <div class="sb-logo"><div class="sb-icon">B</div><div><div class="sb-name">Blizzy AI</div><div class="sb-ver">Comm+ &middot; FY27 &middot; v9</div></div></div>
     <button class="theme-btn" id="themeBtn">&#9728; Light</button>
   </div>
   <div class="sb-body">
@@ -277,6 +277,15 @@ td.bold{font-weight:500}
         <div class="prog-labels"><span style="color:var(--t3)">0</span><span style="color:var(--blu)">49 sold</span><span style="color:var(--t3)">100 goal</span></div></div>
       </div>
     </div>
+    <!-- RIGHT NOW WIDGET -->
+    <div id="rightnow-widget" style="background:var(--bg2);border:1px solid var(--grn-b);border-radius:var(--r);padding:12px 15px;margin-bottom:13px">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:9px">
+        <div class="sec" style="margin-bottom:0"><div class="pulse"></div>Right now &mdash; your 3 most important actions</div>
+        <span style="font-size:9px;color:var(--t3);font-family:'DM Mono',monospace" id="rn-time"></span>
+      </div>
+      <div id="rn-actions"></div>
+    </div>
+
     <div class="card a" style="margin-bottom:13px">
       <div class="sec">ARPU coaching &mdash; $4 below $285 target</div>
       <div class="g3" style="margin-bottom:0">
@@ -450,6 +459,36 @@ td.bold{font-weight:500}
     <div class="card g" style="margin-bottom:13px">
       <div class="sec"><div class="pulse"></div>Follow-up emails &mdash; drafted from Gong Drop &middot; send via Gmail</div>
       <div style="font-size:11px;color:var(--t1);line-height:1.6">Each email is auto-drafted from the Zoom transcript. Edit the recipient, review, and hit Send &mdash; Gmail fires it directly. No copy-paste, no app switching.</div>
+    </div>
+
+    <!-- TEMPLATE LIBRARY -->
+    <div style="margin-bottom:16px">
+      <div class="sec">Template library &mdash; click to load &middot; edit and copy</div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:10px">
+        <button onclick="loadTpl('disc')" style="padding:7px 10px;border-radius:var(--rs);border:1px solid var(--b2);background:var(--bg3);color:var(--t2);font-size:11px;cursor:pointer;font-family:'DM Sans',sans-serif;text-align:left" onmouseover="this.style.borderColor='var(--grn-b)';this.style.color='var(--grn)'" onmouseout="this.style.borderColor='var(--b2)';this.style.color='var(--t2)'">📋 Post-discovery</button>
+        <button onclick="loadTpl('demo')" style="padding:7px 10px;border-radius:var(--rs);border:1px solid var(--b2);background:var(--bg3);color:var(--t2);font-size:11px;cursor:pointer;font-family:'DM Sans',sans-serif;text-align:left" onmouseover="this.style.borderColor='var(--grn-b)';this.style.color='var(--grn)'" onmouseout="this.style.borderColor='var(--b2)';this.style.color='var(--t2)'">📋 Post-demo</button>
+        <button onclick="loadTpl('noshow')" style="padding:7px 10px;border-radius:var(--rs);border:1px solid var(--b2);background:var(--bg3);color:var(--t2);font-size:11px;cursor:pointer;font-family:'DM Sans',sans-serif;text-align:left" onmouseover="this.style.borderColor='var(--amb-b)';this.style.color='var(--amb)'" onmouseout="this.style.borderColor='var(--b2)';this.style.color='var(--t2)'">👻 No-show</button>
+        <button onclick="loadTpl('pricing')" style="padding:7px 10px;border-radius:var(--rs);border:1px solid var(--b2);background:var(--bg3);color:var(--t2);font-size:11px;cursor:pointer;font-family:'DM Sans',sans-serif;text-align:left" onmouseover="this.style.borderColor='var(--blu-b)';this.style.color='var(--blu)'" onmouseout="this.style.borderColor='var(--b2)';this.style.color='var(--t2)'">💰 Pricing recap</button>
+        <button onclick="loadTpl('ghost')" style="padding:7px 10px;border-radius:var(--rs);border:1px solid var(--b2);background:var(--bg3);color:var(--t2);font-size:11px;cursor:pointer;font-family:'DM Sans',sans-serif;text-align:left" onmouseover="this.style.borderColor='var(--red-b)';this.style.color='var(--red)'" onmouseout="this.style.borderColor='var(--b2)';this.style.color='var(--t2)'">🔴 30-day ghost</button>
+        <button onclick="loadTpl('closedlost')" style="padding:7px 10px;border-radius:var(--rs);border:1px solid var(--b2);background:var(--bg3);color:var(--t2);font-size:11px;cursor:pointer;font-family:'DM Sans',sans-serif;text-align:left" onmouseover="this.style.borderColor='var(--red-b)';this.style.color='var(--red)'" onmouseout="this.style.borderColor='var(--b2)';this.style.color='var(--t2)'">🔁 Closed lost re-engage</button>
+        <button onclick="loadTpl('referral')" style="padding:7px 10px;border-radius:var(--rs);border:1px solid var(--b2);background:var(--bg3);color:var(--t2);font-size:11px;cursor:pointer;font-family:'DM Sans',sans-serif;text-align:left" onmouseover="this.style.borderColor='var(--grn-b)';this.style.color='var(--grn)'" onmouseout="this.style.borderColor='var(--b2)';this.style.color='var(--t2)'">🤝 Referral ask</button>
+        <button onclick="loadTpl('cohort')" style="padding:7px 10px;border-radius:var(--rs);border:1px solid var(--b2);background:var(--bg3);color:var(--t2);font-size:11px;cursor:pointer;font-family:'DM Sans',sans-serif;text-align:left" onmouseover="this.style.borderColor='var(--amb-b)';this.style.color='var(--amb)'" onmouseout="this.style.borderColor='var(--b2)';this.style.color='var(--t2)'">⚡ Cohort urgency</button>
+      </div>
+      <div id="tpl-composer" style="display:none">
+        <div class="ec">
+          <div class="ec-hdr">
+            <div class="ec-ht" id="tpl-name">Template</div>
+            <span class="bx ba" id="tpl-badge">Template</span>
+          </div>
+          <div class="ec-field"><div class="ec-field-lbl">To</div><input id="tpl-to" placeholder="[Prospect email]"></div>
+          <div class="ec-field"><div class="ec-field-lbl">Subject</div><div class="ec-field-val" id="tpl-subject"></div></div>
+          <div class="ec-body" id="tpl-body" contenteditable="true" style="outline:none;min-height:130px"></div>
+          <div class="ec-foot">
+            <button class="copy-btn" onclick="var b=document.getElementById('tpl-body');navigator.clipboard.writeText(b.innerText);this.textContent='Copied ✓';this.classList.add('ok');setTimeout(()=>{this.textContent='Copy';this.classList.remove('ok')},2000)">Copy</button>
+            <span style="font-size:10px;color:var(--t3);margin-left:auto">Edit directly, then copy to Gmail</span>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="ec">
       <div class="ec-hdr"><div class="ec-ht">&#128231; All American Doors Inc. &mdash; May 14, 2026</div><span class="bx ba">Draft</span></div>
@@ -693,24 +732,64 @@ Blayne &middot; 707-478-9500</div>
   </div>
 
   <div class="pane" id="pane-gong">
-    <div class="card g" style="margin-bottom:13px">
-      <div class="sec"><div class="pulse"></div>Live today &mdash; Zoom to full output in 60 seconds</div>
+    <div class="card g" style="margin-bottom:12px">
+      <div class="sec"><div class="pulse"></div>Gong Drop &mdash; paste transcript, get SFDC notes + email scaffold in seconds</div>
+      <div style="font-size:11px;color:var(--t1)">No API key needed. Paste any Zoom or Gong transcript. Auto-extracts company, contacts, pain points, competitor mentions, and formats everything.</div>
     </div>
+
     <div class="g2">
       <div>
-        <div class="sec">What generates per call</div>
-        <div class="row-card"><div class="rc-icon" style="background:var(--grn-bg)">&#128231;</div><div><div class="rc-title">Follow-up email</div><div class="rc-desc">Hyper-specific opener, pain/solution bullets, competitor section, pricing bolded. 300-350 words. Blayne's voice. Goes to Follow-up Emails tab &mdash; add recipient and send.</div></div></div>
-        <div class="row-card"><div class="rc-icon" style="background:var(--blu-bg)">&#128203;</div><div><div class="rc-title">SFDC notes</div><div class="rc-desc">Full template auto-filled. Executive overview, business splits, operational metrics, tech requirements, onboarding notes.</div></div></div>
-        <div class="row-card"><div class="rc-icon" style="background:var(--amb-bg)">&#9989;</div><div><div class="rc-title">Next steps + opp note</div><div class="rc-desc">Dated action items in MM/DD format. One-sentence opp note. Auto-extracted.</div></div></div>
-        <div class="row-card"><div class="rc-icon" style="background:var(--red-bg)">&#9889;</div><div><div class="rc-title">ARPU + price alert</div><div class="rc-desc">If competitor or pricing pushback detected: PRICE IS NEGOTIABLE fires automatically. If ARPU falls below $285 on discussed pricing: coaching tip fires.</div></div></div>
-        <div class="row-card"><div class="rc-icon" style="background:var(--pur-bg)">&#9989;</div><div><div class="rc-title">ICP verdict + disposition</div><div class="rc-desc">Does this meet ICP? Does it meet ACP? Should this go off-books? Claude pulls criteria from Confluence and flags the correct disposition inside the SFDC notes automatically.</div></div></div>
+        <div class="sec">Step 1 &mdash; paste transcript</div>
+        <textarea id="gong-input" placeholder="Paste full Zoom or Gong transcript here...&#10;&#10;Works best with speaker-labeled transcripts like:&#10;Blayne: Hey Leslie, tell me about...&#10;Leslie: Yeah so we're on pen and paper..." style="width:100%;min-height:180px;padding:11px 13px;background:var(--bg3);border:1px solid var(--b2);border-radius:var(--r);color:var(--t1);font-size:11.5px;font-family:'DM Mono',monospace;resize:vertical;outline:none;line-height:1.6"></textarea>
+        <div style="display:flex;gap:7px;margin-top:8px;align-items:center">
+          <button onclick="processGong()" style="padding:8px 18px;border-radius:var(--rs);border:none;background:var(--grn);color:#fff;font-size:12px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif">⚡ Process transcript</button>
+          <button onclick="document.getElementById('gong-input').value='';document.getElementById('gong-output').style.display='none'" style="padding:8px 14px;border-radius:var(--rs);border:1px solid var(--b2);background:none;color:var(--t2);font-size:11px;cursor:pointer;font-family:'DM Sans',sans-serif">Clear</button>
+          <span style="font-size:10px;color:var(--t3);margin-left:auto">Works on any transcript format</span>
+        </div>
       </div>
       <div>
-        <div class="sec">Time math</div>
-        <div class="metric" style="margin-bottom:8px"><div class="ml">Manual post-call work</div><div class="mv a">45 min</div><div class="ms">email + SFDC + next steps</div></div>
-        <div class="metric" style="margin-bottom:8px"><div class="ml">With Gong Drop</div><div class="mv g">4 min</div></div>
-        <div class="metric" style="margin-bottom:8px"><div class="ml">Saved per day (4 calls)</div><div class="mv g">41 min</div></div>
-        <div class="metric"><div class="ml">35 AEs &middot; full year</div><div class="mv g">$732K</div><div class="ms">annual time value</div></div>
+        <div class="sec">What this extracts</div>
+        <div class="row-card"><div class="rc-icon" style="background:var(--grn-bg)">👥</div><div><div class="rc-title">Company + contacts</div><div class="rc-desc">Auto-detected from speaker labels and name mentions.</div></div></div>
+        <div class="row-card"><div class="rc-icon" style="background:var(--red-bg)">🔥</div><div><div class="rc-title">Pain points</div><div class="rc-desc">Scans for 25+ pain keywords. Tallied by frequency.</div></div></div>
+        <div class="row-card"><div class="rc-icon" style="background:var(--amb-bg)">⚔️</div><div><div class="rc-title">Competitor mentions</div><div class="rc-desc">FieldEdge, ServiceFusion, HCP, BuildOps, Jobber, and more. Alert fires automatically.</div></div></div>
+        <div class="row-card"><div class="rc-icon" style="background:var(--blu-bg)">📋</div><div><div class="rc-title">SFDC notes template</div><div class="rc-desc">Full Corp AE template, pre-filled with what was found. Edit and paste.</div></div></div>
+        <div class="row-card"><div class="rc-icon" style="background:var(--pur-bg)">📧</div><div><div class="rc-title">Email scaffold</div><div class="rc-desc">Subject, opener, pain bullets, pricing placeholder. Edit and send.</div></div></div>
+      </div>
+    </div>
+
+    <div id="gong-output" style="display:none;margin-top:14px">
+      <!-- Alerts -->
+      <div id="gong-alerts" style="margin-bottom:12px"></div>
+
+      <div class="g2">
+        <!-- SFDC Notes -->
+        <div>
+          <div class="sec">SFDC notes template &mdash; pre-filled</div>
+          <div class="ec" style="margin-bottom:10px">
+            <div class="ec-hdr"><div class="ec-ht">📋 SFDC Notes</div><span id="gong-company-badge" class="bx ba">Company</span></div>
+            <div class="ec-body" id="gong-sfdc" contenteditable="true" style="outline:none;font-size:11px;font-family:'DM Mono',monospace;min-height:220px;white-space:pre-wrap"></div>
+            <div class="ec-foot">
+              <button class="copy-btn" onclick="var b=document.getElementById('gong-sfdc');navigator.clipboard.writeText(b.innerText);this.textContent='Copied ✓';this.classList.add('ok');setTimeout(()=>{this.textContent='Copy';this.classList.remove('ok')},2000)">Copy SFDC notes</button>
+            </div>
+          </div>
+          <!-- Pain word tally -->
+          <div class="sec">Pain point signals &mdash; from transcript</div>
+          <div id="gong-pain-tally" style="background:var(--bg3);border:1px solid var(--b1);border-radius:var(--r);padding:10px 13px"></div>
+        </div>
+        <!-- Email scaffold -->
+        <div>
+          <div class="sec">Follow-up email scaffold &mdash; edit and send</div>
+          <div class="ec">
+            <div class="ec-hdr"><div class="ec-ht">📧 Follow-up Email</div><span class="bx ba">Scaffold</span></div>
+            <div class="ec-field"><div class="ec-field-lbl">To</div><input id="gong-email-to" placeholder="[Contact email]"></div>
+            <div class="ec-field"><div class="ec-field-lbl">Subject</div><div class="ec-field-val" id="gong-email-subj"></div></div>
+            <div class="ec-body" id="gong-email-body" contenteditable="true" style="outline:none;min-height:220px;white-space:pre-wrap"></div>
+            <div class="ec-foot">
+              <button class="copy-btn" onclick="var b=document.getElementById('gong-email-body');navigator.clipboard.writeText(b.innerText);this.textContent='Copied ✓';this.classList.add('ok');setTimeout(()=>{this.textContent='Copy';this.classList.remove('ok')},2000)">Copy email</button>
+              <span style="font-size:10px;color:var(--t3);margin-left:auto">Edit directly, then paste to Gmail</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -765,10 +844,15 @@ Blayne &middot; 707-478-9500</div>
     <!-- CUSTOMER VIEW (hidden by default) -->
     <div id="pb-customer-view" style="display:none">
       <!-- ST branded header -->
-      <div style="background:var(--bg2);border:1px solid var(--st-b);border-radius:var(--r);padding:14px 18px;margin-bottom:12px;display:flex;align-items:center;justify-content:space-between">
+      <div style="background:var(--bg2);border:1px solid var(--blu-b);border-radius:var(--r);padding:14px 18px;margin-bottom:12px;display:flex;align-items:center;justify-content:space-between">
         <div style="display:flex;align-items:center;gap:12px">
-          <!-- ServiceTitan logo SVG -->
-          <svg viewBox="0 0 36 36" width="36" height="36" xmlns="http://www.w3.org/2000/svg">
+          <!-- ServiceTitan logo -->
+          <img src="https://images.ctfassets.net/3q1a0w8cwuwf/7ISRCzbAIAcs4MGNvrYSWN/67264761ca3557c758165afc41dc04a9/ServiceTitan_Logo_Black_2.png" 
+               height="28" style="height:28px;width:auto;filter:var(--st-logo-filter)"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
+               alt="ServiceTitan">
+          <!-- SVG fallback if image fails -->
+          <svg viewBox="0 0 36 36" width="32" height="32" xmlns="http://www.w3.org/2000/svg" style="display:none">
             <circle cx="18" cy="18" r="18" fill="#F05A28"/>
             <path d="M11 13h14v2.5H11zM11 20.5h14V23H11zM14.5 13v10h2.5V13zM19 13v10h2.5V13z" fill="white" opacity="0.95"/>
           </svg>
@@ -779,7 +863,7 @@ Blayne &middot; 707-478-9500</div>
         </div>
         <div style="display:flex;gap:7px;align-items:center">
           <button onclick="buildCustomerOptions()" id="cust-refresh-btn" style="display:inline-flex;align-items:center;gap:4px;padding:5px 11px;border-radius:var(--rs);border:1px solid var(--b2);background:none;color:var(--t2);font-size:10px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif">&#8635; Update</button>
-          <button onclick="setPricingView('ae')" style="display:inline-flex;align-items:center;gap:4px;padding:5px 11px;border-radius:var(--rs);border:1px solid var(--b2);background:none;color:var(--t2);font-size:10px;cursor:pointer;font-family:'DM Sans',sans-serif">&#8592; Internal</button>
+          <button onclick="setPricingView('ae')" style="display:inline-flex;align-items:center;gap:4px;padding:5px 11px;border-radius:var(--rs);border:1px solid var(--b2);background:none;color:var(--t2);font-size:10px;cursor:pointer;font-family:'DM Sans',sans-serif">&#8592; Internal &mdash; changes auto-apply on return</button>
           <button onclick="copyAllOptions()" id="cust-copy-btn" style="display:inline-flex;align-items:center;gap:5px;padding:5px 13px;border-radius:var(--rs);border:1px solid var(--st-b);background:var(--st-bg);color:var(--st);font-size:10px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif">&#128203; Copy options</button>
         </div>
       </div>
@@ -794,6 +878,13 @@ Blayne &middot; 707-478-9500</div>
       <div>
         <div class="sec">Configure</div>
         <div class="card" style="padding:15px 17px">
+
+          <!-- OB Start Date -->
+          <div style="margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--b1)">
+            <div style="font-size:10px;font-weight:500;color:var(--t3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px">&#128197; Onboarding start date</div>
+            <input type="date" id="pb-start-date" oninput="buildCustomerOptions()" style="width:100%;padding:6px 10px;border:1px solid var(--b2);border-radius:var(--rs);background:var(--bg3);color:var(--t1);font-size:12px;font-family:'DM Sans',sans-serif;outline:none;cursor:pointer">
+            <div style="font-size:10px;color:var(--t3);margin-top:4px">Drives the payment schedule + next payment date in customer view</div>
+          </div>
 
           <!-- Package -->
           <div style="margin-bottom:12px">
@@ -817,7 +908,7 @@ Blayne &middot; 707-478-9500</div>
           <!-- Starting techs -->
           <div style="margin-bottom:12px">
             <div style="font-size:10px;font-weight:500;color:var(--t3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:4px">Starting techs (tiers 1-2): <span id="pb-tc-v" style="color:var(--grn)">5</span></div>
-            <input type="range" min="3" max="39" value="5" id="pb-tc" oninput="document.getElementById('pb-tc-v').textContent=this.value;pb.calc()" style="width:100%;accent-color:var(--grn)">
+            <input type="range" min="4" max="39" value="5" id="pb-tc" oninput="document.getElementById('pb-tc-v').textContent=this.value;pb.calc()" style="width:100%;accent-color:var(--grn)">
             <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--t3)"><span>3</span><span>39</span></div>
           </div>
 
@@ -856,12 +947,12 @@ Blayne &middot; 707-478-9500</div>
           <!-- Per-tier tech counts (growth) -->
           <div id="pb-t3-techs-row" style="margin-bottom:12px">
             <div style="font-size:10px;font-weight:500;color:var(--t3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:4px">Techs at tier 3: <span id="pb-t3-techs-v" style="color:var(--pur)">5</span></div>
-            <input type="range" min="3" max="39" value="5" id="pb-t3-techs" oninput="document.getElementById('pb-t3-techs-v').textContent=this.value;pb.calc()" style="width:100%;accent-color:var(--pur)">
+            <input type="range" min="4" max="39" value="5" id="pb-t3-techs" oninput="document.getElementById('pb-t3-techs-v').textContent=this.value;pb.calc()" style="width:100%;accent-color:var(--pur)">
             <div style="font-size:9px;color:var(--t3);margin-top:2px">Can stay same or grow from starting techs</div>
           </div>
           <div id="pb-t4-techs-row" style="margin-bottom:12px;display:none">
             <div style="font-size:10px;font-weight:500;color:var(--t3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:4px">Techs at tier 4 (exit): <span id="pb-t4-techs-v" style="color:var(--pur)">5</span></div>
-            <input type="range" min="3" max="39" value="5" id="pb-t4-techs" oninput="document.getElementById('pb-t4-techs-v').textContent=this.value;pb.calc()" style="width:100%;accent-color:var(--pur)">
+            <input type="range" min="4" max="39" value="5" id="pb-t4-techs" oninput="document.getElementById('pb-t4-techs-v').textContent=this.value;pb.calc()" style="width:100%;accent-color:var(--pur)">
           </div>
 
           <!-- OB fee -->
@@ -988,8 +1079,83 @@ Blayne &middot; 707-478-9500</div>
       Asking Claude...
     </div>
 
-    <div id="qaL">
-      <div style="font-size:10px;font-weight:500;color:var(--t3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px;padding:0 2px">Frequently asked &mdash; from Confluence + Slack</div>
+    <!-- Multi-state SoS -->
+    <div style="margin-bottom:14px">
+      <div class="sec">Secretary of State lookup &mdash; all 50 states</div>
+      <div style="display:flex;gap:8px;align-items:center">
+        <select id="sos-state" style="padding:7px 11px;border-radius:var(--rs);border:1px solid var(--b2);background:var(--bg3);color:var(--t1);font-size:12px;font-family:'DM Sans',sans-serif;outline:none;min-width:200px">
+          <option value="">Select state...</option>
+          <option value="https://www.sos.state.al.us/arc/">Alabama</option>
+          <option value="https://www.commerce.alaska.gov/cbp/main/search/entities">Alaska</option>
+          <option value="https://ecorp.azcc.gov/BusinessSearch/BusinessSearch">Arizona</option>
+          <option value="https://www.sos.arkansas.gov/corps/search_all.php">Arkansas</option>
+          <option value="https://bizfileonline.sos.ca.gov/search/business">California</option>
+          <option value="https://www.sos.state.co.us/biz/BusinessEntityCriteriaExt.do">Colorado</option>
+          <option value="https://service.ct.gov/business/s/onlinebusinesssearch">Connecticut</option>
+          <option value="https://icis.corp.delaware.gov/Ecorp/EntitySearch/NameSearch.aspx">Delaware</option>
+          <option value="https://dos.myflorida.com/sunbiz/search/">Florida</option>
+          <option value="https://ecorp.sos.ga.gov/BusinessSearch">Georgia</option>
+          <option value="https://portal.ehawaii.gov/business/business-registrations/">Hawaii</option>
+          <option value="https://sosbiz.idaho.gov/">Idaho</option>
+          <option value="https://www.ilsos.gov/corporatellc/">Illinois</option>
+          <option value="https://bsd.sos.in.gov/publicbusinesssearch">Indiana</option>
+          <option value="https://sos.iowa.gov/search/business/(S(r5bznmajhkyznrnnpczikr55))/search.aspx">Iowa</option>
+          <option value="https://www.sos.ks.gov/corps/business_entity_searches.html">Kansas</option>
+          <option value="https://web.sos.ky.gov/bso/">Kentucky</option>
+          <option value="https://coraweb.sos.la.gov/commercialrecordings/">Louisiana</option>
+          <option value="https://www.maine.gov/sos/cec/corp/lookup.html">Maine</option>
+          <option value="https://egov.maryland.gov/BusinessExpress/EntitySearch">Maryland</option>
+          <option value="https://corp.sec.state.ma.us/CorpWeb/CorpSearch/CorpSearch.aspx">Massachusetts</option>
+          <option value="https://cofs.lara.state.mi.us/SearchApi/Search/Search">Michigan</option>
+          <option value="https://mblsportal.sos.state.mn.us/">Minnesota</option>
+          <option value="https://corp.sos.ms.gov/corp/portal/c/page/corpBusinessIdSearch/portal.aspx">Mississippi</option>
+          <option value="https://bsd.sos.mo.gov/BusinessEntity/BESearch.aspx">Missouri</option>
+          <option value="https://sosmt.gov/business/">Montana</option>
+          <option value="https://www.nebraska.gov/sos/corp/corpsearch.cgi">Nebraska</option>
+          <option value="https://esos.nv.gov/EntitySearch/OnlineEntitySearch">Nevada</option>
+          <option value="https://quickstart.sos.nh.gov/online/Account/LicenseSearch">New Hampshire</option>
+          <option value="https://www.njportal.com/DOR/BusinessNameSearch/">New Jersey</option>
+          <option value="https://portal.sos.state.nm.us/BFS/online/CorporationBusinessSearch">New Mexico</option>
+          <option value="https://apps.dos.ny.gov/publicInquiry/">New York</option>
+          <option value="https://www.sosnc.gov/online_services/search/by_title/_Business_Registration">North Carolina</option>
+          <option value="https://firststop.sos.nd.gov/search/business">North Dakota</option>
+          <option value="https://bsportal.ohiosos.gov/">Ohio</option>
+          <option value="https://www.sos.ok.gov/corp/corpInquiryFind.aspx">Oklahoma</option>
+          <option value="https://sos.oregon.gov/business/pages/find.aspx">Oregon</option>
+          <option value="https://www.corporations.pa.gov/search/corpsearch">Pennsylvania</option>
+          <option value="https://business.sos.ri.gov/CorpWeb/CorpSearch/CorpSearch.aspx">Rhode Island</option>
+          <option value="https://businessfilings.sc.gov/">South Carolina</option>
+          <option value="https://sosenterprise.sd.gov/BusinessServices/Business/FilingSearch.aspx">South Dakota</option>
+          <option value="https://tnbear.tn.gov/Ecommerce/FilingSearch.aspx">Tennessee</option>
+          <option value="https://www.sos.state.tx.us/corp/sosda/index.shtml">Texas</option>
+          <option value="https://secure.utah.gov/bes/index.html">Utah</option>
+          <option value="https://www.vermontbusinessregistry.com/">Vermont</option>
+          <option value="https://cis.scc.virginia.gov/">Virginia</option>
+          <option value="https://ccfs.sos.wa.gov/">Washington</option>
+          <option value="https://apps.wv.gov/SOS/BusinessEntitySearch/">West Virginia</option>
+          <option value="https://www.wdfi.org/apps/CorpSearch/Search.aspx">Wisconsin</option>
+          <option value="https://soswy.state.wy.us/Business/SearchBusiness.aspx">Wyoming</option>
+        </select>
+        <button onclick="var s=document.getElementById('sos-state').value;if(s)window.open(s,'_blank');else alert('Pick a state first')" style="padding:7px 14px;border-radius:var(--rs);border:none;background:var(--blu);color:#fff;font-size:12px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif">Open SoS ↗</button>
+        <span style="font-size:10px;color:var(--t3)">All 50 states mapped</span>
+      </div>
+    </div>
+
+    <!-- Competitive quick-ref -->
+    <div style="margin-bottom:14px">
+      <div class="sec">Competitive quick-ref &mdash; click any competitor</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:9px">
+        <button onclick="showComp('fe')" id="comp-fe" style="padding:5px 13px;border-radius:100px;border:1px solid var(--b2);background:var(--bg3);color:var(--t2);font-size:11px;cursor:pointer;font-family:'DM Sans',sans-serif">FieldEdge</button>
+        <button onclick="showComp('sf')" id="comp-sf" style="padding:5px 13px;border-radius:100px;border:1px solid var(--b2);background:var(--bg3);color:var(--t2);font-size:11px;cursor:pointer;font-family:'DM Sans',sans-serif">ServiceFusion</button>
+        <button onclick="showComp('hcp')" id="comp-hcp" style="padding:5px 13px;border-radius:100px;border:1px solid var(--b2);background:var(--bg3);color:var(--t2);font-size:11px;cursor:pointer;font-family:'DM Sans',sans-serif">HCP / Housecall Pro</button>
+        <button onclick="showComp('bo')" id="comp-bo" style="padding:5px 13px;border-radius:100px;border:1px solid var(--b2);background:var(--bg3);color:var(--t2);font-size:11px;cursor:pointer;font-family:'DM Sans',sans-serif">BuildOps</button>
+        <button onclick="showComp('jb')" id="comp-jb" style="padding:5px 13px;border-radius:100px;border:1px solid var(--b2);background:var(--bg3);color:var(--t2);font-size:11px;cursor:pointer;font-family:'DM Sans',sans-serif">Jobber</button>
+        <button onclick="showComp('scu')" id="comp-scu" style="padding:5px 13px;border-radius:100px;border:1px solid var(--b2);background:var(--bg3);color:var(--t2);font-size:11px;cursor:pointer;font-family:'DM Sans',sans-serif">ServiceChannel / Corrigo</button>
+      </div>
+      <div id="comp-output" style="display:none;background:var(--bg3);border:1px solid var(--grn-b);border-radius:var(--r);padding:13px 15px"></div>
+    </div>
+
+    <div style="font-size:10px;font-weight:500;color:var(--t3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px;padding:0 2px">Frequently asked &mdash; from Confluence + Slack</div>
 
       <div class="qa-item open" data-tags="arpu below 285 coaching fix improve">
         <div class="qa-q" onclick="this.parentElement.classList.toggle('open')"><span>&#128172;</span> ARPU is below 85 &mdash; what do I do?<span class="qa-arrow">&#8250;</span></div>
@@ -1385,7 +1551,14 @@ var pb = (function(){
     var ir=gn('pb-ir'); if(!ir) return;
     ir.min=floor; ir.max=exit;
     var cur=parseInt(ir.value);
-    if(cur<floor){ir.value=floor;gn('pb-ir-v').textContent=floor;}
+    if(cur<floor){
+      ir.value=floor;
+      var v=gn('pb-ir-v');
+      v.textContent=floor;
+      // visual flash so it's obvious it auto-snapped
+      v.style.color='var(--amb)';v.style.fontWeight='700';
+      setTimeout(function(){v.style.color='var(--pur)';v.style.fontWeight='normal';},1200);
+    }
     if(cur>exit){ir.value=exit;gn('pb-ir-v').textContent=exit;}
     gn('pb-ir-floor-lbl').textContent='$'+floor+' guardrail';
     gn('pb-ir-max-lbl').textContent='$'+exit;
@@ -1629,102 +1802,266 @@ function setPricingView(mode){
 window.setPricingView=setPricingView;
 
 function calcScenario(cfg){
+  var term=cfg.termMonths||24;
   var fmt2=function(n){return '$'+Math.round(n).toLocaleString();};
   var rows=[];
   if(cfg.freeMo>0) rows.push({mo:cfg.freeMo,rate:0,techs:cfg.techs});
   var growthTechs=cfg.growthTechs||cfg.techs;
-  if(cfg.tiers<=2){
-    var paid=24-cfg.freeMo;
+  var midTechs=cfg.midTechs||cfg.techs;
+  if(term===12){
+    var paid1=term-cfg.freeMo;
+    if(paid1>0) rows.push({mo:paid1,rate:cfg.exit,techs:cfg.techs});
+  } else if(cfg.tiers<=2){
+    var paid=term-cfg.freeMo;
     if(paid>0) rows.push({mo:paid,rate:cfg.exit,techs:growthTechs});
-  } else {
+  } else if(cfg.tiers===3){
     var t2m=12-cfg.freeMo;
     if(t2m>0) rows.push({mo:t2m,rate:cfg.ramp,techs:cfg.techs});
-    rows.push({mo:12,rate:cfg.exit,techs:growthTechs});
+    rows.push({mo:term-12,rate:cfg.exit,techs:growthTechs});
+  } else {
+    var t2m4=12-cfg.freeMo;
+    if(t2m4>0) rows.push({mo:t2m4,rate:cfg.ramp,techs:cfg.techs});
+    rows.push({mo:6,rate:cfg.mid||cfg.exit,techs:midTechs});
+    rows.push({mo:6,rate:cfg.exit,techs:growthTechs});
   }
   var totalSub=0;
-  rows.forEach(function(r){totalSub+=r.mo*r.rate*r.techs;});
-  var avgMonth=totalSub/24;
+  var totalTechMonths=0;
+  var rateMonths=0;
+  rows.forEach(function(r){
+    totalSub+=r.mo*r.rate*r.techs;
+    totalTechMonths+=r.mo*r.techs;
+    rateMonths+=r.mo*r.rate;
+  });
+  var avgMonth=totalSub/term;
   var cmrr=cfg.exit*growthTechs;
-  var avgPerTech=cfg.techs>0?totalSub/(24*cfg.techs):0;
-  var firstPaidRate=cfg.tiers>=3?cfg.ramp:cfg.exit;
+  // avgPerTech = average rate per tech per month over contract
+  // Pure rate × months calculation — tech count growth doesn't affect this
+  var avgPerTech=rateMonths/term;
+  var firstPaidRate=(term===12||cfg.tiers<=2)?cfg.exit:cfg.ramp;
   var firstPaid=firstPaidRate*cfg.techs;
   var due=cfg.ob+firstPaid;
-  return {cmrr:cmrr,avgMonth:avgMonth,avgPerTech:avgPerTech,due:due};
+  return {cmrr:cmrr,avgMonth:avgMonth,avgPerTech:avgPerTech,due:due,term:term};
 }
 
 function buildCustomerOptions(){
   try{
     var gn2=function(id){return document.getElementById(id);};
-    var tcEl=gn2('pb-tc'),exEl=gn2('pb-ex'),fmEl=gn2('pb-fm'),irEl=gn2('pb-ir');
+    var tcEl=gn2('pb-tc'),exEl=gn2('pb-ex'),fmEl=gn2('pb-fm'),irEl=gn2('pb-ir'),mrEl=gn2('pb-mr');
+    var t3El=gn2('pb-t3-techs'),t4El=gn2('pb-t4-techs');
     var techs=tcEl?parseInt(tcEl.value)||5:5;
     var exit=exEl?parseInt(exEl.value)||281:281;
-    var freeMo=fmEl?parseInt(fmEl.value)||3:3;
+    var freeMo=Math.min(3,fmEl?parseInt(fmEl.value)||3:3);
     var ramp=irEl?parseInt(irEl.value)||215:215;
+    var mid=mrEl?parseInt(mrEl.value)||exit:exit;
+    var t3techs=t3El?parseInt(t3El.value)||techs:techs;
+    var t4techs=t4El?parseInt(t4El.value)||t3techs:t3techs;
     var ob=500,tiers=3;
     if(typeof pb!=='undefined'&&pb.getOB) ob=pb.getOB();
     if(typeof pb!=='undefined'&&pb.getTiers) tiers=pb.getTiers();
+    var pkg='';
+    if(typeof pb!=='undefined'&&pb.getPkg) pkg=pb.getPkg();
     var floor=Math.max(189,Math.round(exit/1.40));
     if(ramp<floor) ramp=floor;
+    var exitTechs=tiers===4?t4techs:t3techs;
+    var midTechsB=tiers===4?t3techs:null;
     var fmt=function(n){return '$'+Math.round(n).toLocaleString();};
-    var goodExit=Math.max(189,Math.min(249,exit-30));
-    var goodRamp=Math.max(189,Math.round(goodExit/1.35));
-    var goodFree=Math.max(0,freeMo-1);
-    var opt1=calcScenario({techs:techs,freeMo:goodFree,ramp:goodRamp,exit:goodExit,ob:500,tiers:goodFree>0?3:2,growthTechs:techs});
-    var opt2=calcScenario({techs:techs,freeMo:freeMo,ramp:ramp,exit:exit,ob:ob,tiers:tiers,growthTechs:techs});
-    var growthTechs2=Math.min(39,techs+3);
-    var bestFree=Math.min(6,freeMo+1);
-    var opt3=calcScenario({techs:techs,freeMo:bestFree,ramp:ramp,exit:exit,ob:ob,tiers:tiers,growthTechs:growthTechs2});
+    var fmtMo=function(n){return '$'+Math.round(n).toLocaleString()+'/mo';};
+
+    var startDateEl=gn2('pb-start-date');
+    var startDate=null;
+    if(startDateEl&&startDateEl.value) startDate=new Date(startDateEl.value+'T00:00:00');
+    function addMonths(d,n){var r=new Date(d);r.setMonth(r.getMonth()+n);return r;}
+    function fmtD(d){return d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});}
+    function fmtMoD(d){return d.toLocaleDateString('en-US',{month:'short',year:'numeric'});}
+
+    // Build schedule with techs + monthly per row
+    function buildSchedule(cfg,sd){
+      var term=cfg.termMonths||24;
+      var rows=[];
+      var cur=sd?new Date(sd):null;
+      var gt=cfg.growthTechs||cfg.techs;
+      var mt=cfg.midTechs||cfg.techs;
+
+      function row(label,rate,techs,startMo,endMo,isPrepaid,prepaidMo){
+        var s=cur?addMonths(cur,startMo):null;
+        var e=cur?addMonths(cur,endMo):null;
+        return {
+          label:label,rate:rate,techs:techs,
+          monthly:rate*techs,
+          dateRange:s?(fmtD(s)+' \u2192 '+fmtMoD(new Date(e-1))):'',
+          isFree:rate===0,isPrepaid:!!isPrepaid,prepaidMonth:prepaidMo||0
+        };
+      }
+
+      if(cfg.freeMo>0) rows.push(row('Months 1\u2013'+cfg.freeMo,0,cfg.techs,0,cfg.freeMo,false,0));
+
+      if(term===12){
+        var paid1=term-cfg.freeMo;
+        if(paid1>0) rows.push(row('Months '+(cfg.freeMo+1)+'\u201312',cfg.exit,cfg.techs,cfg.freeMo,term,true,cfg.freeMo+1));
+      } else if(cfg.tiers<=2){
+        var paid=term-cfg.freeMo;
+        if(paid>0) rows.push(row('Months '+(cfg.freeMo+1)+'\u2013'+term,cfg.exit,gt,cfg.freeMo,term,true,cfg.freeMo+1));
+      } else if(cfg.tiers===3){
+        var t2m=12-cfg.freeMo;
+        if(t2m>0) rows.push(row('Months '+(cfg.freeMo+1)+'\u201312',cfg.ramp,cfg.techs,cfg.freeMo,12,true,cfg.freeMo+1));
+        rows.push(row('Months 13\u201324',cfg.exit,gt,12,24,false,0));
+      } else {
+        var t2m4=12-cfg.freeMo;
+        if(t2m4>0) rows.push(row('Months '+(cfg.freeMo+1)+'\u201312',cfg.ramp,cfg.techs,cfg.freeMo,12,true,cfg.freeMo+1));
+        rows.push(row('Months 13\u201318',cfg.mid||cfg.exit,mt,12,18,false,0));
+        rows.push(row('Months 19\u201324',cfg.exit,gt,18,24,false,0));
+      }
+      return rows;
+    }
+
+    // Options
+    var aFree=Math.min(1,freeMo);
+    var aExit=Math.min(exit,299); // Essentials max is $299
+    var cfgA={techs:techs,freeMo:aFree,ramp:aExit,exit:aExit,ob:500,tiers:2,growthTechs:techs,termMonths:12};
+    var opt1=calcScenario(cfgA);
+
+    var cfgB={techs:techs,freeMo:freeMo,ramp:ramp,exit:exit,mid:mid,
+              ob:ob,tiers:tiers,growthTechs:exitTechs,midTechs:midTechsB,termMonths:24};
+    var opt2=calcScenario(cfgB);
+
+    var cExitTechs=Math.min(39,exitTechs+3);
+    var cMidTechs=tiers===4?Math.min(39,t3techs+1):null;
+    var cExit=Math.max(floor,exit-12);
+    var cRamp=Math.max(floor,ramp-8);
+    var cMid=tiers===4?Math.max(floor,mid):mid;
+    var cfgC={techs:techs,freeMo:freeMo,ramp:cRamp,exit:cExit,mid:cMid,
+              ob:ob,tiers:tiers,growthTechs:cExitTechs,midTechs:cMidTechs,termMonths:24};
+    var opt3=calcScenario(cfgC);
+
+    // Package labels
+    var pkgLabel=pkg==='works'?'The Works':pkg==='essentials'?'Essentials':'';
     var options=[
-      {label:'Option A',name:'Foundation',badge:'',tagBg:'',nameColor:'var(--t1)',borderColor:'var(--b2)',bg:'var(--bg3)',
-       lines:['Essentials package',techs+' technicians',goodFree>0?goodFree+' months free to start':'Paid from month 1','$'+goodExit+'/tech after ramp','$500 onboarding fee'],res:opt1,fmt:fmt},
-      {label:'Option B',name:'Professional',badge:'Most popular',tagBg:'#F05A28',nameColor:'#F05A28',borderColor:'var(--st-b)',bg:'var(--st-bg)',
-       lines:['The Works package',techs+' technicians',freeMo+' months free to start','$'+exit+'/tech after ramp',fmt(ob)+' onboarding fee'],res:opt2,fmt:fmt},
-      {label:'Option C',name:'Growth Partner',badge:'Built to scale',tagBg:'var(--blu)',nameColor:'var(--blu)',borderColor:'var(--blu-b)',bg:'var(--blu-bg)',
-       lines:['The Works package',techs+' \u2192 '+growthTechs2+' techs as you grow',bestFree+' months free to start','$'+exit+'/tech after ramp',fmt(ob)+' onboarding fee'],res:opt3,fmt:fmt}
+      {label:'Option A',name:'1-Year Starter',pkg:'Essentials',term:'1-year',
+       nameColor:'var(--ice)',borderColor:'var(--ice-b)',bg:'var(--ice-bg)',
+       res:opt1,cfg:cfgA,fmt:fmt,fmtMo:fmtMo},
+      {label:'Option B',name:'Growth Plan',pkg:pkgLabel,term:'2-year',
+       nameColor:'var(--blu)',borderColor:'var(--blu-b)',bg:'var(--blu-bg)',
+       res:opt2,cfg:cfgB,fmt:fmt,fmtMo:fmtMo},
+      {label:'Option C',name:'Scale Plan',pkg:pkgLabel,term:'2-year',badge:'Built to scale',tagBg:'var(--ind)',
+       nameColor:'var(--ind)',borderColor:'var(--ind-b)',bg:'var(--ind-bg)',
+       res:opt3,cfg:cfgC,fmt:fmt,fmtMo:fmtMo}
     ];
+
     var grid=document.getElementById('cust-options-grid');
     if(!grid) return;
+
     grid.innerHTML=options.map(function(o){
+      var sched=buildSchedule(o.cfg,startDate);
+      var npDate=startDate?addMonths(startDate,o.cfg.freeMo+1):null;
+
+      // Schedule rows: period | rate + techs | monthly | date
+      var schedHTML='<div style="margin-bottom:12px;border:1px solid var(--b1);border-radius:var(--rs);overflow:hidden">';
+      // Header row
+      schedHTML+='<div style="display:grid;grid-template-columns:5fr 3fr 3fr 4fr;gap:4px 8px;padding:5px 10px;background:var(--bg4)">'
+        +'<div style="font-size:8px;color:var(--t3);text-transform:uppercase;letter-spacing:.08em">Period</div>'
+        +'<div style="font-size:8px;color:var(--t3);text-transform:uppercase;letter-spacing:.08em">Rate/tech</div>'
+        +'<div style="font-size:8px;color:var(--t3);text-transform:uppercase;letter-spacing:.08em">Techs</div>'
+        +'<div style="font-size:8px;color:var(--t3);text-transform:uppercase;letter-spacing:.08em;text-align:right">Monthly</div>'
+        +'</div>';
+
+      sched.forEach(function(row,i){
+        var rateColor=row.isFree?'var(--grn)':o.nameColor;
+        var monthlyColor=row.isFree?'var(--grn)':o.nameColor;
+        var bg=(i%2===0)?'var(--bg3)':'var(--bg2)';
+        schedHTML+='<div style="background:'+bg+';border-top:1px solid var(--b1)">'
+          +'<div style="display:grid;grid-template-columns:5fr 3fr 3fr 4fr;gap:4px 8px;padding:7px 10px;align-items:center">'
+          +'<div style="font-size:10px;color:var(--t2);font-family:\'DM Mono\',monospace">'+row.label+'</div>'
+          +'<div style="font-size:12px;font-weight:700;color:'+rateColor+'">'+( row.isFree?'FREE':o.fmt(row.rate)+'/t'  )+'</div>'
+          +'<div style="font-size:11px;color:var(--t1);font-weight:500">'+row.techs+' techs</div>'
+          +'<div style="font-size:12px;font-weight:700;color:'+monthlyColor+';text-align:right;font-family:\'DM Mono\',monospace">'+( row.isFree?'$0':o.fmt(row.monthly) )+'</div>'
+          +'</div>'
+          +(row.isPrepaid?'<div style="padding:0 10px 5px;font-size:9px;color:var(--amb)">\u21b3 Month '+row.prepaidMonth+' prepaid at signing</div>':'')
+          +'</div>';
+        if(row.dateRange){
+          // append date on hover or small line
+          schedHTML=schedHTML.slice(0,-'</div>'.length)
+            +'<div style="padding:0 10px 4px;font-size:9px;color:var(--t3)">'+row.dateRange+'</div>'
+            +'</div>';
+        }
+      });
+      schedHTML+='</div>';
+
+      // Stats
+      var statsHTML='<div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:10px">'
+        +'<div style="background:var(--bg2);border-radius:var(--rs);padding:8px 10px">'
+        +'<div style="font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px">Avg / month</div>'
+        +'<div style="font-size:14px;font-weight:700;color:'+o.nameColor+';font-family:\'DM Mono\',monospace">'+o.fmt(o.res.avgMonth)+'</div>'
+        +'</div>'
+        +'<div style="background:var(--bg2);border-radius:var(--rs);padding:8px 10px">'
+        +'<div style="font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px">Avg / tech</div>'
+        +'<div style="font-size:14px;font-weight:700;color:var(--t1);font-family:\'DM Mono\',monospace">'+o.fmt(o.res.avgPerTech)+'</div>'
+        +'<div style="font-size:8px;color:var(--t3);margin-top:2px">avg over contract term</div>'
+        +'</div>'
+        +'</div>';
+
+      // Get Started
+      var getStartedHTML='<div style="background:rgba(240,90,40,.09);border:1px solid rgba(240,90,40,.25);border-radius:var(--rs);padding:10px 12px">'
+        +'<div style="font-size:9px;color:#F05A28;text-transform:uppercase;letter-spacing:.07em;font-weight:600;margin-bottom:3px">Get Started &mdash; '+o.term+' agreement</div>'
+        +'<div style="font-size:19px;font-weight:700;color:#F05A28;font-family:\'DM Mono\',monospace;margin-bottom:4px">'+o.fmt(o.res.due)+'</div>'
+        +'<div style="font-size:10px;color:var(--t3)">OB fee + prepaid month '+((o.cfg.freeMo||0)+1)+'</div>';
+      if(npDate){
+        getStartedHTML+='<div style="margin-top:7px;padding-top:7px;border-top:1px solid rgba(240,90,40,.15)">'
+          +'<span style="font-size:10px;font-weight:600;color:var(--t1)">Next payment: </span>'
+          +'<span style="font-size:10px;color:var(--t2)">'+fmtD(npDate)+'</span>'
+          +'</div>'
+          +'<div style="font-size:10px;color:var(--grn);margin-top:3px">No payment for '+((o.cfg.freeMo||0)+1)+' months after you start</div>';
+      }
+      getStartedHTML+='</div>';
+
+      var badge=o.badge||'';
+      var pkgBadge=o.pkg?'<span style="font-size:9px;font-weight:500;color:var(--t2);background:var(--bg4);border:1px solid var(--b2);border-radius:3px;padding:1px 7px;margin-left:6px;vertical-align:middle">'+o.pkg+'</span>':'';
+
       return '<div style="background:'+o.bg+';border:2px solid '+o.borderColor+';border-radius:var(--r);padding:16px;position:relative">'
-        +(o.badge?'<div style="position:absolute;top:0;left:50%;transform:translateX(-50%) translateY(-50%);background:'+o.tagBg+';color:#fff;font-size:9px;font-weight:700;letter-spacing:.08em;padding:3px 12px;border-radius:100px;white-space:nowrap;text-transform:uppercase">'+o.badge+'</div>':'')
-        +'<div style="margin-top:'+(o.badge?'12px':'0')+'">'
+        +(badge?'<div style="position:absolute;top:0;left:50%;transform:translateX(-50%) translateY(-50%);background:'+o.tagBg+';color:#fff;font-size:9px;font-weight:700;letter-spacing:.08em;padding:3px 12px;border-radius:100px;white-space:nowrap;text-transform:uppercase">'+badge+'</div>':'')
+        +'<div style="margin-top:'+(badge?'12px':'0')+'">'
         +'<div style="font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:.09em;margin-bottom:4px">'+o.label+'</div>'
-        +'<div style="font-size:18px;font-weight:700;color:'+o.nameColor+';margin-bottom:12px;letter-spacing:-.3px">'+o.name+'</div>'
-        +'<div style="font-size:11.5px;color:var(--t2);line-height:2;margin-bottom:12px">'+o.lines.map(function(l){return '&#10003;&ensp;'+l;}).join('<br>')+'</div>'
-        +'<div style="height:1px;background:var(--b1);margin-bottom:12px"></div>'
-        +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:10px">'
-        +'<div style="background:var(--bg2);border-radius:var(--rs);padding:8px 10px"><div style="font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px">Avg / month</div><div style="font-size:15px;font-weight:700;color:'+o.nameColor+';font-family:\'DM Mono\',monospace">'+o.fmt(o.res.avgMonth)+'</div></div>'
-        +'<div style="background:var(--bg2);border-radius:var(--rs);padding:8px 10px"><div style="font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px">Per tech / mo</div><div style="font-size:15px;font-weight:700;color:var(--t1);font-family:\'DM Mono\',monospace">'+o.fmt(o.res.avgPerTech)+'</div></div>'
-        +'</div>'
-        +'<div style="background:rgba(240,90,40,.09);border:1px solid rgba(240,90,40,.25);border-radius:var(--rs);padding:9px 12px">'
-        +'<div style="font-size:9px;color:#F05A28;text-transform:uppercase;letter-spacing:.07em;font-weight:600;margin-bottom:3px">Due at signing</div>'
-        +'<div style="font-size:17px;font-weight:700;color:#F05A28;font-family:\'DM Mono\',monospace">'+o.fmt(o.res.due)+'</div>'
-        +'</div>'
+        +'<div style="font-size:18px;font-weight:700;color:'+o.nameColor+';margin-bottom:12px;letter-spacing:-.3px">'+o.name+pkgBadge+'</div>'
+        +schedHTML
+        +statsHTML
+        +getStartedHTML
         +'</div>'
         +'</div>';
     }).join('');
+
     window._custOptions=options;
+    window._custStartDate=startDate;
     var rb=document.getElementById('cust-refresh-btn');
-    if(rb){rb.textContent='\u2713 Updated';rb.style.color='var(--grn)';setTimeout(function(){rb.innerHTML='&#8635; Update';rb.style.color='var(--t2)';},1400);}
+    if(rb){rb.textContent='\u2713 Updated';rb.style.color='var(--grn)';
+           setTimeout(function(){rb.innerHTML='&#8635; Update';rb.style.color='var(--t2)';},1400);}
   }catch(e){
     console.error('buildCustomerOptions error:',e);
     var grid=document.getElementById('cust-options-grid');
-    if(grid) grid.innerHTML='<div style="color:var(--red);padding:12px;grid-column:1/-1;font-size:11px">Could not load options. Check console. Error: '+e.message+'</div>';
+    if(grid) grid.innerHTML='<div style="color:var(--red);padding:12px;grid-column:1/-1;font-size:11px">Error: '+e.message+'<br><small>Check console (F12) for details</small></div>';
   }
 }
 window.buildCustomerOptions=buildCustomerOptions;
 window.updateCustomerView=buildCustomerOptions;
+
+
 
 function copyAllOptions(){
   var opts=window._custOptions;
   if(!opts){buildCustomerOptions();opts=window._custOptions;}
   if(!opts) return;
   var fmt=function(n){return '$'+Math.round(n).toLocaleString();};
+  var sd=window._custStartDate;
+  function addMonths(d,n){var r=new Date(d);r.setMonth(r.getMonth()+n);return r;}
+  function fmtD(d){return d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});}
   var text='ServiceTitan Partnership Proposal\n'+'='.repeat(34)+'\n\n';
   opts.forEach(function(o){
     text+=o.label+' \u2014 '+o.name+(o.badge?' ('+o.badge+')':'')+'\n';
-    o.lines.forEach(function(l){text+='\u2022 '+l+'\n';});
-    text+='Avg/mo: '+fmt(o.res.avgMonth)+' \u00b7 Per tech/mo: '+fmt(o.res.avgPerTech)+' \u00b7 Due at signing: '+fmt(o.res.due)+'\n\n';
+    text+='Avg/mo: '+fmt(o.res.avgMonth)+' \u00b7 Per tech/mo: '+fmt(o.res.avgPerTech)+'\n';
+    text+='Get Started: '+fmt(o.res.due)+' (OB + prepaid month '+(o.cfg.freeMo+1)+')\n';
+    if(sd){
+      var np=addMonths(sd,o.cfg.freeMo+1);
+      text+='Next payment: '+fmtD(np)+'\n';
+    }
+    text+='\n';
   });
   navigator.clipboard.writeText(text).then(function(){
     var btn=document.getElementById('cust-copy-btn');
@@ -1732,6 +2069,253 @@ function copyAllOptions(){
   });
 }
 window.copyAllOptions=copyAllOptions;
+
+// ═══ RIGHT NOW WIDGET ═══
+(function(){
+  var now = new Date();
+  var timeStr = now.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit',hour12:true});
+  var el = document.getElementById('rn-time');
+  if(el) el.textContent = 'as of ' + timeStr;
+
+  var actions = [
+    {color:'var(--red)',icon:'🔴',text:'Call Johnson Plumbing — 9 days no touch. Phone: <a href="tel:+15550000001" style="color:var(--blu);font-family:\'DM Mono\',monospace">(555) 000-0001</a>. Re-engage draft ready.',priority:1},
+    {color:'var(--amb)',icon:'⚡',text:'Referral for Refrigeration Plus due <strong style="color:var(--t1)">05/25</strong> — go to Referral Engine tab, draft is ready to send.',priority:2},
+    {color:'var(--grn)',icon:'📈',text:'ARPU at <strong style="color:var(--amb)">$281</strong>, $4 below target. Push Works over Essentials on today\'s calls. Every upgrade is $15-20/tech/month.',priority:3}
+  ];
+  var container = document.getElementById('rn-actions');
+  if(!container) return;
+  container.innerHTML = actions.map(function(a){
+    return '<div style="display:flex;align-items:flex-start;gap:10px;padding:8px 10px;background:var(--bg4);border-radius:var(--rs);margin-bottom:5px;border-left:2px solid '+a.color+'">'
+      +'<span style="font-size:14px;flex-shrink:0;margin-top:1px">'+a.icon+'</span>'
+      +'<div style="font-size:11.5px;color:var(--t1);line-height:1.55">'+a.text+'</div>'
+      +'</div>';
+  }).join('');
+})();
+
+// ═══ EMAIL TEMPLATES ═══
+var TEMPLATES = {
+  disc:{name:'Post-discovery',badge:'Discovery',subject:'[Company] — recap from today + next step',body:'[First name],\n\nReally enjoyed learning about [company] today. The [specific pain they mentioned] is exactly the kind of thing we fix every day.\n\nWhat stood out to me:\n• [Pain point 1 from the call]\n• [Pain point 2 from the call]\n• [Their biggest operational gap]\n\nWhat ServiceTitan solves for you:\n• [Specific ST feature matched to pain 1]\n• [Specific ST feature matched to pain 2]\n• [Business outcome they care about]\n\nNext step: [what you agreed to]. I\'ll send a calendar invite for [date/time].\n\nBlayne!'},
+  demo:{name:'Post-demo',badge:'Post-Demo',subject:'[Company] — what you saw today + next step',body:'[First name],\n\nGood session today. [Specific thing they reacted to in the demo] — that moment was exactly the point.\n\nWhat we covered:\n• [Feature 1 they saw]\n• [Feature 2 they saw]\n• [Workflow that clicked for them]\n\nPricing (review from today): [Package] · [X] techs · [rate]/tech at month [X] · OB: [OB amount] one-time\n\nPart 2 is [date/time]. I\'ll send the invite now.\n\nBlayne!'},
+  noshow:{name:'No-show',badge:'No-show',subject:'Missed you — quick reschedule?',body:'[First name],\n\nMissed you today. Things come up, no worries.\n\nStill worth 30 minutes — [one sentence on what they\'d see].\n\nAnytime this week or next work? Just reply and I\'ll send a new link.\n\nBlayne!'},
+  pricing:{name:'Pricing recap',badge:'Pricing',subject:'[Company] — pricing recap + what\'s next',body:'[First name],\n\nGood call. Putting the numbers in writing so it\'s easy to reference.\n\n[Package] · [X] techs · 2-year agreement:\n• Months [X]-[X] free ramp\n• $[rate]/tech at month 18\n• OB: $[amount] one-time (due at signing)\n• You sign today, first real payment is [date]\n\nMonth-end is [date]. If we move this week I can lock the [cohort date] cohort and have you live by [go-live date].\n\nBlayne!'},
+  ghost:{name:'30-day ghost',badge:'Re-engage',subject:'Still thinking about it?',body:'[First name],\n\nJust checking in — it\'s been about a month since we last connected.\n\nIf the timing isn\'t right, totally fine. If you\'re still evaluating, happy to pick up where we left off. Things have moved since we last talked — [one new thing: cohort dates, new feature, promo].\n\nEither way, a one-line reply tells me what to do.\n\nBlayne!'},
+  closedlost:{name:'Closed lost re-engage',badge:'Closed Lost',subject:'Quick check-in',body:'[First name],\n\nI know you went a different direction a while back — no hard feelings.\n\nThe reason I\'m reaching out: [specific signal — competitor raised prices / they churned / new fiscal year / timing change].\n\nA lot has changed on our end too. Worth a 20-minute call to see if the math looks different now?\n\nBlayne!'},
+  referral:{name:'Referral ask',badge:'Referral',subject:'Quick ask',body:'[First name],\n\nReally glad things are clicking in those first few weeks.\n\nQuick ask — if you know any other [vertical] contractors in the [area] still running on [QuickBooks/pen and paper/old software], I\'d love a warm intro.\n\nJust reply here and I\'ll take it from there.\n\nBlayne · 707-478-9500'},
+  cohort:{name:'Cohort urgency',badge:'Month-end',subject:'[Company] — [cohort date] slot + month-end',body:'[First name],\n\nThe [month] cohort has one slot left. Go-live would be [date].\n\nI can hold it until [date/time] but then it\'s first-come.\n\nWant me to lock it?\n\nBlayne!'}
+};
+
+function loadTpl(key){
+  var t = TEMPLATES[key];
+  if(!t) return;
+  var c = document.getElementById('tpl-composer');
+  if(c) c.style.display='block';
+  var nm = document.getElementById('tpl-name');
+  if(nm) nm.textContent = t.name;
+  var bg = document.getElementById('tpl-badge');
+  if(bg) bg.textContent = t.badge;
+  var subj = document.getElementById('tpl-subject');
+  if(subj) subj.textContent = t.subject;
+  var body = document.getElementById('tpl-body');
+  if(body){ body.innerText = t.body; }
+  c.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+window.loadTpl = loadTpl;
+
+// ═══ GONG DROP PARSER ═══
+function processGong(){
+  var raw = document.getElementById('gong-input').value.trim();
+  if(!raw){ alert('Paste a transcript first.'); return; }
+
+  // ── Extract company name ──
+  var companyMatch = raw.match(/(?:from|at|with|for)\s+([A-Z][A-Za-z &']+(?:Inc|LLC|Plumbing|HVAC|Air|Heating|Cooling|Electric|Electrical|Doors?|Garage|Mechanical|Services?|Contracting|Contractors?|Enterprises?|Group|Co\b)[\.\,]?)/);
+  var company = companyMatch ? companyMatch[1].trim() : '[Company Name]';
+  // Also try first line
+  if(company==='[Company Name]'){
+    var firstLine = raw.split('\n')[0];
+    var fl = firstLine.match(/([A-Z][A-Za-z &']{3,})/);
+    if(fl) company = fl[1];
+  }
+
+  // ── Extract speaker names ──
+  var speakerPattern = /^([A-Z][a-z]+(?: [A-Z][a-z]+)?)\s*:/gm;
+  var speakers = {};
+  var m;
+  while((m = speakerPattern.exec(raw)) !== null){
+    var sp = m[1].trim();
+    if(sp !== 'Blayne' && sp !== 'blayne') speakers[sp] = (speakers[sp]||0) + 1;
+  }
+  var contacts = Object.keys(speakers).sort(function(a,b){return speakers[b]-speakers[a];}).slice(0,4);
+
+  // ── Pain keyword scanner ──
+  var PAIN = {
+    'manual':3,'pen and paper':5,'paper':2,'spreadsheet':3,'excel':3,'quickbooks':2,
+    'invoice':2,'invoicing':3,'chase':3,'phone tag':4,'callback':3,'call back':3,
+    'estimate':2,'unsold estimate':5,'scheduling':2,'dispatch':2,'disorganized':4,
+    'slow':2,'bottleneck':4,'inefficient':3,'miss':2,'missed':3,'lose':2,'lost':2,
+    'time':1,'hours':1,'afternoon':2,'morning':2,'money':2,'revenue':2,'grow':1,
+    'scale':2,'techs':1,'technician':1,'office':1,'admin':2,'overwhelmed':4,'frustrated':3
+  };
+  var rawLower = raw.toLowerCase();
+  var painFound = {};
+  Object.keys(PAIN).forEach(function(kw){
+    var re = new RegExp('\\b'+kw+'s?\\b','gi');
+    var matches = rawLower.match(re);
+    if(matches) painFound[kw] = {count: matches.length, weight: PAIN[kw]*matches.length};
+  });
+  var painSorted = Object.keys(painFound).sort(function(a,b){return painFound[b].weight-painFound[a].weight;}).slice(0,8);
+
+  // ── Competitor detection ──
+  var COMPS = ['FieldEdge','ServiceFusion','Housecall Pro','HCP','BuildOps','Jobber','Service Channel','Corrigo','Ascente','Successware','dESCO','Jonas','Jonas Premier','ServiceMax','Salesforce Field'];
+  var compsFound = COMPS.filter(function(c){ return rawLower.includes(c.toLowerCase()); });
+
+  // ── Price mention detection ──
+  var priceMatches = raw.match(/\$(\d{1,3}(?:,\d{3})*|\d+)(?:\s*\/\s*(?:tech|month|mo))?/gi)||[];
+  var priceNums = priceMatches.map(function(p){return parseInt(p.replace(/[^0-9]/g,''));}).filter(function(n){return n>100&&n<600;});
+  var lowPrice = priceNums.some(function(n){return n<285;});
+
+  // ── Build SFDC Notes ──
+  var today = new Date().toLocaleDateString('en-US',{month:'2-digit',day:'2-digit',year:'2-digit'});
+  var sfdc = '--- EXEC OVERVIEW ---\n';
+  sfdc += 'Company: '+company+'\n';
+  sfdc += 'Contact(s): '+(contacts.length?contacts.join(', '):'[Names]')+'\n';
+  sfdc += 'Call date: '+today+'\n';
+  sfdc += 'Call type: [Discovery / Demo / Pricing]\n\n';
+  sfdc += '--- BUSINESS PROFILE ---\n';
+  sfdc += 'Vertical: [HVAC / Plumbing / Electrical / Garage Door / Other]\n';
+  sfdc += 'Techs: [X] full-time · [X] Managed Tech\n';
+  sfdc += 'Current platform: [QuickBooks / pen & paper / other]\n';
+  sfdc += 'Revenue split: Residential __% · Commercial __% · Construction __%\n\n';
+  sfdc += '--- PAIN POINTS IDENTIFIED ---\n';
+  painSorted.slice(0,5).forEach(function(kw){
+    sfdc += '• '+kw+' (mentioned '+painFound[kw].count+'x)\n';
+  });
+  sfdc += '\n--- COMPETITIVE INTEL ---\n';
+  sfdc += (compsFound.length ? compsFound.map(function(c){return '• '+c+' mentioned';}).join('\n') : '• No competitor mentioned')+'\n\n';
+  sfdc += '--- NEXT STEPS ---\n';
+  sfdc += '• [MM/DD] — [action item]\n';
+  sfdc += '• [MM/DD] — [action item]\n\n';
+  sfdc += '--- ICP / DISPOSITION ---\n';
+  sfdc += 'ICP: [Yes / No / Partial]\n';
+  sfdc += 'Disposition: [Standard / Off-books / Re-route]\n';
+  sfdc += 'Notes: [Any DQ flags or ICP notes]\n\n';
+  sfdc += '--- OPP NOTE (one sentence) ---\n';
+  sfdc += '[Company] — [stage], [vertical], [X] techs, [key next step].';
+
+  // ── Build Email ──
+  var emailTo = contacts.length ? '['+contacts[0]+' email]' : '[Contact email]';
+  var emailSubj = company + ' — recap from today + next step';
+  var painBullets = painSorted.slice(0,3).map(function(kw){return '• [Pain: '+kw+']';}).join('\n');
+  var emailBody = contacts[0]||'[First name]';
+  emailBody += ',\n\n[Hyper-specific opener — reference something specific they said or showed you.]\n\n';
+  emailBody += 'What\'s eating your day:\n'+painBullets+'\n\n';
+  emailBody += 'What ServiceTitan solves for you:\n';
+  emailBody += '• [ST feature matched to pain 1]\n';
+  emailBody += '• [ST feature matched to pain 2]\n';
+  emailBody += '• [Outcome they actually care about]\n\n';
+  if(compsFound.length){
+    emailBody += 'On '+compsFound[0]+': [2-sentence competitive frame — be specific to their setup, not generic.]\n\n';
+  }
+  emailBody += 'Pricing ([Package] · [X] techs · 2-year): $[rate]/tech at month 18 · Months 1-[X] free · OB: $[amount] one-time\n\n';
+  emailBody += 'Next step: [what you agreed to — be specific].\n\nBlayne!';
+
+  // ── Render alerts ──
+  var alertsEl = document.getElementById('gong-alerts');
+  alertsEl.innerHTML = '';
+  if(compsFound.length){
+    alertsEl.innerHTML += '<div style="background:var(--red-bg);border:1px solid var(--red-b);border-radius:var(--rs);padding:10px 13px;margin-bottom:8px;font-size:12px;font-weight:600;color:var(--red)">⚔️ COMPETITOR DETECTED: '+compsFound.join(', ')+' — PRICE IS NEGOTIABLE. Fight for this deal. Do not let price lose it.</div>';
+  }
+  if(lowPrice){
+    alertsEl.innerHTML += '<div style="background:var(--amb-bg);border:1px solid var(--amb-b);border-radius:var(--rs);padding:10px 13px;margin-bottom:8px;font-size:12px;color:var(--amb)">⚠️ <strong>ARPU ALERT:</strong> Pricing mentioned below $285/tech. Push Works, ramp structure, or 2-year to protect ARPU. Discount with ramp/free months, not per-tech cuts.</div>';
+  }
+  if(!compsFound.length && !lowPrice){
+    alertsEl.innerHTML = '<div style="background:var(--grn-bg);border:1px solid var(--grn-b);border-radius:var(--rs);padding:8px 13px;margin-bottom:8px;font-size:11px;color:var(--grn)">✓ No competitor or low-ARPU alerts. Fill in the brackets below and send.</div>';
+  }
+
+  // ── Render pain tally ──
+  var tallyEl = document.getElementById('gong-pain-tally');
+  if(painSorted.length){
+    tallyEl.innerHTML = painSorted.map(function(kw){
+      var w = Math.min(100,painFound[kw].weight*8);
+      return '<div style="display:flex;align-items:center;gap:8px;margin-bottom:5px">'
+        +'<div style="font-size:11px;color:var(--t2);min-width:130px;font-family:\'DM Mono\',monospace">'+kw+'</div>'
+        +'<div style="flex:1;height:4px;background:var(--bg4);border-radius:2px;overflow:hidden"><div style="width:'+w+'%;height:100%;background:var(--amb);border-radius:2px"></div></div>'
+        +'<div style="font-size:10px;color:var(--t3);font-family:\'DM Mono\',monospace;min-width:20px;text-align:right">'+painFound[kw].count+'x</div>'
+        +'</div>';
+    }).join('');
+  } else {
+    tallyEl.innerHTML = '<div style="font-size:11px;color:var(--t3)">No pain keywords detected. Try a longer transcript.</div>';
+  }
+
+  // ── Populate outputs ──
+  document.getElementById('gong-sfdc').innerText = sfdc;
+  document.getElementById('gong-email-to').value = emailTo;
+  document.getElementById('gong-email-subj').textContent = emailSubj;
+  document.getElementById('gong-email-body').innerText = emailBody;
+  document.getElementById('gong-company-badge').textContent = company;
+  document.getElementById('gong-output').style.display = 'block';
+  document.getElementById('gong-output').scrollIntoView({behavior:'smooth',block:'start'});
+}
+window.processGong = processGong;
+
+// ═══ COMPETITIVE QUICK-REF ═══
+var COMP_DATA = {
+  fe:{
+    name:'FieldEdge',
+    wins:['Commercial job costing at the Works level — FE doesn\'t have this for shops doing both service and commercial.','600+ shops have switched from FE to ST. Onboarding and support reputation is a real gap for FE.','Titan Intelligence and AI features are ahead of FE. Mobile offline on job sites is stronger.'],
+    line:'"FieldEdge is great if you\'re 100% residential. If you\'re running any commercial side, you\'ll hit their ceiling fast."',
+    frame:'Plant the eval frame before they go in: "Here\'s what to compare when you talk to them next week." Focus on commercial job costing depth and mobile offline.'
+  },
+  sf:{
+    name:'ServiceFusion',
+    wins:['Works-level inventory management vs. SF\'s add-on approach — no third-party tools needed.','Performance pay/commission for techs is built into Works. SF doesn\'t have this natively.','ST scales past SF\'s ceiling. SF is fine at 3-5 techs; shops growing beyond that hit limits.'],
+    line:'"ServiceFusion works until you start growing. Every shop I talk to that left SF said the same thing — they outgrew it and the data was a mess."',
+    frame:'Ask them: "If you scale to 12 techs, what does SF look like then?" Make them think past the signing date.'
+  },
+  hcp:{
+    name:'HCP / Housecall Pro',
+    wins:['HCP is residential-first. Commercial job costing, commercial workflows, and the Works module are not what HCP is built for.','HCP raised their prices in early 2025 — prospects who went HCP are now re-opening conversations.','ST\'s commercial onboarding cohort model is purpose-built. HCP\'s onboarding is self-serve.'],
+    line:'"HCP is great for residential. If more than 20% of your revenue is commercial, you\'re using the wrong tool."',
+    frame:'If they\'re price-comparing: "HCP raised rates in January. What are they quoting you right now?" Then do the real math.'
+  },
+  bo:{
+    name:'BuildOps',
+    wins:['BuildOps over-indexes on construction and under-delivers on service workflows. Shops doing both need ST.','BO churn is a real signal — multiple Slack threads confirm shops leaving BO for ST due to broken promises and poor onboarding.','Titan Intelligence and AI features are ahead of BO. Residential/service hybrid is ST\'s strongest lane.'],
+    line:'"BuildOps is purpose-built for 100% construction. If you\'re doing any service work, it\'s a bad fit and they know it."',
+    frame:'"What % of your revenue is service vs. construction?" If it\'s split, BO is wrong for them.'
+  },
+  jb:{
+    name:'Jobber',
+    wins:['Jobber is consumer-grade — designed for solo operators and small residential shops. Not built for commercial.','No commercial job costing, no inventory at scale, no Works-level features. It\'s a stepping stone tool.','Jobber doesn\'t have a Comm+ equivalent team — no commercial AE, no commercial onboarding cohort.'],
+    line:'"Jobber is where you start, not where you stay. Every shop on Jobber doing $2M+ is already looking at the next platform."',
+    frame:'Don\'t compete with Jobber on price. Compete on "where are you going to be in 3 years?"'
+  },
+  scu:{
+    name:'ServiceChannel / Corrigo',
+    wins:['SC/Corrigo are 3rd-party portals for property management work — not FSM platforms. They\'re the customer, not the competition.','If a shop is doing SC/Corrigo work: flag in SFDC, re-route if >30% of revenue — that\'s an ICP question, not a competitive one.','Shops doing SC/Corrigo work often need ST more, not less — the dispatch and invoicing complexity is higher.'],
+    line:'"ServiceChannel is a portal your customer uses to send you jobs. That\'s not the same category as what we\'re talking about."',
+    frame:'Clarify early: "Is ServiceChannel where your customers send you work, or are you considering them as a platform replacement?" Usually it\'s the former.'
+  }
+};
+
+function showComp(key){
+  var d = COMP_DATA[key];
+  if(!d) return;
+  var out = document.getElementById('comp-output');
+  var allBtns = ['fe','sf','hcp','bo','jb','scu'];
+  allBtns.forEach(function(k){
+    var b = document.getElementById('comp-'+k);
+    if(b){ b.style.background='var(--bg3)'; b.style.color='var(--t2)'; b.style.borderColor='var(--b2)'; }
+  });
+  var activeBtn = document.getElementById('comp-'+key);
+  if(activeBtn){ activeBtn.style.background='var(--grn-bg)'; activeBtn.style.color='var(--grn)'; activeBtn.style.borderColor='var(--grn-b)'; }
+  out.style.display = 'block';
+  out.innerHTML = '<div style="font-size:12px;font-weight:600;color:var(--grn);margin-bottom:10px">vs. '+d.name+'</div>'
+    +'<div style="margin-bottom:10px"><div style="font-size:9px;font-weight:500;color:var(--t3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:5px">Where ST wins</div>'
+    +d.wins.map(function(w){return '<div style="display:flex;gap:7px;margin-bottom:5px"><span style="color:var(--grn);flex-shrink:0;margin-top:1px">✓</span><span style="font-size:11.5px;color:var(--t1);line-height:1.55">'+w+'</span></div>';}).join('')+'</div>'
+    +'<div style="background:var(--grn-bg);border:1px solid var(--grn-b);border-radius:var(--rs);padding:9px 11px;margin-bottom:9px"><div style="font-size:9px;color:var(--grn);text-transform:uppercase;letter-spacing:.07em;margin-bottom:3px">Line to say</div><div style="font-size:12px;color:var(--t1);font-style:italic">'+d.line+'</div></div>'
+    +'<div style="background:var(--amb-bg);border:1px solid var(--amb-b);border-radius:var(--rs);padding:9px 11px"><div style="font-size:9px;color:var(--amb);text-transform:uppercase;letter-spacing:.07em;margin-bottom:3px">Frame to use</div><div style="font-size:11.5px;color:var(--t2)">'+d.frame+'</div></div>';
+}
+window.showComp = showComp;
 
 // SIDEBAR TOGGLE
 function toggleSidebar(){
@@ -1778,6 +2362,9 @@ document.querySelectorAll('.ng-lbl').forEach(function(lbl){
   setTimeout(function(){
     var ex=gn('pb-ex'); if(!ex) return;
     ex.min=179; ex.max=299; ex.value=281;
+    // Set default OB start date to today
+    var dateEl=document.getElementById('pb-start-date');
+    if(dateEl){var t=new Date();dateEl.value=t.toISOString().split('T')[0];}
     setTiers(3);
     updateGuardrail();
     if(gn('pb-ir')){gn('pb-ir').value=215;gn('pb-ir-v').textContent=215;}
