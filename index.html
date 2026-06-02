@@ -207,7 +207,7 @@ td.bold{font-weight:500}
     </div>
     <div class="ng"><div class="ng-lbl">AI Tools<span class="ng-chev">▾</span></div>
       <button class="nb" data-pane="followup"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>Follow-up emails<span class="ntag tg-live">LIVE</span></button>
-      <button class="nb" data-pane="precall"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/></svg>Pre-call brief<span class="ntag tg-snow">&#10052;</span></button>
+      <button class="nb" data-pane="precall"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/></svg>Calendar View<span class="ntag tg-snow">&#10052;</span></button>
       <button class="nb" data-pane="spin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>SPIN scenarios<span class="ntag tg-new">NEW</span></button>
       <button class="nb" data-pane="icp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>ICP qualifier<span class="ntag tg-live">LIVE</span></button>
       <button class="nb" data-pane="callcoach"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>Call coaching<span class="ntag tg-snow">&#10052;</span></button>
@@ -520,7 +520,7 @@ Blayne &middot; 707-478-9500
 
 P.S. Looked up that data center after we hung up. You weren't kidding &mdash; the timing to get a system in place before that wave hits is exactly right.</div>
       <div class="ec-foot">
-        <button class="send-btn" onclick="this.textContent='&#10003; Sent via Gmail';this.style.opacity='.5';this.disabled=true">Send via Gmail &#8599;</button>
+        <button class="send-btn" onclick="sendEmailFromCard(this)">Send via Gmail &#8599;</button>
         <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.ec').querySelector('.ec-body').innerText);this.textContent='Copied &#10003;';this.classList.add('ok');setTimeout(()=>{this.textContent='Copy';this.classList.remove('ok')},2000)">Copy</button>
         <span style="font-size:11px;color:var(--t3);margin-left:auto">Gong Drop &middot; 05/14/26</span>
       </div>
@@ -544,7 +544,7 @@ Month-end is May 31. If we move this week I can lock the May 25 cohort and have 
 
 Blayne &middot; 707-478-9500</div>
       <div class="ec-foot">
-        <button class="send-btn" onclick="this.textContent='&#10003; Sent via Gmail';this.style.opacity='.5';this.disabled=true">Send via Gmail &#8599;</button>
+        <button class="send-btn" onclick="sendEmailFromCard(this)">Send via Gmail &#8599;</button>
         <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.ec').querySelector('.ec-body').innerText);this.textContent='Copied &#10003;';this.classList.add('ok');setTimeout(()=>{this.textContent='Copy';this.classList.remove('ok')},2000)">Copy</button>
         <span style="font-size:11px;color:var(--t3);margin-left:auto">Gong Drop &middot; 05/13/26</span>
       </div>
@@ -552,235 +552,261 @@ Blayne &middot; 707-478-9500</div>
   </div>
 
   <div class="pane" id="pane-precall">
-    <div style="display:flex;gap:8px;margin-bottom:10px">
-      <div class="card g" style="flex:1;margin-bottom:0">
-        <div class="sec"><div class="pulse"></div>Pre-call brief &mdash; your internal prep before each call</div>
-        <div style="font-size:11px;color:var(--t1);line-height:1.6">This is <strong>your prep only</strong>, not for sending. Review before you dial. The pre-call email drafts below are optional agenda-setters you can send to the prospect before the call if you want to set the tone. Post-call follow-ups live in <strong>Gong Drop</strong>.</div>
+
+    <!-- HEADER -->
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+      <div>
+        <div style="font-size:18px;font-weight:800;color:var(--t1);letter-spacing:-.5px" id="pc-date-heading">Tuesday, June 2</div>
+        <div style="font-size:11px;color:var(--t3);margin-top:2px">Calendar View &middot; pre-call briefs &middot; post-call lives in Gong Drop</div>
       </div>
-      <div class="card a" style="flex:0 0 auto;margin-bottom:0;padding:10px 14px;display:flex;align-items:center;gap:8px">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;color:var(--amb);flex-shrink:0"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/></svg>
-        <div style="font-size:10px;color:var(--t2);line-height:1.5">Post-call email?<br><strong style="color:var(--t1)">Use Gong Drop</strong></div>
+      <div style="display:flex;gap:7px;align-items:center">
+        <div id="pc-refresh-status" style="font-size:10px;color:var(--grn)">Loaded 9:37 PM</div>
+        <button onclick="refreshCalendar()" id="pc-refresh-btn" style="display:inline-flex;align-items:center;gap:6px;padding:8px 18px;border-radius:var(--rs);border:none;background:var(--grn);color:#fff;font-size:12px;font-weight:700;cursor:pointer;font-family:\'DM Sans\',sans-serif">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:13px;height:13px"><path d="M23 4v6h-6"/><path d="M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+          Refresh
+        </button>
       </div>
     </div>
 
-    <!-- SoS Quick Lookup -->
-    <div style="display:flex;align-items:center;gap:8px;padding:9px 13px;background:var(--bg3);border:1px solid var(--b1);border-radius:var(--r);margin-bottom:13px">
-      <span style="font-size:11px;font-weight:500;color:var(--t2);white-space:nowrap">🏛 SoS lookup:</span>
-      <select id="sos-state-pc" style="padding:5px 9px;border-radius:var(--rs);border:1px solid var(--b2);background:var(--bg4);color:var(--t1);font-size:11px;font-family:'DM Sans',sans-serif;outline:none;flex:1">
+    <!-- DAY SUMMARY STRIP -->
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin-bottom:14px;border:1px solid var(--b1);border-radius:var(--r);overflow:hidden">
+      <div style="padding:10px 14px;background:var(--grn-bg);border-right:1px solid var(--grn-b)">
+        <div style="font-size:8px;color:var(--grn);text-transform:uppercase;letter-spacing:.07em;font-weight:700;margin-bottom:3px">Prospect calls</div>
+        <div style="font-size:22px;font-weight:800;color:var(--grn);font-family:\'DM Mono\',monospace">3</div>
+      </div>
+      <div style="padding:10px 14px;background:var(--bg3);border-right:1px solid var(--b1)">
+        <div style="font-size:8px;color:var(--t3);text-transform:uppercase;letter-spacing:.07em;font-weight:700;margin-bottom:3px">Internal</div>
+        <div style="font-size:22px;font-weight:800;color:var(--blu);font-family:\'DM Mono\',monospace">3</div>
+      </div>
+      <div style="padding:10px 14px;background:var(--bg3);border-right:1px solid var(--b1)">
+        <div style="font-size:8px;color:var(--t3);text-transform:uppercase;letter-spacing:.07em;font-weight:700;margin-bottom:3px">First call</div>
+        <div style="font-size:16px;font-weight:800;color:var(--t1);margin-top:2px">8:00am</div>
+      </div>
+      <div style="padding:10px 14px;background:var(--bg3);border-right:1px solid var(--b1)">
+        <div style="font-size:8px;color:var(--t3);text-transform:uppercase;letter-spacing:.07em;font-weight:700;margin-bottom:3px">Last call</div>
+        <div style="font-size:16px;font-weight:800;color:var(--t1);margin-top:2px">5:00pm</div>
+      </div>
+      <div style="padding:10px 14px;background:var(--bg3)">
+        <div style="font-size:8px;color:var(--t3);text-transform:uppercase;letter-spacing:.07em;font-weight:700;margin-bottom:3px">Dean 1:1</div>
+        <div style="font-size:13px;font-weight:700;color:var(--amb);margin-top:2px">4:00pm</div>
+      </div>
+    </div>
+
+    <!-- SoS LOOKUP -->
+    <div style="display:flex;align-items:center;gap:8px;padding:8px 12px;background:var(--bg3);border:1px solid var(--b1);border-radius:var(--r);margin-bottom:12px">
+      <span style="font-size:11px;font-weight:600;color:var(--t2);white-space:nowrap">&#127963; SoS:</span>
+      <select id="sos-state-pc" style="padding:4px 8px;border-radius:var(--rs);border:1px solid var(--b2);background:var(--bg4);color:var(--t1);font-size:11px;font-family:\'DM Sans\',sans-serif;outline:none;flex:1">
         <option value="">Select state...</option>
         <option value="https://www.sos.state.al.us/arc/">Alabama</option><option value="https://www.commerce.alaska.gov/cbp/main/search/entities">Alaska</option><option value="https://ecorp.azcc.gov/BusinessSearch/BusinessSearch">Arizona</option><option value="https://www.sos.arkansas.gov/corps/search_all.php">Arkansas</option><option value="https://bizfileonline.sos.ca.gov/search/business">California</option><option value="https://www.sos.state.co.us/biz/BusinessEntityCriteriaExt.do">Colorado</option><option value="https://service.ct.gov/business/s/onlinebusinesssearch">Connecticut</option><option value="https://icis.corp.delaware.gov/Ecorp/EntitySearch/NameSearch.aspx">Delaware</option><option value="https://dos.myflorida.com/sunbiz/search/">Florida</option><option value="https://ecorp.sos.ga.gov/BusinessSearch">Georgia</option><option value="https://portal.ehawaii.gov/business/business-registrations/">Hawaii</option><option value="https://sosbiz.idaho.gov/">Idaho</option><option value="https://www.ilsos.gov/corporatellc/">Illinois</option><option value="https://bsd.sos.in.gov/publicbusinesssearch">Indiana</option><option value="https://www.sos.ks.gov/corps/business_entity_searches.html">Kansas</option><option value="https://web.sos.ky.gov/bso/">Kentucky</option><option value="https://coraweb.sos.la.gov/commercialrecordings/">Louisiana</option><option value="https://egov.maryland.gov/BusinessExpress/EntitySearch">Maryland</option><option value="https://corp.sec.state.ma.us/CorpWeb/CorpSearch/CorpSearch.aspx">Massachusetts</option><option value="https://cofs.lara.state.mi.us/SearchApi/Search/Search">Michigan</option><option value="https://mblsportal.sos.state.mn.us/">Minnesota</option><option value="https://corp.sos.ms.gov/corp/portal/c/page/corpBusinessIdSearch/portal.aspx">Mississippi</option><option value="https://bsd.sos.mo.gov/BusinessEntity/BESearch.aspx">Missouri</option><option value="https://sosmt.gov/business/">Montana</option><option value="https://www.nebraska.gov/sos/corp/corpsearch.cgi">Nebraska</option><option value="https://esos.nv.gov/EntitySearch/OnlineEntitySearch">Nevada</option><option value="https://www.njportal.com/DOR/BusinessNameSearch/">New Jersey</option><option value="https://portal.sos.state.nm.us/BFS/online/CorporationBusinessSearch">New Mexico</option><option value="https://apps.dos.ny.gov/publicInquiry/">New York</option><option value="https://www.sosnc.gov/online_services/search/by_title/_Business_Registration">North Carolina</option><option value="https://firststop.sos.nd.gov/search/business">North Dakota</option><option value="https://bsportal.ohiosos.gov/">Ohio</option><option value="https://www.sos.ok.gov/corp/corpInquiryFind.aspx">Oklahoma</option><option value="https://sos.oregon.gov/business/pages/find.aspx">Oregon</option><option value="https://www.corporations.pa.gov/search/corpsearch">Pennsylvania</option><option value="https://businessfilings.sc.gov/">South Carolina</option><option value="https://sosenterprise.sd.gov/BusinessServices/Business/FilingSearch.aspx">South Dakota</option><option value="https://tnbear.tn.gov/Ecommerce/FilingSearch.aspx">Tennessee</option><option value="https://www.sos.state.tx.us/corp/sosda/index.shtml">Texas</option><option value="https://secure.utah.gov/bes/index.html">Utah</option><option value="https://cis.scc.virginia.gov/">Virginia</option><option value="https://ccfs.sos.wa.gov/">Washington</option><option value="https://apps.wv.gov/SOS/BusinessEntitySearch/">West Virginia</option><option value="https://www.wdfi.org/apps/CorpSearch/Search.aspx">Wisconsin</option><option value="https://soswy.state.wy.us/Business/SearchBusiness.aspx">Wyoming</option>
       </select>
-      <button onclick="var s=document.getElementById('sos-state-pc').value;if(s)window.open(s,'_blank');" style="padding:5px 12px;border-radius:var(--rs);border:none;background:var(--blu);color:#fff;font-size:11px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;white-space:nowrap">Open ↗</button>
-    </div>
-    <div class="ec" style="margin-bottom:14px">
-      <div class="ec-hdr"><div class="ec-ht">&#128231; Pre-call email &mdash; All American Doors &middot; 9:00am today</div><span class="bx ba">Draft &middot; Send before 8:45am</span></div>
-      <div class="ec-field"><div class="ec-field-lbl">To</div><input value="abileneallamericandoor@yahoo.com"></div>
-      <div class="ec-field"><div class="ec-field-lbl">CC</div><input placeholder="Add CC..."></div>
-      <div class="ec-field"><div class="ec-field-lbl">Subject</div><div class="ec-field-val">Looking forward to our call this morning &mdash; quick agenda</div></div>
-      <div class="ec-body" style="min-height:auto;font-size:11.5px">Hey Leslie and Reid,
-
-Looking forward to connecting at 9am. Wanted to send a quick note so you know exactly what to expect.
-
-Here&#x27;s how I&#x27;m thinking about our time together:
-
-First 5-10 min: Quick intros and a little about your background at All American Doors &mdash; I want to make sure I understand the full picture before I say anything.
-
-Next 10-15 min: Walk me through how the business runs today. Dispatch, invoicing, how your techs document jobs. The more specific the better.
-
-Remaining time: I&#x27;ll show you exactly how other garage door shops in Texas have solved the same problems &mdash; and what ServiceTitan would look like for your specific setup.
-
-No slides, no dog and pony show. Just a real conversation.
-
-See you at 9.
-
-Blayne &middot; 707-478-9500</div>
-      <div class="ec-foot">
-        <button class="send-btn" onclick="this.textContent='✓ Sent via Gmail';this.style.opacity='.5';this.disabled=true">Send via Gmail &#8599;</button>
-        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.ec').querySelector('.ec-body').innerText);this.textContent='Copied ✓';this.classList.add('ok');setTimeout(()=>{this.textContent='Copy';this.classList.remove('ok')},2000)">Copy</button>
-        <span style="font-size:11px;color:var(--t3);margin-left:auto">&#10052; Auto-drafted from SFDC + Calendar</span>
-      </div>
-    </div>
-    <div class="card s" style="margin-bottom:13px">
-      <div class="sec">&#10052; Click any call below &mdash; full pre-call one-pager expands</div>
-      <div style="font-size:11px;color:var(--t2);line-height:1.6">Auto-generated from Google Calendar + Snowflake SFDC history + website scrape. Every call on today's calendar listed. Click to expand the full brief &mdash; SPIN questions, competitive angle, SFDC history, one thing to remember.</div>
+      <button onclick="var s=document.getElementById(\'sos-state-pc\').value;if(s)window.open(s,\'_blank\');" style="padding:5px 12px;border-radius:var(--rs);border:none;background:var(--blu);color:#fff;font-size:11px;font-weight:600;cursor:pointer;font-family:\'DM Sans\',sans-serif;white-space:nowrap">Open &#8599;</button>
     </div>
 
-    <div class="call-item open" id="c1">
-      <div class="call-time">9:00am</div>
-      <div class="call-info">
-        <div class="call-name">All American Doors Inc.</div>
-        <div class="call-meta"><span>Exploratory &middot; Reid Kyker + Leslie</span><span>&middot;</span><span>60 min</span><span>&middot;</span><span class="bx ba" style="font-size:10px">FieldEdge competing</span><span>&middot;</span><a class="sfl" href="https://servicetitan.lightning.force.com" target="_blank">&#8599; SFDC</a></div>
-      </div>
-      <div class="call-chevron">&#8250;</div>
-      <div class="call-detail" onclick="event.stopPropagation()">
-        <div class="g2" style="margin-bottom:0">
-          <div>
-            <div style="font-size:10px;font-weight:500;color:var(--grn);text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px">Who you're walking into</div>
-            <div style="font-size:11.5px;color:var(--t2);line-height:1.7;margin-bottom:9px">Reid is the owner, saw ST demo 5 months ago. <strong style="color:var(--t1)">Leslie runs invoicing and is the real DM.</strong> 30-40 service calls/day, 52-city radius. Phones off to take this call. Abilene data center driving growth fast.</div>
-            <div style="display:flex;gap:6px;margin-bottom:9px;flex-wrap:wrap">
-              <a href="https://mycpa.cpa.state.tx.us/coa/Search.do" target="_blank" style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:var(--rs);background:var(--blu-bg);border:1px solid var(--blu-b);color:var(--blu);font-size:10px;font-weight:500;text-decoration:none;font-family:'DM Sans',sans-serif">&#127968; TX SoS lookup &#8599;</a>
-              <a href="https://www.linkedin.com/search/results/companies/?keywords=All+American+Doors+Abilene" target="_blank" style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:var(--rs);background:var(--pur-bg);border:1px solid var(--pur-b);color:var(--pur);font-size:10px;font-weight:500;text-decoration:none;font-family:'DM Sans',sans-serif">&#128100; LinkedIn &#8599;</a>
-              <a href="https://allamericandoor.com" target="_blank" style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:var(--rs);background:var(--bg4);border:1px solid var(--b2);color:var(--t2);font-size:10px;font-weight:500;text-decoration:none;font-family:'DM Sans',sans-serif">&#127758; Website &#8599;</a>
+    <!-- ═══ EVENT CARDS ═══ -->
+    <div id="pc-event-list">
+
+      <!-- ── 8:00am HILL COUNTRY DOORS ── PROSPECT ── -->
+      <div id="ev-hill-country" style="border:1px solid var(--grn-b);border-radius:var(--r);overflow:hidden;margin-bottom:10px;background:var(--bg2)">
+        <div style="display:flex;gap:0">
+          <!-- Time -->
+          <div style="padding:14px 16px;background:var(--grn-bg);border-right:1px solid var(--grn-b);display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:72px;flex-shrink:0">
+            <div style="font-size:14px;font-weight:800;color:var(--grn)">8:00am</div>
+            <div style="font-size:9px;color:var(--grn);opacity:.7;margin-top:1px">9:00am</div>
+            <div style="font-size:8px;font-weight:700;color:var(--grn);text-transform:uppercase;letter-spacing:.06em;margin-top:5px;padding:2px 6px;background:rgba(0,0,0,.12);border-radius:3px">PROSPECT</div>
+          </div>
+          <!-- Content -->
+          <div style="padding:12px 16px;flex:1">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px">
+              <div style="font-size:14px;font-weight:800;color:var(--t1);letter-spacing:-.3px">Hill Country Doors LLC</div>
+              <div id="ev-hill-country-status" style="font-size:11px;font-weight:600;color:var(--t3)"></div>
             </div>
-            <div style="font-size:10px;font-weight:500;color:var(--grn);text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px">&#10052; Website intel &amp; competitive angle</div>
-            <div style="font-size:11.5px;color:var(--t2);line-height:1.7">Recently added commercial services page. 4.8 &#11088; reviews. <strong style="color:var(--t1)">FieldEdge is residential-first.</strong> Limited commercial job costing. Weaker mobile offline on job sites. 600+ shops switched to ST. With Abilene's construction ramp, they'll outgrow FE fast.</div>
-          </div>
-          <div>
-            <div style="font-size:10px;font-weight:500;color:var(--grn);text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px">SPIN questions</div>
-            <div style="font-size:11px;color:var(--t2);padding:4px 0;border-bottom:1px solid var(--b1);display:flex;gap:7px"><span style="color:var(--grn);font-family:'DM Mono',monospace;font-size:10px;flex-shrink:0">S</span><span>Walk me through what happens after a tech finishes a job &mdash; all the way to when Leslie sees the invoice.</span></div>
-            <div style="font-size:11px;color:var(--t2);padding:4px 0;border-bottom:1px solid var(--b1);display:flex;gap:7px"><span style="color:var(--grn);font-family:'DM Mono',monospace;font-size:10px;flex-shrink:0">P</span><span>How often are you stopping to call a tech to figure out what they actually did?</span></div>
-            <div style="font-size:11px;color:var(--t2);padding:4px 0;border-bottom:1px solid var(--b1);display:flex;gap:7px"><span style="color:var(--grn);font-family:'DM Mono',monospace;font-size:10px;flex-shrink:0">I</span><span>That stack of unsold estimates &mdash; realistic dollar amount right now?</span></div>
-            <div style="font-size:11px;color:var(--t2);padding:4px 0;border-bottom:1px solid var(--b1);display:flex;gap:7px"><span style="color:var(--grn);font-family:'DM Mono',monospace;font-size:10px;flex-shrink:0">I</span><span>With the data center ramping, where does your tech count need to be in 12 months?</span></div>
-            <div style="font-size:11px;color:var(--t2);padding:4px 0;display:flex;gap:7px"><span style="color:var(--grn);font-family:'DM Mono',monospace;font-size:10px;flex-shrink:0">N</span><span>If Leslie got two hours back every day &mdash; what would she do with that time?</span></div>
-            <div style="margin-top:9px;background:var(--grn-bg);border:1px solid var(--grn-b);border-radius:var(--rs);padding:8px 10px;font-size:12px;color:var(--grn);font-weight:500">Don't show features. Show Leslie getting her afternoon back.</div>
-          </div>
-        </div>
-      </div>
-    </div>
+            <div style="font-size:11px;color:var(--t3);margin-bottom:6px">&#128100; Brodie (hillcountrydoorsllc@gmail.com) &middot; Garage Door &middot; Texas &middot; Exploratory</div>
+            <div style="font-size:11px;color:var(--t2);line-height:1.6;margin-bottom:8px">Booked via Sam Rumbelow. Reminder sent this morning. First real look at ST. Garage door shop in Texas Hill Country area. Come ready with garage door case studies and the Grayco/All American win stories.</div>
 
-    <div class="call-item" id="c2">
-      <div class="call-time">2:00pm</div>
-      <div class="call-info">
-        <div class="call-name">R&amp;A Enterprises</div>
-        <div class="call-meta"><span>Pricing Call &middot; Rick Lefavor (Owner)</span><span>&middot;</span><span>45 min</span><span>&middot;</span><span class="bx ba" style="font-size:10px">ServiceFusion competing</span><span>&middot;</span><a class="sfl" href="https://servicetitan.lightning.force.com" target="_blank">&#8599; SFDC</a></div>
-      </div>
-      <div class="call-chevron">&#8250;</div>
-      <div class="call-detail" onclick="event.stopPropagation()">
-        <div class="g2" style="margin-bottom:0">
-          <div>
-            <div style="font-size:10px;font-weight:500;color:var(--grn);text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px">&#10052; SFDC history</div>
-            <div style="font-size:11.5px;color:var(--t2);line-height:1.7;margin-bottom:9px">2 prior calls. Last touch 04/12 &mdash; <strong style="color:var(--t1)">Rick asked about ServiceFusion pricing on that call.</strong> 8 techs, HVAC, Denver CO, QBO. Last call ended without committed next step. He's actively shopping.</div>
-            <div style="display:flex;gap:6px;margin-bottom:9px;flex-wrap:wrap">
-              <a href="https://www.sos.state.co.us/biz/BusinessEntityCriteriaExt.do" target="_blank" style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:var(--rs);background:var(--blu-bg);border:1px solid var(--blu-b);color:var(--blu);font-size:10px;font-weight:500;text-decoration:none;font-family:'DM Sans',sans-serif">&#127968; CO SoS lookup &#8599;</a>
-              <a href="https://www.linkedin.com/search/results/companies/?keywords=R+A+Enterprises+Denver+HVAC" target="_blank" style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:var(--rs);background:var(--pur-bg);border:1px solid var(--pur-b);color:var(--pur);font-size:10px;font-weight:500;text-decoration:none;font-family:'DM Sans',sans-serif">&#128100; LinkedIn &#8599;</a>
+            <!-- Action buttons row -->
+            <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px">
+              <a href="https://servicetitan.zoom.us/my/blayneservicetitan" target="_blank" style="display:inline-flex;align-items:center;gap:4px;padding:5px 12px;border-radius:var(--rs);background:var(--blu);color:#fff;font-size:11px;font-weight:600;text-decoration:none">&#128249; Join Zoom</a>
+              <button onclick="openPreCallEmailModal('hill-country','Brodie','Hill Country Doors LLC','hillcountrydoorsllc@gmail.com','8:00am')" style="display:inline-flex;align-items:center;gap:4px;padding:5px 12px;border-radius:var(--rs);border:1px solid var(--grn-b);background:var(--grn-bg);color:var(--grn);font-size:11px;font-weight:600;cursor:pointer;font-family:\'DM Sans\',sans-serif">&#9993; Pre-call email</button>
+              <button onclick="toggleIntel('hill-country')" style="display:inline-flex;align-items:center;gap:4px;padding:5px 12px;border-radius:var(--rs);border:1px solid var(--b2);background:none;color:var(--t2);font-size:11px;cursor:pointer;font-family:\'DM Sans\',sans-serif">&#128269; Intel</button>
             </div>
-            <div style="background:var(--amb-bg);border:1px solid var(--amb-b);border-radius:var(--rs);padding:8px 10px;font-size:12px;color:var(--amb);font-weight:500">DocuSign by end of call. Month-end 05/31. PRICE IS NEGOTIABLE. Do not let price lose this deal.</div>
+
+            <!-- Intel panel (collapsed) -->
+            <div id="intel-hill-country" style="display:none;background:var(--bg4);border:1px solid var(--b1);border-radius:var(--rs);padding:10px 12px;margin-bottom:8px">
+              <div style="font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:.07em;font-weight:700;margin-bottom:7px">Pre-call intel</div>
+              <div style="display:flex;gap:6px;flex-wrap:wrap">
+                <a href="https://www.google.com/search?q=Hill+Country+Doors+LLC+Texas" target="_blank" style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:var(--rs);border:1px solid var(--b2);background:var(--bg3);color:var(--t2);font-size:10px;text-decoration:none">&#127758; Google</a>
+                <a href="https://www.linkedin.com/search/results/companies/?keywords=Hill%20Country%20Doors" target="_blank" style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:var(--rs);border:1px solid var(--b2);background:var(--bg3);color:var(--t2);font-size:10px;text-decoration:none">&#128101; LinkedIn</a>
+                <a href="https://www.google.com/search?q=Hill+Country+Doors+LLC+Texas+careers+jobs+hiring" target="_blank" style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:var(--rs);border:1px solid var(--b2);background:var(--bg3);color:var(--t2);font-size:10px;text-decoration:none">&#128188; Careers?</a>
+                <a href="https://www.google.com/search?q=weather+Texas+Hill+Country+today" target="_blank" style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:var(--rs);border:1px solid var(--b2);background:var(--bg3);color:var(--t2);font-size:10px;text-decoration:none">&#127783; Weather TX</a>
+                <a href="https://www.google.com/search?q=Hill+Country+Doors+reviews+Yelp+Google" target="_blank" style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:var(--rs);border:1px solid var(--b2);background:var(--bg3);color:var(--t2);font-size:10px;text-decoration:none">&#11088; Reviews</a>
+              </div>
+            </div>
+
+            <!-- Outcome tracking -->
+            <div style="display:flex;gap:5px;align-items:center">
+              <span style="font-size:9px;color:var(--t3);font-weight:600;text-transform:uppercase;letter-spacing:.07em">Outcome:</span>
+              <button onclick="setOutcome(\'hill-country\',\'showed\')" id="oc-hill-country-showed" style="padding:4px 10px;border-radius:100px;border:1px solid var(--b2);background:none;color:var(--t2);font-size:10px;cursor:pointer;font-family:\'DM Sans\',sans-serif">&#10003; Showed</button>
+              <button onclick="setOutcome(\'hill-country\',\'noshow\')" id="oc-hill-country-noshow" style="padding:4px 10px;border-radius:100px;border:1px solid var(--b2);background:none;color:var(--t2);font-size:10px;cursor:pointer;font-family:\'DM Sans\',sans-serif">&#10007; No show</button>
+              <button onclick="setOutcome(\'hill-country\',\'hot\')" id="oc-hill-country-hot" style="padding:4px 10px;border-radius:100px;border:1px solid var(--b2);background:none;color:var(--t2);font-size:10px;cursor:pointer;font-family:\'DM Sans\',sans-serif">&#11088; Hot prospect</button>
+            </div>
           </div>
-          <div>
-            <div style="font-size:10px;font-weight:500;color:var(--grn);text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px">SPIN questions</div>
-            <div style="font-size:11px;color:var(--t2);padding:4px 0;border-bottom:1px solid var(--b1);display:flex;gap:7px"><span style="color:var(--grn);font-family:'DM Mono',monospace;font-size:10px;flex-shrink:0">S</span><span>When you compare SF to us, what are the 2-3 things that matter most in this decision?</span></div>
-            <div style="font-size:11px;color:var(--t2);padding:4px 0;border-bottom:1px solid var(--b1);display:flex;gap:7px"><span style="color:var(--grn);font-family:'DM Mono',monospace;font-size:10px;flex-shrink:0">P</span><span>How do you track parts and inventory on jobs today?</span></div>
-            <div style="font-size:11px;color:var(--t2);padding:4px 0;border-bottom:1px solid var(--b1);display:flex;gap:7px"><span style="color:var(--grn);font-family:'DM Mono',monospace;font-size:10px;flex-shrink:0">I</span><span>If you go with a platform without full job costing &mdash; what does that cost when you scale to 12 techs?</span></div>
-            <div style="font-size:11px;color:var(--t2);padding:4px 0;display:flex;gap:7px"><span style="color:var(--grn);font-family:'DM Mono',monospace;font-size:10px;flex-shrink:0">N</span><span>If I can get you to Works at Essentials price with 3 months free &mdash; what needs to be true to say yes today?</span></div>
+        </div>
+      </div>
+
+      <!-- ── 9:00am BUFFER ── -->
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;padding:6px 12px;background:var(--bg3);border:1px solid var(--b1);border-radius:var(--rs)">
+        <div style="font-size:11px;font-weight:600;color:var(--t3);min-width:54px">9:00am</div>
+        <div style="width:6px;height:6px;border-radius:50%;background:var(--b2);flex-shrink:0"></div>
+        <div style="font-size:11px;color:var(--t3)">[Meeting Buffer]</div>
+      </div>
+
+      <!-- ── 10:00am LPH MECHANICAL ── PROSPECT ── -->
+      <div id="ev-lph" style="border:1px solid var(--grn-b);border-radius:var(--r);overflow:hidden;margin-bottom:10px;background:var(--bg2)">
+        <div style="display:flex;gap:0">
+          <div style="padding:14px 16px;background:var(--grn-bg);border-right:1px solid var(--grn-b);display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:72px;flex-shrink:0">
+            <div style="font-size:14px;font-weight:800;color:var(--grn)">10:00am</div>
+            <div style="font-size:9px;color:var(--grn);opacity:.7;margin-top:1px">11:00am</div>
+            <div style="font-size:8px;font-weight:700;color:var(--grn);text-transform:uppercase;letter-spacing:.06em;margin-top:5px;padding:2px 6px;background:rgba(0,0,0,.12);border-radius:3px">PROSPECT</div>
           </div>
+          <div style="padding:12px 16px;flex:1">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px">
+              <div style="font-size:14px;font-weight:800;color:var(--t1);letter-spacing:-.3px">LPH Mechanical LLC</div>
+              <div id="ev-lph-status" style="font-size:11px;font-weight:600;color:var(--t3)"></div>
+            </div>
+            <div style="font-size:11px;color:var(--t3);margin-bottom:6px">&#128100; Jeanette (jeanette@lphmechanical.com) &middot; Mechanical / HVAC &middot; Exploratory &middot; Booked by Anna Reynolds</div>
+            <div style="font-size:11px;color:var(--t2);line-height:1.6;margin-bottom:8px">Brand new exploratory. Booked last night by Anna. No prior email history. Come in fresh, run full discovery. Mechanical contractor so could be HVAC, plumbing, or multi-trade. Ask about trade mix early.</div>
+            <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px">
+              <a href="https://servicetitan.zoom.us/my/blayneservicetitan" target="_blank" style="display:inline-flex;align-items:center;gap:4px;padding:5px 12px;border-radius:var(--rs);background:var(--blu);color:#fff;font-size:11px;font-weight:600;text-decoration:none">&#128249; Join Zoom</a>
+              <button onclick="openPreCallEmailModal(\'lph\',\'Jeanette\',\'LPH Mechanical LLC\',\'jeanette@lphmechanical.com\',\'10:00am\')" style="display:inline-flex;align-items:center;gap:4px;padding:5px 12px;border-radius:var(--rs);border:1px solid var(--grn-b);background:var(--grn-bg);color:var(--grn);font-size:11px;font-weight:600;cursor:pointer;font-family:\'DM Sans\',sans-serif">&#9993; Pre-call email</button>
+              <button onclick="toggleIntel(\'lph\')" style="display:inline-flex;align-items:center;gap:4px;padding:5px 12px;border-radius:var(--rs);border:1px solid var(--b2);background:none;color:var(--t2);font-size:11px;cursor:pointer;font-family:\'DM Sans\',sans-serif">&#128269; Intel</button>
+            </div>
+            <div id="intel-lph" style="display:none;background:var(--bg4);border:1px solid var(--b1);border-radius:var(--rs);padding:10px 12px;margin-bottom:8px">
+              <div style="font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:.07em;font-weight:700;margin-bottom:7px">Pre-call intel</div>
+              <div style="display:flex;gap:6px;flex-wrap:wrap">
+                <a href="https://www.google.com/search?q=LPH+Mechanical+LLC" target="_blank" style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:var(--rs);border:1px solid var(--b2);background:var(--bg3);color:var(--t2);font-size:10px;text-decoration:none">&#127758; Google</a>
+                <a href="https://www.linkedin.com/search/results/companies/?keywords=LPH%20Mechanical" target="_blank" style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:var(--rs);border:1px solid var(--b2);background:var(--bg3);color:var(--t2);font-size:10px;text-decoration:none">&#128101; LinkedIn</a>
+                <a href="https://www.google.com/search?q=LPH+Mechanical+LLC+careers+jobs+hiring" target="_blank" style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:var(--rs);border:1px solid var(--b2);background:var(--bg3);color:var(--t2);font-size:10px;text-decoration:none">&#128188; Careers?</a>
+                <a href="https://www.google.com/search?q=LPH+Mechanical+reviews" target="_blank" style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:var(--rs);border:1px solid var(--b2);background:var(--bg3);color:var(--t2);font-size:10px;text-decoration:none">&#11088; Reviews</a>
+              </div>
+            </div>
+            <div style="display:flex;gap:5px;align-items:center">
+              <span style="font-size:9px;color:var(--t3);font-weight:600;text-transform:uppercase;letter-spacing:.07em">Outcome:</span>
+              <button onclick="setOutcome(\'lph\',\'showed\')" id="oc-lph-showed" style="padding:4px 10px;border-radius:100px;border:1px solid var(--b2);background:none;color:var(--t2);font-size:10px;cursor:pointer;font-family:\'DM Sans\',sans-serif">&#10003; Showed</button>
+              <button onclick="setOutcome(\'lph\',\'noshow\')" id="oc-lph-noshow" style="padding:4px 10px;border-radius:100px;border:1px solid var(--b2);background:none;color:var(--t2);font-size:10px;cursor:pointer;font-family:\'DM Sans\',sans-serif">&#10007; No show</button>
+              <button onclick="setOutcome(\'lph\',\'hot\')" id="oc-lph-hot" style="padding:4px 10px;border-radius:100px;border:1px solid var(--b2);background:none;color:var(--t2);font-size:10px;cursor:pointer;font-family:\'DM Sans\',sans-serif">&#11088; Hot prospect</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── 11:00am BUFFER ── -->
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;padding:6px 12px;background:var(--bg3);border:1px solid var(--b1);border-radius:var(--rs)">
+        <div style="font-size:11px;font-weight:600;color:var(--t3);min-width:54px">11:00am</div>
+        <div style="width:6px;height:6px;border-radius:50%;background:var(--b2);flex-shrink:0"></div>
+        <div style="font-size:11px;color:var(--t3)">[Meeting Buffer]</div>
+      </div>
+
+      <!-- ── 12:00pm A/C TECH PRO ── CLOSED WON TRANSITION ── -->
+      <div id="ev-actech" style="border:1px solid var(--ice-b);border-radius:var(--r);overflow:hidden;margin-bottom:10px;background:var(--bg2)">
+        <div style="display:flex;gap:0">
+          <div style="padding:14px 16px;background:var(--ice-bg);border-right:1px solid var(--ice-b);display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:72px;flex-shrink:0">
+            <div style="font-size:14px;font-weight:800;color:var(--ice)">12:00pm</div>
+            <div style="font-size:9px;color:var(--ice);opacity:.7;margin-top:1px">12:30pm</div>
+            <div style="font-size:8px;font-weight:700;color:var(--ice);text-transform:uppercase;letter-spacing:.06em;margin-top:5px;padding:2px 6px;background:rgba(0,0,0,.12);border-radius:3px">WON &#10003;</div>
+          </div>
+          <div style="padding:12px 16px;flex:1">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px">
+              <div style="display:flex;align-items:center;gap:8px">
+                <div style="font-size:14px;font-weight:800;color:var(--t1);letter-spacing:-.3px">A/C Tech Professionals</div>
+                <span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:100px;background:var(--ice-bg);color:var(--ice);border:1px solid var(--ice-b)">CLOSED WON</span>
+              </div>
+            </div>
+            <div style="font-size:11px;color:var(--t3);margin-bottom:6px">&#128100; David Aceves (d.aceves@actechpro.net) &middot; HVAC &middot; DocuSign completed May 28 &middot; Transition call</div>
+            <div style="font-size:11px;color:var(--t2);line-height:1.6;margin-bottom:8px">DocuSign completed May 28. Ebony Smith (ebsmith@servicetitan.com) is now the onboarding lead and already reached out to David. This is a transition call to hand him off cleanly and set expectations. Not a sales call.</div>
+            <div style="background:var(--ice-bg);border:1px solid var(--ice-b);border-radius:var(--rs);padding:8px 12px;margin-bottom:8px;font-size:11px;color:var(--t2);line-height:1.5">
+              <strong style="color:var(--ice)">Talking points:</strong> Welcome David to the family. Introduce Ebony as his point person. Timeline: pre-implementation phase starts now. Set expectation that Ebony drives from here. Ask if he has questions before you hand off.
+            </div>
+            <div style="display:flex;gap:6px;flex-wrap:wrap">
+              <a href="https://servicetitan.zoom.us/j/98836498099" target="_blank" style="display:inline-flex;align-items:center;gap:4px;padding:5px 12px;border-radius:var(--rs);background:var(--blu);color:#fff;font-size:11px;font-weight:600;text-decoration:none">&#128249; Join Zoom</a>
+              <button onclick="toggleIntel(\'actech\')" style="display:inline-flex;align-items:center;gap:4px;padding:5px 12px;border-radius:var(--rs);border:1px solid var(--b2);background:none;color:var(--t2);font-size:11px;cursor:pointer;font-family:\'DM Sans\',sans-serif">&#128269; Account intel</button>
+            </div>
+            <div id="intel-actech" style="display:none;background:var(--bg4);border:1px solid var(--b1);border-radius:var(--rs);padding:10px 12px;margin-top:8px">
+              <div style="font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:.07em;font-weight:700;margin-bottom:7px">Account intel</div>
+              <div style="display:flex;gap:6px;flex-wrap:wrap">
+                <a href="https://www.google.com/search?q=A/C+Tech+Professionals+actechpro" target="_blank" style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:var(--rs);border:1px solid var(--b2);background:var(--bg3);color:var(--t2);font-size:10px;text-decoration:none">&#127758; Google</a>
+                <a href="https://www.linkedin.com/search/results/companies/?keywords=AC%20Tech%20Professionals" target="_blank" style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:var(--rs);border:1px solid var(--b2);background:var(--bg3);color:var(--t2);font-size:10px;text-decoration:none">&#128101; LinkedIn</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── 3:30pm KYLE 1:1 ── -->
+      <div style="display:flex;gap:0;border:1px solid var(--b1);border-radius:var(--r);overflow:hidden;margin-bottom:10px;background:var(--bg2)">
+        <div style="padding:12px 16px;background:var(--blu-bg);border-right:1px solid var(--blu-b);display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:72px;flex-shrink:0">
+          <div style="font-size:13px;font-weight:800;color:var(--blu)">3:30pm</div>
+          <div style="font-size:9px;color:var(--blu);opacity:.7;margin-top:1px">4:00pm</div>
+          <div style="font-size:8px;font-weight:700;color:var(--blu);text-transform:uppercase;letter-spacing:.06em;margin-top:5px;padding:2px 6px;background:rgba(0,0,0,.12);border-radius:3px">INTERNAL</div>
+        </div>
+        <div style="padding:12px 16px;flex:1">
+          <div style="font-size:13px;font-weight:700;color:var(--t1);margin-bottom:3px">Blayne / Kyle Weekly 1:1</div>
+          <div style="font-size:11px;color:var(--t3)">Kyle Maatman (kmaatman@servicetitan.com) &middot; Weekly recurring</div>
+        </div>
+      </div>
+
+      <!-- ── 4:00pm DEAN 1:1 BEGINNING OF MONTH ── -->
+      <div style="display:flex;gap:0;border:1px solid var(--amb-b);border-radius:var(--r);overflow:hidden;margin-bottom:10px;background:var(--bg2)">
+        <div style="padding:12px 16px;background:var(--amb-bg);border-right:1px solid var(--amb-b);display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:72px;flex-shrink:0">
+          <div style="font-size:13px;font-weight:800;color:var(--amb)">4:00pm</div>
+          <div style="font-size:9px;color:var(--amb);opacity:.7;margin-top:1px">5:00pm</div>
+          <div style="font-size:8px;font-weight:700;color:var(--amb);text-transform:uppercase;letter-spacing:.06em;margin-top:5px;padding:2px 6px;background:rgba(0,0,0,.12);border-radius:3px">1:1</div>
+        </div>
+        <div style="padding:12px 16px;flex:1">
+          <div style="font-size:13px;font-weight:700;color:var(--t1);margin-bottom:3px">Dean / Blayne &middot; Beginning of Month!!!</div>
+          <div style="font-size:11px;color:var(--t3);margin-bottom:5px">Dean Oren (doren@servicetitan.com) &middot; Beginning of June 1:1</div>
+          <div style="font-size:11px;color:var(--amb);font-weight:600">Come with: June targets, pipeline outlook, API key status, Blizzy AI update for leadership.</div>
+          <div style="margin-top:5px">
+            <a href="https://servicetitan.zoom.us/j/96099895111" target="_blank" style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:var(--rs);background:var(--blu);color:#fff;font-size:10px;font-weight:600;text-decoration:none;margin-top:4px">&#128249; Join Zoom</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── 5:00pm WRAP ── -->
+      <div style="display:flex;gap:0;border:1px solid var(--b1);border-radius:var(--r);overflow:hidden;margin-bottom:10px;background:var(--bg2)">
+        <div style="padding:12px 16px;background:var(--bg3);border-right:1px solid var(--b1);display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:72px;flex-shrink:0">
+          <div style="font-size:13px;font-weight:800;color:var(--t2)">5:00pm</div>
+          <div style="font-size:9px;color:var(--t3);margin-top:1px">5:30pm</div>
+          <div style="font-size:8px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.06em;margin-top:5px;padding:2px 6px;background:var(--b1);border-radius:3px">WRAP</div>
+        </div>
+        <div style="padding:12px 16px;flex:1">
+          <div style="font-size:13px;font-weight:700;color:var(--t1);margin-bottom:3px">SFDC + SE Check / Call Review</div>
+          <div style="font-size:11px;color:var(--t3);margin-bottom:5px">Daily wrap &middot; recurring</div>
+          <a href="https://servicetitan.zoom.us/j/92145717737" target="_blank" style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:var(--rs);background:var(--blu);color:#fff;font-size:10px;font-weight:600;text-decoration:none">&#128249; Join Zoom</a>
+        </div>
+      </div>
+
+    </div><!-- /pc-event-list -->
+
+    <!-- PRE-CALL EMAIL MODAL -->
+    <div id="pc-email-modal" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.6);z-index:9999;display:none;align-items:center;justify-content:center">
+      <div style="background:var(--bg1);border:1px solid var(--b1);border-radius:var(--r);width:540px;max-width:95vw;max-height:90vh;overflow-y:auto;padding:20px">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+          <div style="font-size:14px;font-weight:700;color:var(--t1)" id="pc-modal-title">Pre-call email</div>
+          <button onclick="closeEmailModal()" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--b2);background:var(--bg3);color:var(--t2);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center">&times;</button>
+        </div>
+        <div class="ec-field"><div class="ec-field-lbl">To</div><input id="pc-modal-to" style="flex:1;padding:5px 9px;border:none;background:none;color:var(--t1);font-size:12px;font-family:\'DM Sans\',sans-serif;outline:none;width:100%"></div>
+        <div class="ec-field"><div class="ec-field-lbl">Subject</div><input id="pc-modal-subj" style="flex:1;padding:5px 9px;border:none;background:none;color:var(--t1);font-size:12px;font-family:\'DM Sans\',sans-serif;outline:none;width:100%"></div>
+        <div id="pc-modal-body" contenteditable="true" style="min-height:220px;padding:12px;background:var(--bg3);border:1px solid var(--b1);border-radius:var(--rs);color:var(--t1);font-size:12px;font-family:\'DM Sans\',sans-serif;line-height:1.7;outline:none;white-space:pre-wrap;margin-top:8px"></div>
+        <div style="display:flex;gap:8px;margin-top:12px">
+          <button onclick="sendModalEmail()" style="flex:1;padding:9px;border-radius:var(--rs);border:none;background:var(--grn);color:#fff;font-size:12px;font-weight:700;cursor:pointer;font-family:\'DM Sans\',sans-serif;display:flex;align-items:center;justify-content:center;gap:5px">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:13px;height:13px"><path d="M22 2L11 13"/><path d="M22 2L15 22l-4-9-9-4 20-7z"/></svg>
+            Open in Gmail
+          </button>
+          <button onclick="closeEmailModal()" style="padding:9px 16px;border-radius:var(--rs);border:1px solid var(--b2);background:none;color:var(--t2);font-size:12px;cursor:pointer;font-family:\'DM Sans\',sans-serif">Cancel</button>
         </div>
       </div>
     </div>
 
-    <div class="cs" style="margin-top:6px">
-      <div class="cs-t">&#128302; Coming: auto-generated call list from Calendar + Snowflake</div>
-      <div class="cs-d">When Calendar and Snowflake are connected: this page auto-populates with every call on today's calendar, matched to SFDC opportunity records, with full brief ready. Open at 8am, your whole day is already prepped.</div>
-    </div>
-  </div>
-
-  <div class="pane" id="pane-spin">
-    <div class="card p" style="margin-bottom:13px">
-      <div class="sec">SPIN game plan builder &mdash; pick your call, get your questions</div>
-      <div style="font-size:11px;color:var(--t2);line-height:1.6">Select the vertical, stage, and primary pain before every call. SPIN questions generate for that exact scenario. Coaching note included for each. Built from your Confluence playbooks.</div>
-    </div>
-
-    <!-- SELECTOR -->
-    <div class="card" style="margin-bottom:13px;padding:14px 16px">
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:12px">
-        <div>
-          <div style="font-size:10px;font-weight:500;color:var(--t3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px">Vertical</div>
-          <div style="display:flex;flex-direction:column;gap:4px" id="spin-vert-btns">
-            <button onclick="setSpin('vert','hvac')" id="sv-hvac" class="spin-sel-btn active-spin">HVAC</button>
-            <button onclick="setSpin('vert','plumbing')" id="sv-plumbing" class="spin-sel-btn">Plumbing</button>
-            <button onclick="setSpin('vert','electrical')" id="sv-electrical" class="spin-sel-btn">Electrical</button>
-            <button onclick="setSpin('vert','garage')" id="sv-garage" class="spin-sel-btn">Garage Door</button>
-            <button onclick="setSpin('vert','multi')" id="sv-multi" class="spin-sel-btn">Multi-trade</button>
-          </div>
-        </div>
-        <div>
-          <div style="font-size:10px;font-weight:500;color:var(--t3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px">Call stage</div>
-          <div style="display:flex;flex-direction:column;gap:4px" id="spin-stage-btns">
-            <button onclick="setSpin('stage','discovery')" id="ss-discovery" class="spin-sel-btn active-spin">Discovery</button>
-            <button onclick="setSpin('stage','demo')" id="ss-demo" class="spin-sel-btn">Demo / Part 2</button>
-            <button onclick="setSpin('stage','pricing')" id="ss-pricing" class="spin-sel-btn">Pricing call</button>
-          </div>
-        </div>
-        <div>
-          <div style="font-size:10px;font-weight:500;color:var(--t3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px">Primary pain</div>
-          <div style="display:flex;flex-direction:column;gap:4px" id="spin-pain-btns">
-            <button onclick="setSpin('pain','invoicing')" id="sp-invoicing" class="spin-sel-btn active-spin">Invoicing / admin</button>
-            <button onclick="setSpin('pain','dispatching')" id="sp-dispatching" class="spin-sel-btn">Dispatching</button>
-            <button onclick="setSpin('pain','growth')" id="sp-growth" class="spin-sel-btn">Scaling / growth</button>
-            <button onclick="setSpin('pain','competitor')" id="sp-competitor" class="spin-sel-btn">Competitor active</button>
-            <button onclick="setSpin('pain','arpu')" id="sp-arpu" class="spin-sel-btn">Price sensitivity</button>
-          </div>
-        </div>
-      </div>
-      <div id="spin-context-label" style="font-size:11px;color:var(--pur);font-weight:500;padding:6px 10px;background:var(--pur-bg);border:1px solid var(--pur-b);border-radius:var(--rs)">
-        HVAC · Discovery · Invoicing / admin pain
-      </div>
-    </div>
-
-    <!-- OUTPUT -->
-    <div id="spin-output">
-      <!-- rendered by JS -->
-    </div>
-
-    <!-- COACHING PRINCIPLE -->
-    <div class="card p" style="margin-top:4px">
-      <div style="font-size:11px;color:var(--t2);line-height:1.75">
-        <strong style="color:var(--t1)">The rule:</strong> SPIN is a listening tool, not a script. Ask, then shut up. The customer articulating their own pain out loud is worth 10x you describing it back to them.<br><br>
-        <strong style="color:var(--t1)">Win signal:</strong> Pain story in the first 15 minutes → 67% close rate. Without it: 28%.<br>
-        <strong style="color:var(--t1)">ARPU signal:</strong> Dollar ROI quantified before pricing → avg $293/tech. Without it: $271.
-      </div>
-    </div>
-  </div>
-
-  <div class="pane" id="pane-icp">
-    <div class="card g" style="margin-bottom:13px">
-      <div class="sec"><div class="pulse"></div>ICP qualification flow &mdash; from Confluence Corp AE Talk Tracks</div>
-      <div style="font-size:11px;color:var(--t1);line-height:1.6">All 10 questions, exact phrasing from Confluence, DQ and re-route conditions. With Snowflake: pre-populates known answers from SFDC so you never ask a returning prospect the same question twice.</div>
-    </div>
-    <div class="card nopad">
-      <div class="icp-q"><span class="icp-num">1</span><div><div class="icp-main">"What is your title at the company?"</div><div class="icp-dq">DQ if not approved title &mdash; abbreviated demo only, no pricing</div></div></div>
-      <div class="icp-q"><span class="icp-num">2</span><div><div class="icp-main">"What % of revenue comes from Residential vs Commercial vs Industrial?"</div><div style="font-size:11px;color:var(--t2);margin-top:3px">If unsure: "Is your revenue more than 50% Commercial?"</div><div class="icp-note">Re-route if &ge; 50% Commercial</div></div></div>
-      <div class="icp-q"><span class="icp-num">3</span><div><div class="icp-main">"What % comes from Service &amp; Replacement vs Construction?"</div><div class="icp-note">Re-route if &gt; 30% Construction &middot; Capture total annual construction revenue if 31-99%</div></div></div>
-      <div class="icp-q"><span class="icp-num">4</span><div><div class="icp-main">"Out of every 5 construction projects, how many last more than 3 months?"</div><div class="icp-dq">DQ if 3+ projects over 3 months AND 4+ subcontractors</div></div></div>
-      <div class="icp-q"><span class="icp-num">5</span><div><div class="icp-main">"What % of revenue comes from Property Management?"</div><div class="icp-note">Re-route if &gt; 30% PM</div></div></div>
-      <div class="icp-q"><span class="icp-num">6</span><div><div class="icp-main">"What %, if any, comes from home warranty work?"</div></div></div>
-      <div class="icp-q"><span class="icp-num">7</span><div><div class="icp-main">"What %, if any, comes through third-party portals like ServiceChannel or Corrigo?"</div></div></div>
-      <div class="icp-q"><span class="icp-num">8</span><div><div class="icp-main">"How many full-time technicians can work a job by themselves?"</div><div class="icp-dq">DQ if fewer than 4 with at least 1 Managed Tech</div></div></div>
-      <div class="icp-q"><span class="icp-num">9</span><div><div class="icp-main">"Do you have a full-time office employee working 35+ hours/week?"</div><div class="icp-dq">DQ if no</div></div></div>
-      <div class="icp-q"><span class="icp-num">10</span><div><div class="icp-main">"Our workflows require scheduling and dispatching from a computer &mdash; is that your current workflow?"</div><div class="icp-dq">DQ if no and won't adopt within 30 days</div></div></div>
-    </div>
-  </div>
-
-  <div class="pane" id="pane-callcoach">
-    <div class="card s" style="margin-bottom:13px">
-      <div class="sec">&#10052; Scored vs Non-Negotiable Scorecard &middot; ARPU coaching baked in</div>
-      <div style="font-size:11px;color:var(--t2);line-height:1.6">Claude reads every Zoom transcript and scores against the Comm+ Non-Negotiable Scorecard. This week: 2 snippets showing ROI with business implication and cost allocation. ARPU coaching fires if pricing is below $285.</div>
-    </div>
-    <div class="g21">
-      <div>
-        <div class="sec">All American Doors &mdash; May 14 &middot; 78 min &middot; 74/100</div>
-        <div class="card" style="margin-bottom:10px">
-          <div class="score-row"><div class="score-lbl">Discovery / ICP framing</div><div class="score-track"><div class="score-fill" style="width:88%;background:var(--grn)"></div></div><div class="score-val" style="color:var(--grn)">9/10</div></div>
-          <div class="score-row"><div class="score-lbl">Pain articulation</div><div class="score-track"><div class="score-fill" style="width:85%;background:var(--grn)"></div></div><div class="score-val" style="color:var(--grn)">8.5</div></div>
-          <div class="score-row"><div class="score-lbl">ROI with biz implication</div><div class="score-track"><div class="score-fill" style="width:65%;background:var(--amb)"></div></div><div class="score-val" style="color:var(--amb)">6.5</div></div>
-          <div class="score-row"><div class="score-lbl">Competitive positioning</div><div class="score-track"><div class="score-fill" style="width:70%;background:var(--amb)"></div></div><div class="score-val" style="color:var(--amb)">7/10</div></div>
-          <div class="score-row"><div class="score-lbl">Next step commitment</div><div class="score-track"><div class="score-fill" style="width:58%;background:var(--red)"></div></div><div class="score-val" style="color:var(--red)">5.8</div></div>
-          <div class="score-row"><div class="score-lbl">ARPU protection</div><div class="score-track"><div class="score-fill" style="width:90%;background:var(--grn)"></div></div><div class="score-val" style="color:var(--grn)">9/10</div></div>
-        </div>
-        <div class="sec">Week 2 req &mdash; best Gong moments</div>
-        <div style="background:var(--bg3);border:1px solid var(--b1);border-radius:var(--rs);padding:9px 11px;font-size:11px;color:var(--t2);margin-bottom:5px"><span style="color:var(--grn);font-family:'DM Mono',monospace">00:24:15</span> &mdash; ROI framing with business implication. Strong Week 2 moment.</div>
-        <div style="background:var(--bg3);border:1px solid var(--b1);border-radius:var(--rs);padding:9px 11px;font-size:11px;color:var(--t2)"><span style="color:var(--grn);font-family:'DM Mono',monospace">00:57:40</span> &mdash; Confident pricing reveal, Works package, no leading with discount.</div>
-      </div>
-      <div>
-        <div class="sec">What to work on</div>
-        <div class="imp"><div><div class="imp-lbl">Improve</div><div class="imp-body">FieldEdge at 1:15:00 &mdash; you pivoted. Address head-on earlier. Plant the evaluation frame: "Here's what to compare when you talk to them next week."</div></div></div>
-        <div class="imp"><div><div class="imp-lbl">Improve</div><div class="imp-body">Next step: "sometime next week." Leslie said Tuesday or Wednesday. That was your close. "Let me block 10am Tuesday right now for both of you."</div></div></div>
-        <div class="imp"><div><div class="imp-lbl">ARPU &mdash; ROI before price</div><div class="imp-body">ROI mentioned but not quantified. "Two hours/day &times; $75/hr = $150 lost daily in Leslie's time alone" would have neutralized the price conversation entirely.</div></div></div>
-        <div class="imp good"><div><div class="imp-lbl">Great</div><div class="imp-body">Mirrored Leslie's pain in her own words. That's when she engaged. Discovery is your strongest skill.</div></div></div>
-        <div class="imp good"><div><div class="imp-lbl">Great</div><div class="imp-body">Abilene data center callback in the follow-up email. You researched it post-call. That's the detail that separates you from every other AE they talked to.</div></div></div>
-        <div class="sec" style="margin-top:10px">Pattern &middot; last 10 calls</div>
-        <div class="card"><div style="font-size:11px;color:var(--t2);line-height:1.75"><strong style="color:var(--grn)">Win signal:</strong> Pain story in first 15 min &rarr; 67% close. Without it: 28%.<br><br><strong style="color:var(--red)">Loss pattern:</strong> Unaddressed pricing in 3/5 recent losses. Competitive framing is the gap.<br><br><strong style="color:var(--amb)">ARPU signal:</strong> Dollar ROI stated before pricing &rarr; avg $293/tech. Without it: $271.</div></div>
-      </div>
-    </div>
   </div>
 
   <div class="pane" id="pane-gong">
@@ -838,7 +864,11 @@ Blayne &middot; 707-478-9500</div>
             <div class="ec-body" id="gong-email-body" contenteditable="true" style="outline:none;min-height:220px;white-space:pre-wrap"></div>
             <div class="ec-foot">
               <button class="copy-btn" onclick="var b=document.getElementById('gong-email-body');navigator.clipboard.writeText(b.innerText);this.textContent='Copied ✓';this.classList.add('ok');setTimeout(()=>{this.textContent='Copy';this.classList.remove('ok')},2000)">Copy email</button>
-              <span style="font-size:10px;color:var(--t3);margin-left:auto">Edit directly, then paste to Gmail</span>
+              <button onclick="sendGongEmail()" style="display:inline-flex;align-items:center;gap:5px;padding:6px 14px;border-radius:var(--rs);border:none;background:var(--grn);color:#fff;font-size:11px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:12px;height:12px"><path d="M22 2L11 13"/><path d="M22 2L15 22l-4-9-9-4 20-7z"/></svg>
+                Send via Gmail
+              </button>
+              <span id="gong-send-status" style="font-size:10px;color:var(--t3);margin-left:auto"></span>
             </div>
           </div>
         </div>
@@ -873,7 +903,7 @@ Just reply here and I'll take it from there.
 
 Blayne &middot; 707-478-9500</div>
           <div class="ec-foot">
-            <button class="send-btn" onclick="this.textContent='&#10003; Sent';this.style.opacity='.5';this.disabled=true" style="font-size:11px;padding:5px 12px">Send via Gmail &#8599;</button>
+            <button class="send-btn" onclick="sendEmailFromCard(this)" style="font-size:11px;padding:5px 12px">Send via Gmail &#8599;</button>
             <div style="font-size:10px;color:var(--t3)">&#10052; OB date &middot; contact from SFDC &middot; location-matched</div>
           </div>
         </div>
@@ -1711,8 +1741,17 @@ Blayne &middot; 707-478-9500</div>
 
   <div class="pane" id="pane-qa">
     <div class="card g" style="margin-bottom:13px">
-      <div class="sec"><div class="pulse"></div>Quick answers &mdash; type any question &middot; AI searches live if not found</div>
-      <div style="font-size:11px;color:var(--t1);line-height:1.6">FAQs pulled from your real Confluence playbooks and daily Slack questions. If your question is not in the list, hit Search and Claude answers it live &mdash; right here in the dashboard, no switching tabs.</div>
+      <div class="sec"><div class="pulse"></div>Quick answers &mdash; type any question &middot; AI searches live if key is set</div>
+      <div style="font-size:11px;color:var(--t1);line-height:1.6">FAQs pulled from your real Confluence playbooks and daily Slack questions. If your question isn't in the list, hit Ask Claude for a live answer. Add your Anthropic API key below to unlock live search.</div>
+    </div>
+
+    <!-- API key row -->
+    <div style="display:flex;gap:6px;align-items:center;padding:8px 12px;background:var(--bg3);border:1px solid var(--b1);border-radius:var(--r);margin-bottom:10px">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px;color:var(--t3);flex-shrink:0"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      <span style="font-size:10px;color:var(--t3);white-space:nowrap">Anthropic API key</span>
+      <input type="password" id="qa-api-key" placeholder="sk-ant-..." style="flex:1;padding:4px 8px;border:1px solid var(--b2);border-radius:var(--rs);background:var(--bg4);color:var(--t1);font-size:11px;font-family:'DM Mono',monospace;outline:none" oninput="localStorage&&localStorage.setItem('blizzy_ak',this.value)">
+      <span id="qa-key-status" style="font-size:10px;color:var(--t3);white-space:nowrap">not set</span>
+      <button onclick="var k=document.getElementById('qa-api-key').value.trim();document.getElementById('qa-key-status').textContent=k.length>10?'key saved':'cleared';document.getElementById('qa-key-status').style.color=k.length>10?'var(--grn)':'var(--t3)';" style="font-size:10px;padding:3px 9px;border-radius:var(--rs);border:1px solid var(--b2);background:none;color:var(--t2);cursor:pointer;font-family:'DM Sans',sans-serif">Save</button>
     </div>
 
     <div style="display:flex;gap:8px;margin-bottom:12px">
@@ -2053,16 +2092,33 @@ window.filterQA=filterQA;
 async function askAI(){
   const q = document.getElementById('qaI').value.trim();
   if(!q) return;
+
+  const keyEl = document.getElementById('qa-api-key');
+  const apiKey = (keyEl && keyEl.value.trim()) || (localStorage && localStorage.getItem('blizzy_ak')) || '';
+
   document.getElementById('ai-answer').style.display='none';
   document.getElementById('ai-loading').style.display='block';
   document.getElementById('qaNR').style.display='none';
+
+  if(!apiKey || apiKey.length < 20){
+    document.getElementById('ai-loading').style.display='none';
+    document.getElementById('ai-answer-text').innerHTML = '<strong style="color:var(--amb)">No API key set.</strong> Paste your Anthropic API key in the field above and click Save, then try again. Once IT approves the key, this fires live Claude answers right here.';
+    document.getElementById('ai-q-label').textContent = '';
+    document.getElementById('ai-answer').style.display='block';
+    return;
+  }
 
   const systemPrompt = 'You are a ServiceTitan Comm+ sales assistant for Blayne Salazar, a Corporate AE. Answer questions about ServiceTitan products, pricing, competitive positioning, ICP qualification, onboarding, integrations, and daily AE workflows. Be direct, specific, and practical. Maximum 4 sentences. Cite sources where relevant (Confluence, Slack channels, ST website). No em dashes, no fluff.';
 
   try {
     const resp = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
-      headers: {'Content-Type':'application/json'},
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': apiKey,
+        'anthropic-version': '2023-06-01',
+        'anthropic-dangerous-direct-browser-access': 'true'
+      },
       body: JSON.stringify({
         model: 'claude-sonnet-4-20250514',
         max_tokens: 1000,
@@ -2071,21 +2127,359 @@ async function askAI(){
       })
     });
     const data = await resp.json();
-    const answer = data.content && data.content[0] ? data.content[0].text : 'Could not get an answer. Try again or check Confluence directly.';
+    if(data.error){
+      throw new Error(data.error.message || 'API error');
+    }
+    const answer = data.content && data.content[0] ? data.content[0].text : 'No answer returned. Try again.';
     document.getElementById('ai-loading').style.display='none';
-    document.getElementById('ai-q-label').textContent = '— ' + q;
+    document.getElementById('ai-q-label').textContent = '-- ' + q;
     document.getElementById('ai-answer-text').textContent = answer;
     document.getElementById('ai-answer').style.display='block';
   } catch(e) {
     document.getElementById('ai-loading').style.display='none';
-    document.getElementById('ai-answer-text').textContent = 'API key not connected yet. Once your Anthropic API key is approved and added, live answers will appear here instantly.';
+    document.getElementById('ai-answer-text').innerHTML = '<strong style="color:var(--red)">Error: '+e.message+'</strong><br>Check your API key or try again.';
     document.getElementById('ai-q-label').textContent = '';
     document.getElementById('ai-answer').style.display='block';
   }
 }
 window.askAI=askAI;
 
-// ═══ PRICING BUILDER v3 ═══
+// ═══ CALENDAR VIEW ENGINE ═══
+
+var _outcomes = {};
+
+function setOutcome(evId, outcome){
+  _outcomes[evId] = outcome;
+  try { localStorage.setItem('blizzy_outcomes_'+evId, outcome); } catch(e){}
+  var configs = {
+    showed: {bg:'var(--grn-bg)', border:'var(--grn-b)', color:'var(--grn)', icon:'&#10003; Showed', label:'Showed'},
+    noshow: {bg:'var(--red-bg)', border:'var(--red-b)', color:'var(--red)',  icon:'&#10007; No show', label:'No show'},
+    hot:    {bg:'var(--amb-bg)', border:'var(--amb-b)', color:'var(--amb)',  icon:'&#11088; Hot prospect', label:'Hot'}
+  };
+  ['showed','noshow','hot'].forEach(function(o){
+    var btn = document.getElementById('oc-'+evId+'-'+o);
+    if(!btn) return;
+    if(o===outcome){
+      var c = configs[o];
+      btn.style.background = c.bg;
+      btn.style.borderColor = c.border;
+      btn.style.color = c.color;
+      btn.style.fontWeight = '700';
+    } else {
+      btn.style.background = 'none';
+      btn.style.borderColor = 'var(--b2)';
+      btn.style.color = 'var(--t2)';
+      btn.style.fontWeight = 'normal';
+    }
+  });
+  // Update status label
+  var statusEl = document.getElementById('ev-'+evId+'-status');
+  if(statusEl && configs[outcome]){
+    statusEl.textContent = configs[outcome].label;
+    statusEl.style.color = configs[outcome].color;
+  }
+}
+window.setOutcome = setOutcome;
+
+function toggleIntel(evId){
+  var el = document.getElementById('intel-'+evId);
+  if(!el) return;
+  el.style.display = el.style.display==='none' ? 'block' : 'none';
+}
+window.toggleIntel = toggleIntel;
+
+// Pre-call email modal
+var _preCallEmails = {
+  'hill-country': {
+    name: 'Brodie',
+    company: 'Hill Country Doors LLC',
+    to: 'hillcountrydoorsllc@gmail.com',
+    time: '8:00am',
+    subj: 'Looking forward to connecting this morning',
+    body: 'Brodie\n\nQuick note before we connect at 8am.\n\nHere is how I am thinking about our time:\n\nFirst 10 min: hear about Hill Country Doors, how the business runs today, and what is driving growth.\n\nNext 15 min: you walk me through the day-to-day. Dispatch, invoicing, how techs document jobs.\n\nLast 25 min: I will show you exactly how other garage door shops in Texas have solved the same problems, and what ServiceTitan would look like for your specific setup.\n\nNo slides, no pressure. Just a real conversation.\n\nSee you at 8.\n\nBlayne Salazar\nServiceTitan\n707-478-9500'
+  },
+  'lph': {
+    name: 'Jeanette',
+    company: 'LPH Mechanical LLC',
+    to: 'jeanette@lphmechanical.com',
+    time: '10:00am',
+    subj: 'Looking forward to our call this morning',
+    body: 'Jeanette\n\nExcited to connect at 10am today.\n\nA quick agenda so you know what to expect:\n\nFirst 10 min: intro and a little about LPH Mechanical. I want to understand your full picture before I say anything.\n\nNext 15 min: walk me through how the business runs today. Scheduling, invoicing, field communication, whatever is taking the most time.\n\nLast 25 min: I will show you how other mechanical contractors have solved the same problems.\n\nNo slides, no dog and pony show. Just a real conversation.\n\nSee you at 10.\n\nBlayne Salazar\nServiceTitan\n707-478-9500'
+  }
+};
+
+function openPreCallEmailModal(evId, name, company, to, time){
+  var data = _preCallEmails[evId];
+  var modal = document.getElementById('pc-email-modal');
+  if(!modal) return;
+  var toEl   = document.getElementById('pc-modal-to');
+  var subjEl = document.getElementById('pc-modal-subj');
+  var bodyEl = document.getElementById('pc-modal-body');
+  var titleEl= document.getElementById('pc-modal-title');
+  if(titleEl) titleEl.textContent = 'Pre-call email - ' + (data ? data.company : company);
+  if(toEl)   toEl.value   = data ? data.to   : to;
+  if(subjEl) subjEl.value = data ? data.subj : 'Looking forward to our call today';
+  if(bodyEl) bodyEl.innerText = data ? data.body : 'Hey '+name+',\n\nLooking forward to connecting at '+time+'. Quick agenda:\n\n- First 10 min: hear about your business\n- Next 15 min: walk me through your day-to-day\n- Last 25 min: I show you what ST looks like for your setup\n\nSee you then!\n\nBlayne Salazar\n707-478-9500';
+  modal.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+window.openPreCallEmailModal = openPreCallEmailModal;
+
+function closeEmailModal(){
+  var modal = document.getElementById('pc-email-modal');
+  if(modal) modal.style.display = 'none';
+  document.body.style.overflow = '';
+}
+window.closeEmailModal = closeEmailModal;
+
+function sendModalEmail(){
+  var to   = (document.getElementById('pc-modal-to')||{value:''}).value;
+  var subj = (document.getElementById('pc-modal-subj')||{value:''}).value;
+  var body = (document.getElementById('pc-modal-body')||{innerText:''}).innerText;
+  var url  = 'https://mail.google.com/mail/?view=cm&fs=1'
+    + (to   ? '&to='   + encodeURIComponent(to)   : '')
+    + (subj ? '&su='   + encodeURIComponent(subj) : '')
+    + (body ? '&body=' + encodeURIComponent(body) : '');
+  window.open(url, '_blank');
+  closeEmailModal();
+}
+window.sendModalEmail = sendModalEmail;
+
+// Close modal on backdrop click
+setTimeout(function(){
+  var modal = document.getElementById('pc-email-modal');
+  if(modal) modal.addEventListener('click', function(e){ if(e.target===this) closeEmailModal(); });
+}, 400);
+
+function refreshCalendar(){
+  var btn    = document.getElementById('pc-refresh-btn');
+  var status = document.getElementById('pc-refresh-status');
+  if(btn){ btn.style.opacity='.5'; btn.style.pointerEvents='none'; }
+  if(status){ status.textContent='Refreshing...'; status.style.color='var(--t3)'; }
+
+  // Update date heading to today
+  var dh = document.getElementById('pc-date-heading');
+  if(dh){
+    var days=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    var months=['January','February','March','April','May','June','July','August','September','October','November','December'];
+    var now=new Date();
+    dh.textContent=days[now.getDay()]+', '+months[now.getMonth()]+' '+now.getDate();
+  }
+
+  setTimeout(function(){
+    if(btn){ btn.style.opacity='1'; btn.style.pointerEvents=''; }
+    if(status){
+      var now=new Date();
+      status.textContent='Updated '+now.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'});
+      status.style.color='var(--grn)';
+    }
+    // Restore any saved outcomes
+    ['hill-country','lph','actech'].forEach(function(evId){
+      try {
+        var saved = localStorage.getItem('blizzy_outcomes_'+evId);
+        if(saved) setOutcome(evId, saved);
+      } catch(e){}
+    });
+  }, 500);
+}
+window.refreshCalendar = refreshCalendar;
+
+// Auto-load outcomes on tab open
+setTimeout(function(){
+  document.querySelectorAll('.nb').forEach(function(b){
+    b.addEventListener('click', function(){
+      if(this.dataset.pane==='precall'){
+        setTimeout(function(){
+          ['hill-country','lph','actech'].forEach(function(evId){
+            try {
+              var saved = localStorage.getItem('blizzy_outcomes_'+evId);
+              if(saved) setOutcome(evId, saved);
+            } catch(e){}
+          });
+        }, 100);
+      }
+    });
+  });
+}, 600);
+var _calEvents = [
+  {id:'roma-mep',      time:'7:00am',  end:'8:00am',  title:'Roma MEP, LLC',               type:'prospect', attendees:'Monica (monicac@romamep.com)',                              zoom:'https://servicetitan.zoom.us/my/blayneservicetitan', notes:'Exploratory call. Monica confirmed.'},
+  {id:'war-room',      time:'9:00am',  end:'9:30am',  title:'June War Room Planning',       type:'internal', attendees:'Dean, Kaleb, mbangoy team',                                 zoom:'', notes:'Sales Enablement cold outbound session. Come with talk tracks that are working. You were flagged as high performer.'},
+  {id:'sfdc-dates',    time:'9:30am',  end:'10:30am', title:'SFDC Close Date Updates',      type:'admin',    attendees:'All Corp AEs',                                              zoom:'', notes:'REQUIRED by EOD. No past close dates. Use Opportunity List View or Gong Deal Board for inline editing.'},
+  {id:'forecast',      time:'10:00am', end:'11:00am', title:'Weekly Team Forecast Kickoff', type:'internal', attendees:'Ferg, Dean, Kaleb, team',                                   zoom:'https://servicetitan.zoom.us/j/2629379818', notes:'Weekly forecast with Ryan Ferguson. Have your pipeline numbers ready.'},
+  {id:'kaleb-sync',    time:'11:00am', end:'11:30am', title:'Kaleb / Blayne sync',          type:'internal', attendees:'Kaleb Pritchett',                                           zoom:'', notes:'Your sync with Kaleb.'},
+  {id:'msn',           time:'11:30am', end:'12:30pm', title:'MSN Companies',                type:'prospect', attendees:'Michael (michael@msncompanies.com), Nichole (nichole@msncompanies.com)', zoom:'https://servicetitan.zoom.us/j/95554870321', notes:'ST Presentation. Both Michael and Nichole confirmed.'},
+  {id:'athena',        time:'1:00pm',  end:'1:30pm',  title:'Call Athena!',                 type:'admin',    attendees:'',                                                          zoom:'', notes:'Personal reminder.'},
+  {id:'comm-huddle',   time:'2:00pm',  end:'3:00pm',  title:'Commercial Sales Huddle',      type:'internal', attendees:'Commercial team',                                           zoom:'https://servicetitan.zoom.us/j/4344225619', notes:'Weekly commercial team huddle.'},
+  {id:'nicoelectrical',time:'3:30pm',  end:'4:30pm',  title:'Nicoelectrical',               type:'prospect', attendees:'Landon (lmnicoara@gmail.com)',                              zoom:'https://servicetitan.zoom.us/my/blayneservicetitan', notes:'Exploratory + pricing call. Landon confirmed. Electrical contractor.'},
+  {id:'wrap',          time:'5:00pm',  end:'5:30pm',  title:'SFDC + SE Check / Call Review',type:'admin',    attendees:'',                                                          zoom:'https://servicetitan.zoom.us/j/92145717737', notes:'Daily wrap. Update SFDC, confirm SE bookings, review Gong calls.'}
+];
+
+var _calLoaded = false;
+
+function renderCalendarEvents(events){
+  var el = document.getElementById('pc-event-list');
+  if(!el) return;
+  var typeColors = {
+    prospect: {bg:'var(--grn-bg)',  border:'var(--grn-b)',  text:'var(--grn)',  label:'Prospect'},
+    internal: {bg:'var(--blu-bg)',  border:'var(--blu-b)',  text:'var(--blu)',  label:'Internal'},
+    admin:    {bg:'var(--amb-bg)',  border:'var(--amb-b)',  text:'var(--amb)',  label:'Admin'}
+  };
+  var html = '';
+  var prospectCount = 0, internalCount = 0;
+  var firstProspect = '', lastEvent = '';
+
+  events.forEach(function(ev){
+    var c = typeColors[ev.type] || typeColors.admin;
+    if(ev.type==='prospect') prospectCount++;
+    if(ev.type==='internal') internalCount++;
+    if(ev.type==='prospect' && !firstProspect) firstProspect = ev.time;
+    lastEvent = ev.time;
+
+    var zoomBtn = ev.zoom ? '<a href="'+ev.zoom+'" target="_blank" style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:var(--rs);background:var(--blu);color:#fff;font-size:10px;font-weight:600;text-decoration:none;font-family:\'DM Sans\',sans-serif">&#128249; Join Zoom</a>' : '';
+    var gmailBtn = (ev.type==='prospect') ? '<button onclick="openPreCallEmail(\''+ev.id+'\')" style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:var(--rs);border:1px solid var(--grn-b);background:var(--grn-bg);color:var(--grn);font-size:10px;font-weight:600;cursor:pointer;font-family:\'DM Sans\',sans-serif">&#9993; Send pre-call email</button>' : '';
+    var attendeeHtml = ev.attendees ? '<div style="font-size:10px;color:var(--t3);margin-top:3px">&#128100; '+ev.attendees+'</div>' : '';
+
+    html += '<div style="display:flex;gap:0;margin-bottom:7px;border:1px solid '+c.border+';border-radius:var(--r);overflow:hidden;background:var(--bg2)">';
+    // Time column
+    html += '<div style="padding:12px 14px;background:'+c.bg+';border-right:1px solid '+c.border+';display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:68px">';
+    html += '<div style="font-size:12px;font-weight:700;color:'+c.text+';white-space:nowrap">'+ev.time+'</div>';
+    html += '<div style="font-size:9px;color:'+c.text+';opacity:.7;margin-top:1px">'+ev.end+'</div>';
+    html += '<div style="font-size:8px;font-weight:600;color:'+c.text+';text-transform:uppercase;letter-spacing:.06em;margin-top:4px;padding:2px 5px;border-radius:3px;background:'+c.border+'22">'+c.label+'</div>';
+    html += '</div>';
+    // Content
+    html += '<div style="padding:10px 14px;flex:1">';
+    html += '<div style="font-size:13px;font-weight:700;color:var(--t1);margin-bottom:3px">'+ev.title+'</div>';
+    html += attendeeHtml;
+    html += '<div style="font-size:11px;color:var(--t2);margin-top:5px;line-height:1.5">'+ev.notes+'</div>';
+    html += '<div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap">'+zoomBtn+gmailBtn+'</div>';
+    html += '</div>';
+    html += '</div>';
+  });
+
+  el.innerHTML = html;
+
+  // Update summary strip
+  var ps = document.getElementById('pc-sum-prospect');
+  var is = document.getElementById('pc-sum-internal');
+  var fs = document.getElementById('pc-sum-first');
+  var ls = document.getElementById('pc-sum-last');
+  if(ps) ps.textContent = prospectCount;
+  if(is) is.textContent = internalCount;
+  if(fs) fs.textContent = firstProspect || events[0].time;
+  if(ls) ls.textContent = lastEvent;
+
+  // Update date heading
+  var dh = document.getElementById('pc-date-heading');
+  if(dh){
+    var now = new Date();
+    var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    dh.textContent = days[now.getDay()]+', '+months[now.getMonth()]+' '+now.getDate();
+  }
+}
+
+function refreshCalendar(){
+  var btn = document.getElementById('pc-refresh-btn');
+  var status = document.getElementById('pc-refresh-status');
+  if(btn){ btn.style.opacity='.5'; btn.style.pointerEvents='none'; }
+  if(status){ status.textContent='Refreshing...'; status.style.color='var(--t3)'; }
+
+  // In production this calls Google Calendar MCP API for today's events
+  // For now renders from the pre-loaded event data (same data, proves the flow)
+  setTimeout(function(){
+    renderCalendarEvents(_calEvents);
+    if(btn){ btn.style.opacity='1'; btn.style.pointerEvents=''; }
+    if(status){
+      var now = new Date();
+      status.textContent = 'Updated '+now.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'});
+      status.style.color = 'var(--grn)';
+    }
+    _calLoaded = true;
+  }, 600);
+}
+
+function openPreCallEmail(eventId){
+  var ev = _calEvents.find(function(e){ return e.id===eventId; });
+  if(!ev) return;
+  var subj = 'Looking forward to our call today';
+  var body = 'Hey '+ev.title+',\n\nLooking forward to connecting today at '+ev.time+'. Quick agenda:\n\n- First 10 min: hear about your business and current setup\n- Next 15 min: walk me through what is and isn\'t working today\n- Last 20 min: I\'ll show you how other shops have solved the same problems\n\nNo slides, no pressure. Just a real conversation.\n\nSee you then!\n\nBlayne Salazar\n707-478-9500';
+  var gmailUrl = 'https://mail.google.com/mail/?view=cm&fs=1'
+    + '&su=' + encodeURIComponent(subj)
+    + '&body=' + encodeURIComponent(body);
+  window.open(gmailUrl, '_blank');
+}
+window.openPreCallEmail = openPreCallEmail;
+window.refreshCalendar = refreshCalendar;
+
+// Auto-load on tab click
+var _pcTabInited = false;
+var _origNbClick2 = null;
+setTimeout(function(){
+  document.querySelectorAll('.nb').forEach(function(b){
+    b.addEventListener('click', function(){
+      if(this.dataset.pane === 'precall' && !_pcTabInited){
+        _pcTabInited = true;
+        setTimeout(function(){ refreshCalendar(); }, 150);
+      }
+    });
+  });
+  // If precall is the active pane on load, render immediately
+  if(document.getElementById('pane-precall') && document.getElementById('pane-precall').classList.contains('on')){
+    refreshCalendar();
+  }
+}, 500);
+function sendEmailFromCard(btn){
+  var card = btn.closest('.ec');
+  if(!card) return;
+  var toEl   = card.querySelector('input[id$="-to"], .ec-field input');
+  var subjEl = card.querySelector('[class*="ec-field-val"], .ec-field-val');
+  var bodyEl = card.querySelector('.ec-body');
+  var to   = toEl   ? (toEl.value||'').trim()   : '';
+  var subj = subjEl ? (subjEl.textContent||subjEl.innerText||'').trim() : '';
+  var body = bodyEl ? (bodyEl.innerText||bodyEl.textContent||'').trim() : '';
+  if(!body){ return; }
+  var gmailUrl = 'https://mail.google.com/mail/?view=cm&fs=1'
+    + (to   ? '&to='   + encodeURIComponent(to)   : '')
+    + (subj ? '&su='   + encodeURIComponent(subj) : '')
+    + (body ? '&body=' + encodeURIComponent(body) : '');
+  window.open(gmailUrl, '_blank');
+  // Flash button green
+  var orig = btn.innerHTML;
+  btn.style.background = 'var(--grn)';
+  btn.innerHTML = '&#10003; Gmail opened';
+  setTimeout(function(){ btn.innerHTML = orig; btn.style.background = ''; }, 3000);
+}
+window.sendEmailFromCard = sendEmailFromCard;
+
+// ═══ GONG DROP — SEND VIA GMAIL ═══
+function sendGongEmail(){
+  var to      = (document.getElementById('gong-email-to')||{}).value||'';
+  var subjEl  = document.getElementById('gong-email-subj');
+  var subj    = subjEl ? subjEl.textContent||subjEl.innerText||'' : '';
+  var bodyEl  = document.getElementById('gong-email-body');
+  var body    = bodyEl ? bodyEl.innerText||bodyEl.textContent||'' : '';
+  var status  = document.getElementById('gong-send-status');
+
+  if(!body.trim()){
+    if(status){ status.textContent='Generate the email first.'; status.style.color='var(--red)'; }
+    return;
+  }
+
+  // Gmail compose deep link — opens pre-filled compose window
+  var gmailUrl = 'https://mail.google.com/mail/?view=cm&fs=1'
+    + (to    ? '&to='   + encodeURIComponent(to)   : '')
+    + (subj  ? '&su='   + encodeURIComponent(subj) : '')
+    + (body  ? '&body=' + encodeURIComponent(body) : '');
+
+  window.open(gmailUrl, '_blank');
+
+  if(status){
+    status.textContent = 'Gmail opened, review and hit Send.';
+    status.style.color = 'var(--grn)';
+    setTimeout(function(){ status.textContent=''; }, 5000);
+  }
+}
+window.sendGongEmail = sendGongEmail;
 var pb = (function(){
   var s = {
     pkg:'essentials', ob:500, tiers:3,
@@ -3509,13 +3903,25 @@ function syncOptLabelDisplays(){
   }, 300);
 });
 
+// Restore saved API key on load
+setTimeout(function(){
+  try {
+    var saved = localStorage && localStorage.getItem('blizzy_ak');
+    if(saved){
+      var el = document.getElementById('qa-api-key');
+      if(el){ el.value = saved; }
+      var st = document.getElementById('qa-key-status');
+      if(st){ st.textContent = 'key saved'; st.style.color = 'var(--grn)'; }
+    }
+  } catch(e){}
+}, 200);
+
 // Init approval badges after load
 setTimeout(function(){
   updateOptApproval('a');
   updateOptApproval('b');
   updateOptApproval('c');
   syncOptLabelDisplays();
-  // Watch label inputs
   ['a','b','c'].forEach(function(opt){
     var lbl = document.getElementById('cust-lbl-'+opt);
     if(lbl) lbl.addEventListener('input', syncOptLabelDisplays);
