@@ -2085,135 +2085,87 @@ Blayne &middot; 707-478-9500</div>
   </div>
 
     <div class="pane" id="pane-qa">
-    <div class="card g" style="margin-bottom:13px">
-      <div class="sec"><div class="pulse"></div>Quick answers &mdash; type any question &middot; AI searches live if key is set</div>
-      <div style="font-size:11px;color:var(--t1);line-height:1.6">FAQs pulled from your real Confluence playbooks and daily Slack questions. If your question isn't in the list, hit Ask Claude for a live answer. Add your Anthropic API key below to unlock live search.</div>
+    <div style="max-width:700px">
+
+      <!-- API KEY + ASK BOX - the whole point -->
+      <div style="background:#18181e;border:1px solid rgba(30,216,122,.3);border-radius:10px;padding:16px;margin-bottom:16px">
+        <div style="font-size:11px;font-weight:700;color:#1ed87a;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px">&#9889; Ask Claude — live AI answers scoped to Comm+ AE</div>
+        <textarea id="qa-question" rows="2" placeholder="e.g. ARPU is below target what do I do, how do I compete against BuildOps, what is the construction re-route threshold..." style="width:100%;padding:10px 12px;background:#0d0d12;border:1px solid rgba(255,255,255,.1);border-radius:8px;color:#f2f2f4;font-size:12px;font-family:'DM Sans',sans-serif;resize:none;outline:none;line-height:1.5;box-sizing:border-box;margin-bottom:8px"></textarea>
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+          <button id="qa-ask-btn" onclick="runQuickAnswer()" style="padding:9px 20px;border-radius:8px;border:none;background:#1ed87a;color:#000;font-size:12px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif">Ask Claude</button>
+          <div style="display:flex;align-items:center;gap:6px;flex:1;min-width:200px">
+            <span style="font-size:10px;color:#55556a;white-space:nowrap">API key:</span>
+            <input type="password" id="qa-api-key" placeholder="sk-ant-..." style="flex:1;padding:5px 8px;border:1px solid rgba(255,255,255,.1);border-radius:6px;background:#0d0d12;color:#f2f2f4;font-size:10px;font-family:'DM Mono',monospace;outline:none">
+            <button onclick="saveQAKey()" style="padding:5px 10px;border-radius:6px;border:none;background:#1e1e28;color:#9090a0;font-size:10px;cursor:pointer;font-family:'DM Sans',sans-serif;border:1px solid rgba(255,255,255,.1)">Save</button>
+            <span id="qa-key-dot" style="width:7px;height:7px;border-radius:50%;background:#55556a;flex-shrink:0"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- AI ANSWER OUTPUT -->
+      <div id="qa-loading" style="display:none;padding:14px;background:#18181e;border:1px solid rgba(255,255,255,.06);border-radius:10px;margin-bottom:12px;font-size:12px;color:#55556a;text-align:center">
+        Asking Claude...
+      </div>
+      <div id="qa-answer-box" style="display:none;background:#18181e;border:1px solid rgba(30,216,122,.2);border-radius:10px;padding:16px;margin-bottom:16px">
+        <div style="font-size:9px;font-weight:700;color:#1ed87a;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">Claude answered</div>
+        <div id="qa-answer-text" style="font-size:12px;color:#f2f2f4;line-height:1.8;white-space:pre-wrap"></div>
+      </div>
+
+      <!-- COMPETITOR BUTTONS -->
+      <div style="background:#18181e;border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:14px;margin-bottom:14px">
+        <div style="font-size:10px;font-weight:600;color:#9090a0;text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px">Quick competitor intel</div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap">
+          <button onclick="quickComp('FieldEdge')" style="padding:6px 14px;border-radius:100px;border:1px solid rgba(255,255,255,.1);background:none;color:#9090a0;font-size:11px;cursor:pointer;font-family:'DM Sans',sans-serif">FieldEdge</button>
+          <button onclick="quickComp('HouseCall Pro')" style="padding:6px 14px;border-radius:100px;border:1px solid rgba(255,255,255,.1);background:none;color:#9090a0;font-size:11px;cursor:pointer;font-family:'DM Sans',sans-serif">HouseCall Pro</button>
+          <button onclick="quickComp('ServiceFusion')" style="padding:6px 14px;border-radius:100px;border:1px solid rgba(255,255,255,.1);background:none;color:#9090a0;font-size:11px;cursor:pointer;font-family:'DM Sans',sans-serif">ServiceFusion</button>
+          <button onclick="quickComp('BuildOps')" style="padding:6px 14px;border-radius:100px;border:1px solid rgba(255,255,255,.1);background:none;color:#9090a0;font-size:11px;cursor:pointer;font-family:'DM Sans',sans-serif">BuildOps</button>
+          <button onclick="quickComp('Jobber')" style="padding:6px 14px;border-radius:100px;border:1px solid rgba(255,255,255,.1);background:none;color:#9090a0;font-size:11px;cursor:pointer;font-family:'DM Sans',sans-serif">Jobber</button>
+          <button onclick="quickComp('ServiceChannel')" style="padding:6px 14px;border-radius:100px;border:1px solid rgba(255,255,255,.1);background:none;color:#9090a0;font-size:11px;cursor:pointer;font-family:'DM Sans',sans-serif">ServiceChannel</button>
+        </div>
+        <div id="qa-comp-output" style="display:none;margin-top:10px;padding:12px;background:#0d0d12;border-radius:8px;font-size:12px;color:#f2f2f4;line-height:1.7"></div>
+      </div>
+
+      <!-- FAQ ACCORDION -->
+      <div style="font-size:10px;font-weight:600;color:#9090a0;text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px">Frequently asked</div>
+      <div id="qa-faq-list">
+        <div class="qa-item open" data-tags="arpu below 285 coaching fix improve">
+          <div class="qa-q" onclick="this.parentElement.classList.toggle('open')"><span>&#128172;</span> ARPU below $285 — what do I do?<span class="qa-arrow">&#8250;</span></div>
+          <div class="qa-a">Three levers: (1) Push Works over Essentials — every Essentials deal costs $5-20/tech/month in lost ARPU. Make the Works ask before pricing reveal. (2) Close at 2-year terms — ramp pricing protects ARPU at month 18 at $99/tech. 1-year discounts pull below target. (3) Quantify ROI before pricing — deals where dollar ROI is stated before pricing average $93/tech. Without it: $71. Discount with ramp or free months, never per-tech cuts.</div>
+        </div>
+        <div class="qa-item" data-tags="buildops compete win">
+          <div class="qa-q" onclick="this.parentElement.classList.toggle('open')"><span>&#128172;</span> How do I compete against BuildOps?<span class="qa-arrow">&#8250;</span></div>
+          <div class="qa-a">BuildOps over-indexes on construction, under-delivers on service. ST wins when any service work is in the mix. BO churn is real — multiple shops leaving due to broken promises and poor onboarding. Frame: "BO is great if you are 100% construction. Any service side and we are built for that entire lifecycle."</div>
+        </div>
+        <div class="qa-item" data-tags="construction reroute threshold percent">
+          <div class="qa-q" onclick="this.parentElement.classList.toggle('open')"><span>&#128172;</span> Construction re-route threshold?<span class="qa-arrow">&#8250;</span></div>
+          <div class="qa-a">Re-route if construction revenue is over 30% of total. If 31-99%: ask how many of every 5 projects last 3+ months AND how many subcontractors per project. If 3+ projects over 3 months AND 4+ subs — DQ. Must capture total annual construction revenue if 31-99%.</div>
+        </div>
+        <div class="qa-item" data-tags="minimum tech count dq licenses">
+          <div class="qa-q" onclick="this.parentElement.classList.toggle('open')"><span>&#128172;</span> Minimum tech count to sell?<span class="qa-arrow">&#8250;</span></div>
+          <div class="qa-a">Minimum 4 sellable licenses with at least 1 Managed Tech. All full-time (35+ hrs/week). In Commercial Construction: at least 1 crossover tech working 20%+ service jobs. DQ if fewer than 4.</div>
+        </div>
+        <div class="qa-item" data-tags="sage intacct integration accounting">
+          <div class="qa-q" onclick="this.parentElement.classList.toggle('open')"><span>&#128172;</span> Does ST integrate with Sage?<span class="qa-arrow">&#8250;</span></div>
+          <div class="qa-a">Sage Intacct: integration exists through partner-enabled accounting. Sage 50: no native integration. If prospect is on Sage, flag in SFDC and route through #ask-partner-enabled-accounting-integrations. Most commercial shops move to QBO as part of ST onboarding — position it as an upgrade not a loss.</div>
+        </div>
+        <div class="qa-item" data-tags="fieldedge competitor switching 600">
+          <div class="qa-q" onclick="this.parentElement.classList.toggle('open')"><span>&#128172;</span> Prospect also looking at FieldEdge?<span class="qa-arrow">&#8250;</span></div>
+          <div class="qa-a">600+ shops have switched from FE to ST. FE is residential-first. ST wins on: commercial job costing depth, Works inventory, construction module, mobile offline on job sites, no office staff ceiling. Frame before they talk to FE: "Here is what to compare when you talk to them."</div>
+        </div>
+        <div class="qa-item" data-tags="performance pay commission techs works">
+          <div class="qa-q" onclick="this.parentElement.classList.toggle('open')"><span>&#128172;</span> How does performance pay for techs work?<span class="qa-arrow">&#8250;</span></div>
+          <div class="qa-a">Configurable payroll in Works package. Set commission thresholds per tech — if they sell above a target or hit productivity goals, they get a bonus tier. Works only, not Essentials. Use this as a Works upgrade reason every time.</div>
+        </div>
+        <div class="qa-item" data-tags="quickbooks migration data transfer">
+          <div class="qa-q" onclick="this.parentElement.classList.toggle('open')"><span>&#128172;</span> How does QuickBooks migration work?<span class="qa-arrow">&#8250;</span></div>
+          <div class="qa-a">Initial pull from QBO at onboarding start. Rep keeps using QB until ST is fully built, then final transfer at go-live. QBO stays as accounting/GL — everything above the line moves to ST. QBO sync included. Set clear expectations about the final pull date cutoff.</div>
+        </div>
+      </div>
+
     </div>
-
-    <!-- API key row -->
-    <div style="display:flex;gap:6px;align-items:center;padding:8px 12px;background:var(--bg3);border:1px solid var(--b1);border-radius:var(--r);margin-bottom:10px">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px;color:var(--t3);flex-shrink:0"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-      <span style="font-size:10px;color:var(--t3);white-space:nowrap">Anthropic API key</span>
-      <input type="password" id="qa-api-key" placeholder="sk-ant-..." style="flex:1;padding:4px 8px;border:1px solid var(--b2);border-radius:var(--rs);background:var(--bg4);color:var(--t1);font-size:11px;font-family:'DM Mono',monospace;outline:none" oninput="localStorage&&localStorage.setItem('blizzy_ak',this.value)">
-      <span id="qa-key-status" style="font-size:10px;color:var(--t3);white-space:nowrap">not set</span>
-      <button onclick="var k=document.getElementById('qa-api-key').value.trim();document.getElementById('qa-key-status').textContent=k.length>10?'key saved':'cleared';document.getElementById('qa-key-status').style.color=k.length>10?'var(--grn)':'var(--t3)';" style="font-size:10px;padding:3px 9px;border-radius:var(--rs);border:1px solid var(--b2);background:none;color:var(--t2);cursor:pointer;font-family:'DM Sans',sans-serif">Save</button>
-    </div>
-
-    <div style="display:flex;gap:8px;margin-bottom:12px">
-      <input class="qa-search" id="qaI" style="margin-bottom:0;flex:1" placeholder="Type a question &mdash; e.g. 'arpu below target', 'buildops compete', 'sage integration', 'AI outbound calls'..." oninput="filterQA(this.value)" onkeydown="if(event.key==='Enter')askAI()">
-      <button onclick="askAI()" style="padding:8px 16px;border-radius:var(--r);border:none;background:var(--grn);color:#fff;font-size:12px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;white-space:nowrap;flex-shrink:0">&#9889; Ask Claude</button>
-    </div>
-
-    <div id="ai-answer" style="display:none;background:var(--bg3);border:1px solid var(--grn-b);border-radius:var(--r);padding:13px 15px;margin-bottom:12px">
-      <div style="display:flex;align-items:center;gap:7px;margin-bottom:8px">
-        <div style="width:18px;height:18px;background:var(--grn);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff;flex-shrink:0">B</div>
-        <span style="font-size:10px;font-weight:500;color:var(--grn);text-transform:uppercase;letter-spacing:.07em">Claude answered</span>
-        <span id="ai-q-label" style="font-size:11px;color:var(--t3);margin-left:2px"></span>
-      </div>
-      <div id="ai-answer-text" style="font-size:12px;color:var(--t1);line-height:1.75"></div>
-    </div>
-
-    <div id="ai-loading" style="display:none;padding:14px;text-align:center;font-size:12px;color:var(--t3);background:var(--bg3);border:1px solid var(--b1);border-radius:var(--r);margin-bottom:12px">
-      <div style="display:inline-block;width:14px;height:14px;border:2px solid var(--b2);border-top-color:var(--grn);border-radius:50%;animation:spin .6s linear infinite;margin-right:7px;vertical-align:middle"></div>
-      Asking Claude...
-    </div>
-
-
-    <!-- Competitive quick-ref -->
-    <div style="margin-bottom:14px">
-      <div class="sec">Competitive quick-ref &mdash; click any competitor</div>
-      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:9px">
-        <button onclick="showComp('fe')" id="comp-fe" style="padding:5px 13px;border-radius:100px;border:1px solid var(--b2);background:var(--bg3);color:var(--t2);font-size:11px;cursor:pointer;font-family:'DM Sans',sans-serif">FieldEdge</button>
-        <button onclick="showComp('sf')" id="comp-sf" style="padding:5px 13px;border-radius:100px;border:1px solid var(--b2);background:var(--bg3);color:var(--t2);font-size:11px;cursor:pointer;font-family:'DM Sans',sans-serif">ServiceFusion</button>
-        <button onclick="showComp('hcp')" id="comp-hcp" style="padding:5px 13px;border-radius:100px;border:1px solid var(--b2);background:var(--bg3);color:var(--t2);font-size:11px;cursor:pointer;font-family:'DM Sans',sans-serif">HCP / Housecall Pro</button>
-        <button onclick="showComp('bo')" id="comp-bo" style="padding:5px 13px;border-radius:100px;border:1px solid var(--b2);background:var(--bg3);color:var(--t2);font-size:11px;cursor:pointer;font-family:'DM Sans',sans-serif">BuildOps</button>
-        <button onclick="showComp('jb')" id="comp-jb" style="padding:5px 13px;border-radius:100px;border:1px solid var(--b2);background:var(--bg3);color:var(--t2);font-size:11px;cursor:pointer;font-family:'DM Sans',sans-serif">Jobber</button>
-        <button onclick="showComp('scu')" id="comp-scu" style="padding:5px 13px;border-radius:100px;border:1px solid var(--b2);background:var(--bg3);color:var(--t2);font-size:11px;cursor:pointer;font-family:'DM Sans',sans-serif">ServiceChannel / Corrigo</button>
-      </div>
-      <div id="comp-output" style="display:none;background:var(--bg3);border:1px solid var(--grn-b);border-radius:var(--r);padding:13px 15px"></div>
-    </div>
-
-    <div style="font-size:10px;font-weight:500;color:var(--t3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px;padding:0 2px">Frequently asked &mdash; from Confluence + Slack</div>
-
-      <div class="qa-item open" data-tags="arpu below 285 coaching fix improve">
-        <div class="qa-q" onclick="this.parentElement.classList.toggle('open')"><span>&#128172;</span> ARPU is below 85 &mdash; what do I do?<span class="qa-arrow">&#8250;</span></div>
-        <div class="qa-a">Three levers: (1) Push Works over Essentials &mdash; every Essentials deal costs ~5-20/tech/month. Make the Works ask before pricing reveal. Frame onboarding as one-time vs monthly compounding value. (2) Close at 2-year terms &mdash; ramp pricing protects ARPU at month 18 at 99/tech. 1-year discounts pull below target. (3) Quantify ROI before pricing &mdash; deals where dollar ROI is stated before pricing average 93/tech. Without it: 71. Discount differently (ramp, free months, OB reduction) rather than per-tech cuts. <em>Source: Comm+ coaching &middot; ARPU analysis</em></div>
-      </div>
-
-      <div class="qa-item" data-tags="buildops compete win comparison steal">
-        <div class="qa-q" onclick="this.parentElement.classList.toggle('open')"><span>&#128172;</span> How do I compete against BuildOps?<span class="qa-arrow">&#8250;</span></div>
-        <div class="qa-a">BuildOps is primarily a construction-focused platform. Where ST wins: (1) Our service + construction hybrid is stronger for shops doing both &mdash; BO tends to over-index on construction and under-deliver on service workflows. (2) Titan Intelligence and AI features are ahead of BO. (3) Onboarding and support reputation &mdash; BO churn is a real signal, multiple Slack threads confirm shops leaving BO for ST due to broken promises and poor onboarding. Frame it: &quot;BO is great if you&apos;re 100% construction. If you&apos;re running any service side, we&apos;re built for that entire lifecycle.&quot; <em>Source: #competitive Slack &middot; TriplePoint MEP win notes</em></div>
-      </div>
-
-      <div class="qa-item" data-tags="sage intacct integration accounting">
-        <div class="qa-q" onclick="this.parentElement.classList.toggle('open')"><span>&#128172;</span> Does ServiceTitan integrate with Sage?<span class="qa-arrow">&#8250;</span></div>
-        <div class="qa-a">Sage Intacct: integration exists through partner-enabled accounting integrations. Sage 50: no native integration as of recent Slack threads (#mindcloud-servicetitan confirmed this). If the prospect is on Sage, flag it in SFDC and route through #ask-partner-enabled-accounting-integrations in Slack for the most current status. Don&apos;t present as a blocker &mdash; most commercial shops move their accounting to QBO as part of the ST onboarding and it&apos;s a positive change. <em>Source: Confluence &mdash; Accounting Integrations FAQ &middot; #mindcloud-servicetitan</em></div>
-      </div>
-
-      <div class="qa-item" data-tags="AI outbound calls voice agent new feature">
-        <div class="qa-q" onclick="this.parentElement.classList.toggle('open')"><span>&#128172;</span> Does ST have AI outbound calls / voice agents?<span class="qa-arrow">&#8250;</span></div>
-        <div class="qa-a">Yes &mdash; this is new and actively being developed. AI Voice Agents for call booking is a live feature. Confirm current capabilities at servicetitan.com/features/ai and the webinar recap at servicetitan.com/blog/webinar-recap-ai-voice-agents-call-booking before presenting to a prospect. If a prospect says they heard we didn&apos;t have this &mdash; that was true 1-2 years ago, not today. Loop in an SE for demo if the prospect is specifically interested. <em>Source: #sales Slack &middot; servicetitan.com/features/ai</em></div>
-      </div>
-
-      <div class="qa-item" data-tags="GMV construction revenue based pricing scale down">
-        <div class="qa-q" onclick="this.parentElement.classList.toggle('open')"><span>&#128172;</span> Can construction GMV pricing scale down if revenue drops?<span class="qa-arrow">&#8250;</span></div>
-        <div class="qa-a">This is a real objection that comes up in construction accounts. GMV-based pricing is annual revenue based &mdash; if a shop&apos;s construction revenue drops year over year the pricing should adjust at renewal. The concern to address is that it&apos;s not locked in forever at peak revenue. Flag specific scenarios to your SE or deal desk for guidance. For the prospect conversation, emphasize that most shops&apos; construction revenue grows year over year once they have ST optimizing it &mdash; the worry is usually theoretical. <em>Source: #commercial-construction Slack</em></div>
-      </div>
-
-      <div class="qa-item" data-tags="corrigo integration third party portal">
-        <div class="qa-q" onclick="this.parentElement.classList.toggle('open')"><span>&#128172;</span> Does ServiceTitan integrate with Corrigo?<span class="qa-arrow">&#8250;</span></div>
-        <div class="qa-a">No native Corrigo integration currently. Note in SFDC and flag for product. Don&apos;t present as a blocker &mdash; position as roadmap. Common in commercial HVAC and garage door. <em>Source: Confluence &mdash; Accounting Integrations FAQ &middot; #ask-sales-and-estimates</em></div>
-      </div>
-
-      <div class="qa-item" data-tags="pricing call non-icp book cp offbooks">
-        <div class="qa-q" onclick="this.parentElement.classList.toggle('open')"><span>&#128172;</span> Can I book a non-ICP into CP for a pricing call?<span class="qa-arrow">&#8250;</span></div>
-        <div class="qa-a">Yes &mdash; use the non-ICP dropdown in CP. Let the prospect know it creates time and space for pricing even if they don&apos;t need the full demo. Good use of this: construction-heavy accounts that are off-books but are genuinely interested in pricing. <em>Source: #sales Slack</em></div>
-      </div>
-
-      <div class="qa-item" data-tags="reroute construction threshold 30 percent">
-        <div class="qa-q" onclick="this.parentElement.classList.toggle('open')"><span>&#128172;</span> What&apos;s the re-route threshold for Construction?<span class="qa-arrow">&#8250;</span></div>
-        <div class="qa-a">Re-route if construction revenue is over 30% of total annual revenue. If 31-99%: ask how many of every 5 projects last 3+ months AND how many subcontractors per project. If 3+ projects over 3 months AND 4+ subcontractors &rarr; DQ. Must capture total annual construction revenue if 31-99%. <em>Source: Confluence &mdash; ICP Talk Tracks</em></div>
-      </div>
-
-      <div class="qa-item" data-tags="fieldedge competitor comparison switching">
-        <div class="qa-q" onclick="this.parentElement.classList.toggle('open')"><span>&#128172;</span> How do I handle a prospect also looking at FieldEdge?<span class="qa-arrow">&#8250;</span></div>
-        <div class="qa-a">600+ shops have switched from FE to ST. FE is residential-first. ST wins: (1) commercial job costing depth, (2) Works inventory, (3) construction module for 31-99% shops, (4) mobile offline on job sites, (5) no office staff ceiling. Frame before they go in: &quot;Here&apos;s what to compare when you talk to them next week.&quot; <em>Source: Confluence &mdash; Comm+ Hub</em></div>
-      </div>
-
-      <div class="qa-item" data-tags="call review week requirement gong snippet this week">
-        <div class="qa-q" onclick="this.parentElement.classList.toggle('open')"><span>&#128172;</span> What&apos;s the call review requirement this week?<span class="qa-arrow">&#8250;</span></div>
-        <div class="qa-a">Week 2 (ending 5/15): 2 snippets showing ROI with business implication and cost allocation. Week 3 (ending 5/22): Review an HCP call, include urgency or clear commitment moment. Tracker due 9pm PST Friday. Completion required &mdash; AEs who miss get called out at Monday huddle. <em>Source: Confluence &mdash; Commercial Team Call Reviews</em></div>
-      </div>
-
-      <div class="qa-item" data-tags="minimum tech count dq four licenses">
-        <div class="qa-q" onclick="this.parentElement.classList.toggle('open')"><span>&#128172;</span> What&apos;s the minimum tech count to sell?<span class="qa-arrow">&#8250;</span></div>
-        <div class="qa-a">Minimum 4 sellable licenses with at least 1 Managed Tech. All full-time (35+ hrs/week). In Commercial Construction: at least 1 crossover tech working 20%+ service jobs. DQ if fewer than 4. <em>Source: Confluence &mdash; ICP Talk Tracks</em></div>
-      </div>
-
-      <div class="qa-item" data-tags="performance pay commission techs incentive setup">
-        <div class="qa-q" onclick="this.parentElement.classList.toggle('open')"><span>&#128172;</span> How does performance pay / commission for techs work in ST?<span class="qa-arrow">&#8250;</span></div>
-        <div class="qa-a">Configurable payroll is included in the Works package. You can set commission thresholds per technician &mdash; if they sell above a certain amount or hit productivity targets, they get a bonus tier. Very flexible. This is one of the biggest wins for shops trying to incentivize their field team. Set up in the compensation module. Only available in Works, not Essentials &mdash; use this as a Works upgrade reason. <em>Source: Comm+ product knowledge</em></div>
-      </div>
-
-      <div class="qa-item" data-tags="construction cohort onboarding when slot available">
-        <div class="qa-q" onclick="this.parentElement.classList.toggle('open')"><span>&#128172;</span> When is the next construction cohort onboarding slot?<span class="qa-arrow">&#8250;</span></div>
-        <div class="qa-a">Check the live onboarding calendar in your deal desk or ask your SE. As of May 14: May 25 construction cohort slot available &mdash; next slot is June 29. Slots fill fast. Use this as urgency: &quot;The May 25 cohort gets you live by early July. If we move today I can lock that for you.&quot; Always confirm current availability before presenting dates. <em>Source: ST onboarding calendar &middot; Comm+ Hub</em></div>
-      </div>
-
-      <div class="qa-item" data-tags="quickbooks migration data transfer accounting final pull">
-        <div class="qa-q" onclick="this.parentElement.classList.toggle('open')"><span>&#128172;</span> How does the QuickBooks data migration work?<span class="qa-arrow">&#8250;</span></div>
-        <div class="qa-a">Initial pull from QBO at onboarding start. Rep keeps using QB until ST is fully built, then final transfer at go-live. QBO stays as the accounting/GL platform &mdash; everything above the line moves to ST. QBO sync included. After final pull, any new data entered in QB after that date has to be manually entered in ST. Set clear expectations with the customer about the final pull date. <em>Source: Confluence &mdash; Accounting Integrations FAQ &middot; #ac-distribution_pod</em></div>
-      </div>
-
-      <div class="qa-item" data-tags="referral when timing week three send email">
-        <div class="qa-q" onclick="this.parentElement.classList.toggle('open')"><span>&#128172;</span> When should I send the referral email?<span class="qa-arrow">&#8250;</span></div>
-        <div class="qa-a">Week 3 of onboarding &mdash; customer is engaged and seeing value but not yet fully independent. Short, personal, ask for one warm intro. This dashboard auto-drafts at week 3 using Snowflake OB date + SFDC contact info. One tap to send. Never use a template that sounds like a template. <em>Source: Comm+ team best practice</em></div>
-      </div>
-    </div>
-    <div id="qaNR" style="display:none;padding:14px;background:var(--bg3);border:1px solid var(--b1);border-radius:var(--r);font-size:12px;color:var(--t3);text-align:center">No FAQ match &mdash; hit <strong style="color:var(--grn)">Ask Claude</strong> above to get a live answer.</div>
   </div>
 
-  <div class="pane" id="pane-resources">
+    <div class="pane" id="pane-resources">
     <div class="card g" style="margin-bottom:13px"><div class="sec"><div class="pulse"></div>Resources &mdash; all links live &middot; everything in one place</div></div>
     <div class="sec">Pricing &amp; playbooks</div>
     <div class="res-grid">
@@ -5244,6 +5196,103 @@ function toggleSettings(){
   }
 }
 window.toggleSettings = toggleSettings;
+
+// ═══ QUICK ANSWERS v11 ═══
+function saveQAKey(){
+  var key = document.getElementById('qa-api-key').value.trim();
+  var dot = document.getElementById('qa-key-dot');
+  if(key.length > 20){
+    try{ localStorage.setItem('blizzy_ak', key); }catch(e){}
+    // sync to global key field too
+    var g = document.getElementById('global-api-key');
+    if(g) g.value = key;
+    if(dot){ dot.style.background = '#1ed87a'; dot.title = 'Key saved'; }
+  } else {
+    if(dot){ dot.style.background = '#f5a623'; dot.title = 'Invalid key'; }
+  }
+}
+window.saveQAKey = saveQAKey;
+
+async function runQuickAnswer(){
+  var q = document.getElementById('qa-question').value.trim();
+  if(!q){ alert('Type a question first.'); return; }
+
+  var key = getAPIKey();
+  var loading = document.getElementById('qa-loading');
+  var answerBox = document.getElementById('qa-answer-box');
+  var answerText = document.getElementById('qa-answer-text');
+  var btn = document.getElementById('qa-ask-btn');
+
+  if(!key){
+    answerBox.style.display = 'block';
+    answerText.textContent = 'No API key saved. Paste your sk-ant-... key in the field above and hit Save first.';
+    return;
+  }
+
+  loading.style.display = 'block';
+  answerBox.style.display = 'none';
+  if(btn) btn.disabled = true;
+
+  try {
+    var resp = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': key,
+        'anthropic-version': '2023-06-01',
+        'anthropic-dangerous-direct-browser-access': 'true'
+      },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        system: 'You are an expert assistant for Blayne Salazar, a Corporate AE at ServiceTitan on the Comm+ team. He sells field service management software to commercial contractors (HVAC, plumbing, electrical, garage door) with 3-39 techs. Answer his questions directly and specifically. No fluff. No em dashes. Keep answers under 200 words unless complexity requires more. Reference ServiceTitan Comm+ specifics, ICP rules, pricing, and competitive intel where relevant.',
+        messages: [{role:'user', content: q}]
+      })
+    });
+    var data = await resp.json();
+    if(data.error) throw new Error(data.error.message);
+    var answer = data.content && data.content[0] ? data.content[0].text : 'No response.';
+    loading.style.display = 'none';
+    answerBox.style.display = 'block';
+    answerText.textContent = answer;
+  } catch(err) {
+    loading.style.display = 'none';
+    answerBox.style.display = 'block';
+    answerText.textContent = 'Error: ' + err.message;
+  }
+  if(btn) btn.disabled = false;
+}
+window.runQuickAnswer = runQuickAnswer;
+
+function quickComp(competitor){
+  var lines = {
+    'FieldEdge': '600+ shops have switched from FE to ST. FE is residential-first — hits a ceiling fast on commercial work. ST wins on: commercial job costing depth, Works inventory, construction module for mixed shops, mobile offline on job sites. Line to use: "FieldEdge is great if you are 100% residential. Any commercial side and you will hit their ceiling."',
+    'HouseCall Pro': 'HCP raised prices in early 2025. Residential-first — commercial workflows and job costing are not what it was built for. ST Comm+ onboarding is cohort-based vs HCP self-serve. Line: "HCP is great for residential. If more than 20% of your revenue is commercial, you are using the wrong tool."',
+    'ServiceFusion': 'SF works fine at 3-5 techs, shops growing beyond that hit limits fast. Works-level inventory vs SF add-on approach. Performance pay for techs is native in Works. Line: "ServiceFusion works until you start growing. Every shop I talk to that left SF said the same thing — they outgrew it and the data was a mess."',
+    'BuildOps': 'BO over-indexes on construction, under-delivers on service workflows. If they do any service work it is a bad fit. BO churn is real. Line: "BuildOps is purpose-built for 100% construction. Any service work and it is the wrong fit."',
+    'Jobber': 'Jobber is consumer-grade, designed for solo operators. No commercial job costing, no Works-level features. Line: "Jobber is where you start, not where you stay. Every shop on Jobber doing $2M+ is already looking at the next platform."',
+    'ServiceChannel': 'No native ServiceChannel integration currently. Note in SFDC and flag for product. Common in commercial HVAC and garage door. Do not present as a blocker — position as roadmap.'
+  };
+  var out = document.getElementById('qa-comp-output');
+  if(out){
+    out.style.display = 'block';
+    out.textContent = lines[competitor] || 'No intel available for ' + competitor;
+  }
+}
+window.quickComp = quickComp;
+
+// Restore QA key on load
+(function(){
+  try {
+    var saved = localStorage.getItem('blizzy_ak');
+    if(saved && saved.length > 20){
+      var el = document.getElementById('qa-api-key');
+      if(el) el.value = saved;
+      var dot = document.getElementById('qa-key-dot');
+      if(dot) dot.style.background = '#1ed87a';
+    }
+  } catch(e){}
+})();
 
 </script>
 </body>
