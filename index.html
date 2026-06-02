@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Blizzy AI v9 — ServiceTitan Comm+</title>
+<title>Blizzy AI v11 — ServiceTitan Comm+</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=DM+Mono:wght@400;500&display=swap');
 :root{--bg:#09090c;--bg2:#111115;--bg3:#18181e;--bg4:#1e1e28;--b1:rgba(255,255,255,.06);--b2:rgba(255,255,255,.1);--b3:rgba(255,255,255,.16);--t1:#f2f2f4;--t2:#9090a0;--t3:#55556a;--grn:#1ed87a;--grn-bg:rgba(30,216,122,.08);--grn-b:rgba(30,216,122,.2);--amb:#f5a623;--amb-bg:rgba(245,166,35,.08);--amb-b:rgba(245,166,35,.22);--blu:#4a9eff;--blu-bg:rgba(74,158,255,.08);--blu-b:rgba(74,158,255,.22);--red:#ff5c5c;--red-bg:rgba(255,92,92,.08);--red-b:rgba(255,92,92,.22);--ice:#7ecfe3;--ice-bg:rgba(126,207,227,.08);--ice-b:rgba(126,207,227,.22);--pur:#a78bfa;--pur-bg:rgba(167,139,250,.08);--pur-b:rgba(167,139,250,.22);--ind:#818cf8;--ind-bg:rgba(129,140,248,.09);--ind-b:rgba(129,140,248,.3);--st:#F05A28;--st-bg:rgba(240,90,40,.09);--st-b:rgba(240,90,40,.28);--st-logo-filter:brightness(0) invert(1);--r:8px;--rs:5px}
@@ -45,7 +45,7 @@ html,body{height:100%;background:var(--bg);color:var(--t1);font-family:'DM Sans'
 .ci{display:flex;align-items:center;gap:6px;font-size:10px;color:var(--t2);padding:2px 0;font-family:'DM Mono',monospace}
 .cd{width:5px;height:5px;border-radius:50%;flex-shrink:0}
 .cd-on{background:var(--grn);box-shadow:0 0 5px var(--grn)}.cd-pend{background:var(--amb)}.cd-off{background:var(--t3)}
-.main{display:flex;flex-direction:column;overflow:hidden}
+.main{display:flex;flex-direction:column;overflow:hidden;visibility:visible}
 .topbar{padding:11px 20px;border-bottom:1px solid var(--b1);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;background:var(--bg2)}
 .tb-t{font-size:15px;font-weight:600;letter-spacing:-.2px;color:var(--t1)}
 .tb-s{font-size:11px;color:var(--t3);margin-top:1px}
@@ -55,7 +55,7 @@ html,body{height:100%;background:var(--bg);color:var(--t1);font-family:'DM Sans'
 .chip-s{background:var(--ice-bg);color:var(--ice);border:1px solid var(--ice-b)}
 .chip-a{background:var(--amb-bg);color:var(--amb);border:1px solid var(--amb-b)}
 .content{flex:1;min-height:0;overflow-y:auto;padding:16px 20px 60px}
-.pane{display:none;animation:fi .18s ease}.pane.on{display:block}
+.pane{display:none}.pane.on{display:block}
 @keyframes fi{from{opacity:0;transform:translateY(3px)}to{opacity:1;transform:none}}
 .g4{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-bottom:13px}
 .g3{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-bottom:13px}
@@ -193,7 +193,7 @@ td.bold{font-weight:500}
 <div class="app">
 <aside class="sb">
   <div class="sb-head">
-    <div class="sb-logo"><div class="sb-icon">B</div><div><div class="sb-name">Blizzy AI</div><div class="sb-ver">Comm+ &middot; FY27 &middot; v9</div></div></div>
+    <div class="sb-logo"><div class="sb-icon">B</div><div><div class="sb-name">Blizzy AI</div><div class="sb-ver">Comm+ &middot; FY27 &middot; v11</div></div></div>
     <button class="theme-btn" id="themeBtn">&#9728; Light</button>
   </div>
   <div class="sb-body">
@@ -210,12 +210,12 @@ td.bold{font-weight:500}
     <div class="ng"><div class="ng-lbl">AI Tools<span class="ng-chev">▾</span></div>
       <button class="nb" data-pane="followup"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>Follow-up emails<span class="ntag tg-live">LIVE</span></button>
       <button class="nb" data-pane="precall"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/></svg>Calendar View<span class="ntag tg-snow">&#10052;</span></button>
-      <button class="nb" data-pane="spin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>SPIN scenarios<span class="ntag tg-new">NEW</span></button>
+      <button class="nb" data-pane="spin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>SPIN scenarios<span class="ntag tg-live">LIVE</span></button>
       <button class="nb" data-pane="icp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>ICP qualifier<span class="ntag tg-live">LIVE</span></button>
-      <button class="nb" data-pane="callcoach"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>Call coaching<span class="ntag tg-snow">&#10052;</span></button>
+      <button class="nb" data-pane="callcoach"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>Call coaching<span class="ntag tg-live">LIVE</span></button>
       <button class="nb" data-pane="gong"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/></svg>Gong Drop<span class="ntag tg-live">LIVE</span></button>
       <button class="nb" data-pane="referrals"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Referral engine<span class="ntag tg-snow">&#10052;</span></button>
-      <button class="nb" data-pane="forecast"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>Forecast + signals<span class="ntag tg-snow">&#10052;</span></button>
+      <button class="nb" data-pane="forecast"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>Forecast + signals<span class="ntag tg-live">LIVE</span></button>
       <button class="nb" data-pane="pricing"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>Pricing builder<span class="ntag tg-new">NEW</span></button>
       <button class="nb" data-pane="qa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Quick answers<span class="ntag tg-live">LIVE</span></button>
       <button class="nb" data-pane="checklist"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>Daily checklist<span class="ntag tg-new">NEW</span></button>
@@ -227,6 +227,22 @@ td.bold{font-weight:500}
     </div>
   </div>
   <div class="sb-foot">
+    <!-- SETTINGS (collapsed by default) -->
+    <div style="margin-bottom:8px">
+      <button onclick="toggleSettings()" id="settings-btn" style="display:flex;align-items:center;justify-content:space-between;width:100%;padding:6px 8px;border-radius:var(--rs);border:1px solid var(--b1);background:none;color:var(--t3);font-size:10px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif">
+        <span style="display:flex;align-items:center;gap:5px">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:11px;height:11px;opacity:.6"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          Settings
+        </span>
+        <span id="settings-chev" style="font-size:9px;opacity:.5;transition:transform .15s">▾</span>
+      </button>
+      <div id="settings-panel" style="display:none;margin-top:6px;padding:10px;background:var(--bg3);border:1px solid var(--b1);border-radius:var(--rs)">
+        <div style="font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px;font-weight:600">&#128273; Anthropic API Key</div>
+        <input type="password" id="global-api-key" placeholder="sk-ant-api03-..." style="width:100%;padding:5px 8px;border:1px solid var(--b2);border-radius:var(--rs);background:var(--bg4);color:var(--t1);font-size:10px;font-family:'DM Mono',monospace;outline:none;box-sizing:border-box;margin-bottom:6px">
+        <button onclick="saveGlobalKey()" style="width:100%;padding:5px;border-radius:var(--rs);border:none;background:var(--grn);color:#fff;font-size:10px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif">Save key</button>
+        <div id="global-key-status" style="font-size:9px;color:var(--t3);margin-top:5px;text-align:center">Paste your sk-ant-... key above</div>
+      </div>
+    </div>
     <div class="cl">Connections</div>
     <div class="ci"><div class="cd cd-on"></div>Zoom &middot; Calendar &middot; Gmail</div>
     <div class="ci"><div class="cd cd-on"></div>Confluence &middot; Slack</div>
@@ -253,11 +269,49 @@ td.bold{font-weight:500}
   </div>
   <div class="content">
 
-  <div class="pane on" id="pane-overview">
+  <div class="pane on" id="pane-overview" style="display:block">
+
+    <!-- LIVE COMP ENGINE -->
+    <div style="background:var(--bg2);border:1px solid var(--b1);border-radius:var(--r);padding:13px 16px;margin-bottom:13px">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+        <div class="sec" style="margin:0"><div class="pulse"></div>Live comp &mdash; FY27 W-2 tracker</div>
+        <span style="font-size:10px;color:var(--t3);font-family:'DM Mono',monospace">$94,900 base &middot; $93,500 variable</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:12px">
+        <div class="metric"><div class="ml">Monthly quota</div><div class="mv s" style="font-size:18px">$7,792</div><div class="ms">CMRR / mo</div></div>
+        <div class="metric"><div class="ml">MTD booked</div><div class="mv" id="dash-mtd-val" style="font-size:18px;color:var(--t3)">$0</div><div class="ms" id="dash-mtd-sub">Enter below</div></div>
+        <div class="metric"><div class="ml">Accelerator tier</div><div class="mv" id="dash-accel-val" style="font-size:18px;color:var(--t3)">1x</div><div class="ms" id="dash-accel-sub">0-80% attainment</div></div>
+        <div class="metric"><div class="ml">Projected W-2</div><div class="mv" id="dash-proj-val" style="font-size:18px;color:var(--t3)">$94,900</div><div class="ms" id="dash-proj-sub">base only</div></div>
+        <div class="metric"><div class="ml">Linearity</div><div class="mv" id="dash-lin-val" style="font-size:18px;color:var(--t3)">--</div><div class="ms" id="dash-lin-sub">Day 21 spiff</div></div>
+      </div>
+      <div style="margin-bottom:10px">
+        <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--t3);margin-bottom:4px;font-family:'DM Mono',monospace"><span>Monthly quota pace</span><span id="dash-pace-pct">0% to $7,792</span></div>
+        <div style="height:8px;background:var(--bg4);border-radius:4px;overflow:hidden"><div id="dash-pace-bar" style="height:100%;border-radius:4px;background:var(--t3);width:0%;transition:width .4s,background .3s"></div></div>
+        <div style="display:flex;justify-content:space-between;font-size:9px;color:var(--t3);margin-top:3px"><span>$0</span><span style="color:var(--amb)">80% = $6,234</span><span style="color:var(--grn)">100% = $7,792</span></div>
+      </div>
+      <div style="margin-bottom:10px">
+        <div style="font-size:10px;color:var(--t3);margin-bottom:5px">Quarterly accelerator &mdash; obsess the 2.20x &rarr; 2.67x jump</div>
+        <div style="display:flex;gap:3px">
+          <div id="da-1x" style="flex:1;padding:5px 6px;border-radius:var(--rs);border:1px solid var(--b1);background:var(--bg3);text-align:center"><div style="font-weight:700;font-size:12px;color:var(--t3)">1x</div><div style="font-size:8px;color:var(--t3);margin-top:1px">0-80%</div></div>
+          <div id="da-220" style="flex:1;padding:5px 6px;border-radius:var(--rs);border:1px solid var(--b1);background:var(--bg3);text-align:center"><div style="font-weight:700;font-size:12px;color:var(--t3)">2.20x</div><div style="font-size:8px;color:var(--t3);margin-top:1px">80-100%</div></div>
+          <div id="da-267" style="flex:2;padding:5px 6px;border-radius:var(--rs);border:1px solid var(--pur-b);background:var(--pur-bg);text-align:center"><div style="font-weight:700;font-size:12px;color:var(--pur)">2.67x STAR</div><div style="font-size:8px;color:var(--pur);margin-top:1px">100-120% — the money tier</div></div>
+          <div id="da-300" style="flex:1;padding:5px 6px;border-radius:var(--rs);border:1px solid var(--b1);background:var(--bg3);text-align:center"><div style="font-weight:700;font-size:12px;color:var(--t3)">3.00x</div><div style="font-size:8px;color:var(--t3);margin-top:1px">120%+</div></div>
+        </div>
+      </div>
+      <div style="display:flex;gap:8px;align-items:flex-end;flex-wrap:wrap">
+        <div><div style="font-size:9px;color:var(--t3);margin-bottom:3px;text-transform:uppercase;letter-spacing:.06em">MTD booked $</div><div style="display:flex;align-items:center;gap:4px"><span style="color:var(--t3);font-size:13px">$</span><input type="number" id="dash-mtd-input" placeholder="0" min="0" style="width:90px;padding:5px 8px;border:1px solid var(--grn-b);border-radius:var(--rs);background:var(--bg4);color:var(--grn);font-size:14px;font-family:'DM Mono',monospace;font-weight:700;outline:none" oninput="updateDashComp()"></div></div>
+        <div><div style="font-size:9px;color:var(--t3);margin-bottom:3px;text-transform:uppercase;letter-spacing:.06em">Pipeline CMRR $</div><div style="display:flex;align-items:center;gap:4px"><span style="color:var(--t3);font-size:13px">$</span><input type="number" id="dash-pipe-input" placeholder="14300" min="0" style="width:90px;padding:5px 8px;border:1px solid var(--b2);border-radius:var(--rs);background:var(--bg4);color:var(--t1);font-size:14px;font-family:'DM Mono',monospace;font-weight:700;outline:none" oninput="updateDashComp()"></div></div>
+        <div><div style="font-size:9px;color:var(--t3);margin-bottom:3px;text-transform:uppercase;letter-spacing:.06em">Day of month</div><input type="number" id="dash-day-input" min="1" max="31" style="width:54px;padding:5px 8px;border:1px solid var(--b2);border-radius:var(--rs);background:var(--bg4);color:var(--t1);font-size:14px;font-family:'DM Mono',monospace;font-weight:700;outline:none" oninput="updateDashComp()"></div>
+        <div style="font-size:10px;color:var(--t3);padding-bottom:6px">update these for live math</div>
+      </div>
+    </div>
+
+    <div id="dash-alerts-row" style="margin-bottom:13px"></div>
+
     <div class="g4">
       <div class="metric"><div class="ml">FY27 quota</div><div class="mv s">$312K</div><div class="ms">CMRR target</div></div>
       <div class="metric"><div class="ml">Closed won YTD</div><div class="mv g">$15.2K</div><div class="ms">4.9% attainment &middot; 6 accts</div></div>
-      <div class="metric"><div class="ml">Active pipeline</div><div class="mv a">$14.3K</div><div class="ms">6 open opps</div></div>
+      <div class="metric"><div class="ml">Active pipeline</div><div class="mv a">$14.3K</div><div class="ms">6 open opps &middot; avg $278 ARPU</div></div>
       <div class="metric"><div class="ml">Time saved/week</div><div class="mv g">3.7 hrs</div><div class="ms">Gong Drop live now</div></div>
     </div>
     <div class="g3">
@@ -560,11 +614,11 @@ Blayne &middot; 707-478-9500</div>
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
       <div>
         <div style="font-size:18px;font-weight:800;color:var(--t1);letter-spacing:-.5px" id="pc-date-heading">Tuesday, June 2</div>
-        <div style="font-size:11px;color:var(--t3);margin-top:2px">Calendar View &middot; pre-call briefs &middot; post-call lives in Gong Drop</div>
+        <div style="font-size:11px;color:var(--t3);margin-top:2px">Calendar View &middot; AI prospect briefs &middot; post-call in Gong Drop</div>
       </div>
       <div style="display:flex;gap:7px;align-items:center">
-        <div id="pc-refresh-status" style="font-size:10px;color:var(--grn)">Loaded 9:37 PM</div>
-        <button onclick="refreshCalendar()" id="pc-refresh-btn" style="display:inline-flex;align-items:center;gap:6px;padding:8px 18px;border-radius:var(--rs);border:none;background:var(--grn);color:#fff;font-size:12px;font-weight:700;cursor:pointer;font-family:\'DM Sans\',sans-serif">
+        <div id="pc-refresh-status" style="font-size:10px;color:var(--grn)">v11 &mdash; AI brief engine live</div>
+        <button onclick="refreshCalendar()" id="pc-refresh-btn" style="display:inline-flex;align-items:center;gap:6px;padding:8px 18px;border-radius:var(--rs);border:none;background:var(--grn);color:#fff;font-size:12px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:13px;height:13px"><path d="M23 4v6h-6"/><path d="M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
           Refresh
         </button>
@@ -575,11 +629,11 @@ Blayne &middot; 707-478-9500</div>
     <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin-bottom:14px;border:1px solid var(--b1);border-radius:var(--r);overflow:hidden">
       <div style="padding:10px 14px;background:var(--grn-bg);border-right:1px solid var(--grn-b)">
         <div style="font-size:8px;color:var(--grn);text-transform:uppercase;letter-spacing:.07em;font-weight:700;margin-bottom:3px">Prospect calls</div>
-        <div style="font-size:22px;font-weight:800;color:var(--grn);font-family:\'DM Mono\',monospace">3</div>
+        <div style="font-size:22px;font-weight:800;color:var(--grn);font-family:'DM Mono',monospace">3</div>
       </div>
       <div style="padding:10px 14px;background:var(--bg3);border-right:1px solid var(--b1)">
         <div style="font-size:8px;color:var(--t3);text-transform:uppercase;letter-spacing:.07em;font-weight:700;margin-bottom:3px">Internal</div>
-        <div style="font-size:22px;font-weight:800;color:var(--blu);font-family:\'DM Mono\',monospace">3</div>
+        <div style="font-size:22px;font-weight:800;color:var(--blu);font-family:'DM Mono',monospace">3</div>
       </div>
       <div style="padding:10px 14px;background:var(--bg3);border-right:1px solid var(--b1)">
         <div style="font-size:8px;color:var(--t3);text-transform:uppercase;letter-spacing:.07em;font-weight:700;margin-bottom:3px">First call</div>
@@ -598,72 +652,169 @@ Blayne &middot; 707-478-9500</div>
     <!-- SoS LOOKUP -->
     <div style="display:flex;align-items:center;gap:8px;padding:8px 12px;background:var(--bg3);border:1px solid var(--b1);border-radius:var(--r);margin-bottom:12px">
       <span style="font-size:11px;font-weight:600;color:var(--t2);white-space:nowrap">&#127963; SoS:</span>
-      <select id="sos-state-pc" style="padding:4px 8px;border-radius:var(--rs);border:1px solid var(--b2);background:var(--bg4);color:var(--t1);font-size:11px;font-family:\'DM Sans\',sans-serif;outline:none;flex:1">
+      <select id="sos-state-pc" style="padding:4px 8px;border-radius:var(--rs);border:1px solid var(--b2);background:var(--bg4);color:var(--t1);font-size:11px;font-family:'DM Sans',sans-serif;outline:none;flex:1">
         <option value="">Select state...</option>
         <option value="https://www.sos.state.al.us/arc/">Alabama</option><option value="https://www.commerce.alaska.gov/cbp/main/search/entities">Alaska</option><option value="https://ecorp.azcc.gov/BusinessSearch/BusinessSearch">Arizona</option><option value="https://www.sos.arkansas.gov/corps/search_all.php">Arkansas</option><option value="https://bizfileonline.sos.ca.gov/search/business">California</option><option value="https://www.sos.state.co.us/biz/BusinessEntityCriteriaExt.do">Colorado</option><option value="https://service.ct.gov/business/s/onlinebusinesssearch">Connecticut</option><option value="https://icis.corp.delaware.gov/Ecorp/EntitySearch/NameSearch.aspx">Delaware</option><option value="https://dos.myflorida.com/sunbiz/search/">Florida</option><option value="https://ecorp.sos.ga.gov/BusinessSearch">Georgia</option><option value="https://portal.ehawaii.gov/business/business-registrations/">Hawaii</option><option value="https://sosbiz.idaho.gov/">Idaho</option><option value="https://www.ilsos.gov/corporatellc/">Illinois</option><option value="https://bsd.sos.in.gov/publicbusinesssearch">Indiana</option><option value="https://www.sos.ks.gov/corps/business_entity_searches.html">Kansas</option><option value="https://web.sos.ky.gov/bso/">Kentucky</option><option value="https://coraweb.sos.la.gov/commercialrecordings/">Louisiana</option><option value="https://egov.maryland.gov/BusinessExpress/EntitySearch">Maryland</option><option value="https://corp.sec.state.ma.us/CorpWeb/CorpSearch/CorpSearch.aspx">Massachusetts</option><option value="https://cofs.lara.state.mi.us/SearchApi/Search/Search">Michigan</option><option value="https://mblsportal.sos.state.mn.us/">Minnesota</option><option value="https://corp.sos.ms.gov/corp/portal/c/page/corpBusinessIdSearch/portal.aspx">Mississippi</option><option value="https://bsd.sos.mo.gov/BusinessEntity/BESearch.aspx">Missouri</option><option value="https://sosmt.gov/business/">Montana</option><option value="https://www.nebraska.gov/sos/corp/corpsearch.cgi">Nebraska</option><option value="https://esos.nv.gov/EntitySearch/OnlineEntitySearch">Nevada</option><option value="https://www.njportal.com/DOR/BusinessNameSearch/">New Jersey</option><option value="https://portal.sos.state.nm.us/BFS/online/CorporationBusinessSearch">New Mexico</option><option value="https://apps.dos.ny.gov/publicInquiry/">New York</option><option value="https://www.sosnc.gov/online_services/search/by_title/_Business_Registration">North Carolina</option><option value="https://firststop.sos.nd.gov/search/business">North Dakota</option><option value="https://bsportal.ohiosos.gov/">Ohio</option><option value="https://www.sos.ok.gov/corp/corpInquiryFind.aspx">Oklahoma</option><option value="https://sos.oregon.gov/business/pages/find.aspx">Oregon</option><option value="https://www.corporations.pa.gov/search/corpsearch">Pennsylvania</option><option value="https://businessfilings.sc.gov/">South Carolina</option><option value="https://sosenterprise.sd.gov/BusinessServices/Business/FilingSearch.aspx">South Dakota</option><option value="https://tnbear.tn.gov/Ecommerce/FilingSearch.aspx">Tennessee</option><option value="https://www.sos.state.tx.us/corp/sosda/index.shtml">Texas</option><option value="https://secure.utah.gov/bes/index.html">Utah</option><option value="https://cis.scc.virginia.gov/">Virginia</option><option value="https://ccfs.sos.wa.gov/">Washington</option><option value="https://apps.wv.gov/SOS/BusinessEntitySearch/">West Virginia</option><option value="https://www.wdfi.org/apps/CorpSearch/Search.aspx">Wisconsin</option><option value="https://soswy.state.wy.us/Business/SearchBusiness.aspx">Wyoming</option>
       </select>
-      <button onclick="var s=document.getElementById(\'sos-state-pc\').value;if(s)window.open(s,\'_blank\');" style="padding:5px 12px;border-radius:var(--rs);border:none;background:var(--blu);color:#fff;font-size:11px;font-weight:600;cursor:pointer;font-family:\'DM Sans\',sans-serif;white-space:nowrap">Open &#8599;</button>
+      <button onclick="var s=document.getElementById('sos-state-pc').value;if(s)window.open(s,'_blank');" style="padding:5px 12px;border-radius:var(--rs);border:none;background:var(--blu);color:#fff;font-size:11px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;white-space:nowrap">Open &#8599;</button>
     </div>
 
-    <!-- ═══ EVENT CARDS ═══ -->
+    <!-- AI PROSPECT BRIEF GENERATOR -->
+    <div style="background:var(--bg2);border:1px solid var(--pur-b);border-radius:var(--r);padding:13px 16px;margin-bottom:14px">
+      <div class="sec" style="margin-bottom:10px"><div class="pulse"></div>AI Prospect Brief Generator &mdash; type a company, get a full one-pager in 15 sec</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px">
+        <div style="flex:2;min-width:200px">
+          <div style="font-size:9px;color:var(--t3);margin-bottom:3px;text-transform:uppercase;letter-spacing:.06em">Company name</div>
+          <input type="text" id="brief-company" placeholder="e.g. Hill Country Doors LLC" style="width:100%;padding:7px 10px;border:1px solid var(--pur-b);border-radius:var(--rs);background:var(--bg4);color:var(--t1);font-size:13px;font-weight:600;font-family:'DM Sans',sans-serif;outline:none;box-sizing:border-box">
+        </div>
+        <div style="flex:1;min-width:120px">
+          <div style="font-size:9px;color:var(--t3);margin-bottom:3px;text-transform:uppercase;letter-spacing:.06em">Contact name</div>
+          <input type="text" id="brief-contact" placeholder="e.g. Brodie" style="width:100%;padding:7px 10px;border:1px solid var(--b2);border-radius:var(--rs);background:var(--bg4);color:var(--t1);font-size:13px;font-family:'DM Sans',sans-serif;outline:none;box-sizing:border-box">
+        </div>
+        <div style="flex:1;min-width:120px">
+          <div style="font-size:9px;color:var(--t3);margin-bottom:3px;text-transform:uppercase;letter-spacing:.06em">Vertical</div>
+          <select id="brief-vertical" style="width:100%;padding:7px 10px;border:1px solid var(--b2);border-radius:var(--rs);background:var(--bg4);color:var(--t1);font-size:12px;font-family:'DM Sans',sans-serif;outline:none">
+            <option value="HVAC">HVAC</option>
+            <option value="Plumbing">Plumbing</option>
+            <option value="Electrical">Electrical</option>
+            <option value="Garage Door" selected>Garage Door</option>
+            <option value="Mechanical">Mechanical</option>
+            <option value="Multi-trade">Multi-trade</option>
+          </select>
+        </div>
+        <div style="flex:1;min-width:100px">
+          <div style="font-size:9px;color:var(--t3);margin-bottom:3px;text-transform:uppercase;letter-spacing:.06em">Call type</div>
+          <select id="brief-stage" style="width:100%;padding:7px 10px;border:1px solid var(--b2);border-radius:var(--rs);background:var(--bg4);color:var(--t1);font-size:12px;font-family:'DM Sans',sans-serif;outline:none">
+            <option value="Discovery">Discovery</option>
+            <option value="Demo">Demo</option>
+            <option value="Pricing">Pricing</option>
+            <option value="Follow-up">Follow-up</option>
+          </select>
+        </div>
+      </div>
+      <div style="display:flex;gap:8px;margin-bottom:10px">
+        <div style="flex:2">
+          <div style="font-size:9px;color:var(--t3);margin-bottom:3px;text-transform:uppercase;letter-spacing:.06em">SDR notes / what you know</div>
+          <textarea id="brief-notes" rows="2" placeholder="e.g. 8 techs, Texas Hill Country, on QuickBooks, 60% residential 40% commercial, booked via Sam Rumbelow, first time talking to ST" style="width:100%;padding:7px 10px;border:1px solid var(--b2);border-radius:var(--rs);background:var(--bg4);color:var(--t1);font-size:12px;font-family:'DM Sans',sans-serif;resize:none;outline:none;line-height:1.5;box-sizing:border-box"></textarea>
+        </div>
+        <div style="flex:1">
+          <div style="font-size:9px;color:var(--t3);margin-bottom:3px;text-transform:uppercase;letter-spacing:.06em">Competitor (if known)</div>
+          <select id="brief-competitor" style="width:100%;padding:7px 10px;border:1px solid var(--b2);border-radius:var(--rs);background:var(--bg4);color:var(--t1);font-size:12px;font-family:'DM Sans',sans-serif;outline:none">
+            <option value="none">None known</option>
+            <option value="FieldEdge">FieldEdge</option>
+            <option value="HouseCall Pro">HouseCall Pro</option>
+            <option value="ServiceFusion">ServiceFusion</option>
+            <option value="BuildOps">BuildOps</option>
+            <option value="Jobber">Jobber</option>
+            <option value="pen and paper">Pen &amp; paper</option>
+            <option value="QuickBooks only">QuickBooks only</option>
+          </select>
+        </div>
+      </div>
+      <div style="display:flex;gap:7px;align-items:center">
+        <button onclick="generateBrief()" style="display:inline-flex;align-items:center;gap:6px;padding:9px 20px;border-radius:var(--rs);border:none;background:var(--pur);color:#fff;font-size:12px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif">
+          &#9889; Generate brief
+        </button>
+        <button onclick="document.getElementById('brief-output').style.display='none'" style="padding:9px 14px;border-radius:var(--rs);border:1px solid var(--b2);background:none;color:var(--t2);font-size:11px;cursor:pointer;font-family:'DM Sans',sans-serif">Clear</button>
+        <span style="font-size:10px;color:var(--t3)">Writes the full one-pager: company intel, open questions, SPIN prep, competitor angle, ICP flags</span>
+      </div>
+      <!-- Brief output -->
+      <div id="brief-output" style="display:none;margin-top:12px">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+          <div class="sec" style="margin:0"><div class="pulse"></div>Your pre-call brief</div>
+          <button onclick="copyBrief()" id="brief-copy-btn" style="display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border-radius:var(--rs);border:1px solid var(--b2);background:none;color:var(--t2);font-size:11px;cursor:pointer;font-family:'DM Sans',sans-serif">&#128203; Copy</button>
+        </div>
+        <div id="brief-result" style="background:var(--bg3);border:1px solid var(--pur-b);border-radius:var(--r);padding:14px 16px;font-size:12px;color:var(--t1);line-height:1.85;white-space:pre-wrap"></div>
+        <div id="brief-spin-section" style="display:none;margin-top:10px">
+          <div class="sec" style="margin-bottom:8px">SPIN questions for this call</div>
+          <div id="brief-spin-output"></div>
+        </div>
+        <div id="brief-comp-section" style="display:none;margin-top:10px">
+          <div class="sec" style="color:var(--red);margin-bottom:6px">&#9876; Competitor angle</div>
+          <div id="brief-comp-output" style="background:var(--red-bg);border:1px solid var(--red-b);border-radius:var(--r);padding:12px 14px;font-size:12px;color:var(--t1);line-height:1.7"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EVENT CARDS -->
     <div id="pc-event-list">
 
-      <!-- ── 8:00am HILL COUNTRY DOORS ── PROSPECT ── -->
+      <!-- 8:00am HILL COUNTRY DOORS -->
       <div id="ev-hill-country" style="border:1px solid var(--grn-b);border-radius:var(--r);overflow:hidden;margin-bottom:10px;background:var(--bg2)">
         <div style="display:flex;gap:0">
-          <!-- Time -->
           <div style="padding:14px 16px;background:var(--grn-bg);border-right:1px solid var(--grn-b);display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:72px;flex-shrink:0">
             <div style="font-size:14px;font-weight:800;color:var(--grn)">8:00am</div>
             <div style="font-size:9px;color:var(--grn);opacity:.7;margin-top:1px">9:00am</div>
             <div style="font-size:8px;font-weight:700;color:var(--grn);text-transform:uppercase;letter-spacing:.06em;margin-top:5px;padding:2px 6px;background:rgba(0,0,0,.12);border-radius:3px">PROSPECT</div>
           </div>
-          <!-- Content -->
           <div style="padding:12px 16px;flex:1">
             <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px">
               <div style="font-size:14px;font-weight:800;color:var(--t1);letter-spacing:-.3px">Hill Country Doors LLC</div>
               <div id="ev-hill-country-status" style="font-size:11px;font-weight:600;color:var(--t3)"></div>
             </div>
-            <div style="font-size:11px;color:var(--t3);margin-bottom:6px">&#128100; Brodie (hillcountrydoorsllc@gmail.com) &middot; Garage Door &middot; Texas &middot; Exploratory</div>
-            <div style="font-size:11px;color:var(--t2);line-height:1.6;margin-bottom:8px">Booked via Sam Rumbelow. Reminder sent this morning. First real look at ST. Garage door shop in Texas Hill Country area. Come ready with garage door case studies and the Grayco/All American win stories.</div>
-
-            <!-- Action buttons row -->
+            <div style="font-size:11px;color:var(--t3);margin-bottom:6px">&#128100; Brodie (hillcountrydoorsllc@gmail.com) &middot; Garage Door &middot; Texas &middot; Discovery</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:8px">
+              <div style="background:var(--bg3);border:1px solid var(--b1);border-radius:var(--rs);padding:6px 9px">
+                <div style="font-size:8px;color:var(--t3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:2px">Booked by</div>
+                <div style="font-size:11px;font-weight:600;color:var(--t1)">Sam Rumbelow</div>
+              </div>
+              <div style="background:var(--bg3);border:1px solid var(--b1);border-radius:var(--rs);padding:6px 9px">
+                <div style="font-size:8px;color:var(--t3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:2px">Platform</div>
+                <div style="font-size:11px;font-weight:600;color:var(--amb)">Unknown</div>
+              </div>
+              <div style="background:var(--bg3);border:1px solid var(--b1);border-radius:var(--rs);padding:6px 9px">
+                <div style="font-size:8px;color:var(--t3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:2px">Tech count</div>
+                <div style="font-size:11px;font-weight:600;color:var(--t1)">TBD</div>
+              </div>
+            </div>
+            <!-- ICP quick check -->
+            <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:8px">
+              <span style="font-size:9px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.06em;align-self:center">ICP flags:</span>
+              <span class="bx bg">PHEG vertical ✓</span>
+              <span class="bx ba">Const % unknown</span>
+              <span class="bx bg">Texas (active market) ✓</span>
+            </div>
+            <!-- Action buttons -->
             <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px">
               <a href="https://servicetitan.zoom.us/my/blayneservicetitan" target="_blank" style="display:inline-flex;align-items:center;gap:4px;padding:5px 12px;border-radius:var(--rs);background:var(--blu);color:#fff;font-size:11px;font-weight:600;text-decoration:none">&#128249; Join Zoom</a>
-              <button onclick="openPreCallEmailModal('hill-country','Brodie','Hill Country Doors LLC','hillcountrydoorsllc@gmail.com','8:00am')" style="display:inline-flex;align-items:center;gap:4px;padding:5px 12px;border-radius:var(--rs);border:1px solid var(--grn-b);background:var(--grn-bg);color:var(--grn);font-size:11px;font-weight:600;cursor:pointer;font-family:\'DM Sans\',sans-serif">&#9993; Pre-call email</button>
-              <button onclick="toggleIntel('hill-country')" style="display:inline-flex;align-items:center;gap:4px;padding:5px 12px;border-radius:var(--rs);border:1px solid var(--b2);background:none;color:var(--t2);font-size:11px;cursor:pointer;font-family:\'DM Sans\',sans-serif">&#128269; Intel</button>
+              <button onclick="openPreCallEmailModal('hill-country','Brodie','Hill Country Doors LLC','hillcountrydoorsllc@gmail.com','8:00am')" style="display:inline-flex;align-items:center;gap:4px;padding:5px 12px;border-radius:var(--rs);border:1px solid var(--grn-b);background:var(--grn-bg);color:var(--grn);font-size:11px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif">&#9993; Pre-call email</button>
+              <button onclick="quickBrief('Hill Country Doors LLC','Brodie','Garage Door','Discovery','8 techs Texas Hill Country, on QuickBooks, booked via Sam Rumbelow','none')" style="display:inline-flex;align-items:center;gap:4px;padding:5px 12px;border-radius:var(--rs);border:1px solid var(--pur-b);background:var(--pur-bg);color:var(--pur);font-size:11px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif">&#9889; AI Brief</button>
+              <button onclick="toggleIntel('hill-country')" style="display:inline-flex;align-items:center;gap:4px;padding:5px 12px;border-radius:var(--rs);border:1px solid var(--b2);background:none;color:var(--t2);font-size:11px;cursor:pointer;font-family:'DM Sans',sans-serif">&#128269; Quick links</button>
             </div>
-
-            <!-- Intel panel (collapsed) -->
+            <!-- Quick links panel -->
             <div id="intel-hill-country" style="display:none;background:var(--bg4);border:1px solid var(--b1);border-radius:var(--rs);padding:10px 12px;margin-bottom:8px">
-              <div style="font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:.07em;font-weight:700;margin-bottom:7px">Pre-call intel</div>
+              <div style="font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:.07em;font-weight:700;margin-bottom:7px">Quick links</div>
               <div style="display:flex;gap:6px;flex-wrap:wrap">
                 <a href="https://www.google.com/search?q=Hill+Country+Doors+LLC+Texas" target="_blank" style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:var(--rs);border:1px solid var(--b2);background:var(--bg3);color:var(--t2);font-size:10px;text-decoration:none">&#127758; Google</a>
                 <a href="https://www.linkedin.com/search/results/companies/?keywords=Hill%20Country%20Doors" target="_blank" style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:var(--rs);border:1px solid var(--b2);background:var(--bg3);color:var(--t2);font-size:10px;text-decoration:none">&#128101; LinkedIn</a>
-                <a href="https://www.google.com/search?q=Hill+Country+Doors+LLC+Texas+careers+jobs+hiring" target="_blank" style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:var(--rs);border:1px solid var(--b2);background:var(--bg3);color:var(--t2);font-size:10px;text-decoration:none">&#128188; Careers?</a>
-                <a href="https://www.google.com/search?q=weather+Texas+Hill+Country+today" target="_blank" style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:var(--rs);border:1px solid var(--b2);background:var(--bg3);color:var(--t2);font-size:10px;text-decoration:none">&#127783; Weather TX</a>
-                <a href="https://www.google.com/search?q=Hill+Country+Doors+reviews+Yelp+Google" target="_blank" style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:var(--rs);border:1px solid var(--b2);background:var(--bg3);color:var(--t2);font-size:10px;text-decoration:none">&#11088; Reviews</a>
+                <a href="https://www.google.com/search?q=Hill+Country+Doors+LLC+Texas+careers+jobs+hiring" target="_blank" style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:var(--rs);border:1px solid var(--b2);background:var(--bg3);color:var(--t2);font-size:10px;text-decoration:none">&#128188; Hiring?</a>
+                <a href="https://www.google.com/search?q=weather+Texas+Hill+Country+today" target="_blank" style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:var(--rs);border:1px solid var(--b2);background:var(--bg3);color:var(--t2);font-size:10px;text-decoration:none">&#127783; TX Weather</a>
+                <a href="https://www.google.com/search?q=Hill+Country+Doors+reviews" target="_blank" style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:var(--rs);border:1px solid var(--b2);background:var(--bg3);color:var(--t2);font-size:10px;text-decoration:none">&#11088; Reviews</a>
+                <a href="https://www.sos.state.tx.us/corp/sosda/index.shtml" target="_blank" style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:var(--rs);border:1px solid var(--amb-b);background:var(--amb-bg);color:var(--amb);font-size:10px;text-decoration:none;font-weight:600">&#127963; TX SoS</a>
               </div>
             </div>
-
-            <!-- Outcome tracking -->
+            <!-- Outcome -->
             <div style="display:flex;gap:5px;align-items:center">
               <span style="font-size:9px;color:var(--t3);font-weight:600;text-transform:uppercase;letter-spacing:.07em">Outcome:</span>
-              <button onclick="setOutcome(\'hill-country\',\'showed\')" id="oc-hill-country-showed" style="padding:4px 10px;border-radius:100px;border:1px solid var(--b2);background:none;color:var(--t2);font-size:10px;cursor:pointer;font-family:\'DM Sans\',sans-serif">&#10003; Showed</button>
-              <button onclick="setOutcome(\'hill-country\',\'noshow\')" id="oc-hill-country-noshow" style="padding:4px 10px;border-radius:100px;border:1px solid var(--b2);background:none;color:var(--t2);font-size:10px;cursor:pointer;font-family:\'DM Sans\',sans-serif">&#10007; No show</button>
-              <button onclick="setOutcome(\'hill-country\',\'hot\')" id="oc-hill-country-hot" style="padding:4px 10px;border-radius:100px;border:1px solid var(--b2);background:none;color:var(--t2);font-size:10px;cursor:pointer;font-family:\'DM Sans\',sans-serif">&#11088; Hot prospect</button>
+              <button onclick="setOutcome('hill-country','showed')" id="oc-hill-country-showed" style="padding:4px 10px;border-radius:100px;border:1px solid var(--b2);background:none;color:var(--t2);font-size:10px;cursor:pointer;font-family:'DM Sans',sans-serif">&#10003; Showed</button>
+              <button onclick="setOutcome('hill-country','noshow')" id="oc-hill-country-noshow" style="padding:4px 10px;border-radius:100px;border:1px solid var(--b2);background:none;color:var(--t2);font-size:10px;cursor:pointer;font-family:'DM Sans',sans-serif">&#10007; No show</button>
+              <button onclick="setOutcome('hill-country','hot')" id="oc-hill-country-hot" style="padding:4px 10px;border-radius:100px;border:1px solid var(--b2);background:none;color:var(--t2);font-size:10px;cursor:pointer;font-family:'DM Sans',sans-serif">&#11088; Hot</button>
+              <button onclick="setOutcome('hill-country','demo')" id="oc-hill-country-demo" style="padding:4px 10px;border-radius:100px;border:1px solid var(--b2);background:none;color:var(--t2);font-size:10px;cursor:pointer;font-family:'DM Sans',sans-serif">&#128249; Demo booked</button>
             </div>
+            <!-- AI brief inline output for this card -->
+            <div id="brief-inline-hill-country" style="display:none;margin-top:10px;background:var(--bg3);border:1px solid var(--pur-b);border-radius:var(--r);padding:12px 14px;font-size:11.5px;color:var(--t1);line-height:1.8;white-space:pre-wrap"></div>
           </div>
         </div>
       </div>
 
-      <!-- ── 9:00am BUFFER ── -->
+      <!-- 9:00am BUFFER -->
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;padding:6px 12px;background:var(--bg3);border:1px solid var(--b1);border-radius:var(--rs)">
         <div style="font-size:11px;font-weight:600;color:var(--t3);min-width:54px">9:00am</div>
         <div style="width:6px;height:6px;border-radius:50%;background:var(--b2);flex-shrink:0"></div>
-        <div style="font-size:11px;color:var(--t3)">[Meeting Buffer]</div>
+        <div style="font-size:11px;color:var(--t3)">[Buffer]</div>
       </div>
 
-      <!-- ── 10:00am LPH MECHANICAL ── PROSPECT ── -->
+      <!-- 10:00am LPH MECHANICAL -->
       <div id="ev-lph" style="border:1px solid var(--grn-b);border-radius:var(--r);overflow:hidden;margin-bottom:10px;background:var(--bg2)">
         <div style="display:flex;gap:0">
           <div style="padding:14px 16px;background:var(--grn-bg);border-right:1px solid var(--grn-b);display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:72px;flex-shrink:0">
@@ -676,40 +827,62 @@ Blayne &middot; 707-478-9500</div>
               <div style="font-size:14px;font-weight:800;color:var(--t1);letter-spacing:-.3px">LPH Mechanical LLC</div>
               <div id="ev-lph-status" style="font-size:11px;font-weight:600;color:var(--t3)"></div>
             </div>
-            <div style="font-size:11px;color:var(--t3);margin-bottom:6px">&#128100; Jeanette (jeanette@lphmechanical.com) &middot; Mechanical / HVAC &middot; Exploratory &middot; Booked by Anna Reynolds</div>
-            <div style="font-size:11px;color:var(--t2);line-height:1.6;margin-bottom:8px">Brand new exploratory. Booked last night by Anna. No prior email history. Come in fresh, run full discovery. Mechanical contractor so could be HVAC, plumbing, or multi-trade. Ask about trade mix early.</div>
+            <div style="font-size:11px;color:var(--t3);margin-bottom:6px">&#128100; Jeanette (jeanette@lphmechanical.com) &middot; HVAC / Mechanical &middot; Discovery &middot; Booked by Anna Reynolds</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:8px">
+              <div style="background:var(--bg3);border:1px solid var(--b1);border-radius:var(--rs);padding:6px 9px">
+                <div style="font-size:8px;color:var(--t3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:2px">Booked by</div>
+                <div style="font-size:11px;font-weight:600;color:var(--t1)">Anna Reynolds</div>
+              </div>
+              <div style="background:var(--bg3);border:1px solid var(--b1);border-radius:var(--rs);padding:6px 9px">
+                <div style="font-size:8px;color:var(--t3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:2px">Platform</div>
+                <div style="font-size:11px;font-weight:600;color:var(--amb)">Unknown</div>
+              </div>
+              <div style="background:var(--bg3);border:1px solid var(--b1);border-radius:var(--rs);padding:6px 9px">
+                <div style="font-size:8px;color:var(--t3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:2px">Priority flag</div>
+                <div style="font-size:11px;font-weight:600;color:var(--amb)">Ask trade mix</div>
+              </div>
+            </div>
+            <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:8px">
+              <span style="font-size:9px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.06em;align-self:center">ICP flags:</span>
+              <span class="bx bg">PHEG vertical ✓</span>
+              <span class="bx ba">Trade mix TBD</span>
+              <span class="bx ba">Const % unknown</span>
+            </div>
             <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px">
               <a href="https://servicetitan.zoom.us/my/blayneservicetitan" target="_blank" style="display:inline-flex;align-items:center;gap:4px;padding:5px 12px;border-radius:var(--rs);background:var(--blu);color:#fff;font-size:11px;font-weight:600;text-decoration:none">&#128249; Join Zoom</a>
-              <button onclick="openPreCallEmailModal(\'lph\',\'Jeanette\',\'LPH Mechanical LLC\',\'jeanette@lphmechanical.com\',\'10:00am\')" style="display:inline-flex;align-items:center;gap:4px;padding:5px 12px;border-radius:var(--rs);border:1px solid var(--grn-b);background:var(--grn-bg);color:var(--grn);font-size:11px;font-weight:600;cursor:pointer;font-family:\'DM Sans\',sans-serif">&#9993; Pre-call email</button>
-              <button onclick="toggleIntel(\'lph\')" style="display:inline-flex;align-items:center;gap:4px;padding:5px 12px;border-radius:var(--rs);border:1px solid var(--b2);background:none;color:var(--t2);font-size:11px;cursor:pointer;font-family:\'DM Sans\',sans-serif">&#128269; Intel</button>
+              <button onclick="openPreCallEmailModal('lph','Jeanette','LPH Mechanical LLC','jeanette@lphmechanical.com','10:00am')" style="display:inline-flex;align-items:center;gap:4px;padding:5px 12px;border-radius:var(--rs);border:1px solid var(--grn-b);background:var(--grn-bg);color:var(--grn);font-size:11px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif">&#9993; Pre-call email</button>
+              <button onclick="quickBrief('LPH Mechanical LLC','Jeanette','Mechanical','Discovery','Brand new exploratory, booked by Anna Reynolds last night. No prior contact. Mechanical contractor - could be HVAC plumbing or multi-trade. Ask trade mix early.','none')" style="display:inline-flex;align-items:center;gap:4px;padding:5px 12px;border-radius:var(--rs);border:1px solid var(--pur-b);background:var(--pur-bg);color:var(--pur);font-size:11px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif">&#9889; AI Brief</button>
+              <button onclick="toggleIntel('lph')" style="display:inline-flex;align-items:center;gap:4px;padding:5px 12px;border-radius:var(--rs);border:1px solid var(--b2);background:none;color:var(--t2);font-size:11px;cursor:pointer;font-family:'DM Sans',sans-serif">&#128269; Quick links</button>
             </div>
             <div id="intel-lph" style="display:none;background:var(--bg4);border:1px solid var(--b1);border-radius:var(--rs);padding:10px 12px;margin-bottom:8px">
-              <div style="font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:.07em;font-weight:700;margin-bottom:7px">Pre-call intel</div>
+              <div style="font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:.07em;font-weight:700;margin-bottom:7px">Quick links</div>
               <div style="display:flex;gap:6px;flex-wrap:wrap">
                 <a href="https://www.google.com/search?q=LPH+Mechanical+LLC" target="_blank" style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:var(--rs);border:1px solid var(--b2);background:var(--bg3);color:var(--t2);font-size:10px;text-decoration:none">&#127758; Google</a>
                 <a href="https://www.linkedin.com/search/results/companies/?keywords=LPH%20Mechanical" target="_blank" style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:var(--rs);border:1px solid var(--b2);background:var(--bg3);color:var(--t2);font-size:10px;text-decoration:none">&#128101; LinkedIn</a>
-                <a href="https://www.google.com/search?q=LPH+Mechanical+LLC+careers+jobs+hiring" target="_blank" style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:var(--rs);border:1px solid var(--b2);background:var(--bg3);color:var(--t2);font-size:10px;text-decoration:none">&#128188; Careers?</a>
+                <a href="https://www.google.com/search?q=LPH+Mechanical+LLC+hiring+jobs" target="_blank" style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:var(--rs);border:1px solid var(--b2);background:var(--bg3);color:var(--t2);font-size:10px;text-decoration:none">&#128188; Hiring?</a>
                 <a href="https://www.google.com/search?q=LPH+Mechanical+reviews" target="_blank" style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:var(--rs);border:1px solid var(--b2);background:var(--bg3);color:var(--t2);font-size:10px;text-decoration:none">&#11088; Reviews</a>
               </div>
             </div>
             <div style="display:flex;gap:5px;align-items:center">
               <span style="font-size:9px;color:var(--t3);font-weight:600;text-transform:uppercase;letter-spacing:.07em">Outcome:</span>
-              <button onclick="setOutcome(\'lph\',\'showed\')" id="oc-lph-showed" style="padding:4px 10px;border-radius:100px;border:1px solid var(--b2);background:none;color:var(--t2);font-size:10px;cursor:pointer;font-family:\'DM Sans\',sans-serif">&#10003; Showed</button>
-              <button onclick="setOutcome(\'lph\',\'noshow\')" id="oc-lph-noshow" style="padding:4px 10px;border-radius:100px;border:1px solid var(--b2);background:none;color:var(--t2);font-size:10px;cursor:pointer;font-family:\'DM Sans\',sans-serif">&#10007; No show</button>
-              <button onclick="setOutcome(\'lph\',\'hot\')" id="oc-lph-hot" style="padding:4px 10px;border-radius:100px;border:1px solid var(--b2);background:none;color:var(--t2);font-size:10px;cursor:pointer;font-family:\'DM Sans\',sans-serif">&#11088; Hot prospect</button>
+              <button onclick="setOutcome('lph','showed')" id="oc-lph-showed" style="padding:4px 10px;border-radius:100px;border:1px solid var(--b2);background:none;color:var(--t2);font-size:10px;cursor:pointer;font-family:'DM Sans',sans-serif">&#10003; Showed</button>
+              <button onclick="setOutcome('lph','noshow')" id="oc-lph-noshow" style="padding:4px 10px;border-radius:100px;border:1px solid var(--b2);background:none;color:var(--t2);font-size:10px;cursor:pointer;font-family:'DM Sans',sans-serif">&#10007; No show</button>
+              <button onclick="setOutcome('lph','hot')" id="oc-lph-hot" style="padding:4px 10px;border-radius:100px;border:1px solid var(--b2);background:none;color:var(--t2);font-size:10px;cursor:pointer;font-family:'DM Sans',sans-serif">&#11088; Hot</button>
+              <button onclick="setOutcome('lph','demo')" id="oc-lph-demo" style="padding:4px 10px;border-radius:100px;border:1px solid var(--b2);background:none;color:var(--t2);font-size:10px;cursor:pointer;font-family:'DM Sans',sans-serif">&#128249; Demo booked</button>
             </div>
+            <div id="brief-inline-lph" style="display:none;margin-top:10px;background:var(--bg3);border:1px solid var(--pur-b);border-radius:var(--r);padding:12px 14px;font-size:11.5px;color:var(--t1);line-height:1.8;white-space:pre-wrap"></div>
           </div>
         </div>
       </div>
 
-      <!-- ── 11:00am BUFFER ── -->
+      <!-- 11:00am BUFFER -->
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;padding:6px 12px;background:var(--bg3);border:1px solid var(--b1);border-radius:var(--rs)">
         <div style="font-size:11px;font-weight:600;color:var(--t3);min-width:54px">11:00am</div>
         <div style="width:6px;height:6px;border-radius:50%;background:var(--b2);flex-shrink:0"></div>
-        <div style="font-size:11px;color:var(--t3)">[Meeting Buffer]</div>
+        <div style="font-size:11px;color:var(--t3)">[Buffer]</div>
       </div>
 
-      <!-- ── 12:00pm A/C TECH PRO ── CLOSED WON TRANSITION ── -->
+      <!-- 12:00pm A/C TECH PRO - TRANSITION -->
       <div id="ev-actech" style="border:1px solid var(--ice-b);border-radius:var(--r);overflow:hidden;margin-bottom:10px;background:var(--bg2)">
         <div style="display:flex;gap:0">
           <div style="padding:14px 16px;background:var(--ice-bg);border-right:1px solid var(--ice-b);display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:72px;flex-shrink:0">
@@ -718,23 +891,19 @@ Blayne &middot; 707-478-9500</div>
             <div style="font-size:8px;font-weight:700;color:var(--ice);text-transform:uppercase;letter-spacing:.06em;margin-top:5px;padding:2px 6px;background:rgba(0,0,0,.12);border-radius:3px">WON &#10003;</div>
           </div>
           <div style="padding:12px 16px;flex:1">
-            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px">
-              <div style="display:flex;align-items:center;gap:8px">
-                <div style="font-size:14px;font-weight:800;color:var(--t1);letter-spacing:-.3px">A/C Tech Professionals</div>
-                <span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:100px;background:var(--ice-bg);color:var(--ice);border:1px solid var(--ice-b)">CLOSED WON</span>
-              </div>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
+              <div style="font-size:14px;font-weight:800;color:var(--t1);letter-spacing:-.3px">A/C Tech Professionals</div>
+              <span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:100px;background:var(--ice-bg);color:var(--ice);border:1px solid var(--ice-b)">CLOSED WON</span>
             </div>
             <div style="font-size:11px;color:var(--t3);margin-bottom:6px">&#128100; David Aceves (d.aceves@actechpro.net) &middot; HVAC &middot; DocuSign completed May 28 &middot; Transition call</div>
-            <div style="font-size:11px;color:var(--t2);line-height:1.6;margin-bottom:8px">DocuSign completed May 28. Ebony Smith (ebsmith@servicetitan.com) is now the onboarding lead and already reached out to David. This is a transition call to hand him off cleanly and set expectations. Not a sales call.</div>
             <div style="background:var(--ice-bg);border:1px solid var(--ice-b);border-radius:var(--rs);padding:8px 12px;margin-bottom:8px;font-size:11px;color:var(--t2);line-height:1.5">
-              <strong style="color:var(--ice)">Talking points:</strong> Welcome David to the family. Introduce Ebony as his point person. Timeline: pre-implementation phase starts now. Set expectation that Ebony drives from here. Ask if he has questions before you hand off.
+              <strong style="color:var(--ice)">Transition script:</strong> Welcome David. Introduce Ebony Smith (ebsmith@servicetitan.com) as his OB lead. Timeline: pre-implementation starts now, Ebony drives from here. Ask if he has questions before handoff. Do NOT re-sell.
             </div>
             <div style="display:flex;gap:6px;flex-wrap:wrap">
               <a href="https://servicetitan.zoom.us/j/98836498099" target="_blank" style="display:inline-flex;align-items:center;gap:4px;padding:5px 12px;border-radius:var(--rs);background:var(--blu);color:#fff;font-size:11px;font-weight:600;text-decoration:none">&#128249; Join Zoom</a>
-              <button onclick="toggleIntel(\'actech\')" style="display:inline-flex;align-items:center;gap:4px;padding:5px 12px;border-radius:var(--rs);border:1px solid var(--b2);background:none;color:var(--t2);font-size:11px;cursor:pointer;font-family:\'DM Sans\',sans-serif">&#128269; Account intel</button>
+              <button onclick="toggleIntel('actech')" style="display:inline-flex;align-items:center;gap:4px;padding:5px 12px;border-radius:var(--rs);border:1px solid var(--b2);background:none;color:var(--t2);font-size:11px;cursor:pointer;font-family:'DM Sans',sans-serif">&#128269; Account intel</button>
             </div>
             <div id="intel-actech" style="display:none;background:var(--bg4);border:1px solid var(--b1);border-radius:var(--rs);padding:10px 12px;margin-top:8px">
-              <div style="font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:.07em;font-weight:700;margin-bottom:7px">Account intel</div>
               <div style="display:flex;gap:6px;flex-wrap:wrap">
                 <a href="https://www.google.com/search?q=A/C+Tech+Professionals+actechpro" target="_blank" style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:var(--rs);border:1px solid var(--b2);background:var(--bg3);color:var(--t2);font-size:10px;text-decoration:none">&#127758; Google</a>
                 <a href="https://www.linkedin.com/search/results/companies/?keywords=AC%20Tech%20Professionals" target="_blank" style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:var(--rs);border:1px solid var(--b2);background:var(--bg3);color:var(--t2);font-size:10px;text-decoration:none">&#128101; LinkedIn</a>
@@ -744,7 +913,7 @@ Blayne &middot; 707-478-9500</div>
         </div>
       </div>
 
-      <!-- ── 3:30pm KYLE 1:1 ── -->
+      <!-- 3:30pm KYLE 1:1 -->
       <div style="display:flex;gap:0;border:1px solid var(--b1);border-radius:var(--r);overflow:hidden;margin-bottom:10px;background:var(--bg2)">
         <div style="padding:12px 16px;background:var(--blu-bg);border-right:1px solid var(--blu-b);display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:72px;flex-shrink:0">
           <div style="font-size:13px;font-weight:800;color:var(--blu)">3:30pm</div>
@@ -757,7 +926,7 @@ Blayne &middot; 707-478-9500</div>
         </div>
       </div>
 
-      <!-- ── 4:00pm DEAN 1:1 BEGINNING OF MONTH ── -->
+      <!-- 4:00pm DEAN 1:1 -->
       <div style="display:flex;gap:0;border:1px solid var(--amb-b);border-radius:var(--r);overflow:hidden;margin-bottom:10px;background:var(--bg2)">
         <div style="padding:12px 16px;background:var(--amb-bg);border-right:1px solid var(--amb-b);display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:72px;flex-shrink:0">
           <div style="font-size:13px;font-weight:800;color:var(--amb)">4:00pm</div>
@@ -765,16 +934,14 @@ Blayne &middot; 707-478-9500</div>
           <div style="font-size:8px;font-weight:700;color:var(--amb);text-transform:uppercase;letter-spacing:.06em;margin-top:5px;padding:2px 6px;background:rgba(0,0,0,.12);border-radius:3px">1:1</div>
         </div>
         <div style="padding:12px 16px;flex:1">
-          <div style="font-size:13px;font-weight:700;color:var(--t1);margin-bottom:3px">Dean / Blayne &middot; Beginning of Month!!!</div>
-          <div style="font-size:11px;color:var(--t3);margin-bottom:5px">Dean Oren (doren@servicetitan.com) &middot; Beginning of June 1:1</div>
+          <div style="font-size:13px;font-weight:700;color:var(--t1);margin-bottom:3px">Dean / Blayne &middot; Beginning of Month</div>
+          <div style="font-size:11px;color:var(--t3);margin-bottom:5px">Dean Oren (doren@servicetitan.com)</div>
           <div style="font-size:11px;color:var(--amb);font-weight:600">Come with: June targets, pipeline outlook, API key status, Blizzy AI update for leadership.</div>
-          <div style="margin-top:5px">
-            <a href="https://servicetitan.zoom.us/j/96099895111" target="_blank" style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:var(--rs);background:var(--blu);color:#fff;font-size:10px;font-weight:600;text-decoration:none;margin-top:4px">&#128249; Join Zoom</a>
-          </div>
+          <a href="https://servicetitan.zoom.us/j/96099895111" target="_blank" style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:var(--rs);background:var(--blu);color:#fff;font-size:10px;font-weight:600;text-decoration:none;margin-top:6px">&#128249; Join Zoom</a>
         </div>
       </div>
 
-      <!-- ── 5:00pm WRAP ── -->
+      <!-- 5:00pm WRAP -->
       <div style="display:flex;gap:0;border:1px solid var(--b1);border-radius:var(--r);overflow:hidden;margin-bottom:10px;background:var(--bg2)">
         <div style="padding:12px 16px;background:var(--bg3);border-right:1px solid var(--b1);display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:72px;flex-shrink:0">
           <div style="font-size:13px;font-weight:800;color:var(--t2)">5:00pm</div>
@@ -791,28 +958,28 @@ Blayne &middot; 707-478-9500</div>
     </div><!-- /pc-event-list -->
 
     <!-- PRE-CALL EMAIL MODAL -->
-    <div id="pc-email-modal" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.6);z-index:9999;display:none;align-items:center;justify-content:center">
-      <div style="background:var(--bg1);border:1px solid var(--b1);border-radius:var(--r);width:540px;max-width:95vw;max-height:90vh;overflow-y:auto;padding:20px">
+    <div id="pc-email-modal" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.6);z-index:9999;align-items:center;justify-content:center">
+      <div style="background:var(--bg2);border:1px solid var(--b1);border-radius:var(--r);width:540px;max-width:95vw;max-height:90vh;overflow-y:auto;padding:20px">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
           <div style="font-size:14px;font-weight:700;color:var(--t1)" id="pc-modal-title">Pre-call email</div>
           <button onclick="closeEmailModal()" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--b2);background:var(--bg3);color:var(--t2);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center">&times;</button>
         </div>
-        <div class="ec-field"><div class="ec-field-lbl">To</div><input id="pc-modal-to" style="flex:1;padding:5px 9px;border:none;background:none;color:var(--t1);font-size:12px;font-family:\'DM Sans\',sans-serif;outline:none;width:100%"></div>
-        <div class="ec-field"><div class="ec-field-lbl">Subject</div><input id="pc-modal-subj" style="flex:1;padding:5px 9px;border:none;background:none;color:var(--t1);font-size:12px;font-family:\'DM Sans\',sans-serif;outline:none;width:100%"></div>
-        <div id="pc-modal-body" contenteditable="true" style="min-height:220px;padding:12px;background:var(--bg3);border:1px solid var(--b1);border-radius:var(--rs);color:var(--t1);font-size:12px;font-family:\'DM Sans\',sans-serif;line-height:1.7;outline:none;white-space:pre-wrap;margin-top:8px"></div>
+        <div class="ec-field"><div class="ec-field-lbl">To</div><input id="pc-modal-to" style="flex:1;padding:5px 9px;border:none;background:none;color:var(--t1);font-size:12px;font-family:'DM Sans',sans-serif;outline:none;width:100%"></div>
+        <div class="ec-field"><div class="ec-field-lbl">Subject</div><input id="pc-modal-subj" style="flex:1;padding:5px 9px;border:none;background:none;color:var(--t1);font-size:12px;font-family:'DM Sans',sans-serif;outline:none;width:100%"></div>
+        <div id="pc-modal-body" contenteditable="true" style="min-height:220px;padding:12px;background:var(--bg3);border:1px solid var(--b1);border-radius:var(--rs);color:var(--t1);font-size:12px;font-family:'DM Sans',sans-serif;line-height:1.7;outline:none;white-space:pre-wrap;margin-top:8px"></div>
         <div style="display:flex;gap:8px;margin-top:12px">
-          <button onclick="sendModalEmail()" style="flex:1;padding:9px;border-radius:var(--rs);border:none;background:var(--grn);color:#fff;font-size:12px;font-weight:700;cursor:pointer;font-family:\'DM Sans\',sans-serif;display:flex;align-items:center;justify-content:center;gap:5px">
+          <button onclick="sendModalEmail()" style="flex:1;padding:9px;border-radius:var(--rs);border:none;background:var(--grn);color:#fff;font-size:12px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;display:flex;align-items:center;justify-content:center;gap:5px">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:13px;height:13px"><path d="M22 2L11 13"/><path d="M22 2L15 22l-4-9-9-4 20-7z"/></svg>
             Open in Gmail
           </button>
-          <button onclick="closeEmailModal()" style="padding:9px 16px;border-radius:var(--rs);border:1px solid var(--b2);background:none;color:var(--t2);font-size:12px;cursor:pointer;font-family:\'DM Sans\',sans-serif">Cancel</button>
+          <button onclick="closeEmailModal()" style="padding:9px 16px;border-radius:var(--rs);border:1px solid var(--b2);background:none;color:var(--t2);font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif">Cancel</button>
         </div>
       </div>
     </div>
 
   </div>
 
-  <div class="pane" id="pane-gong">
+    <div class="pane" id="pane-gong">
     <div class="card g" style="margin-bottom:12px">
       <div class="sec"><div class="pulse"></div>Gong Drop &mdash; paste transcript, get SFDC notes + email scaffold in seconds</div>
       <div style="font-size:11px;color:var(--t1)">No API key needed. Paste any Zoom or Gong transcript. Auto-extracts company, contacts, pain points, competitor mentions, and formats everything.</div>
@@ -1762,10 +1929,162 @@ Blayne &middot; 707-478-9500</div>
         <button id="pb-ob2256"></button><button id="pb-ob2856"></button>
       </div>
     </div>
-    </div><!-- /pb-build-view -->
+    
+    <!-- NET ZERO PURCHASE CALCULATOR -->
+    <div id="nzp-section" style="margin-top:14px;background:var(--bg2);border:1px solid var(--grn-b);border-radius:var(--r);padding:13px 16px">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+        <div class="sec" style="margin:0"><div class="pulse"></div>Net Zero Purchase calculator &mdash; "build it into the cost"</div>
+        <span style="font-size:9px;color:var(--t3)">Dean's frame: ST pays for itself</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:10px">
+        <div>
+          <div style="font-size:9px;color:var(--t3);margin-bottom:4px;text-transform:uppercase;letter-spacing:.06em">Current platform $/mo</div>
+          <div style="display:flex;align-items:center;gap:4px"><span style="color:var(--t3);font-size:13px">$</span><input type="number" id="nzp-current" placeholder="299" min="0" style="width:100%;padding:5px 8px;border:1px solid var(--b2);border-radius:var(--rs);background:var(--bg4);color:var(--t1);font-size:14px;font-family:'DM Mono',monospace;font-weight:700;outline:none" oninput="calcNetZero()"></div>
+          <div style="font-size:9px;color:var(--t3);margin-top:2px">HCP, FieldEdge, etc.</div>
+        </div>
+        <div>
+          <div style="font-size:9px;color:var(--t3);margin-bottom:4px;text-transform:uppercase;letter-spacing:.06em">Avg ticket $ increase</div>
+          <div style="display:flex;align-items:center;gap:4px"><span style="color:var(--t3);font-size:13px">$</span><input type="number" id="nzp-ticket" placeholder="15" min="0" style="width:100%;padding:5px 8px;border:1px solid var(--b2);border-radius:var(--rs);background:var(--bg4);color:var(--t1);font-size:14px;font-family:'DM Mono',monospace;font-weight:700;outline:none" oninput="calcNetZero()"></div>
+          <div style="font-size:9px;color:var(--t3);margin-top:2px">ST avg: $15 per ticket lift</div>
+        </div>
+        <div>
+          <div style="font-size:9px;color:var(--t3);margin-bottom:4px;text-transform:uppercase;letter-spacing:.06em">Jobs / month</div>
+          <input type="number" id="nzp-jobs" placeholder="95" min="0" style="width:100%;padding:5px 8px;border:1px solid var(--b2);border-radius:var(--rs);background:var(--bg4);color:var(--t1);font-size:14px;font-family:'DM Mono',monospace;font-weight:700;outline:none" oninput="calcNetZero()">
+          <div style="font-size:9px;color:var(--t3);margin-top:2px">techs × avg calls/day × 21</div>
+        </div>
+      </div>
+      <div id="nzp-result" style="background:var(--bg3);border:1px solid var(--b1);border-radius:var(--rs);padding:10px 13px">
+        <div style="font-size:11px;color:var(--t3)">Fill in the fields above to see the net zero math.</div>
+      </div>
+    </div>
+</div><!-- /pb-build-view -->
   </div><!-- /pane-pricing -->
 
-  <div class="pane" id="pane-qa">
+  <!-- SPIN PANE - AI-powered in v11 -->
+  <div class="pane" id="pane-spin">
+    <div class="card g" style="margin-bottom:13px">
+      <div class="sec"><div class="pulse"></div>SPIN scenarios &mdash; v11: AI-generated per prospect</div>
+      <div style="font-size:11px;color:var(--t1);line-height:1.6">Type the prospect name, vertical, tech count, and any pain they mentioned. Claude writes a fully custom SPIN game plan for that specific call. Not a preset.</div>
+    </div>
+    <div class="g2" style="margin-bottom:12px">
+      <div>
+        <div class="sec">Quick presets &mdash; click to load</div>
+        <div style="margin-bottom:8px">
+          <div style="font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:4px">Vertical</div>
+          <div style="display:flex;gap:4px;flex-wrap:wrap">
+            <button id="sv-hvac" onclick="setSpin('vert','hvac')" class="spin-sel-btn active-spin">HVAC</button>
+            <button id="sv-plumbing" onclick="setSpin('vert','plumbing')" class="spin-sel-btn">Plumbing</button>
+            <button id="sv-electrical" onclick="setSpin('vert','electrical')" class="spin-sel-btn">Electrical</button>
+            <button id="sv-garage" onclick="setSpin('vert','garage')" class="spin-sel-btn">Garage Door</button>
+            <button id="sv-multi" onclick="setSpin('vert','multi')" class="spin-sel-btn">Multi-trade</button>
+          </div>
+        </div>
+        <div style="margin-bottom:8px">
+          <div style="font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:4px">Stage</div>
+          <div style="display:flex;gap:4px">
+            <button id="ss-discovery" onclick="setSpin('stage','discovery')" class="spin-sel-btn active-spin">Discovery</button>
+            <button id="ss-demo" onclick="setSpin('stage','demo')" class="spin-sel-btn">Demo</button>
+            <button id="ss-pricing" onclick="setSpin('stage','pricing')" class="spin-sel-btn">Pricing</button>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:4px">Pain focus</div>
+          <div style="display:flex;gap:4px;flex-wrap:wrap">
+            <button id="sp-invoicing" onclick="setSpin('pain','invoicing')" class="spin-sel-btn active-spin">Invoicing</button>
+            <button id="sp-dispatching" onclick="setSpin('pain','dispatching')" class="spin-sel-btn">Dispatching</button>
+            <button id="sp-growth" onclick="setSpin('pain','growth')" class="spin-sel-btn">Growth</button>
+            <button id="sp-competitor" onclick="setSpin('pain','competitor')" class="spin-sel-btn">Competitor</button>
+            <button id="sp-arpu" onclick="setSpin('pain','arpu')" class="spin-sel-btn">Price sensitivity</button>
+          </div>
+        </div>
+        <div style="background:var(--bg3);border:1px solid var(--b1);border-radius:var(--rs);padding:7px 10px;margin-top:8px">
+          <div style="font-size:10px;font-weight:500;color:var(--t2)" id="spin-context-label">HVAC &middot; Discovery &middot; Invoicing / admin</div>
+        </div>
+      </div>
+      <div>
+        <div class="sec">AI SPIN generator &mdash; custom per prospect</div>
+        <div style="margin-bottom:8px">
+          <div style="font-size:9px;color:var(--t3);margin-bottom:4px;text-transform:uppercase;letter-spacing:.06em">Prospect name + company</div>
+          <input type="text" id="spin-ai-prospect" placeholder="e.g. Rick, R&amp;A Enterprises" style="width:100%;padding:7px 10px;border:1px solid var(--b2);border-radius:var(--rs);background:var(--bg4);color:var(--t1);font-size:12px;font-family:'DM Sans',sans-serif;outline:none;box-sizing:border-box" onfocus="this.style.borderColor='var(--pur)'" onblur="this.style.borderColor='var(--b2)'">
+        </div>
+        <div style="margin-bottom:8px">
+          <div style="font-size:9px;color:var(--t3);margin-bottom:4px;text-transform:uppercase;letter-spacing:.06em">What they do + tech count</div>
+          <input type="text" id="spin-ai-context" placeholder="e.g. HVAC, 8 techs, 30% commercial" style="width:100%;padding:7px 10px;border:1px solid var(--b2);border-radius:var(--rs);background:var(--bg4);color:var(--t1);font-size:12px;font-family:'DM Sans',sans-serif;outline:none;box-sizing:border-box" onfocus="this.style.borderColor='var(--pur)'" onblur="this.style.borderColor='var(--b2)'">
+        </div>
+        <div style="margin-bottom:8px">
+          <div style="font-size:9px;color:var(--t3);margin-bottom:4px;text-transform:uppercase;letter-spacing:.06em">Pain they mentioned (optional)</div>
+          <textarea id="spin-ai-pain" rows="2" placeholder="e.g. mentioned they're on ServiceFusion, office manager is overwhelmed, looking at competitors" style="width:100%;padding:7px 10px;border:1px solid var(--b2);border-radius:var(--rs);background:var(--bg4);color:var(--t1);font-size:12px;font-family:'DM Sans',sans-serif;resize:none;outline:none;line-height:1.5;box-sizing:border-box" onfocus="this.style.borderColor='var(--pur)'" onblur="this.style.borderColor='var(--b2)'"></textarea>
+        </div>
+        <button onclick="generateAISPIN()" style="padding:8px 18px;border-radius:var(--rs);border:none;background:var(--pur);color:#fff;font-size:12px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif">&#9889; Generate custom SPIN</button>
+      </div>
+    </div>
+    <div id="spin-output"></div>
+    <div id="spin-ai-output" style="display:none;margin-top:12px">
+      <div class="sec"><div class="pulse"></div>AI-generated SPIN for this prospect</div>
+      <div id="spin-ai-result" style="background:var(--bg3);border:1px solid var(--pur-b);border-radius:var(--r);padding:13px 15px;font-size:12px;color:var(--t1);line-height:1.8;white-space:pre-wrap"></div>
+    </div>
+  </div>
+
+  <!-- ICP QUALIFIER PANE - AI-powered in v11 -->
+  <div class="pane" id="pane-icp">
+    <div class="card g" style="margin-bottom:13px">
+      <div class="sec"><div class="pulse"></div>ICP qualifier &mdash; paste SDR notes, AI flags red flags</div>
+      <div style="font-size:11px;color:var(--t1);line-height:1.6">Paste the SDR handoff notes. Claude checks construction %, tech count, FTO count, DM title, and vertical fit. Catches non-ICP leads before you waste 60 minutes on them.</div>
+    </div>
+    <div class="g2" style="margin-bottom:12px">
+      <div>
+        <div class="sec">Paste SDR handoff notes</div>
+        <textarea id="icp-input" rows="10" placeholder="Paste the SDR notes or Salesforce opportunity description here...&#10;&#10;e.g. HVAC company in Dallas, 8 techs, owner is Mike, on QuickBooks, interested in scheduling and invoicing, 40% residential / 60% commercial / 0% construction..." style="width:100%;padding:11px 13px;background:var(--bg3);border:1px solid var(--b2);border-radius:var(--r);color:var(--t1);font-size:11.5px;font-family:'DM Mono',monospace;resize:vertical;outline:none;line-height:1.6;box-sizing:border-box" onfocus="this.style.borderColor='var(--grn)'" onblur="this.style.borderColor='var(--b2)'"></textarea>
+        <div style="display:flex;gap:7px;margin-top:8px">
+          <button onclick="runICPCheck()" style="padding:8px 18px;border-radius:var(--rs);border:none;background:var(--grn);color:#fff;font-size:12px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif">&#9888; Run ICP check</button>
+          <button onclick="document.getElementById('icp-input').value='';document.getElementById('icp-output').style.display='none'" style="padding:8px 14px;border-radius:var(--rs);border:1px solid var(--b2);background:none;color:var(--t2);font-size:11px;cursor:pointer;font-family:'DM Sans',sans-serif">Clear</button>
+        </div>
+      </div>
+      <div>
+        <div class="sec">ICP checklist &mdash; what to verify</div>
+        <div class="icp-q"><div class="icp-num">1</div><div><div class="icp-main">"What percentage of your revenue is construction?"</div><div class="icp-note">ICP: under 20%. 20-35% = flag. 35%+ = DQ / re-route.</div></div></div>
+        <div class="icp-q"><div class="icp-num">2</div><div><div class="icp-main">Tech count: 3-39 managed techs</div><div class="icp-note">Under 3 = too small. 40+ = Corp/Upmarket.</div></div></div>
+        <div class="icp-q"><div class="icp-num">3</div><div><div class="icp-main">Decision maker title</div><div class="icp-note">Owner / GM / COO ideal. Service Manager = flag. Field tech setting meetings = DQ.</div></div></div>
+        <div class="icp-q"><div class="icp-num">4</div><div><div class="icp-main">Vertical: PHEG (Plumbing, HVAC, Electrical, Garage)</div><div class="icp-note">ServiceChannel / Corrigo primary = re-route. Multi-trade = flag for construction %.</div></div></div>
+        <div class="icp-q"><div class="icp-num">5</div><div><div class="icp-main">FTO (Full Time Office) count</div><div class="icp-note">0 FTO on a 10-tech shop = owner is the office. Flag for bandwidth and change management.</div></div></div>
+      </div>
+    </div>
+    <div id="icp-output" style="display:none;margin-top:12px">
+      <div class="sec"><div class="pulse"></div>AI ICP analysis</div>
+      <div id="icp-result" style="background:var(--bg3);border:1px solid var(--b1);border-radius:var(--r);padding:13px 15px;font-size:12px;color:var(--t1);line-height:1.8;white-space:pre-wrap"></div>
+    </div>
+  </div>
+
+  <!-- CALL COACHING PANE - AI-powered in v11 -->
+  <div class="pane" id="pane-callcoach">
+    <div class="card p" style="margin-bottom:13px">
+      <div class="sec"><div class="pulse"></div>Call coaching &mdash; v11: AI scores against Non-Negotiable Scorecard</div>
+      <div style="font-size:11px;color:var(--t1);line-height:1.6">Paste any Gong transcript. Claude grades it against the Non-Negotiable Scorecard: Comm narrative, pain implication drilling, vocal inspiration moment, net zero purchase buy-in. Every item graded with a quote from the transcript.</div>
+    </div>
+    <div class="g2" style="margin-bottom:12px">
+      <div>
+        <div class="sec">Paste transcript to score</div>
+        <textarea id="coach-input" rows="10" placeholder="Paste your Gong or Zoom transcript here...&#10;&#10;Best with speaker-labeled format:&#10;Blayne: Hey Mike...&#10;Mike: Yeah so we're on pen and paper..." style="width:100%;padding:11px 13px;background:var(--bg3);border:1px solid var(--b2);border-radius:var(--r);color:var(--t1);font-size:11.5px;font-family:'DM Mono',monospace;resize:vertical;outline:none;line-height:1.6;box-sizing:border-box" onfocus="this.style.borderColor='var(--pur)'" onblur="this.style.borderColor='var(--b2)'"></textarea>
+        <div style="display:flex;gap:7px;margin-top:8px">
+          <button onclick="runCallCoach()" style="padding:8px 18px;border-radius:var(--rs);border:none;background:var(--pur);color:#fff;font-size:12px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif">&#11088; Score this call</button>
+          <button onclick="document.getElementById('coach-input').value='';document.getElementById('coach-output').style.display='none'" style="padding:8px 14px;border-radius:var(--rs);border:1px solid var(--b2);background:none;color:var(--t2);font-size:11px;cursor:pointer;font-family:'DM Sans',sans-serif">Clear</button>
+        </div>
+      </div>
+      <div>
+        <div class="sec">Non-Negotiable Scorecard</div>
+        <div class="row-card"><div class="rc-icon" style="background:var(--grn-bg)">📣</div><div><div class="rc-title">Comm narrative</div><div class="rc-desc">Did you open with ServiceTitan's Comm+ story — scale, commercial depth, performance pay? Did you differentiate vs residential-first tools?</div></div></div>
+        <div class="row-card"><div class="rc-icon" style="background:var(--amb-bg)">🔥</div><div><div class="rc-title">Pain implication drilling</div><div class="rc-desc">Did you ask at least 2 Implication questions after pain was volunteered? Did you quantify the cost in their own words?</div></div></div>
+        <div class="row-card"><div class="rc-icon" style="background:var(--blu-bg)">⚡</div><div><div class="rc-title">Vocal inspiration moment</div><div class="rc-desc">Was there a moment of genuine excitement — from you or them? Did you create a "holy sh*t" moment with a demo or ROI math?</div></div></div>
+        <div class="row-card"><div class="rc-icon" style="background:var(--pur-bg)">💰</div><div><div class="rc-title">Net zero purchase buy-in</div><div class="rc-desc">Did you run the net zero math? Did they verbally agree that ST could pay for itself before you revealed pricing?</div></div></div>
+      </div>
+    </div>
+    <div id="coach-output" style="display:none;margin-top:12px">
+      <div class="sec"><div class="pulse"></div>AI coaching report</div>
+      <div id="coach-result" style="background:var(--bg3);border:1px solid var(--pur-b);border-radius:var(--r);padding:13px 15px;font-size:12px;color:var(--t1);line-height:1.8;white-space:pre-wrap"></div>
+    </div>
+  </div>
+
+    <div class="pane" id="pane-qa">
     <div class="card g" style="margin-bottom:13px">
       <div class="sec"><div class="pulse"></div>Quick answers &mdash; type any question &middot; AI searches live if key is set</div>
       <div style="font-size:11px;color:var(--t1);line-height:1.6">FAQs pulled from your real Confluence playbooks and daily Slack questions. If your question isn't in the list, hit Ask Claude for a live answer. Add your Anthropic API key below to unlock live search.</div>
@@ -1917,63 +2236,63 @@ Blayne &middot; 707-478-9500</div>
   </div>
 
   <div class="pane" id="pane-forecast">
-    <div class="card s" style="margin-bottom:13px">
-      <div class="sec">&#10052; Snowflake + SalesLoft &mdash; three views in one tab</div>
-      <div style="font-size:11px;color:var(--t2);line-height:1.6">Juan&#x27;s ask: pipeline bucketed by forecast category, SalesLoft email + video activity surfaced automatically, and closed lost accounts that are re-engaging flagged before you even think to check.</div>
+    <div class="card g" style="margin-bottom:13px">
+      <div class="sec"><div class="pulse"></div>Forecast + signals &mdash; Ferg's format &middot; copy for Tuesday kickoff</div>
+      <div style="font-size:11px;color:var(--t1);line-height:1.6">Fill this in before the 10am Tuesday forecast kickoff. One button copies the whole thing formatted for Slack.</div>
     </div>
 
-    <div class="sec" style="margin-bottom:9px">Pipeline by forecast bucket</div>
-    <div class="card nopad" style="margin-bottom:14px">
-      <table>
-        <thead><tr><th>Account</th><th>Bucket</th><th>CMRR</th><th>Last SalesLoft touch</th><th>Email opens (7d)</th><th>Signal</th><th>SFDC</th></tr></thead>
-        <tbody>
-          <tr><td class="bold">Tannen Contracting</td><td><span class="bx bg">End month</span></td><td>$2,601</td><td>Today</td><td style="color:var(--grn);font-weight:500">4 opens</td><td><span class="bx bg">Hot &#128293;</span></td><td><a class="sfl" href="https://servicetitan.lightning.force.com" target="_blank">&#8599;</a></td></tr>
-          <tr><td class="bold">R&amp;A Enterprises</td><td><span class="bx bg">End month</span></td><td>$2,392</td><td>Yesterday</td><td style="color:var(--grn);font-weight:500">2 opens</td><td><span class="bx bg">Hot &#128293;</span></td><td><a class="sfl" href="https://servicetitan.lightning.force.com" target="_blank">&#8599;</a></td></tr>
-          <tr><td class="bold">Specialized Electric</td><td><span class="bx ba">Carryover</span></td><td>$3,588</td><td>Today</td><td style="color:var(--amb)">1 open</td><td><span class="bx ba">Warm</span></td><td><a class="sfl" href="https://servicetitan.lightning.force.com" target="_blank">&#8599;</a></td></tr>
-          <tr><td class="bold">All American Doors</td><td><span class="bx ba">Carryover</span></td><td>$1,794</td><td>Yesterday</td><td style="color:var(--amb)">1 open</td><td><span class="bx ba">Warm</span></td><td><a class="sfl" href="https://servicetitan.lightning.force.com" target="_blank">&#8599;</a></td></tr>
-          <tr><td class="bold">Grayco Air</td><td><span class="bx bb">Pull forward</span></td><td>$2,093</td><td>6 days ago</td><td style="color:var(--t3)">0 opens</td><td><span class="bx bgr">Cold</span></td><td><a class="sfl" href="https://servicetitan.lightning.force.com" target="_blank">&#8599;</a></td></tr>
-          <tr><td class="bold">Johnson Plumbing</td><td><span class="bx bb">Pull forward</span></td><td>$1,835</td><td style="color:var(--red)">9 days ago</td><td style="color:var(--t3)">0 opens</td><td><span class="bx br">Stale &#9888;</span></td><td><a class="sfl" href="https://servicetitan.lightning.force.com" target="_blank">&#8599;</a></td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="sec" style="margin-bottom:9px">&#128293; Closed lost re-engagement &mdash; email activity detected</div>
-    <div class="card r" style="margin-bottom:10px">
-      <div style="font-size:11px;color:var(--t1);font-weight:500;margin-bottom:8px">Juan&#x27;s exact ask: when a closed lost account opens an email, the dashboard fires an alert and a re-engage draft is already written.</div>
-    </div>
-    <div style="background:var(--bg3);border:1px solid var(--red-b);border-radius:var(--r);padding:11px 13px;margin-bottom:8px;display:flex;align-items:center;gap:12px">
-      <div style="width:8px;height:8px;border-radius:50%;background:var(--red);flex-shrink:0;animation:pu 1.5s infinite"></div>
-      <div style="flex:1">
-        <div style="font-size:12px;font-weight:500;color:var(--t1)">&#128293; Apex Mechanical &mdash; opened email 2x in the last 24 hours</div>
-        <div style="font-size:11px;color:var(--t2);margin-top:2px">Lost Dec 2025 &mdash; HCP pricing. HCP raised rates in January. They may be ready to look again.</div>
+    <!-- FERG FORMAT FORECAST BUILDER -->
+    <div class="g2" style="margin-bottom:12px">
+      <div>
+        <div class="sec">Forecast inputs</div>
+        <div style="background:var(--bg3);border:1px solid var(--b1);border-radius:var(--r);padding:12px 14px;margin-bottom:8px">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">
+            <div>
+              <div style="font-size:9px;color:var(--t3);margin-bottom:4px;text-transform:uppercase;letter-spacing:.06em">AOP Actuals (signed)</div>
+              <div style="display:flex;align-items:center;gap:4px"><span style="color:var(--t3)">$</span><input type="number" id="fc-actuals" placeholder="15200" style="width:100%;padding:5px 8px;border:1px solid var(--grn-b);border-radius:var(--rs);background:var(--bg4);color:var(--grn);font-size:14px;font-family:'DM Mono',monospace;font-weight:700;outline:none" oninput="buildForecast()"></div>
+            </div>
+            <div>
+              <div style="font-size:9px;color:var(--t3);margin-bottom:4px;text-transform:uppercase;letter-spacing:.06em">Monthly quota</div>
+              <div style="display:flex;align-items:center;gap:4px"><span style="color:var(--t3)">$</span><input type="number" id="fc-quota" value="7792" style="width:100%;padding:5px 8px;border:1px solid var(--b2);border-radius:var(--rs);background:var(--bg4);color:var(--t1);font-size:14px;font-family:'DM Mono',monospace;font-weight:700;outline:none" oninput="buildForecast()"></div>
+            </div>
+            <div>
+              <div style="font-size:9px;color:var(--t3);margin-bottom:4px;text-transform:uppercase;letter-spacing:.06em">Commit (forecast)</div>
+              <div style="display:flex;align-items:center;gap:4px"><span style="color:var(--t3)">$</span><input type="number" id="fc-commit" placeholder="5000" style="width:100%;padding:5px 8px;border:1px solid var(--amb-b);border-radius:var(--rs);background:var(--bg4);color:var(--amb);font-size:14px;font-family:'DM Mono',monospace;font-weight:700;outline:none" oninput="buildForecast()"></div>
+            </div>
+            <div>
+              <div style="font-size:9px;color:var(--t3);margin-bottom:4px;text-transform:uppercase;letter-spacing:.06em">% to quota</div>
+              <div id="fc-pct-display" style="padding:5px 8px;border:1px solid var(--b1);border-radius:var(--rs);background:var(--bg4);font-size:14px;font-family:'DM Mono',monospace;font-weight:700;color:var(--t3)">—%</div>
+            </div>
+          </div>
+          <div style="margin-bottom:8px">
+            <div style="font-size:9px;color:var(--t3);margin-bottom:4px;text-transform:uppercase;letter-spacing:.06em">What needs to be true to hit</div>
+            <textarea id="fc-to-hit" rows="2" placeholder="e.g. Conair signs this week, R&A closes by Friday, Tannen demo converts" style="width:100%;padding:7px 10px;border:1px solid var(--b2);border-radius:var(--rs);background:var(--bg4);color:var(--t1);font-size:12px;font-family:'DM Sans',sans-serif;resize:none;outline:none;line-height:1.5;box-sizing:border-box" oninput="buildForecast()"></textarea>
+          </div>
+          <div style="margin-bottom:8px">
+            <div style="font-size:9px;color:var(--t3);margin-bottom:4px;text-transform:uppercase;letter-spacing:.06em">What needs to be true to beat</div>
+            <textarea id="fc-to-beat" rows="2" placeholder="e.g. All American Doors surprise close, Big Mountain re-engages" style="width:100%;padding:7px 10px;border:1px solid var(--b2);border-radius:var(--rs);background:var(--bg4);color:var(--t1);font-size:12px;font-family:'DM Sans',sans-serif;resize:none;outline:none;line-height:1.5;box-sizing:border-box" oninput="buildForecast()"></textarea>
+          </div>
+          <div>
+            <div style="font-size:9px;color:var(--t3);margin-bottom:4px;text-transform:uppercase;letter-spacing:.06em">Key risks</div>
+            <textarea id="fc-risks" rows="2" placeholder="e.g. Conair Barry hasn't responded in 8 days. R&A price sensitivity is real." style="width:100%;padding:7px 10px;border:1px solid var(--b2);border-radius:var(--rs);background:var(--bg4);color:var(--t1);font-size:12px;font-family:'DM Sans',sans-serif;resize:none;outline:none;line-height:1.5;box-sizing:border-box" oninput="buildForecast()"></textarea>
+          </div>
+        </div>
+        <button onclick="copyForecastSlack()" id="fc-copy-btn" style="display:inline-flex;align-items:center;gap:6px;padding:8px 18px;border-radius:var(--rs);border:none;background:var(--ind);color:#fff;font-size:12px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif">&#128203; Copy for Slack</button>
       </div>
-      <button class="na-btn email" style="flex-shrink:0" onclick="this.textContent='Draft ready ✓';this.classList.add('ok')">&#9993; Draft re-engage</button>
-      <a class="sfl" href="https://servicetitan.lightning.force.com" target="_blank" style="flex-shrink:0">&#8599; SFDC</a>
-    </div>
-    <div style="background:var(--bg3);border:1px solid var(--amb-b);border-radius:var(--r);padding:11px 13px;margin-bottom:14px;display:flex;align-items:center;gap:12px">
-      <div style="width:8px;height:8px;border-radius:50%;background:var(--amb);flex-shrink:0"></div>
-      <div style="flex:1">
-        <div style="font-size:12px;font-weight:500;color:var(--t1)">Lone Star Plumbing &mdash; opened email, clicked video link yesterday</div>
-        <div style="font-size:11px;color:var(--t2);margin-top:2px">Lost Jan 2026 &mdash; went FieldEdge. FE churned them shortly after. Warm signal.</div>
+      <div>
+        <div class="sec">Formatted for Slack &mdash; live preview</div>
+        <div id="fc-preview" style="background:var(--bg3);border:1px solid var(--b1);border-radius:var(--r);padding:12px 14px;font-size:11.5px;color:var(--t1);line-height:1.9;white-space:pre-wrap;font-family:'DM Mono',monospace;min-height:200px">Fill in the inputs to the left and the Slack-formatted forecast builds here in real time.</div>
       </div>
-      <button class="na-btn email" style="flex-shrink:0">&#9993; Draft re-engage</button>
-      <a class="sfl" href="https://servicetitan.lightning.force.com" target="_blank" style="flex-shrink:0">&#8599; SFDC</a>
     </div>
 
-    <div class="sec" style="margin-bottom:9px">SalesLoft top 5 &mdash; most active in last 14 days</div>
-    <div class="card nopad">
-      <table>
-        <thead><tr><th>Account</th><th>Emails opened</th><th>Video views</th><th>Link clicks</th><th>Last activity</th><th>Action</th></tr></thead>
-        <tbody>
-          <tr><td class="bold">Tannen Contracting</td><td style="color:var(--grn)">7</td><td style="color:var(--grn)">2</td><td style="color:var(--grn)">3</td><td>Today</td><td><button class="na-btn call" style="font-size:10px;padding:3px 8px">&#128222; Call</button></td></tr>
-          <tr><td class="bold">Apex Mechanical (CL)</td><td style="color:var(--red)">4 &#128293;</td><td>0</td><td style="color:var(--amb)">1</td><td>Yesterday</td><td><button class="na-btn email" style="font-size:10px;padding:3px 8px">&#9993; Re-engage</button></td></tr>
-          <tr><td class="bold">R&amp;A Enterprises</td><td style="color:var(--grn)">3</td><td>0</td><td style="color:var(--amb)">1</td><td>Yesterday</td><td><button class="na-btn call" style="font-size:10px;padding:3px 8px">&#128222; Call</button></td></tr>
-          <tr><td class="bold">Lone Star Plumbing (CL)</td><td style="color:var(--amb)">2</td><td style="color:var(--amb)">1</td><td>0</td><td>Yesterday</td><td><button class="na-btn email" style="font-size:10px;padding:3px 8px">&#9993; Re-engage</button></td></tr>
-          <tr><td class="bold">All American Doors</td><td style="color:var(--amb)">2</td><td>0</td><td>0</td><td>2 days ago</td><td><button class="na-btn call" style="font-size:10px;padding:3px 8px">&#128222; Call</button></td></tr>
-        </tbody>
-      </table>
+    <div class="card s">
+      <div class="sec">&#10052; Pipeline signals &mdash; Snowflake unlocks</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:6px">
+        <div style="padding:8px 10px;background:var(--bg3);border-radius:var(--rs);border:1px solid var(--b1)"><div style="font-size:9px;color:var(--ice);text-transform:uppercase;letter-spacing:.07em;margin-bottom:3px">Stale (8+ days)</div><div style="font-size:18px;font-weight:700;color:var(--amb);font-family:'DM Mono',monospace">3</div><div style="font-size:10px;color:var(--t3)">need activity today</div></div>
+        <div style="padding:8px 10px;background:var(--bg3);border-radius:var(--rs);border:1px solid var(--b1)"><div style="font-size:9px;color:var(--ice);text-transform:uppercase;letter-spacing:.07em;margin-bottom:3px">Closing this mo</div><div style="font-size:18px;font-weight:700;color:var(--grn);font-family:'DM Mono',monospace">4</div><div style="font-size:10px;color:var(--t3)">with active pricing</div></div>
+        <div style="padding:8px 10px;background:var(--bg3);border-radius:var(--rs);border:1px solid var(--b1)"><div style="font-size:9px;color:var(--ice);text-transform:uppercase;letter-spacing:.07em;margin-bottom:3px">No next step date</div><div style="font-size:18px;font-weight:700;color:var(--red);font-family:'DM Mono',monospace">2</div><div style="font-size:10px;color:var(--t3)">Margie's rule: date required</div></div>
+      </div>
     </div>
-    <div style="font-size:11px;color:var(--t3);margin-top:8px;font-style:italic">(CL) = Closed lost &middot; &#10052; SalesLoft activity requires Snowflake integration</div>
   </div>
 
     <div class="pane" id="pane-dayinlife">
@@ -2131,12 +2450,19 @@ Blayne &middot; 707-478-9500</div>
 const pages={overview:['Dashboard','FY27 \u00b7 ARPU + attainment at a glance'],pipeline:['Active pipeline','\u2744\ufe0f Snowflake SFDC \u00b7 ARPU per deal \u00b7 SFDC links'],needsactivity:['Needs activity','\u2744\ufe0f 0-7 / 8-14 days \u00b7 phone + draft per opp'],closedwon:['Closed won','FY27 \u00b7 ARPU per deal \u00b7 SFDC clickable'],closedlost:['Closed lost','\u2744\ufe0f Competitor signals + ARPU analysis'],onboarding:['Onboarding','\u2744\ufe0f Referral timing \u00b7 SFDC clickable'],followup:['Follow-up emails','Live today \u00b7 Gong Drop drafted \u00b7 send via Gmail'],precall:['Pre-call brief','\u2744\ufe0f Click any call \u00b7 full one-pager expands'],spin:['SPIN scenarios','From your Confluence call playbooks'],icp:['ICP qualifier','Confluence talk tracks \u00b7 live today'],callcoach:['Call coaching','\u2744\ufe0f Non-Negotiable Scorecard \u00b7 ARPU coaching'],gong:['Gong Drop','Live today \u00b7 60 seconds to full output'],pricing:['Pricing builder','Real rate card · live negotiation tool · Kaleb\'s ask'],
   referrals:['Referral engine','\u2744\ufe0f Week 3 auto-draft \u00b7 send via Gmail'],qa:['Quick answers','Type anything \u00b7 Confluence + SFDC answers instantly'],resources:['Resources','All links \u00b7 pricing \u00b7 playbooks \u00b7 ST pages'],forecast:['Forecast + signals','&#10052; Pipeline by bucket · SalesLoft activity · closed lost triggers'],
   dayinlife:['Day in the life','Before and after \u00b7 one rep \u00b7 one full day'],theask:['The ask','3 items \u00b7 30-day pilot \u00b7 $732K ROI'],checklist:['Daily Checklist','Your daily + weekly must-dos \u00b7 checks off as you go']};
+
 document.querySelectorAll('.nb').forEach(b=>{b.addEventListener('click',function(){
+  // hide all panes
+  document.querySelectorAll('.pane').forEach(x=>{x.style.display='none';x.classList.remove('on');});
+  // deselect all nav buttons
   document.querySelectorAll('.nb').forEach(x=>x.classList.remove('on'));
-  document.querySelectorAll('.pane').forEach(x=>x.classList.remove('on'));
-  this.classList.add('on');
+  // show target pane
   const id=this.dataset.pane;
-  document.getElementById('pane-'+id).classList.add('on');
+  const target=document.getElementById('pane-'+id);
+  if(target){target.style.display='block';target.classList.add('on');}
+  // select nav button
+  this.classList.add('on');
+  // update topbar
   const m=pages[id]||['',''];
   document.getElementById('pg-t').textContent=m[0];
   document.getElementById('pg-s').textContent=m[1];
@@ -2146,6 +2472,8 @@ document.querySelectorAll('.nb').forEach(b=>{b.addEventListener('click',function
   setTimeout(function(){ var c2=document.querySelector('.content'); if(c2) c2.scrollTop=0; }, 50);
   // expand parent group if collapsed
   const ng=this.closest('.ng');if(ng)ng.classList.remove('collapsed');
+  // scroll content to top
+  var ct=document.querySelector('.content');if(ct)ct.scrollTop=0;
 });});
 let dark=true;document.getElementById('themeBtn').addEventListener('click',function(){dark=!dark;document.body.classList.toggle('light',!dark);this.textContent=dark?'\u2600\ufe0f Light':'\uD83C\uDF19 Dark';});
 document.querySelectorAll('.call-item').forEach(item=>{item.addEventListener('click',function(){const wasOpen=this.classList.contains('open');document.querySelectorAll('.call-item').forEach(x=>x.classList.remove('open'));if(!wasOpen)this.classList.add('open');});});
@@ -2157,8 +2485,7 @@ async function askAI(){
   const q = document.getElementById('qaI').value.trim();
   if(!q) return;
 
-  const keyEl = document.getElementById('qa-api-key');
-  const apiKey = (keyEl && keyEl.value.trim()) || (localStorage && localStorage.getItem('blizzy_ak')) || '';
+  const apiKey = getAPIKey();
 
   document.getElementById('ai-answer').style.display='none';
   document.getElementById('ai-loading').style.display='block';
@@ -3374,15 +3701,16 @@ function loadTpl(key){
 }
 window.loadTpl = loadTpl;
 
-// ═══ GONG DROP PARSER ═══
-function processGong(){
+// ═══ GONG DROP PARSER (v11 — AI-powered) ═══
+async function processGong(){
   var raw = document.getElementById('gong-input').value.trim();
   if(!raw){ alert('Paste a transcript first.'); return; }
+
+  var personality = document.getElementById('gong-personality').value.trim();
 
   // ── Extract company name ──
   var companyMatch = raw.match(/(?:from|at|with|for)\s+([A-Z][A-Za-z &']+(?:Inc|LLC|Plumbing|HVAC|Air|Heating|Cooling|Electric|Electrical|Doors?|Garage|Mechanical|Services?|Contracting|Contractors?|Enterprises?|Group|Co\b)[\.\,]?)/);
   var company = companyMatch ? companyMatch[1].trim() : '[Company Name]';
-  // Also try first line
   if(company==='[Company Name]'){
     var firstLine = raw.split('\n')[0];
     var fl = firstLine.match(/([A-Z][A-Za-z &']{3,})/);
@@ -3454,23 +3782,6 @@ function processGong(){
   sfdc += '--- OPP NOTE (one sentence) ---\n';
   sfdc += '[Company] — [stage], [vertical], [X] techs, [key next step].';
 
-  // ── Build Email ──
-  var emailTo = contacts.length ? '['+contacts[0]+' email]' : '[Contact email]';
-  var emailSubj = company + ' — recap from today + next step';
-  var painBullets = painSorted.slice(0,3).map(function(kw){return '• [Pain: '+kw+']';}).join('\n');
-  var emailBody = contacts[0]||'[First name]';
-  emailBody += ',\n\n[Hyper-specific opener — reference something specific they said or showed you.]\n\n';
-  emailBody += 'What\'s eating your day:\n'+painBullets+'\n\n';
-  emailBody += 'What ServiceTitan solves for you:\n';
-  emailBody += '• [ST feature matched to pain 1]\n';
-  emailBody += '• [ST feature matched to pain 2]\n';
-  emailBody += '• [Outcome they actually care about]\n\n';
-  if(compsFound.length){
-    emailBody += 'On '+compsFound[0]+': [2-sentence competitive frame — be specific to their setup, not generic.]\n\n';
-  }
-  emailBody += 'Pricing ([Package] · [X] techs · 2-year): $[rate]/tech at month 18 · Months 1-[X] free · OB: $[amount] one-time\n\n';
-  emailBody += 'Next step: [what you agreed to — be specific].\n\nBlayne!';
-
   // ── Render alerts ──
   var alertsEl = document.getElementById('gong-alerts');
   alertsEl.innerHTML = '';
@@ -3481,7 +3792,7 @@ function processGong(){
     alertsEl.innerHTML += '<div style="background:var(--amb-bg);border:1px solid var(--amb-b);border-radius:var(--rs);padding:10px 13px;margin-bottom:8px;font-size:12px;color:var(--amb)">⚠️ <strong>ARPU ALERT:</strong> Pricing mentioned below $285/tech. Push Works, ramp structure, or 2-year to protect ARPU. Discount with ramp/free months, not per-tech cuts.</div>';
   }
   if(!compsFound.length && !lowPrice){
-    alertsEl.innerHTML = '<div style="background:var(--grn-bg);border:1px solid var(--grn-b);border-radius:var(--rs);padding:8px 13px;margin-bottom:8px;font-size:11px;color:var(--grn)">✓ No competitor or low-ARPU alerts. Fill in the brackets below and send.</div>';
+    alertsEl.innerHTML = '<div style="background:var(--grn-bg);border:1px solid var(--grn-b);border-radius:var(--rs);padding:8px 13px;margin-bottom:8px;font-size:11px;color:var(--grn)">✓ No competitor or low-ARPU alerts. AI email generating now.</div>';
   }
 
   // ── Render pain tally ──
@@ -3499,12 +3810,10 @@ function processGong(){
     tallyEl.innerHTML = '<div style="font-size:11px;color:var(--t3)">No pain keywords detected. Try a longer transcript.</div>';
   }
 
-  // ── Populate outputs ──
+  // ── Populate SFDC + show output ──
   document.getElementById('gong-sfdc').innerText = sfdc;
-  document.getElementById('gong-email-to').value = emailTo;
-  document.getElementById('gong-email-subj').textContent = emailSubj;
-  document.getElementById('gong-email-body').innerText = emailBody;
   document.getElementById('gong-company-badge').textContent = company;
+  document.getElementById('gong-output').style.display = 'block';
 
   // ── SLA / ICP Scan ──
   var slaFlags = (typeof scanForSLAFlags === 'function') ? scanForSLAFlags(raw) : [];
@@ -3519,8 +3828,92 @@ function processGong(){
     }
   }
 
-  document.getElementById('gong-output').style.display = 'block';
+  // ── AI Email Generation ──
+  var emailEl = document.getElementById('gong-email-body');
+  var emailToEl = document.getElementById('gong-email-to');
+  var emailSubjEl = document.getElementById('gong-email-subj');
+
+  if(emailToEl) emailToEl.value = contacts.length ? '['+contacts[0]+' email]' : '[Contact email]';
+  if(emailSubjEl) emailSubjEl.textContent = company + ' — recap from today + next step';
+
+  // Show loading state in email
+  if(emailEl){
+    emailEl.innerText = '⚡ Claude is writing your email...';
+    emailEl.style.color = 'var(--t3)';
+    emailEl.style.fontStyle = 'italic';
+  }
+
   document.getElementById('gong-output').scrollIntoView({behavior:'smooth',block:'start'});
+
+  try {
+    var caseStudyHint = '';
+    if(rawLower.includes('electric')) caseStudyHint = 'Match to Adams Electric case study from Confluence.';
+    else if(rawLower.includes('union') || rawLower.includes('lj kruse')) caseStudyHint = 'Match to LJ Kruse case study from Confluence.';
+    else if(rawLower.includes('hvac') || rawLower.includes('air') || rawLower.includes('heat') || rawLower.includes('cool')) caseStudyHint = 'Match to Lovett Services or Interstate AC Wistia video from servicetitan.com.';
+    else if(rawLower.includes('plumb')) caseStudyHint = 'Match to Jackson Services Wistia video from servicetitan.com.';
+
+    var competitorSection = compsFound.length ? 'Competitor(s) mentioned: '+compsFound.join(', ')+'. Add a 2-sentence section called "On [competitor]:" that is specific to this prospect, not generic. Frame why ST wins for THEIR situation.' : '';
+    var priceSection = lowPrice ? 'PRICING NOTE: Price below $285/tech was mentioned. Bold the alert: "PRICE IS NEGOTIABLE — fight for this deal. Do not let price lose it."' : '';
+
+    var painContext = painSorted.slice(0,5).map(function(kw){ return kw+' ('+painFound[kw].count+'x)'; }).join(', ');
+
+    var systemPrompt = [
+      "You are writing a follow-up email in Blayne Salazar's voice.",
+      "Blayne is a Corporate AE at ServiceTitan selling field service management software.",
+      "His email style rules (NON-NEGOTIABLE):",
+      "- Start with first name only, no Hi or Dear. Just the name then comma.",
+      "- Ultra casual, short sentences, sounds like a text not a business letter",
+      "- Never restate what they said. Jump straight to the answer/value.",
+      "- Bold section headers: What's eating your day: and What ServiceTitan fixes:",
+      "- No em dashes anywhere. Use commas or periods instead.",
+      "- No filler phrases. No I want to make sure, no great question.",
+      "- Pricing: bold the package, rate, free months, and OB fee if mentioned.",
+      "- Add a P.S. ONLY if there is something genuinely useful to say.",
+      "- End with just Blayne! on its own line. Nothing after that.",
+      "- 300-350 words total",
+      "- Weave in relevant servicetitan.com links naturally in bullets",
+      "- No em dashes ANYWHERE",
+      "Format: plain text only."
+    ].join(" ");
+
+    var userPrompt = 'Write a Gong Drop follow-up email based on this transcript.\n\nCompany: '+company+'\nContact(s): '+(contacts.length?contacts.join(', '):'unknown')+'\nTop pain keywords detected: '+painContext+'\n'+competitorSection+'\n'+priceSection+'\n'+caseStudyHint+'\n'+(personality?'Prospect personality/tone: '+personality:'')+'\n\nTranscript (first 3000 chars):\n'+raw.slice(0,3000);
+
+    var resp = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': getAPIKey(),
+        'anthropic-version': '2023-06-01',
+        'anthropic-dangerous-direct-browser-access': 'true'
+      },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        system: systemPrompt,
+        messages: [{role:'user', content: userPrompt}]
+      })
+    });
+    var data = await resp.json();
+    if(data.error) throw new Error(data.error.message);
+    var aiEmail = data.content && data.content[0] ? data.content[0].text : '';
+    if(emailEl && aiEmail){
+      emailEl.innerHTML = aiEmail.replace(/\n/g,'<br>');
+      emailEl.style.color = '';
+      emailEl.style.fontStyle = '';
+    }
+  } catch(err) {
+    if(emailEl){
+      // Fall back to scaffold
+      var emailBody = (contacts[0]||'[First name]')+'\n\n[Hyper-specific opener — reference something specific they said.]\n\n**What is eating your day:**\n';
+      painSorted.slice(0,3).forEach(function(kw){ emailBody += '• [Pain: '+kw+']\n'; });
+      emailBody += '\n**What ServiceTitan fixes:**\n• [ST feature matched to pain]\n• [ST feature matched to pain]\n• [Outcome they care about]\n\n';
+      if(compsFound.length) emailBody += 'On '+compsFound[0]+': [2-sentence frame specific to their setup]\n\n';
+      emailBody += 'Pricing ([Package] · [X] techs · 2-year): $[rate]/tech at month 18 · Months 1-[X] free · OB: $[amount] one-time\n\nNext step: [what you agreed to]\n\nBlayne!';
+      emailEl.innerText = emailBody;
+      emailEl.style.color = '';
+      emailEl.style.fontStyle = '';
+    }
+  }
 }
 window.processGong = processGong;
 
@@ -4486,6 +4879,371 @@ document.querySelectorAll('.ng-lbl').forEach(function(lbl){
           setGMV:setGMV,updateGMVInput:updateGMVInput,toggleConst:toggleConst,loadDeal:loadDeal,
           getOB:function(){return s.ob;},getPkg:function(){return s.pkg;},getTiers:function(){return s.tiers;}};
 })();
+
+// ═══════════════════════════════════════════════════════════
+// BLIZZY AI v11 — NEW FUNCTIONS
+// ═══════════════════════════════════════════════════════════
+
+// ── LIVE COMP CALCULATOR ──
+function updateDashComp(){
+  var mtd = parseFloat(document.getElementById('dash-mtd-input').value)||0;
+  var pipe = parseFloat(document.getElementById('dash-pipe-input').value)||14300;
+  var day = parseInt(document.getElementById('dash-day-input').value)||new Date().getDate();
+  var MONTHLY_QUOTA = 7791.67;
+  var QUARTERLY_QUOTA = 23375;
+  var BASE = 94900;
+  var ANNUAL_VAR = 93500;
+  var MONTHLY_VAR = 7791.67;
+
+  // Monthly pace
+  var pct = Math.min(150, (mtd / MONTHLY_QUOTA) * 100);
+  var pctDisplay = Math.round(pct);
+  var barColor = pct >= 100 ? 'var(--grn)' : pct >= 80 ? 'var(--amb)' : 'var(--red)';
+
+  var bar = document.getElementById('dash-pace-bar');
+  var pctEl = document.getElementById('dash-pace-pct');
+  if(bar){ bar.style.width = Math.min(100,pct)+'%'; bar.style.background = barColor; }
+  if(pctEl) pctEl.textContent = pctDisplay+'% to $7,792';
+
+  var mtdEl = document.getElementById('dash-mtd-val');
+  var mtdSub = document.getElementById('dash-mtd-sub');
+  if(mtdEl){ mtdEl.textContent = '$'+mtd.toLocaleString(); mtdEl.style.color = barColor; }
+  if(mtdSub) mtdSub.textContent = pctDisplay+'% of monthly quota';
+
+  // Accelerator (quarterly basis — rough estimate from MTD)
+  var qPace = mtd * (30 / Math.max(day, 1)) * 3; // extrapolate to quarter
+  var qPct = (qPace / QUARTERLY_QUOTA) * 100;
+  var accelRate, accelLabel;
+  if(qPct >= 120){ accelRate = '3.00x'; accelLabel = '120%+ attainment'; }
+  else if(qPct >= 100){ accelRate = '2.67x'; accelLabel = '100-120% — you are in the money tier'; }
+  else if(qPct >= 80){ accelRate = '2.20x'; accelLabel = '80-100% attainment'; }
+  else { accelRate = '1x'; accelLabel = 'Under 80%'; }
+
+  var accelEl = document.getElementById('dash-accel-val');
+  var accelSub = document.getElementById('dash-accel-sub');
+  if(accelEl){ accelEl.textContent = accelRate; accelEl.style.color = qPct>=100?'var(--grn)':qPct>=80?'var(--amb)':'var(--red)'; }
+  if(accelSub) accelSub.textContent = accelLabel;
+
+  // Highlight active accelerator tier
+  ['da-1x','da-220','da-267','da-300'].forEach(function(id){
+    var el = document.getElementById(id);
+    if(!el) return;
+    el.style.borderColor = 'var(--b1)';
+    el.style.background = 'var(--bg3)';
+  });
+  var activeId = qPct>=120?'da-300':qPct>=100?'da-267':qPct>=80?'da-220':'da-1x';
+  var activeEl = document.getElementById(activeId);
+  if(activeEl){
+    activeEl.style.borderColor = 'var(--grn-b)';
+    activeEl.style.background = 'var(--grn-bg)';
+  }
+
+  // Projected W-2 (if pipeline closes at 40% win rate)
+  var pipeWin = pipe * 0.4;
+  var totalCMRR = mtd + pipeWin;
+  var qTotalCMRR = totalCMRR * 3; // rough quarter
+  var qAttain = qTotalCMRR / QUARTERLY_QUOTA;
+  var mult = qAttain >= 1.2 ? 3.0 : qAttain >= 1.0 ? 2.67 : qAttain >= 0.8 ? 2.2 : 1.0;
+  var varEarned = Math.min(ANNUAL_VAR, qAttain * ANNUAL_VAR) * mult;
+  var projW2 = Math.round(BASE + varEarned);
+  var projEl = document.getElementById('dash-proj-val');
+  var projSub = document.getElementById('dash-proj-sub');
+  if(projEl){ projEl.textContent = '$'+projW2.toLocaleString(); projEl.style.color = projW2>200000?'var(--grn)':projW2>150000?'var(--amb)':'var(--t2)'; }
+  if(projSub) projSub.textContent = mult+'x rate applied';
+
+  // Linearity (day 21 spiff)
+  var workdaysInMonth = 21;
+  var paceNeeded = (MONTHLY_QUOTA / workdaysInMonth) * day;
+  var linOk = mtd >= paceNeeded;
+  var linEl = document.getElementById('dash-lin-val');
+  var linSub = document.getElementById('dash-lin-sub');
+  if(linEl){ linEl.textContent = linOk ? 'ON PACE' : 'BEHIND'; linEl.style.color = linOk ? 'var(--grn)' : 'var(--red)'; }
+  if(linSub) linSub.textContent = 'Need $'+Math.round(paceNeeded).toLocaleString()+' by day '+day;
+
+  // Alerts
+  var alerts = [];
+  if(pct < 80 && mtd > 0) alerts.push('<div style="background:var(--red-bg);border:1px solid var(--red-b);border-radius:var(--rs);padding:9px 12px;font-size:11px;color:var(--red);margin-bottom:6px">🔴 <strong>Under 80% pace</strong> — below amber threshold. Every call today needs a pricing ask.</div>');
+  if(!linOk && mtd > 0) alerts.push('<div style="background:var(--amb-bg);border:1px solid var(--amb-b);border-radius:var(--rs);padding:9px 12px;font-size:11px;color:var(--amb);margin-bottom:6px">⚠️ <strong>Linearity risk</strong> — not on pace for day 21 spiff. Need $'+Math.round(paceNeeded - mtd).toLocaleString()+' more to catch up.</div>');
+  if(qPct >= 95 && qPct < 100) alerts.push('<div style="background:var(--pur-bg);border:1px solid var(--pur-b);border-radius:var(--rs);padding:9px 12px;font-size:11px;color:var(--pur);margin-bottom:6px">⭐ <strong>2.67x within reach</strong> — you are at '+Math.round(qPct)+'% of quota. One more close puts you in the money tier.</div>');
+
+  var alertsRow = document.getElementById('dash-alerts-row');
+  if(alertsRow) alertsRow.innerHTML = alerts.join('');
+}
+window.updateDashComp = updateDashComp;
+
+// Auto-set day of month on load
+(function(){
+  var dayEl = document.getElementById('dash-day-input');
+  if(dayEl) dayEl.value = new Date().getDate();
+})();
+
+// ── FORECAST BUILDER (Ferg format) ──
+function buildForecast(){
+  var actuals = parseFloat(document.getElementById('fc-actuals').value)||0;
+  var quota = parseFloat(document.getElementById('fc-quota').value)||7792;
+  var commit = parseFloat(document.getElementById('fc-commit').value)||0;
+  var toHit = document.getElementById('fc-to-hit').value||'[fill in]';
+  var toBeat = document.getElementById('fc-to-beat').value||'[fill in]';
+  var risks = document.getElementById('fc-risks').value||'[fill in]';
+
+  var pct = quota > 0 ? Math.round((actuals/quota)*100) : 0;
+  var pctEl = document.getElementById('fc-pct-display');
+  if(pctEl){ pctEl.textContent = pct+'%'; pctEl.style.color = pct>=100?'var(--grn)':pct>=80?'var(--amb)':'var(--red)'; }
+
+  var today = new Date().toLocaleDateString('en-US',{month:'numeric',day:'numeric',year:'2-digit'});
+  var preview = 'FORECAST UPDATE — '+today+'\n';
+  preview += '━━━━━━━━━━━━━━━━━━━━━━━━\n\n';
+  preview += '📊 AOP Actuals: $'+actuals.toLocaleString()+'\n';
+  preview += '🎯 Monthly Quota: $'+quota.toLocaleString()+'\n';
+  preview += '📈 Forecast (commit): $'+commit.toLocaleString()+'\n';
+  preview += '% to quota: '+pct+'%\n\n';
+  preview += '✅ What needs to be true to HIT:\n'+toHit+'\n\n';
+  preview += '🚀 What needs to be true to BEAT:\n'+toBeat+'\n\n';
+  preview += '⚠️ Key risks:\n'+risks;
+
+  var previewEl = document.getElementById('fc-preview');
+  if(previewEl) previewEl.textContent = preview;
+}
+window.buildForecast = buildForecast;
+
+function copyForecastSlack(){
+  var previewEl = document.getElementById('fc-preview');
+  if(!previewEl) return;
+  navigator.clipboard.writeText(previewEl.textContent).then(function(){
+    var btn = document.getElementById('fc-copy-btn');
+    if(btn){ btn.textContent = 'Copied to clipboard ✓'; setTimeout(function(){ btn.innerHTML = '&#128203; Copy for Slack'; }, 2000); }
+  });
+}
+window.copyForecastSlack = copyForecastSlack;
+
+// ── AI SPIN GENERATOR ──
+async function generateAISPIN(){
+  var prospect = document.getElementById('spin-ai-prospect').value.trim();
+  var context = document.getElementById('spin-ai-context').value.trim();
+  var pain = document.getElementById('spin-ai-pain').value.trim();
+
+  if(!prospect && !context){ alert('Fill in the prospect name or context first.'); return; }
+
+  var outputEl = document.getElementById('spin-ai-output');
+  var resultEl = document.getElementById('spin-ai-result');
+  if(outputEl) outputEl.style.display = 'block';
+  if(resultEl){ resultEl.textContent = '⚡ Claude is building your custom SPIN game plan...'; resultEl.style.color = 'var(--t3)'; resultEl.style.fontStyle = 'italic'; }
+
+  try {
+    var resp = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': getAPIKey(),
+        'anthropic-version': '2023-06-01',
+        'anthropic-dangerous-direct-browser-access': 'true'
+      },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        system: 'You are a ServiceTitan Comm+ sales coach. Write a custom SPIN game plan for a specific sales call. Format: 4 sections (SITUATION, PROBLEM, IMPLICATION, NEED-PAYOFF). Each section: 2-3 specific questions tailored to this exact prospect. End with a 2-sentence COACHING NOTE. Keep questions direct, specific, and actionable. No fluff. No em dashes.',
+        messages: [{role:'user', content: 'Write a custom SPIN game plan for this prospect:\n\nName/Company: '+prospect+'\nContext: '+context+'\nPain mentioned: '+(pain||'not specified')+'\n\nTailor every question specifically to them.'}]
+      })
+    });
+    var data = await resp.json();
+    if(data.error) throw new Error(data.error.message);
+    var answer = data.content && data.content[0] ? data.content[0].text : '';
+    if(resultEl){ resultEl.textContent = answer; resultEl.style.color = ''; resultEl.style.fontStyle = ''; }
+  } catch(err) {
+    if(resultEl){ resultEl.textContent = 'API error: '+err.message+'. Check your API key in Quick Answers.'; resultEl.style.color = 'var(--red)'; resultEl.style.fontStyle = ''; }
+  }
+}
+window.generateAISPIN = generateAISPIN;
+
+// ── AI ICP CHECKER ──
+async function runICPCheck(){
+  var notes = document.getElementById('icp-input').value.trim();
+  if(!notes){ alert('Paste SDR notes first.'); return; }
+
+  var outputEl = document.getElementById('icp-output');
+  var resultEl = document.getElementById('icp-result');
+  if(outputEl) outputEl.style.display = 'block';
+  if(resultEl){ resultEl.textContent = '⚡ Checking ICP fit...'; resultEl.style.color = 'var(--t3)'; resultEl.style.fontStyle = 'italic'; }
+
+  try {
+    var resp = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': getAPIKey(),
+        'anthropic-version': '2023-06-01',
+        'anthropic-dangerous-direct-browser-access': 'true'
+      },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 800,
+        system: 'You are a ServiceTitan Comm+ ICP qualification expert. Analyze SDR handoff notes and flag ICP issues. ServiceTitan Comm+ ICP: 3-39 managed techs, PHEG verticals (Plumbing, HVAC, Electrical, Garage Door), construction revenue under 20%, decision maker is owner/GM/COO, residential-primary or mixed (not 100% commercial). Format your response with these sections:\n\n✅ ICP: PASS / ⚠️ ICP: PARTIAL / ❌ ICP: DQ\n\nTech count: [assessment]\nVertical fit: [assessment]\nConstruction %: [assessment]\nDM title: [assessment]\nOther flags: [any red flags]\n\nVerdict: [1 sentence — run it or route it]\n\nBe direct. No hedging. No em dashes.',
+        messages: [{role:'user', content: 'Check ICP fit for this prospect:\n\n'+notes}]
+      })
+    });
+    var data = await resp.json();
+    if(data.error) throw new Error(data.error.message);
+    var answer = data.content && data.content[0] ? data.content[0].text : '';
+    if(resultEl){ resultEl.textContent = answer; resultEl.style.color = ''; resultEl.style.fontStyle = '';
+      if(answer.includes('DQ')) resultEl.style.borderColor = 'var(--red-b)';
+      else if(answer.includes('PARTIAL')) resultEl.style.borderColor = 'var(--amb-b)';
+      else resultEl.style.borderColor = 'var(--grn-b)';
+    }
+  } catch(err) {
+    if(resultEl){ resultEl.textContent = 'API error: '+err.message+'. Check your API key in Quick Answers.'; resultEl.style.color = 'var(--red)'; resultEl.style.fontStyle = ''; }
+  }
+}
+window.runICPCheck = runICPCheck;
+
+// ── AI CALL COACHING ──
+async function runCallCoach(){
+  var transcript = document.getElementById('coach-input').value.trim();
+  if(!transcript){ alert('Paste a transcript first.'); return; }
+
+  var outputEl = document.getElementById('coach-output');
+  var resultEl = document.getElementById('coach-result');
+  if(outputEl) outputEl.style.display = 'block';
+  if(resultEl){ resultEl.textContent = '⚡ Scoring your call against the Non-Negotiable Scorecard...'; resultEl.style.color = 'var(--t3)'; resultEl.style.fontStyle = 'italic'; }
+
+  try {
+    var resp = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': getAPIKey(),
+        'anthropic-version': '2023-06-01',
+        'anthropic-dangerous-direct-browser-access': 'true'
+      },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1200,
+        system: 'You are a ServiceTitan Comm+ sales coach scoring a call against the Non-Negotiable Scorecard. Score each item: ✅ HIT, ⚠️ PARTIAL, ❌ MISSED. For each item, quote the exact transcript moment (or note the absence). Then give a 1-sentence coaching note. Be direct and honest. No fluff. No em dashes.\n\nScorecard items:\n1. COMM NARRATIVE — Did they open with ServiceTitans Comm+ story? Differentiate vs residential-first tools?\n2. PAIN IMPLICATION DRILLING — After pain was volunteered, did they ask at least 2 Implication questions? Did they quantify in the prospect own words?\n3. VOCAL INSPIRATION MOMENT — Was there a genuine "holy sh*t" moment with a demo or ROI math?\n4. NET ZERO PURCHASE BUY-IN — Did they run net zero math? Did prospect verbally agree ST could pay for itself before pricing was revealed?\n\nEnd with OVERALL SCORE (/4) and TOP PRIORITY for next call.',
+        messages: [{role:'user', content: 'Score this call transcript:\n\n'+transcript.slice(0,4000)}]
+      })
+    });
+    var data = await resp.json();
+    if(data.error) throw new Error(data.error.message);
+    var answer = data.content && data.content[0] ? data.content[0].text : '';
+    if(resultEl){ resultEl.textContent = answer; resultEl.style.color = ''; resultEl.style.fontStyle = ''; }
+  } catch(err) {
+    if(resultEl){ resultEl.textContent = 'API error: '+err.message+'. Check your API key in Quick Answers.'; resultEl.style.color = 'var(--red)'; resultEl.style.fontStyle = ''; }
+  }
+}
+window.runCallCoach = runCallCoach;
+
+// ── UPDATE PAGES MAP for new panes (v11) ──
+// pages is a const defined earlier; just add new keys
+try {
+  pages['spin'] = ['SPIN scenarios','v11: AI-generated per prospect or preset library'];
+  pages['icp'] = ['ICP qualifier','v11: AI flags DQ conditions before you waste 60 min'];
+  pages['callcoach'] = ['Call coaching','v11: AI scores against Non-Negotiable Scorecard'];
+  pages['forecast'] = ['Forecast + signals','Ferg format · Slack copy · pipeline signals'];
+} catch(e){}
+
+
+// ── NET ZERO PURCHASE CALCULATOR ──
+function calcNetZero(){
+  var current = parseFloat(document.getElementById('nzp-current').value)||0;
+  var ticket = parseFloat(document.getElementById('nzp-ticket').value)||15;
+  var jobs = parseFloat(document.getElementById('nzp-jobs').value)||95;
+
+  var monthlyLift = ticket * jobs;
+  var resultEl = document.getElementById('nzp-result');
+  if(!resultEl) return;
+
+  if(!current && !jobs){ resultEl.innerHTML = '<div style="font-size:11px;color:var(--t3)">Fill in the fields above to see the net zero math.</div>'; return; }
+
+  // Get ST monthly cost from pricing builder (opt A exit × techs)
+  var stMonthly = 0;
+  try {
+    var techs = parseInt(document.getElementById('oa-techs').value)||5;
+    var exit = parseInt(document.getElementById('oa-exit').value)||281;
+    stMonthly = techs * exit;
+  } catch(e){ stMonthly = 1405; }
+
+  var netDelta = monthlyLift - stMonthly + current;
+  var color = netDelta >= 0 ? 'var(--grn)' : 'var(--red)';
+
+  resultEl.innerHTML = '<div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:8px;margin-bottom:8px">'
+    +'<div style="text-align:center"><div style="font-size:9px;color:var(--t3);margin-bottom:3px">Current platform cost</div><div style="font-size:18px;font-weight:700;color:var(--red);font-family:monospace">-$'+current.toLocaleString()+'</div></div>'
+    +'<div style="text-align:center"><div style="font-size:9px;color:var(--t3);margin-bottom:3px">ST monthly cost</div><div style="font-size:18px;font-weight:700;color:var(--amb);font-family:monospace">-$'+stMonthly.toLocaleString()+'</div></div>'
+    +'<div style="text-align:center"><div style="font-size:9px;color:var(--t3);margin-bottom:3px">Revenue lift ($'+ticket+' x '+jobs+' jobs)</div><div style="font-size:18px;font-weight:700;color:var(--grn);font-family:monospace">+$'+monthlyLift.toLocaleString()+'</div></div>'
+    +'<div style="text-align:center"><div style="font-size:9px;color:var(--t3);margin-bottom:3px">Net delta</div><div style="font-size:18px;font-weight:700;font-family:monospace;color:'+color+'">'+  (netDelta>=0?'+':'')+Math.round(netDelta).toLocaleString()+'</div></div>'
+    +'</div>'
+    +'<div style="background:var(--grn-bg);border:1px solid var(--grn-b);border-radius:var(--rs);padding:8px 11px;font-size:11px;color:var(--t1)">'
+    +(netDelta>=0
+      ? '<strong style="color:var(--grn)">Net positive $'+Math.round(netDelta).toLocaleString()+'/mo</strong> — ST pays for itself and puts money back. Frame: "You are not paying for ST, ST is paying for itself with '+jobs+' jobs recovering $'+ticket+' each."'
+      : '<strong style="color:var(--amb)">Gap: $'+Math.abs(Math.round(netDelta)).toLocaleString()+'/mo</strong> — Tighten the ticket lift number or increase job count to close the gap. Or frame: the OB investment is recovered within the first 90 days.')
+    +'</div>';
+}
+window.calcNetZero = calcNetZero;
+
+
+// ── GLOBAL API KEY ──
+function saveGlobalKey(){
+  var key = document.getElementById('global-api-key').value.trim();
+  var status = document.getElementById('global-key-status');
+  if(key.length > 20){
+    try { localStorage.setItem('blizzy_ak', key); } catch(e){}
+    var qaKey = document.getElementById('qa-api-key');
+    if(qaKey) qaKey.value = key;
+    if(status){ status.textContent = 'Key saved — AI features live'; status.style.color = 'var(--grn)'; }
+    // Auto-close settings after 1.5s
+    setTimeout(function(){
+      var panel = document.getElementById('settings-panel');
+      var chev = document.getElementById('settings-chev');
+      var btn = document.getElementById('settings-btn');
+      if(panel) panel.style.display = 'none';
+      if(chev) chev.style.transform = '';
+      if(btn){ btn.style.borderColor='var(--b1)'; btn.style.color='var(--t3)'; }
+    }, 1500);
+  } else {
+    if(status){ status.textContent = 'Paste your full sk-ant-... key'; status.style.color = 'var(--red)'; }
+  }
+}
+window.saveGlobalKey = saveGlobalKey;
+
+// On load, restore saved key into both fields
+(function(){
+  try {
+    var saved = localStorage.getItem('blizzy_ak');
+    if(saved && saved.length > 20){
+      var globalEl = document.getElementById('global-api-key');
+      if(globalEl) globalEl.value = saved;
+      var qaEl = document.getElementById('qa-api-key');
+      if(qaEl) qaEl.value = saved;
+      var status = document.getElementById('global-key-status');
+      if(status){ status.textContent = 'Key loaded. All AI features live.'; status.style.color = 'var(--grn)'; }
+    }
+  } catch(e){}
+})();
+
+// Helper: get API key from any source
+function getAPIKey(){
+  // Try global field first, then qa field, then localStorage
+  var g = document.getElementById('global-api-key');
+  if(g && g.value.trim().length > 20) return g.value.trim();
+  var q = document.getElementById('qa-api-key');
+  if(q && q.value.trim().length > 20) return q.value.trim();
+  try { var ls = localStorage.getItem('blizzy_ak'); if(ls && ls.length > 20) return ls; } catch(e){}
+  return '';
+}
+window.getAPIKey = getAPIKey;
+
+// ── SETTINGS TOGGLE ──
+function toggleSettings(){
+  var panel = document.getElementById('settings-panel');
+  var chev = document.getElementById('settings-chev');
+  var btn = document.getElementById('settings-btn');
+  var open = panel.style.display === 'none';
+  panel.style.display = open ? 'block' : 'none';
+  if(chev) chev.style.transform = open ? 'rotate(180deg)' : '';
+  if(btn){ 
+    btn.style.borderColor = open ? 'var(--grn-b)' : 'var(--b1)';
+    btn.style.color = open ? 'var(--grn)' : 'var(--t3)';
+  }
+}
+window.toggleSettings = toggleSettings;
 
 </script>
 </body>
