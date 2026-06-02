@@ -30,6 +30,8 @@ html,body{height:100%;background:var(--bg);color:var(--t1);font-family:'DM Sans'
 .ng.collapsed .ng-chev{transform:rotate(-90deg)}
 .ng.collapsed .nb{display:none}
 .nb{display:flex;align-items:center;gap:7px;padding:7px 9px;border-radius:var(--rs);border:none;background:none;color:var(--t2);font-size:11.5px;cursor:pointer;width:100%;text-align:left;font-family:'DM Sans',sans-serif;transition:all .13s;white-space:nowrap}
+.nb.dragging{opacity:.35}
+.nb.drag-over{box-shadow:inset 0 2px 0 0 var(--grn)}
 .nb svg{width:14px;height:14px;flex-shrink:0;opacity:.65}
 .nb:hover{background:var(--bg3);color:var(--t1)}
 .nb.on{background:var(--grn-bg);color:var(--grn);border:1px solid var(--grn-b);font-weight:500}
@@ -216,6 +218,7 @@ td.bold{font-weight:500}
       <button class="nb" data-pane="forecast"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>Forecast + signals<span class="ntag tg-snow">&#10052;</span></button>
       <button class="nb" data-pane="pricing"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>Pricing builder<span class="ntag tg-new">NEW</span></button>
       <button class="nb" data-pane="qa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Quick answers<span class="ntag tg-live">LIVE</span></button>
+      <button class="nb" data-pane="checklist"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>Daily checklist<span class="ntag tg-new">NEW</span></button>
       <button class="nb" data-pane="resources"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>Resources<span class="ntag tg-live">LIVE</span></button>
     </div>
     <div class="ng"><div class="ng-lbl">Business case<span class="ng-chev">▾</span></div>
@@ -819,8 +822,18 @@ Blayne &middot; 707-478-9500</div>
       <div>
         <div class="sec">Step 1 &mdash; paste transcript</div>
         <textarea id="gong-input" placeholder="Paste full Zoom or Gong transcript here...&#10;&#10;Works best with speaker-labeled transcripts like:&#10;Blayne: Hey Leslie, tell me about...&#10;Leslie: Yeah so we're on pen and paper..." style="width:100%;min-height:180px;padding:11px 13px;background:var(--bg3);border:1px solid var(--b2);border-radius:var(--r);color:var(--t1);font-size:11.5px;font-family:'DM Mono',monospace;resize:vertical;outline:none;line-height:1.6"></textarea>
+
+        <!-- Optional personality notes -->
+        <div style="margin-top:8px;padding:9px 12px;background:var(--bg3);border:1px solid var(--b1);border-radius:var(--r)">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:5px">
+            <div style="font-size:10px;font-weight:600;color:var(--t2)">&#127775; Optional: personality + tone notes</div>
+            <span style="font-size:9px;color:var(--t3)">Changes email tone only. Not required.</span>
+          </div>
+          <textarea id="gong-personality" rows="2" placeholder='e.g. "Super laid back, hated formality, laughed the whole call" or "Very analytical, asked for ROI data, skeptical" or "Rushed, just wants to know price and timeline"' style="width:100%;padding:7px 10px;border:1px solid var(--b2);border-radius:var(--rs);background:var(--bg4);color:var(--t1);font-size:11px;font-family:'DM Sans',sans-serif;resize:none;outline:none;line-height:1.5;box-sizing:border-box" onfocus="this.style.borderColor='var(--grn)'" onblur="this.style.borderColor='var(--b2)'"></textarea>
+        </div>
+
         <div style="display:flex;gap:7px;margin-top:8px;align-items:center">
-          <button onclick="processGong()" style="padding:8px 18px;border-radius:var(--rs);border:none;background:var(--grn);color:#fff;font-size:12px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif">⚡ Process transcript</button>
+          <button onclick="processGong()" style="padding:8px 18px;border-radius:var(--rs);border:none;background:var(--grn);color:#fff;font-size:12px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif">&#9889; Process transcript</button>
           <button onclick="document.getElementById('gong-input').value='';document.getElementById('gong-output').style.display='none'" style="padding:8px 14px;border-radius:var(--rs);border:1px solid var(--b2);background:none;color:var(--t2);font-size:11px;cursor:pointer;font-family:'DM Sans',sans-serif">Clear</button>
           <span style="font-size:10px;color:var(--t3);margin-left:auto">Works on any transcript format</span>
         </div>
@@ -837,7 +850,20 @@ Blayne &middot; 707-478-9500</div>
 
     <div id="gong-output" style="display:none;margin-top:14px">
       <!-- Alerts -->
-      <div id="gong-alerts" style="margin-bottom:12px"></div>
+      <div id="gong-alerts" style="margin-bottom:8px"></div>
+
+      <!-- SDR Quality / SLA Scan -->
+      <div id="gong-sla-section" style="display:none;margin-bottom:10px">
+        <div class="sec" style="color:var(--red)">&#128680; SDR quality scan &mdash; SLA violations + non-ICP flags</div>
+        <div id="gong-sla-flags" style="background:var(--red-bg);border:1px solid var(--red-b);border-radius:var(--r);padding:10px 13px;font-size:11px;color:var(--t1);line-height:1.8"></div>
+        <div style="font-size:9px;color:var(--t3);margin-top:4px">Use this to flag lead quality issues. Copy and share with Dean or Ferg if it's a pattern.</div>
+      </div>
+
+      <!-- SLA / ICP Quality Scan -->
+      <div id="gong-sla-section" style="display:none;margin-bottom:10px">
+        <div class="sec">&#128680; SDR quality scan &mdash; SLA violations + ICP flags</div>
+        <div id="gong-sla-flags" style="background:var(--red-bg);border:1px solid var(--red-b);border-radius:var(--r);padding:10px 13px;font-size:11px;color:var(--t1);line-height:1.7"></div>
+      </div>
 
       <div class="g2">
         <!-- SFDC Notes -->
@@ -1967,6 +1993,44 @@ Blayne &middot; 707-478-9500</div>
     </div>
   </div>
 
+  <div class="pane" id="pane-checklist">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+      <div>
+        <div style="font-size:16px;font-weight:800;color:var(--t1);letter-spacing:-.4px">Daily + Weekly Checklist</div>
+        <div style="font-size:11px;color:var(--t3);margin-top:2px">Check things off as you go. Saves in browser. Reset buttons at top right.</div>
+      </div>
+      <div style="display:flex;gap:6px">
+        <button onclick="resetChecklist('daily')" style="font-size:10px;padding:5px 11px;border-radius:var(--rs);border:1px solid var(--b2);background:none;color:var(--t3);cursor:pointer;font-family:'DM Sans',sans-serif">Reset daily</button>
+        <button onclick="resetChecklist('all')" style="font-size:10px;padding:5px 11px;border-radius:var(--rs);border:1px solid var(--b2);background:none;color:var(--t3);cursor:pointer;font-family:'DM Sans',sans-serif">Reset all</button>
+      </div>
+    </div>
+    <div style="margin-bottom:14px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+        <div style="font-size:10px;color:var(--t3);font-weight:600">TODAY'S PROGRESS</div>
+        <div id="cl-progress-label" style="font-size:11px;color:var(--grn);font-weight:700">0 / 0</div>
+      </div>
+      <div style="height:6px;border-radius:3px;background:var(--bg3);overflow:hidden">
+        <div id="cl-progress-bar" style="height:100%;background:var(--grn);border-radius:3px;transition:width .4s;width:0%"></div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+      <div>
+        <div style="font-size:10px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px">&#127774; Morning (before first call)</div>
+        <div id="cl-morning" style="display:flex;flex-direction:column;gap:4px"></div>
+        <div style="font-size:10px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.07em;margin:12px 0 8px">&#128222; Between calls</div>
+        <div id="cl-between" style="display:flex;flex-direction:column;gap:4px"></div>
+      </div>
+      <div>
+        <div style="font-size:10px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px">&#127749; End of day</div>
+        <div id="cl-eod" style="display:flex;flex-direction:column;gap:4px"></div>
+        <div style="font-size:10px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.07em;margin:12px 0 8px">&#128197; Weekly <span style="font-weight:400;text-transform:none;letter-spacing:0">(resets Mon)</span></div>
+        <div id="cl-weekly" style="display:flex;flex-direction:column;gap:4px"></div>
+        <div style="font-size:10px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.07em;margin:12px 0 8px">&#128197; End of month <span style="font-weight:400;text-transform:none;letter-spacing:0">(resets 1st)</span></div>
+        <div id="cl-eom" style="display:flex;flex-direction:column;gap:4px"></div>
+      </div>
+    </div>
+  </div>
+
   <div class="pane" id="pane-theask">
 
     <!-- Hero ROI banner -->
@@ -2066,7 +2130,7 @@ Blayne &middot; 707-478-9500</div>
 <script>
 const pages={overview:['Dashboard','FY27 \u00b7 ARPU + attainment at a glance'],pipeline:['Active pipeline','\u2744\ufe0f Snowflake SFDC \u00b7 ARPU per deal \u00b7 SFDC links'],needsactivity:['Needs activity','\u2744\ufe0f 0-7 / 8-14 days \u00b7 phone + draft per opp'],closedwon:['Closed won','FY27 \u00b7 ARPU per deal \u00b7 SFDC clickable'],closedlost:['Closed lost','\u2744\ufe0f Competitor signals + ARPU analysis'],onboarding:['Onboarding','\u2744\ufe0f Referral timing \u00b7 SFDC clickable'],followup:['Follow-up emails','Live today \u00b7 Gong Drop drafted \u00b7 send via Gmail'],precall:['Pre-call brief','\u2744\ufe0f Click any call \u00b7 full one-pager expands'],spin:['SPIN scenarios','From your Confluence call playbooks'],icp:['ICP qualifier','Confluence talk tracks \u00b7 live today'],callcoach:['Call coaching','\u2744\ufe0f Non-Negotiable Scorecard \u00b7 ARPU coaching'],gong:['Gong Drop','Live today \u00b7 60 seconds to full output'],pricing:['Pricing builder','Real rate card · live negotiation tool · Kaleb\'s ask'],
   referrals:['Referral engine','\u2744\ufe0f Week 3 auto-draft \u00b7 send via Gmail'],qa:['Quick answers','Type anything \u00b7 Confluence + SFDC answers instantly'],resources:['Resources','All links \u00b7 pricing \u00b7 playbooks \u00b7 ST pages'],forecast:['Forecast + signals','&#10052; Pipeline by bucket · SalesLoft activity · closed lost triggers'],
-  dayinlife:['Day in the life','Before and after \u00b7 one rep \u00b7 one full day'],theask:['The ask','3 items \u00b7 30-day pilot \u00b7 $732K ROI']};
+  dayinlife:['Day in the life','Before and after \u00b7 one rep \u00b7 one full day'],theask:['The ask','3 items \u00b7 30-day pilot \u00b7 $732K ROI'],checklist:['Daily Checklist','Your daily + weekly must-dos \u00b7 checks off as you go']};
 document.querySelectorAll('.nb').forEach(b=>{b.addEventListener('click',function(){
   document.querySelectorAll('.nb').forEach(x=>x.classList.remove('on'));
   document.querySelectorAll('.pane').forEach(x=>x.classList.remove('on'));
@@ -2428,6 +2492,121 @@ setTimeout(function(){
     refreshCalendar();
   }
 }, 500);
+// ═══ DAILY CHECKLIST ENGINE ═══
+var CHECKLIST={
+  morning:[
+    {id:'m1',text:'Check calendar, know every call today'},
+    {id:'m2',text:'Review pipeline, flag anything stale or at risk'},
+    {id:'m3',text:'Log into Gong, pull yesterday\'s call reviews'},
+    {id:'m4',text:'Check #comm_sr_enablement for new announcements'},
+    {id:'m5',text:'Update SFDC close dates, no past dates'},
+    {id:'m6',text:'Send pre-call emails for today\'s prospect calls'},
+  ],
+  between:[
+    {id:'b1',text:'Log Gong Drop within 30 min of each call'},
+    {id:'b2',text:'Send follow-up email before next call starts'},
+    {id:'b3',text:'Log SFDC activity for each completed call'},
+    {id:'b4',text:'Check for replies from today\'s prospects'},
+  ],
+  eod:[
+    {id:'e1',text:'SFDC + SE Check, confirm all booked opps have SE assigned'},
+    {id:'e2',text:'Flip any signed deals to Contract Signed in SFDC'},
+    {id:'e3',text:'Update pipeline forecast for Dean/Ferg'},
+    {id:'e4',text:'Log next steps on every touched deal'},
+    {id:'e5',text:'Review tomorrow\'s calendar, any prep needed?'},
+  ],
+  weekly:[
+    {id:'w1',text:'Cross-sell: touch all 5 assigned accounts + update notes by Friday'},
+    {id:'w2',text:'Submit call review to tracker (Confluence call tracker)'},
+    {id:'w3',text:'Pipeline sweep, close lost anything dead, reforecast'},
+    {id:'w4',text:'Referral engine check, any week-3 accounts due?'},
+    {id:'w5',text:'Check #comm_sr_enablement for cross-sell calculator updates'},
+    {id:'w6',text:'Review Gong calls with coaching lens, any SPIN patterns to fix?'},
+  ],
+  eom:[
+    {id:'eom1',text:'Flip ALL signed deals to Contract Signed'},
+    {id:'eom2',text:'Close out dead opps, no zombie pipeline'},
+    {id:'eom3',text:'Update all SFDC close dates, zero past dates'},
+    {id:'eom4',text:'Cross-sell BoB notes, update every account'},
+    {id:'eom5',text:'Confirm SE bookings match all pending deals'},
+    {id:'eom6',text:'Submit final forecast to Ferg before cutoff'},
+  ]
+};
+
+function renderChecklist(){
+  var sections=['morning','between','eod','weekly','eom'];
+  var totalD=0, doneD=0;
+  sections.forEach(function(sec){
+    var el=document.getElementById('cl-'+sec);
+    if(!el) return;
+    el.innerHTML='';
+    CHECKLIST[sec].forEach(function(item){
+      var key='blizzy_cl_'+item.id;
+      var done=false;
+      try{done=localStorage.getItem(key)==='1';}catch(e){}
+      var isDaily=['morning','between','eod'].includes(sec);
+      if(isDaily){totalD++;if(done)doneD++;}
+      var div=document.createElement('div');
+      div.style.cssText='display:flex;align-items:flex-start;gap:8px;padding:8px 10px;border-radius:var(--rs);border:1px solid '+(done?'var(--grn-b)':'var(--b1)')+';background:'+(done?'var(--grn-bg)':'var(--bg3)')+';cursor:pointer;margin-bottom:3px;transition:all .15s';
+      div.innerHTML='<div style="width:16px;height:16px;border-radius:3px;border:1.5px solid '+(done?'var(--grn)':'var(--b2)')+';background:'+(done?'var(--grn)':'none')+';flex-shrink:0;display:flex;align-items:center;justify-content:center;margin-top:1px">'+(done?'<svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2.5" style="width:9px;height:9px"><polyline points="1.5 6 4.5 9 10.5 3"/></svg>':'')+'</div><div style="font-size:11px;color:'+(done?'var(--t3)':'var(--t1)')+';line-height:1.4;'+(done?'text-decoration:line-through;opacity:.6':'')+'">'+item.text+'</div>';
+      div.onclick=function(){
+        var nd=localStorage.getItem(key)!=='1';
+        try{localStorage.setItem(key,nd?'1':'0');}catch(e){}
+        renderChecklist();
+      };
+      el.appendChild(div);
+    });
+  });
+  var bar=document.getElementById('cl-progress-bar');
+  var lbl=document.getElementById('cl-progress-label');
+  var pct=totalD>0?Math.round(doneD/totalD*100):0;
+  if(bar) bar.style.width=pct+'%';
+  if(lbl) lbl.textContent=doneD+' / '+totalD+' daily done';
+}
+window.renderChecklist=renderChecklist;
+
+function resetChecklist(scope){
+  try{
+    var keys=[];
+    if(scope==='daily'){
+      ['morning','between','eod'].forEach(function(s){CHECKLIST[s].forEach(function(i){keys.push('blizzy_cl_'+i.id);});});
+    } else {
+      Object.keys(CHECKLIST).forEach(function(s){CHECKLIST[s].forEach(function(i){keys.push('blizzy_cl_'+i.id);});});
+    }
+    keys.forEach(function(k){localStorage.removeItem(k);});
+  }catch(e){}
+  renderChecklist();
+}
+window.resetChecklist=resetChecklist;
+
+setTimeout(function(){
+  document.querySelectorAll('.nb').forEach(function(b){
+    b.addEventListener('click',function(){
+      if(this.dataset.pane==='checklist') setTimeout(renderChecklist,100);
+    });
+  });
+},800);
+
+// ═══ SLA / ICP SCANNER ═══
+function scanForSLAFlags(text){
+  var flags=[];
+  var low=text.toLowerCase();
+  var techM=text.match(/(\d+)\s*(tech|technician|field\s*tech)/gi)||[];
+  techM.forEach(function(m){
+    var n=parseInt(m);
+    if(n<3) flags.push('&#128680; Tech count ~'+n+' detected (below 3-tech ICP floor). Possible non-ICP lead from SDR.');
+    if(n>39) flags.push('&#9888; Tech count ~'+n+' detected (above 39-tech Comm+ ceiling). Should this be Enterprise?');
+  });
+  var resi=['residential only','homeowner','no commercial','purely residential','b2c'];
+  resi.forEach(function(s){if(low.includes(s)) flags.push('&#128680; Residential-only signal: "'+s+'". Comm+ ICP requires commercial or mixed work.');});
+  var early=['no techs yet','just starting','pre-revenue','startup','not open yet'];
+  early.forEach(function(s){if(low.includes(s)) flags.push('&#9888; Early-stage signal: "'+s+'". Prospect may not have active field operations.');});
+  var wc=text.split(/\s+/).length;
+  if(wc<200) flags.push('&#9888; Very short transcript ('+wc+' words). Call may have been cut short or prospect no-showed.');
+  return flags;
+}
+window.scanForSLAFlags=scanForSLAFlags;
+
 function sendEmailFromCard(btn){
   var card = btn.closest('.ec');
   if(!card) return;
@@ -3326,6 +3505,20 @@ function processGong(){
   document.getElementById('gong-email-subj').textContent = emailSubj;
   document.getElementById('gong-email-body').innerText = emailBody;
   document.getElementById('gong-company-badge').textContent = company;
+
+  // ── SLA / ICP Scan ──
+  var slaFlags = (typeof scanForSLAFlags === 'function') ? scanForSLAFlags(raw) : [];
+  var slaSec = document.getElementById('gong-sla-section');
+  var slaEl  = document.getElementById('gong-sla-flags');
+  if(slaSec && slaEl){
+    if(slaFlags.length > 0){
+      slaEl.innerHTML = slaFlags.map(function(f){ return '<div style="margin-bottom:4px">'+f+'</div>'; }).join('');
+      slaSec.style.display = 'block';
+    } else {
+      slaSec.style.display = 'none';
+    }
+  }
+
   document.getElementById('gong-output').style.display = 'block';
   document.getElementById('gong-output').scrollIntoView({behavior:'smooth',block:'start'});
 }
@@ -4217,7 +4410,46 @@ function presentMode(){
 }
 window.presentMode=presentMode;
 
-// ─── SIDEBAR COLLAPSE (group headers) ───
+// ─── SIDEBAR DRAG TO REORDER ───
+(function(){
+  var dragSrc = null;
+  function initDrag(){
+    document.querySelectorAll('.nb').forEach(function(btn){
+      if(btn._dragInited) return;
+      btn._dragInited = true;
+      btn.setAttribute('draggable','true');
+      btn.addEventListener('dragstart',function(e){
+        dragSrc = this;
+        e.dataTransfer.effectAllowed='move';
+        setTimeout(function(){ dragSrc && dragSrc.classList.add('dragging'); },0);
+      });
+      btn.addEventListener('dragend',function(){
+        this.classList.remove('dragging');
+        document.querySelectorAll('.nb').forEach(function(b){ b.classList.remove('drag-over'); });
+        dragSrc=null;
+      });
+      btn.addEventListener('dragover',function(e){
+        e.preventDefault();
+        if(dragSrc && dragSrc!==this && dragSrc.closest('.ng')===this.closest('.ng')){
+          document.querySelectorAll('.nb').forEach(function(b){ b.classList.remove('drag-over'); });
+          this.classList.add('drag-over');
+        }
+      });
+      btn.addEventListener('drop',function(e){
+        e.preventDefault();
+        if(dragSrc && dragSrc!==this && dragSrc.closest('.ng')===this.closest('.ng')){
+          var parent=this.parentNode;
+          var srcIdx=Array.from(parent.children).indexOf(dragSrc);
+          var tgtIdx=Array.from(parent.children).indexOf(this);
+          if(srcIdx<tgtIdx) parent.insertBefore(dragSrc,this.nextSibling);
+          else parent.insertBefore(dragSrc,this);
+        }
+        document.querySelectorAll('.nb').forEach(function(b){ b.classList.remove('drag-over'); });
+      });
+    });
+  }
+  setTimeout(initDrag,300);
+})();
 document.querySelectorAll('.ng-lbl').forEach(function(lbl){
   lbl.addEventListener('click',function(){
     var ng=this.parentElement;
