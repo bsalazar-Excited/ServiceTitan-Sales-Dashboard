@@ -679,6 +679,7 @@ select.inp{cursor:pointer}
       <div style="display:flex;gap:7px;align-items:center;flex-wrap:wrap">
         <button class="btn btn-g" id="qa-btn" onclick="runQA()" style="font-size:12px;font-weight:700">Ask Claude</button>
         <button class="btn btn-ghost btn-sm" onclick="document.getElementById('qa-q').value='';document.getElementById('qa-ans').style.display='none'">Clear</button>
+        <button class="btn btn-ghost btn-sm" onclick="testKey()" style="color:#f5a623;border-color:rgba(245,166,35,.3)">&#x1F50D; Test key</button>
         <div style="display:flex;align-items:center;gap:5px;margin-left:auto">
           <span style="font-size:9px;color:#55556a">Key:</span>
           <input type="password" id="qa-key" class="inp inp-mono" placeholder="sk-ant-..." style="width:130px;font-size:10px;padding:4px 7px">
@@ -1557,7 +1558,7 @@ async function claude(systemPrompt, userPrompt, maxTokens){
         'anthropic-dangerous-direct-browser-access': 'true'
       },
       body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
+        model: 'claude-sonnet-4-5',
         max_tokens: maxTokens || 1200,
         system: systemPrompt,
         messages: [{ role: 'user', content: userPrompt }]
@@ -2391,6 +2392,45 @@ function openRefEmail(){
   window.open('https://mail.google.com/mail/?view=cm&fs=1&to='+encodeURIComponent(to)+'&su='+encodeURIComponent(subj)+'&body='+encodeURIComponent(body),'_blank');
 }
 window.openRefEmail = openRefEmail;
+
+// KEY TESTER
+async function testKey(){
+  var key = getKey();
+  if(!key){ alert('No key saved. Enter it in Settings.'); return; }
+  var display = key.slice(0,18)+'...'+key.slice(-4);
+  var len = key.length;
+  var hasDots = key.includes('...');
+  if(hasDots){ alert('BAD KEY IN STORAGE\n\nThe saved key contains "..." — it got saved as the masked preview, not the real key.\n\nGo to Settings, clear it, and paste the full key again.'); return; }
+  var ans = document.getElementById('qa-ans');
+  var txt = document.getElementById('qa-ans-text');
+  if(ans) ans.style.display='block';
+  if(txt) txt.textContent = 'Testing key: '+display+' ('+len+' chars)...';
+  try {
+    var resp = await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{
+        'Content-Type':'application/json',
+        'x-api-key': key,
+        'anthropic-version':'2023-06-01',
+        'anthropic-dangerous-direct-browser-access':'true'
+      },
+      body: JSON.stringify({
+        model:'claude-haiku-4-5',
+        max_tokens:50,
+        messages:[{role:'user',content:'Say OK'}]
+      })
+    });
+    var data = await resp.json();
+    if(resp.ok){
+      if(txt) txt.textContent = '✅ KEY WORKS! Response: ' + (data.content&&data.content[0]?data.content[0].text:'ok') + '\n\nKey: '+display+' ('+len+' chars)';
+    } else {
+      if(txt) txt.textContent = '❌ Status '+resp.status+'\n\nError: '+JSON.stringify(data)+'\n\nKey used: '+display+' ('+len+' chars)';
+    }
+  } catch(e) {
+    if(txt) txt.textContent = '❌ Network error: '+e.message+'\n\nKey: '+display;
+  }
+}
+window.testKey = testKey;
 
 
 // ═══════════════════════════════════════
